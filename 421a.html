@@ -3045,6 +3045,7 @@ function selectAnswer(idx, q) {
 function navigate(dir) {
   currentIdx += dir;
   loadQuestion();
+  localStorage.setItem('progress_421a', currentIdx);
 }
 
 function updateScore() {
@@ -3576,12 +3577,6 @@ function fcMarkAgain() { fcNav(1); }
   }
 })();
 
-/* ── PROGRESS SAVE: auto-save on navigate ── */
-var _origNav = navigate;
-function navigate(dir) {
-  _origNav(dir);
-  localStorage.setItem('progress_421a', currentIdx);
-}
 
 /* ── 25-QUESTION MOCK EXAM CTA ── */
 (function(){
