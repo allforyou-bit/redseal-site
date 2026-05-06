@@ -394,9 +394,7 @@ function showComboToast(n){
 function reportQuestion(){
   var el=document.getElementById('qText')||document.querySelector('.q-text');
   var qt=el?el.textContent.trim():'Unknown';
-  window.open('mailto:lidbil515@gmail.com?subject='+encodeURIComponent('Question Error Report')+'&body='+encodeURIComponent('Question: '+qt+'
-
-Describe the error:'));
+  window.open('mailto:lidbil515@gmail.com?subject='+encodeURIComponent('Question Error Report')+'&body='+encodeURIComponent('Question: '+qt+'\n\nDescribe the error:'));
 }
 </script>
 
