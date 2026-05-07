@@ -3019,18 +3019,42 @@ function selectAnswer(idx, q) {
     else if (i === idx && i !== q.answer) { btn.classList.add('wrong'); }
   });
 
-  if (idx === q.answer) { totalCorrect++; correctStreak++; } else { correctStreak = 0; }
+  const isCorrect = idx === q.answer;
+  if (isCorrect) { totalCorrect++; correctStreak++; } else { correctStreak = 0; }
   updateScore();
   updateStreakBadge();
 
   const expBox = document.getElementById('explanationBox');
   expBox.innerHTML = `
-    <strong>${idx === q.answer ? '✅ Correct!' : '❌ Incorrect — Correct answer: ' + ['A','B','C','D'][q.answer]}</strong><br><br>
+    <strong>${isCorrect ? '✅ Correct!' : '❌ Incorrect — Correct answer: ' + ['A','B','C','D'][q.answer]}</strong><br><br>
     ${q.explanation}
     ${q.keyConcept ? `<div class="key-concept"><strong>💡 Key Concept:</strong> ${q.keyConcept}</div>` : ''}
   `;
   expBox.classList.add('show');
   document.getElementById('nextBtn').disabled = false;
+
+  // Today's correct count
+  if (isCorrect) {
+    const today=new Date().toDateString();
+    const tc=parseInt(localStorage.getItem('todayCorrect_421a')||'0')+1;
+    localStorage.setItem('todayCorrect_421a',tc);localStorage.setItem('todayDate_421a',today);
+    const te=document.getElementById('todayCount');if(te){te.textContent=`✓ ${tc} correct today`;te.style.display='inline-block';}
+  }
+  // Wrong bank
+  if (!isCorrect) {
+    const wb = JSON.parse(localStorage.getItem('wrongBank_421a')||'[]');
+    if (!wb.includes(q.id)) { wb.push(q.id); localStorage.setItem('wrongBank_421a', JSON.stringify(wb)); }
+    updateWrongBankTab();
+  } else {
+    const wb = JSON.parse(localStorage.getItem('wrongBank_421a')||'[]');
+    const fi = wb.indexOf(q.id);
+    if (fi > -1) { wb.splice(fi, 1); localStorage.setItem('wrongBank_421a', JSON.stringify(wb)); }
+    updateWrongBankTab();
+  }
+  // Topic stats
+  recordTopicStat(q.topic, isCorrect);
+  // Combo streak
+  if (isCorrect) { window._cs=(window._cs||0)+1; if(window._cs>=2) showComboToast(window._cs); } else { window._cs=0; }
 }
 
 function navigate(dir) {
@@ -3216,38 +3240,6 @@ function showMockResults() {
   const tDate=localStorage.getItem('todayDate_421a');
   if(tDate===today&&tc>0){const te=document.getElementById('todayCount');if(te){te.textContent=`✓ ${tc} correct today`;te.style.display='inline-block';}}
 })();
-
-// Track today correct + wrong bank + topic stats
-const _origSelectAnswer = selectAnswer;
-function selectAnswer(idx, q) {
-  const wasAnswered = answered;
-  _origSelectAnswer(idx, q);
-  if (!wasAnswered) {
-    const isCorrect = idx === q.answer;
-    // Today's correct count
-    if (isCorrect) {
-      const today=new Date().toDateString();
-      const tc=parseInt(localStorage.getItem('todayCorrect_421a')||'0')+1;
-      localStorage.setItem('todayCorrect_421a',tc);localStorage.setItem('todayDate_421a',today);
-      const te=document.getElementById('todayCount');if(te){te.textContent=`✓ ${tc} correct today`;te.style.display='inline-block';}
-    }
-    // Wrong bank
-    if (!isCorrect) {
-      const wb = JSON.parse(localStorage.getItem('wrongBank_421a')||'[]');
-      if (!wb.includes(q.id)) { wb.push(q.id); localStorage.setItem('wrongBank_421a', JSON.stringify(wb)); }
-      updateWrongBankTab();
-    } else {
-      const wb = JSON.parse(localStorage.getItem('wrongBank_421a')||'[]');
-      const fi = wb.indexOf(q.id);
-      if (fi > -1) { wb.splice(fi, 1); localStorage.setItem('wrongBank_421a', JSON.stringify(wb)); }
-      updateWrongBankTab();
-    }
-    // Topic stats
-    recordTopicStat(q.topic, isCorrect);
-    // Combo streak
-    if (isCorrect) { window._cs=(window._cs||0)+1; if(window._cs>=2) showComboToast(window._cs); } else { window._cs=0; }
-  }
-}
 
 // ── MOCK EXAM TIMER ──
 let mockTimer = null;
