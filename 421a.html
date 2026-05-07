@@ -688,16 +688,7 @@ function reportQuestion(){
 </div>
 <footer>
   <p>Canada Red Seal Exam Prep — Free study resource for Canadian skilled trades apprentices</p>
-  <p style="margin-top:8px;">
-    <a href="/">Home</a> |
-    <a href="/study-guide.html">Study Guide</a> |
-    <a href="/about.html">About</a> |
-    <a href="/contact.html">Contact</a> |
-    <a href="/privacy.html">Privacy Policy</a> |
-    <a href="/terms.html">Terms of Use</a> |
-    <a href="/disclaimer.html">Disclaimer</a> |
-    <a href="https://red-seal.ca" target="_blank">Official Red Seal Site</a>
-  </p>
+  <p style="margin-top:8px;"><a href="/">Home</a><a href="/study-guide.html">Study Guide</a><a href="/exam-guide.html">Exam Guide</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Use</a><a href="/disclaimer.html">Disclaimer</a></p>
 </footer>
 
 <script>
@@ -3596,7 +3587,7 @@ function fcMarkAgain() { fcNav(1); }
       b.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:linear-gradient(135deg,#1a3a5c,#2d6a9f);color:white;padding:16px 20px;z-index:9990;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;box-shadow:0 -4px 20px rgba(0,0,0,.25)';
       b.innerHTML = '<span style="font-size:.92rem;font-weight:600">&#x1F4AA; You\'ve answered <strong>' + totalAnswered + ' questions!</strong> Ready for a timed Mock Exam?</span>' +
         '<div style="display:flex;gap:10px;flex-shrink:0">' +
-        '<button onclick="launchMock && launchMock()" style="background:#f0a500;color:white;border:none;border-radius:8px;padding:10px 20px;font-weight:700;cursor:pointer;font-size:.88rem">Start Mock Exam &#x2192;</button>' +
+        '<button onclick="openMockLaunch()" style="background:#f0a500;color:white;border:none;border-radius:8px;padding:10px 20px;font-weight:700;cursor:pointer;font-size:.88rem">Start Mock Exam &#x2192;</button>' +
         '<button onclick="this.parentNode.parentNode.remove()" style="background:rgba(255,255,255,.15);color:white;border:1px solid rgba(255,255,255,.3);border-radius:8px;padding:10px 14px;cursor:pointer;font-size:.88rem">Later</button>' +
         '</div>';
       document.body.appendChild(b);
