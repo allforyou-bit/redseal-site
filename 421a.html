@@ -452,7 +452,7 @@
 <section class="page-hero">
   <span class="trade-badge">421A</span>
   <h1>421A Red Seal — Heavy Equipment Technician</h1>
-  <p class="subtitle">Canada Certification Exam Practice Questions | 2026</p>
+  <p class="subtitle">Free Canada Certification Exam Practice Questions | 2026</p>
   <div class="pill-badges">
     <span class="badge">Based on 2023 Red Seal Occupational Standard (RSOS)</span>
     <span class="update-pill">✓ Updated Apr 2026</span>
@@ -3638,9 +3638,7 @@ function fcMarkAgain() { fcNav(1); }
   selectAnswer = function(idx, q) {
     _origSelectAnswer2(idx, q);
     if (_shown) return;
-    var tot = parseInt(localStorage.getItem('todayCorrect_421a') || '0') +
-              parseInt(localStorage.getItem('todayCorrect_310t') || '0') +
-              parseInt(localStorage.getItem('todayCorrect_309a') || '0');
+    var tot = parseInt(localStorage.getItem('todayCorrect_421a') || '0');
     var sessionAns = document.querySelectorAll('.option-btn.correct, .option-btn.wrong').length;
     if (totalAnswered >= 25 && !sessionStorage.getItem('ctaShown421')) {
       _shown = true;
