@@ -145,3 +145,26 @@
 }
 /* ── NAV DROPDOWN OVERFLOW FIX ─────────────────────────────────── */
 .nav-links { overflow: visible !important; }
+
+/* ── Quiz typography & UX improvements (2026-06-09) ── */
+.q-text { font-size: 1.05rem !important; line-height: 1.75 !important; }
+.explanation { color: #1a3a5c; }
+.explanation.show { animation: explainSlide .2s ease; }
+@keyframes explainSlide { from { opacity:0; transform:translateY(-5px); } to { opacity:1; transform:translateY(0); } }
+.key-concept {
+  background: linear-gradient(135deg,#fffdf0,#fff8dc);
+  border: 1px solid #e8c840;
+  border-radius: 8px;
+  padding: 11px 15px 11px 42px;
+  margin-top: 12px;
+  font-size: .84rem;
+  position: relative;
+}
+.key-concept::before { content: '\1F4A1'; position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 1rem; }
+.key-concept strong { color: #7a5500; }
+.option-btn:focus-visible { outline: 3px solid #f0a500; outline-offset: 2px; }
+.option-btn { transition: all .15s, border-color .1s !important; }
+.option-btn.correct { animation: correctPulse .25s ease; }
+.option-btn.wrong   { animation: wrongShake .25s ease; }
+@keyframes correctPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.012)} }
+@keyframes wrongShake   { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-4px)} 75%{transform:translateX(4px)} }

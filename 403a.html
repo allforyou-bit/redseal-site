@@ -24,8 +24,8 @@
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://allforyou-bit.github.io/favicon.svg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="403A Gas Fitter – 100 Free Red Seal Practice Questions 2026">
-<meta name="twitter:description" content="100 free 403A Red Seal practice questions + Mock Exam mode. CSA B149.1 aligned. Canada's top free gas fitter exam prep.">
+<meta name="twitter:title" content="403A Gas Fitter — 100 Free Red Seal Practice Questions 2026">
+<meta name="twitter:description" content="100 free 403A Red Seal practice questions. Mock Exam + Flashcard mode. No signup.">
 <meta name="twitter:image" content="https://allforyou-bit.github.io/favicon.svg">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6709396576574623" crossorigin="anonymous"></script>
 <script type="application/ld+json">
@@ -161,6 +161,9 @@
   @media(max-width:860px){.site-nav{flex-wrap:nowrap!important;padding:0 14px!important;gap:0!important;position:relative}.nav-brand{display:flex;margin-right:auto}.nav-toggle{display:flex;align-items:center;justify-content:center;height:52px}.nav-links{display:none;position:absolute;top:52px;left:0;right:0;background:#1a3a5c;flex-direction:column;z-index:201;box-shadow:0 8px 24px rgba(0,0,0,.35);border-top:1px solid rgba(255,255,255,.1);max-height:75vh;overflow-y:auto;gap:0}.nav-links.open{display:flex}.nav-links a{padding:13px 20px!important;border-bottom:1px solid rgba(255,255,255,.07)!important;font-size:.9rem!important;width:100%;display:block}.topic-tabs{overflow-x:auto;flex-wrap:nowrap!important;-webkit-overflow-scrolling:touch;padding-bottom:6px;scrollbar-width:none}.topic-tabs::-webkit-scrollbar{display:none}.tab-btn{white-space:nowrap;flex-shrink:0}.mode-switch-row{flex-wrap:wrap}.mock-launch-bar{flex-direction:column;align-items:flex-start}.question-card{padding:16px 14px!important}.difficulty-row{flex-wrap:wrap;gap:6px}header h1{font-size:1.25rem}.container{padding:14px 12px}.nav-drop-btn{width:100%;text-align:left;padding:13px 20px!important;border-bottom:1px solid rgba(255,255,255,.07)!important;font-size:.9rem!important}.nav-drop-menu{position:static;box-shadow:none;border-radius:0;padding:0;display:none;background:rgba(255,255,255,.05)}.nav-drop-menu a{padding-left:36px!important}.nav-dropdown.open .nav-drop-menu{display:block}}
   @media(max-width:480px){.q-text{font-size:.93rem}.option-btn{font-size:.86rem;padding:10px 12px}}
 </style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Free 403A Red Seal Practice Exam","description":"100 practice questions for the Red Seal Gas Fitter exam","applicationCategory":"EducationalApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"CAD"}}
+</script>
 <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -534,5 +537,72 @@ updateWrongBankTab();renderTopicProgress();renderScoreHistory();
   document.addEventListener('click',function(){if(td)td.classList.remove('open');});}
 })();
 </script>
+<!-- ux-enhancements: keyboard nav + sticky progress bar -->
+<script id="ux-enhancements">
+(function(){
+  /* ── sticky progress bar ── */
+  var pb=document.createElement('div');
+  pb.id='uxBar';
+  pb.style.cssText='position:fixed;bottom:0;left:0;right:0;background:rgba(14,35,62,.95);border-top:2px solid #f0a500;color:#fff;display:flex;align-items:center;justify-content:center;gap:14px;padding:7px 20px;z-index:6999;font-size:.75rem;backdrop-filter:blur(6px)';
+  pb.innerHTML='<span id="uxQn" style="font-weight:700;color:#e2e8f0;letter-spacing:.3px">Q —/—</span>'
+    +'<span style="color:rgba(255,255,255,.22)">|</span>'
+    +'<span id="uxSc" style="font-weight:800;color:#f0a500;font-size:.82rem">—%</span>'
+    +'<span style="color:rgba(255,255,255,.22)">|</span>'
+    +'<a href="#topicTabs" style="color:rgba(255,255,255,.45);text-decoration:none;font-size:.7rem;transition:color .2s" onmouseover="this.style.color='#f0a500'" onmouseout="this.style.color='rgba(255,255,255,.45)'">&#8593; Topics</a>';
+  document.body.appendChild(pb);
+  var prevPad=parseInt(getComputedStyle(document.body).paddingBottom)||0;
+  document.body.style.paddingBottom=(prevPad+40)+'px';
+
+  function updBar(){
+    var qEl=document.getElementById('qNumber');
+    var sEl=document.getElementById('scoreDisplay');
+    if(qEl){
+      var t=qEl.textContent.trim();
+      document.getElementById('uxQn').textContent=t.replace(/^Question /,'Q ');
+    }
+    if(sEl){
+      var p=sEl.textContent.split('/');
+      var n=parseInt(p[0])||0,d=parseInt(p[1])||0;
+      document.getElementById('uxSc').textContent=d>0?Math.round(n/d*100)+'%':'0%';
+    }
+  }
+  function obsEl(id){
+    var el=document.getElementById(id);
+    if(el)new MutationObserver(updBar).observe(el,{childList:true,subtree:true,characterData:true});
+  }
+  obsEl('qNumber'); obsEl('scoreDisplay');
+  updBar();
+
+  /* ── keyboard shortcut hint (shown once) ── */
+  if(!localStorage.getItem('kbdSeen3')){
+    var kp=document.createElement('div');
+    kp.style.cssText='position:fixed;bottom:52px;right:16px;background:#1a3a5c;color:#fff;padding:13px 16px;border-radius:12px;font-size:.75rem;z-index:7100;box-shadow:0 6px 28px rgba(0,0,0,.5);line-height:1.85;max-width:192px;border:1px solid rgba(255,255,255,.14);animation:kbdFadeIn .3s ease';
+    kp.innerHTML='<b style="color:#f0a500;display:block;margin-bottom:5px">&#9000;&#65038; Keyboard Shortcuts</b>'
+      +'<div style="display:flex;gap:4px;align-items:center;margin-bottom:3px"><code style="background:rgba(255,255,255,.18);padding:2px 6px;border-radius:4px;font-size:.71rem">1</code><span style="opacity:.6">to</span><code style="background:rgba(255,255,255,.18);padding:2px 6px;border-radius:4px;font-size:.71rem">4</code><span style="margin-left:4px">Select answer</span></div>'
+      +'<div style="display:flex;gap:4px;align-items:center"><code style="background:rgba(255,255,255,.18);padding:2px 6px;border-radius:4px;font-size:.71rem">&#8592;</code><code style="background:rgba(255,255,255,.18);padding:2px 6px;border-radius:4px;font-size:.71rem">&#8594;</code><span style="margin-left:4px">Navigate</span></div>'
+      +'<button id="kbdGotIt" style="margin-top:10px;background:#f0a500;border:none;color:#fff;padding:5px 0;border-radius:7px;cursor:pointer;font-size:.73rem;font-weight:700;width:100%;font-family:inherit">Got it &#10003;</button>';
+    document.body.appendChild(kp);
+    document.getElementById('kbdGotIt').onclick=function(){kp.remove();localStorage.setItem('kbdSeen3','1');};
+  }
+
+  /* ── keyboard handler ── */
+  document.addEventListener('keydown',function(e){
+    if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA'||e.ctrlKey||e.metaKey||e.altKey) return;
+    var k=e.key;
+    if(k>='1'&&k<='4'){
+      var opts=document.querySelectorAll('#questionCard .option-btn:not([disabled])');
+      var i=parseInt(k)-1;
+      if(opts[i]){opts[i].click();e.preventDefault();}
+    }else if(k==='ArrowRight'){
+      var b=document.getElementById('nextBtn');
+      if(b&&!b.disabled){b.click();e.preventDefault();}
+    }else if(k==='ArrowLeft'){
+      var b=document.getElementById('prevBtn');
+      if(b&&!b.disabled){b.click();e.preventDefault();}
+    }
+  });
+})();
+</script>
+<style>@keyframes kbdFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}</style>
 </body>
 </html>
