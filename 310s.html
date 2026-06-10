@@ -15,7 +15,7 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Free 310S Red Seal Practice Exam — 135 Questions 2026</title>
-<meta name="description" content="Free 310S Red Seal practice exam — 135 exam-accurate questions: engine, brakes, electrical, suspension & transmission. Mock Exam mode, Flashcard Mode, Wrong Answer Bank. No signup — start now.">
+<meta name="description" content="Free 310S Red Seal practice exam — 135 questions: engine, brakes, electrical & suspension. Mock Exam, Flashcards, Wrong Answer Bank. No signup.">
 <meta name="keywords" content="310S Red Seal, Automotive Service Technician Canada, auto mechanic exam, 310S practice questions 2026, Red Seal automotive">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://allforyou-bit.github.io/310s.html">
@@ -128,6 +128,11 @@ footer a{color:var(--accent);margin:0 8px;text-decoration:none}
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Free 310S Red Seal Practice Exam","description":"135 practice questions for the Red Seal Automotive Service Tech exam","applicationCategory":"EducationalApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"CAD"}}
 </script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+  {"@type":"ListItem","position":1,"name":"Home","item":"https://allforyou-bit.github.io/"},
+  {"@type":"ListItem","position":2,"name":"310S Auto Service Technician Practice Exam","item":"https://allforyou-bit.github.io/310s.html"}
+]}</script>
 <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -194,7 +199,7 @@ footer a{color:var(--accent);margin:0 8px;text-decoration:none}
 <p>Related reading: <a href="/how-to-pass-red-seal-310s-exam.html">How to Pass the 310S Red Seal Exam</a> | <a href="/automotive-service-technician-310s-salary-canada.html">310S Salary Guide</a> | <a href="/automotive-service-technician-310s-career-canada.html">310S Career Guide</a></p>
 </div>
 
-  <div class="topic-tabs">
+  <div class="topic-tabs" id="topicTabs">
     <button class="tab-btn active" onclick="switchTopic('all',this)">All Topics</button>
     <button class="tab-btn" onclick="switchTopic('engine',this)">Engine</button>
     <button class="tab-btn" onclick="switchTopic('brakes',this)">Brakes</button>
@@ -211,9 +216,7 @@ footer a{color:var(--accent);margin:0 8px;text-decoration:none}
     <button class="diff-btn" style="background:#e8eaf6;color:#3949ab" onclick="setDiff('all',this)">All</button>
   </div>
   <!-- DOWNLOAD STUDY SHEET -->
-  <div style="display:flex;justify-content:flex-end;margin-bottom:14px">
-    <button disabled style="background:#95a5a6;color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:.82rem;font-weight:700;cursor:not-allowed;display:inline-flex;align-items:center;gap:6px">📄 Study Sheet — Coming Soon</button>
-  </div>
+  
   <div class="mode-switch-row"><span class="ms-label">Mode:</span><button class="mode-btn active" id="studyModeBtn" onclick="setQuizMode('study')">📝 Study</button><button class="mode-btn" id="flashModeBtn" onclick="setQuizMode('flash')">🃏 Flashcard</button></div>
   <div class="flashcard-section" id="flashcardSection"><div class="fc-mode-row"><h3>🃏 Flashcard Mode</h3><div class="fc-counters"><span id="fcCounter">Card 1 of 0</span><span class="fc-known-count" id="fcKnownCount"></span></div></div><div class="fc-hint-text">Tap the card to reveal the answer</div><div class="fc-wrap" onclick="flipFlashcard()"><div class="fc-card" id="fcCard"><div class="fc-front"><div class="fc-topic-lbl" id="fcTopicLbl"></div><div class="fc-q-text" id="fcQText">Loading...</div></div><div class="fc-back"><div class="fc-ans-text" id="fcAnsText"></div><div class="fc-key-text" id="fcKeyText"></div></div></div></div><div class="fc-nav-row"><button class="fc-btn-prev" onclick="fcNav(-1)">← Prev</button><button class="fc-btn-again" onclick="fcMarkAgain()">🔁 Review Again</button><button class="fc-btn-know" onclick="fcMarkKnow()">✓ Got It</button><button class="fc-btn-next" onclick="fcNav(1)">Next →</button></div></div>
   <div class="question-card" id="questionCard">
