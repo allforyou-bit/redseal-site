@@ -1208,7 +1208,7 @@ function showMockResults() {
   if(tDate===today&&tc>0){const te=document.getElementById('todayCount');if(te){te.textContent=`✓ ${tc} correct today`;te.style.display='inline-block';}}
 })();
 const _origSelectAnswer=selectAnswer;
-function selectAnswer(idx,q){const wa=answered;_origSelectAnswer(idx,q);if(!wa){const isC=idx===q.answer;if(isC){const today=new Date().toDateString(),tc=parseInt(localStorage.getItem('todayCorrect_308a')||'0')+1;localStorage.setItem('todayCorrect_308a',tc);localStorage.setItem('todayDate_308a',today);const te=document.getElementById('todayCount');if(te){te.textContent=`✓ ${tc} correct today`;te.style.display='inline-block';}}if(!isC){const wb=JSON.parse(localStorage.getItem('wrongBank_308a')||'[]');if(!wb.includes(q.id)){wb.push(q.id);localStorage.setItem('wrongBank_308a',JSON.stringify(wb));}updateWrongBankTab();}else{const wb=JSON.parse(localStorage.getItem('wrongBank_308a')||'[]');const fi=wb.indexOf(q.id);if(fi>-1){wb.splice(fi,1);localStorage.setItem('wrongBank_308a',JSON.stringify(wb));}updateWrongBankTab();}recordTopicStat(q.topic,isC);if(isC){window._cs=(window._cs||0)+1;if(window._cs>=2)showComboToast(window._cs);}else{window._cs=0;}}}
+selectAnswer=function(idx,q){const wa=answered;_origSelectAnswer(idx,q);if(!wa){const isC=idx===q.answer;if(isC){const today=new Date().toDateString(),tc=parseInt(localStorage.getItem('todayCorrect_308a')||'0')+1;localStorage.setItem('todayCorrect_308a',tc);localStorage.setItem('todayDate_308a',today);const te=document.getElementById('todayCount');if(te){te.textContent=`✓ ${tc} correct today`;te.style.display='inline-block';}}if(!isC){const wb=JSON.parse(localStorage.getItem('wrongBank_308a')||'[]');if(!wb.includes(q.id)){wb.push(q.id);localStorage.setItem('wrongBank_308a',JSON.stringify(wb));}updateWrongBankTab();}else{const wb=JSON.parse(localStorage.getItem('wrongBank_308a')||'[]');const fi=wb.indexOf(q.id);if(fi>-1){wb.splice(fi,1);localStorage.setItem('wrongBank_308a',JSON.stringify(wb));}updateWrongBankTab();}recordTopicStat(q.topic,isC);if(isC){window._cs=(window._cs||0)+1;if(window._cs>=2)showComboToast(window._cs);}else{window._cs=0;}}}
 
 // ── MOCK EXAM TIMER ──
 let mockTimer=null;
@@ -1323,7 +1323,7 @@ ${body}
     +'<span style="color:rgba(255,255,255,.22)">|</span>'
     +'<span id="uxSc" style="font-weight:800;color:#f0a500;font-size:.82rem">—%</span>'
     +'<span style="color:rgba(255,255,255,.22)">|</span>'
-    +'<a href="#topicTabs" style="color:rgba(255,255,255,.45);text-decoration:none;font-size:.7rem;transition:color .2s" onmouseover="this.style.color='#f0a500'" onmouseout="this.style.color='rgba(255,255,255,.45)'">&#8593; Topics</a>';
+    +'<a href="#topicTabs" style="color:rgba(255,255,255,.45);text-decoration:none;font-size:.7rem;transition:color .2s" onmouseover="this.style.color=\'#f0a500\'" onmouseout="this.style.color=\'rgba(255,255,255,.45)\'">&#8593; Topics</a>';
   document.body.appendChild(pb);
   var prevPad=parseInt(getComputedStyle(document.body).paddingBottom)||0;
   document.body.style.paddingBottom=(prevPad+40)+'px';
@@ -1377,7 +1377,7 @@ ${body}
     }
   });
 })();
-</script>
+<\/script>
 <style>@keyframes kbdFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}</style>
 </body></html>`;
   const w = window.open('', '_blank');
@@ -1619,7 +1619,7 @@ function fcMarkAgain(){
     +'<span style="color:rgba(255,255,255,.22)">|</span>'
     +'<span id="uxSc" style="font-weight:800;color:#f0a500;font-size:.82rem">—%</span>'
     +'<span style="color:rgba(255,255,255,.22)">|</span>'
-    +'<a href="#topicTabs" style="color:rgba(255,255,255,.45);text-decoration:none;font-size:.7rem;transition:color .2s" onmouseover="this.style.color='#f0a500'" onmouseout="this.style.color='rgba(255,255,255,.45)'">&#8593; Topics</a>';
+    +'<a href="#topicTabs" style="color:rgba(255,255,255,.45);text-decoration:none;font-size:.7rem;transition:color .2s" onmouseover="this.style.color=\'#f0a500\'" onmouseout="this.style.color=\'rgba(255,255,255,.45)\'">&#8593; Topics</a>';
   document.body.appendChild(pb);
   var prevPad=parseInt(getComputedStyle(document.body).paddingBottom)||0;
   document.body.style.paddingBottom=(prevPad+40)+'px';

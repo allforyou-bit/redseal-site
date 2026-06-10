@@ -33,6 +33,8 @@
 4. For bulk file updates: write Python script → run → delete script in same commit
 5. Nav order: Home | 421A | 310T | 309A | 310S | 308A | 276A | 447A | 313A | Exam Guide | Study Guide | About
 6. sitemap.xml: update lastmod when modifying pages, currently 45 URLs (no 404.html)
+7. JS 문자열 안에 HTML을 넣을 때 닫는 script 태그는 반드시 `<\/script>`로 이스케이프할 것 (브라우저는 문자열 안이라도 `</script>`에서 스크립트를 강제 종료함). 팝업/Study Sheet 생성 시 필수 검증 — 수정 후 `python verify_quiz.py <trade>`로 실제 브라우저 검증.
+8. 같은 스크립트 블록에서 기존 함수를 감쌀 때 `function 같은이름(){}` 재선언 금지 (호이스팅 때문에 무한 재귀 발생) — 반드시 `같은이름=function(){}` 할당식으로.
 
 ## Telegram Notification Rules (REDSEAL_BOT_TOKEN)
 - Bot: @redsealtest_bot / Chat ID: 7836949810 / Token: secrets.txt
