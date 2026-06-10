@@ -92,5 +92,6 @@ nav{background:#1a3a5c;padding:0 24px;display:flex;align-items:center;position:s
 })();
 ```
 
-## 검증
-`python scripts/nav_verify.py <page...>` — Playwright로 링크 개수/순서/드롭다운 11개를 index와 자동 비교
+## 적용 & 검증 도구
+- 적용: `python scripts/apply_nav_standard.py <page...>` — nav 블록 교체 + 구 CSS 제거 + 표준 CSS 삽입
+- 검증: `python verify_nav.py <page...>` — Playwright 1920×1080, nav+메뉴 좌표를 index와 비교 (편차 ≤1px 통과) + docs/screenshots/ 스크린샷

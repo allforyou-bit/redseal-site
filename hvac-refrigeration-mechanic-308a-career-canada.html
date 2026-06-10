@@ -42,9 +42,6 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',Arial,sans-serif;background:#f4f7fb;color:#2c3e50;line-height:1.8}
-nav{background:#1a3a5c;padding:0 24px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.18);min-height:52px}
-nav a{color:white;text-decoration:none;font-weight:600;font-size:.88rem;padding:16px 0;display:inline-block}
-nav a:hover,nav a.active{color:#f0a500}
 .hero{background:linear-gradient(135deg,#1a3a5c,#16a085);color:white;padding:50px 24px;text-align:center}
 .hero h1{font-size:1.7rem;line-height:1.3;margin-bottom:12px}
 .hero p{font-size:.95rem;opacity:.9;max-width:600px;margin:0 auto}
@@ -71,17 +68,7 @@ li{margin-bottom:8px}
 .related-card span{display:block;font-size:.8rem;color:#7f8c8d;font-weight:400;margin-top:4px}
 footer{background:#1a3a5c;color:rgba(255,255,255,.75);text-align:center;padding:24px;font-size:.8rem;margin-top:40px}
 footer a{color:#f0a500;margin:0 8px;text-decoration:none}
-
-.nav-brand{display:none;color:white;font-weight:800;font-size:.92rem;text-decoration:none;white-space:nowrap;align-items:center}
-.nav-toggle{display:none;background:none;border:none;color:white;font-size:1.5rem;cursor:pointer;padding:0;line-height:1;flex-shrink:0;margin-left:auto;min-width:40px;text-align:center}
-.nav-links{display:flex;flex-wrap:nowrap;overflow:hidden;gap:18px;align-items:center}
 @media(max-width:860px){
-  nav{flex-wrap:nowrap!important;padding:0 14px!important;gap:0!important;position:relative}
-  .nav-brand{display:flex;margin-right:auto}
-  .nav-toggle{display:flex;align-items:center;justify-content:center;height:52px}
-  .nav-links{display:none;position:absolute;top:52px;left:0;right:0;background:#1a3a5c;flex-direction:column;z-index:201;box-shadow:0 8px 24px rgba(0,0,0,.35);border-top:1px solid rgba(255,255,255,.1);max-height:75vh;overflow-y:auto;gap:0}
-  .nav-links.open{display:flex}
-  .nav-links a{padding:13px 20px!important;border-bottom:1px solid rgba(255,255,255,.07)!important;font-size:.9rem!important;width:100%;display:block}
   .container{padding:14px 12px}
 }
 </style>
@@ -90,16 +77,41 @@ footer a{color:#f0a500;margin:0 8px;text-decoration:none}
 {"@context":"https://schema.org","@type":"HowTo","name":"How to Become a Refrigeration and AC Mechanic in Canada","description":"Step-by-step guide to the 308A apprenticeship and Red Seal certification","totalTime":"PT5Y","step":[{"@type":"HowToStep","name":"Find an HVAC-R employer sponsor","text":"Contact HVAC-R contractors, commercial refrigeration companies, or industrial cooling operators."},{"@type":"HowToStep","name":"Obtain refrigerant handling certification","text":"Canadian law requires refrigerant certification before working with refrigerants. Obtain this early in your apprenticeship."},{"@type":"HowToStep","name":"Register as a 308A apprentice","text":"Register with your provincial apprenticeship authority after being hired."},{"@type":"HowToStep","name":"Complete 4-5 years of on-the-job training","text":"Accumulate 7,200-8,000 hours installing and servicing refrigeration and air conditioning systems."},{"@type":"HowToStep","name":"Pass the Red Seal 308A exam","text":"Write the 120-question exam (70% pass, 3 hours). Key topics: refrigeration cycle, superheat/subcooling, refrigerant regulations, controls."}]}
 </script>
 <link rel="stylesheet" href="/styles.css">
+<style id="nav-std">
+nav{background:#1a3a5c;padding:0 24px;display:flex;align-items:center;position:sticky;top:0;z-index:200;box-shadow:0 2px 8px rgba(0,0,0,.2);min-height:52px;font-family:'Segoe UI',Arial,sans-serif;line-height:1.7;width:100%}
+.nav-brand{color:white;text-decoration:none;font-weight:800;font-size:.92rem;white-space:nowrap;margin-right:auto;display:flex;align-items:center;gap:6px}
+.nav-links{display:flex;align-items:center;gap:4px;margin-left:auto}
+.nav-links>a{color:rgba(255,255,255,.85);text-decoration:none;font-weight:600;font-size:.85rem;padding:8px 12px;border-radius:6px;transition:all .2s;white-space:nowrap}
+.nav-links>a:hover,.nav-links>a.active{color:#f0a500;background:rgba(255,255,255,.08)}
+.nav-dropdown{position:relative}
+.nav-drop-btn{background:none;border:none;color:rgba(255,255,255,.85);font-weight:600;font-size:.85rem;cursor:pointer;font-family:inherit;padding:8px 12px;border-radius:6px;display:inline-flex;align-items:center;gap:4px;transition:all .2s;white-space:nowrap}
+.nav-drop-btn:hover{color:#f0a500;background:rgba(255,255,255,.08)}
+.nav-drop-menu{display:none;position:absolute;top:calc(100% + 6px);left:0;background:#1a3a5c;border-radius:10px;box-shadow:0 10px 32px rgba(0,0,0,.35);min-width:230px;z-index:300;border:1px solid rgba(255,255,255,.12);padding:6px 0}
+.nav-dropdown.open .nav-drop-menu{display:block}
+.nav-drop-menu a{display:block;padding:9px 18px;color:rgba(255,255,255,.85);text-decoration:none;font-size:.84rem;font-weight:600;transition:all .15s}
+.nav-drop-menu a:hover{background:rgba(255,255,255,.1);color:#f0a500;padding-left:22px}
+.nav-toggle{display:none;background:none;border:none;color:white;font-size:1.4rem;cursor:pointer;padding:8px;margin-left:12px;flex-shrink:0}
+@media(max-width:820px){
+  .nav-toggle{display:flex;align-items:center;justify-content:center}
+  .nav-links{display:none;position:absolute;top:52px;left:0;right:0;background:#1a3a5c;flex-direction:column;align-items:stretch;z-index:201;box-shadow:0 8px 24px rgba(0,0,0,.35);border-top:1px solid rgba(255,255,255,.1);max-height:80vh;overflow-y:auto;padding:6px 0}
+  .nav-links.open{display:flex}
+  .nav-links>a{padding:12px 20px!important;border-bottom:1px solid rgba(255,255,255,.07)!important;border-radius:0!important;font-size:.9rem!important}
+  .nav-dropdown{width:100%}
+  .nav-drop-btn{width:100%;padding:12px 20px!important;border-bottom:1px solid rgba(255,255,255,.07);border-radius:0;font-size:.9rem!important;justify-content:space-between}
+  .nav-drop-menu{position:static;background:#0d2440;box-shadow:none;border-radius:0;border:none;border-top:none;padding:0}
+  .nav-drop-menu a{padding:10px 20px 10px 34px!important;border-bottom:1px solid rgba(255,255,255,.04)!important;font-size:.86rem!important}
+}
+</style>
 </head>
 <body>
 
 <nav>
   <a href="/" class="nav-brand">🔧 Red Seal Prep</a>
-  <button class="nav-toggle" id="navToggle">☰</button>
+  <button class="nav-toggle" aria-label="Menu" id="navToggle">☰</button>
   <div class="nav-links" id="navLinks">
     <a href="/">Home</a>
     <div class="nav-dropdown" id="tradesDrop">
-                  <button class="nav-drop-btn" id="tradesBtn" aria-haspopup="true">Trades ▾</button>
+      <button class="nav-drop-btn" id="tradesBtn" aria-haspopup="true">Trades ▾</button>
       <div class="nav-drop-menu">
         <a href="/276a.html">276A Welder</a>
         <a href="/306a.html">306A Sheet Metal Worker</a>
