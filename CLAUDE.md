@@ -47,10 +47,11 @@
 - 모듈: `from scripts.notify_telegram import notify` → `notify(task_name, files, commit, next_steps)`
 
 ## Monetization Status
+- **전략 정본 = `docs/OPERATIONS_MONETIZATION_PLAN_20260711.md`** (4층 스택: 이메일→제품→제휴→광고)
 - Ko-fi `redsealexamprep`: installed on all content pages ✅
-- AdSense: pending approval ⏸
-- Amazon Associates: waiting for user tracking ID ⏸
-- GA4: waiting for user Measurement ID (G-XXXXXXXXXX) ⏸
+- Amazon Associates (allforyoubit2-20): 24 pages ✅ / GA4 (G-FSSHZMWVLW) ✅
+- AdSense: pending — **커스텀 도메인 없이는 구조적 거절** (github.io 서브도메인). 도메인 구매가 선결 과제 ⏸
+- 유료 제품·이메일(ESP): 미구축 — 플랜 Week 2~3 참조
 
 ## Current Priorities
 See `docs/priorities.md`
