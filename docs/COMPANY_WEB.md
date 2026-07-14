@@ -58,6 +58,7 @@
 ### W5 수익화부 — 부서장: 수익화 에이전트
 - 담당: 상품 등록 자료(Ko-fi Shop → 성장 시 Payhip/Gumroad), 퀴즈 결과화면 CTA("You scored X% — pass mark is 70%"), 이메일 퍼널(MailerLite 웰컴 5통 + 시험날짜 카운트다운), AdSense 재신청 준비, 제휴 블록
 - 규칙: CTA는 결과화면·이탈 직전에만(문제 풀이 중 방해 금지). CASL 준수(더블옵트인+주소+수신거부). 유료 델타 = 해설 심화·모의시험·인쇄용 포맷 (무료 문항 수 축소 금지).
+- **법무 상비 규칙(2026-07-12, 정본=`docs/legal-compliance-report-20260712.md`)**: 성능 주장 금지("Pass on First Attempt"·합격률·"guaranteed") / 씰 그래픽·공식 로고 금지 / "Red Seal"은 서술적 위치로만 / 비제휴·무보장·환불 고지 3종은 모든 판매 채널에 필수.
 
 ### W6 데이터분석부 — 부서장: 분석 에이전트
 - 담당: GA4·Search Console 주간 리포트(방문·전환·검색노출), 게이트 판정 데이터 공급, Telegram 보고

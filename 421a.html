@@ -718,6 +718,7 @@ function reportQuestion(){
 </div>
 <footer>
   <p>Canada Red Seal Exam Prep — Free study resource for Canadian skilled trades apprentices</p>
+  <p style="font-size:.72rem;opacity:.75;margin-top:6px;">Independent, unofficial study resource &mdash; not affiliated with or endorsed by the CCDA, the Red Seal Program, or any provincial/territorial apprenticeship authority. <a href="/disclaimer.html">Details</a></p>
   <p style="margin-top:8px;"><a href="/">Home</a><a href="/study-guide.html">Study Guide</a><a href="/exam-guide.html">Exam Guide</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Use</a><a href="/disclaimer.html">Disclaimer</a></p>
 </footer>
 
@@ -2388,7 +2389,7 @@ const questions = [
 // ── PHASE 3 ADDITIONS (2026-04-18) ──
 // ── HYDRAULICS (20 questions, IDs 221-240) ──
   {id:221,topic:'hydraulic',topicLabel:'Hydraulic Systems',diff:'hard',
-  text:"A excavator boom cylinder extends slowly and lacks power on one side only. Full system pressure is available at the main relief valve. The other work functions operate normally. What is the MOST likely cause?",
+  text:"An excavator boom cylinder extends slowly and lacks power on one side only. Full system pressure is available at the main relief valve. The other work functions operate normally. What is the MOST likely cause?",
   options:['A) Low hydraulic fluid level','B) Worn hydraulic pump','C) Section control valve spool worn or stuck, or a boom cylinder piston seal bypassing internally','D) Main relief valve set too low'],
   answer:2,
   explanation:'<strong>Single function slow/weak with normal system pressure indicates a section-specific fault.</strong> The main pump and relief are confirmed good (full system pressure, other functions normal). The fault must be in the boom circuit: section control valve not fully opening (stuck/worn spool) OR boom cylinder piston seal bypassing (rod extends but fluid crosses the piston seal instead of moving the load). Test: measure cylinder extend/retract differential pressure.',
@@ -2444,7 +2445,7 @@ const questions = [
   keyConcept:'Air in hydraulic system: compressible unlike oil → spongy/slow pressure buildup. Source: suction leak, low fluid, loose fittings. Check for foam in reservoir.'},
 
   {id:229,topic:'hydraulic',topicLabel:'Hydraulic Systems',diff:'hard',
-  text:"A 421A technician is inspecting a gear pump and finds the pump body housing worn with visible scoring on the bushings and gear faces. The oil analysis shows high iron and silicon content. What is the MOST likely root cause?",
+  text:"A technician is inspecting a gear pump and finds the pump body housing worn with visible scoring on the bushings and gear faces. The oil analysis shows high iron and silicon content. What is the MOST likely root cause?",
   options:['A) Pump cavitation from a restricted suction line','B) Incorrect pump rotation direction was used during installation','C) Ingested abrasive contamination (high silicon = dirt/silica) — filtration or seal failure allowed dirt ingestion','D) Incorrect fluid viscosity — oil too thin'],
   answer:2,
   explanation:'<strong>High silicon in oil analysis = abrasive dirt contamination.</strong> Silicon is the primary element in sand and dust. In a gear pump, even small silica particles act as abrasive lapping compound, rapidly scoring the gear faces, housing bore, and bushings. Root cause: failed breather/air filter, damaged seals, or improper service procedure (dirt introduced during filter change). Fix: repair all contamination entry points, flush system, replace pump, and install proper filtration.',
@@ -2500,7 +2501,7 @@ const questions = [
   keyConcept:'Spring-applied hydraulic brakes: spring = apply force, hydraulic pressure = release force. Engine off → pressure drops → spring applies brakes. If brakes stay released: check solenoid valve and pressure dissipation rate.'},
 
   {id:237,topic:'hydraulic',topicLabel:'Hydraulic Systems',diff:'hard',
-  text:"A 421A technician is diagnosing a hydraulic system with excessive heat generation. A thermal imaging scan shows the highest temperature at a specific control valve bank section. No external leakage is present. What is the MOST likely cause at that location?",
+  text:"A technician is diagnosing a hydraulic system with excessive heat generation. A thermal imaging scan shows the highest temperature at a specific control valve bank section. No external leakage is present. What is the MOST likely cause at that location?",
   options:['A) That section control valve has internal spool leakage, converting high-pressure flow to heat','B) The section is working hardest — normal heat generation from useful work','C) That section has a clogged work port filter','D) Thermal imaging is unreliable for hydraulic diagnosis'],
   answer:0,
   explanation:'<strong>A hot control valve section without external leakage indicates internal spool leakage.</strong> Fluid bypasses internally across the spool lands from high pressure to tank at a pressure drop — converting hydraulic energy to heat at that location. Test: isolate that section and compare system heat generation. If heat reduces, the valve section is the source. Rebuild or replace the control valve section with worn spool clearances.',
@@ -2514,7 +2515,7 @@ const questions = [
   keyConcept:'Closed-loop travel: one track forward + one reverse = hose connection reversed on one motor. Swap the two work port hoses. Not a motor fault — it responds correctly to the pressure it receives.'},
 
   {id:239,topic:'hydraulic',topicLabel:'Hydraulic Systems',diff:'hard',
-  text:"A 421A technician is performing a cylinder drift test on a loaded boom cylinder. The cylinder drifts down at 25mm/minute with the engine running but control spool in neutral. What component is MOST likely causing this drift?",
+  text:"A technician is performing a cylinder drift test on a loaded boom cylinder. The cylinder drifts down at 25mm/minute with the engine running but control spool in neutral. What component is MOST likely causing this drift?",
   options:['A) Cylinder piston seal bypassing internally','B) Control valve spool not fully returning to neutral — internal spool leakage','C) Load-sensing signal line leaking','D) Both A and B could cause this — perform further isolation tests'],
   answer:3,
   explanation:'<strong>Cylinder drift with spool in neutral can be caused by either the control valve or the cylinder piston seal.</strong> Test to isolate: 1) Disconnect the cylinder rod port line and plug both the cylinder port and the valve port. If drift stops → control valve is leaking. If drift continues → piston seal bypassing. Always isolate systematically rather than guessing. Both are common causes of cylinder drift under load.',
@@ -2564,7 +2565,7 @@ const questions = [
   keyConcept:'Idles but stalls at throttle increase = insufficient fuel supply for demand. Check lift pump pressure/flow, secondary filter restriction, fuel line integrity, and tank supply.'},
 
   {id:246,topic:'engine',topicLabel:'Diesel Engine',diff:'hard',
-  text:"A 421A technician uses oil analysis to monitor a diesel engine. The report shows TAN (Total Acid Number) of 4.0 mg KOH/g compared to a new oil baseline of 1.2 mg KOH/g. The oil is at 75% of change interval. What should the technician do?",
+  text:"A technician uses oil analysis to monitor a diesel engine. The report shows TAN (Total Acid Number) of 4.0 mg KOH/g compared to a new oil baseline of 1.2 mg KOH/g. The oil is at 75% of change interval. What should the technician do?",
   options:['A) Continue to the full change interval — TAN of 4.0 is within normal range','B) Change oil immediately — elevated TAN indicates acid buildup that causes corrosive wear','C) Add an oil neutralizer additive to reduce TAN','D) Increase the change interval — high TAN indicates the oil is still absorbing acids effectively'],
   answer:1,
   explanation:'<strong>High TAN indicates acid accumulation in the oil from combustion byproducts and oil oxidation.</strong> New oil TAN: ~1.2 mg KOH/g. A TAN of 4.0 mg KOH/g at 75% interval indicates the oil has lost its alkalinity reserve (TBN) and is now acidic. Acidic oil causes corrosive wear on engine bearings and cylinder walls. Change oil immediately and investigate root cause (overextended intervals, blowby contamination, fuel dilution).',
@@ -2620,7 +2621,7 @@ const questions = [
   keyConcept:'Low oil pressure at idle, normal at speed: worn bearings (increased clearance) + oil pump marginal. Critical symptom — verify with mechanical gauge. Do not ignore.'},
 
   {id:254,topic:'engine',topicLabel:'Diesel Engine',diff:'hard',
-  text:"A 421A technician is performing a fuel injector return flow test on a common rail diesel. Cylinder 3 shows 2× the return flow of all other cylinders at idle. What does this indicate?",
+  text:"A technician is performing a fuel injector return flow test on a common rail diesel. Cylinder 3 shows 2× the return flow of all other cylinders at idle. What does this indicate?",
   options:['A) Injector 3 is providing more fuel to the cylinder — over-injecting','B) Injector 3 has excessive internal leakage — fuel is bypassing the needle valve and returning through the drain, rather than being injected','C) Injector 3 is the only injector working correctly — the others are leaking into the cylinder','D) High return flow indicates good injector health — low return flow is the problem'],
   answer:1,
   explanation:'<strong>High injector return flow indicates excessive internal leakage through the control valve and plunger clearances.</strong> In a common rail injector, return flow should be consistent across all cylinders at the same operating condition. 2× return flow on one injector means that injector is bypassing fuel internally — fuel leaks past the control valve piston instead of being injected. The cylinder may run lean (less fuel injected) causing misfires. Replace the injector.',
@@ -2648,7 +2649,7 @@ const questions = [
   keyConcept:'After fuel system service: expect 2-5 min of rough running and white smoke as trapped air purges. Persistent white smoke beyond 10 min = investigate timing, injectors, or head gasket.'},
 
   {id:258,topic:'engine',topicLabel:'Diesel Engine',diff:'hard',
-  text:"A 421A technician discovers an engine coolant temperature sensor reads 18°C even when the engine has been running for 40 minutes on a warm day. All other temperature indicators show the engine is at operating temperature. What effect will this sensor fault have on engine performance?",
+  text:"A technician discovers an engine coolant temperature sensor reads 18°C even when the engine has been running for 40 minutes on a warm day. All other temperature indicators show the engine is at operating temperature. What effect will this sensor fault have on engine performance?",
   options:['A) No effect — coolant temperature sensor is only for the gauge','B) ECU will continue to command cold-start fueling enrichment, retarded timing, and extended idle-up — causing over-fueling and high exhaust temperatures','C) ECU will derate engine power to protect against overheating','D) Fuel injection will be disabled — ECU requires accurate temperature data'],
   answer:1,
   explanation:'<strong>The ECM uses coolant temperature data to control injection timing, fuel quantity, and idle speed.</strong> If the sensor falsely reads cold (18°C), the ECM continues cold-start strategies: increased fuel delivery (enrichment), retarded injection timing, and elevated idle RPM. This wastes fuel, increases soot production, and can cause excessive heat buildup since the real engine is warm but the ECM is commanding cold-engine operating parameters.',
@@ -2662,7 +2663,7 @@ const questions = [
   keyConcept:'Oil consumption + normal blowby = valve stem seals. Oil consumption + high blowby = piston rings. Blue smoke on startup/decel specifically = valve stem seals. Under load only = turbo seal.'},
 
   {id:260,topic:'engine',topicLabel:'Diesel Engine',diff:'hard',
-  text:"A 421A technician suspects a diesel fuel lift pump is failing. Which test MOST directly confirms lift pump performance?",
+  text:"A technician suspects a diesel fuel lift pump is failing. Which test MOST directly confirms lift pump performance?",
   options:['A) Check engine crank RPM during start attempt','B) Measure fuel pressure at the inlet of the injection pump or secondary fuel filter — compare to spec (typically 40-100 kPa)','C) Inspect the lift pump diaphragm visually for cracks','D) Test engine power output — low power indicates low fuel delivery'],
   answer:1,
   explanation:'<strong>Fuel pressure measurement at the injection pump inlet directly quantifies lift pump performance.</strong> Lift pump specifications: typically 40-100 kPa (6-14 psi) depending on engine. Use a liquid-filled gauge. Low pressure = lift pump worn (reduced volume output) or delivery restriction. Zero pressure = pump failed or blocked suction. Visual diaphragm inspection only identifies mechanical failure, not performance degradation.',
@@ -2670,21 +2671,21 @@ const questions = [
 
   // ── ELECTRICAL (15 questions, IDs 261-275) ──
   {id:261,topic:'electrical',topicLabel:'Electrical Systems',diff:'hard',
-  text:"A 421A technician measures voltage drop across a battery cable from battery negative terminal to engine ground. The reading is 0.4V during engine cranking. OEM spec is maximum 0.2V. What action is required?",
+  text:"A technician measures voltage drop across a battery cable from battery negative terminal to engine ground. The reading is 0.4V during engine cranking. OEM spec is maximum 0.2V. What action is required?",
   options:['A) Battery needs replacement — voltage drop is a battery symptom','B) Clean or replace the battery negative cable or its connection — high resistance in the ground circuit causes voltage drop','C) No action — 0.4V is within acceptable range for large diesel equipment','D) Check alternator output — voltage drop indicates charging circuit fault'],
   answer:1,
   explanation:'<strong>Voltage drop test measures resistance in conductors, not the battery.</strong> 0.4V drop at cranking current (say 600A) = 0.4/600 = 0.00067 Ω resistance — seemingly small but causes significant power loss. Maximum acceptable is OEM-specified (often 0.1-0.2V). Causes: corroded cable ends, loose terminals, undersized cable, or damaged cable with internal resistance. Clean connections thoroughly or replace the cable.',
   keyConcept:'Voltage drop test: measures circuit resistance without disconnecting anything. High drop = high resistance = bad connection or undersized wire. V/I = R. Even small drops cause significant problems at high current.'},
 
   {id:262,topic:'electrical',topicLabel:'Electrical Systems',diff:'hard',
-  text:"A 421A technician finds a 12V relay that should energize a starter solenoid is clicking rapidly (chattering) when the start button is pressed. Battery voltage is 11.8V at rest. What is the MOST likely cause?",
+  text:"A technician finds a 12V relay that should energize a starter solenoid is clicking rapidly (chattering) when the start button is pressed. Battery voltage is 11.8V at rest. What is the MOST likely cause?",
   options:['A) Relay coil is defective — replace the relay','B) Battery voltage drops below relay hold-in voltage during cranking — battery is discharged or has high internal resistance','C) Start button contact resistance is high — insufficient current to hold relay','D) Starter solenoid is shorted — excessive current chatters the relay'],
   answer:1,
   explanation:'<strong>Relay chatter occurs when supply voltage drops below the relay hold-in voltage during cranking.</strong> The relay picks up at 11.8V (at rest), but when the starter begins cranking, the heavy load drops battery voltage below the relay hold-in threshold (typically 80% of rated voltage = 9.6V for a 12V relay). The relay releases, voltage rises, relay re-picks — repeating cycle = chatter. Cause: discharged battery or high internal resistance.',
   keyConcept:'Relay chatter during starting: battery voltage collapses below hold-in voltage. Test: measure battery voltage during crank attempt. Below 9.5V = battery failure (internal resistance). Load test the battery.'},
 
   {id:263,topic:'electrical',topicLabel:'Electrical Systems',diff:'hard',
-  text:"A 421A technician uses a scan tool to check a machine ECM. The ECM reports a Diagnostic Trouble Code for a 5V sensor supply that is reading 4.2V instead of 5.0V. Multiple sensors share this 5V reference. What is the MOST likely cause?",
+  text:"A technician uses a scan tool to check a machine ECM. The ECM reports a Diagnostic Trouble Code for a 5V sensor supply that is reading 4.2V instead of 5.0V. Multiple sensors share this 5V reference. What is the MOST likely cause?",
   options:['A) ECM 5V reference circuit has failed — replace ECM','B) One sensor on the 5V reference circuit has a short to ground, pulling down the voltage for all sensors on that reference','C) Battery voltage is low — 5V reference scales with battery voltage','D) High resistance in the 5V reference wire to the sensor cluster'],
   answer:1,
   explanation:'<strong>A low 5V reference that is shared by multiple sensors indicates one sensor is shorted to ground.</strong> The ECM internal 5V regulator has limited current capacity. If one sensor has a shorted signal/supply wire, it draws extra current through the regulator, dropping the 5V bus for all sensors on that circuit. Disconnect sensors one at a time and watch for the voltage to recover to 5V — the sensor that causes recovery is the short.',
@@ -2705,7 +2706,7 @@ const questions = [
   keyConcept:'CAN bus fault diagnosis: measure bus resistance (target: 60 Ω with both terminators). 120 Ω = one terminator missing. Open circuit = disconnected node or broken wire. Short = CAN H/L pinched together.'},
 
   {id:266,topic:'electrical',topicLabel:'Electrical Systems',diff:'medium',
-  text:"A 421A technician finds a diode in a machine charging circuit that is shorted (zero resistance in both directions). The diode is in the alternator diode bridge. What symptom will this cause?",
+  text:"A technician finds a diode in a machine charging circuit that is shorted (zero resistance in both directions). The diode is in the alternator diode bridge. What symptom will this cause?",
   options:['A) No charging — alternator cannot produce current','B) Reduced charging output and battery drain — AC current now passes to the battery instead of being rectified','C) Overcharging — short circuit removes regulation','D) No effect — one shorted diode in a 3-phase bridge has minimal impact'],
   answer:1,
   explanation:'<strong>A shorted diode in an alternator rectifier bridge has two effects.</strong> 1) Reduced output: the shorted diode allows reverse current flow, reducing the effective rectification. 2) Battery drain when alternator is not spinning: the shorted diode creates a path for battery current to flow backwards through the stator winding to ground. This discharges the battery when parked. Symptom: dead battery after overnight + reduced charge rate when running.',
@@ -2733,7 +2734,7 @@ const questions = [
   keyConcept:'Solenoid circuit: I = V/R (Ohm\'s law). P = V × I = V²/R. Fuse sizing: minimum 125% of continuous draw. Check solenoid duty cycle — continuous vs intermittent ratings.'},
 
   {id:270,topic:'electrical',topicLabel:'Electrical Systems',diff:'hard',
-  text:"A 421A technician is diagnosing an intermittent no-start condition. The engine cranks but does not start, and the problem occurs randomly. All fuel and compression tests are normal. A scan tool shows the engine speed sensor (MPU) has an intermittent signal. What is the MOST likely root cause?",
+  text:"A technician is diagnosing an intermittent no-start condition. The engine cranks but does not start, and the problem occurs randomly. All fuel and compression tests are normal. A scan tool shows the engine speed sensor (MPU) has an intermittent signal. What is the MOST likely root cause?",
   options:['A) Engine speed sensor has failed internally — replace sensor','B) Wiring harness chafing or connector corrosion on the CKP sensor circuit causing intermittent open circuit','C) ECM is failing to process the CKP signal correctly','D) Sensor air gap is incorrect — engine vibration causes signal dropout'],
   answer:1,
   explanation:'<strong>Intermittent faults are almost always wiring/connector issues, not component failures.</strong> A failed sensor typically produces a continuous fault — it works or it doesn\'t. An intermittent signal that changes with vibration, temperature, or movement indicates a chafed wire, corroded connector pin, or broken wire strand that makes intermittent contact. Check the harness for damage near moving components and clean/reseat the connector.',
@@ -2754,7 +2755,7 @@ const questions = [
   keyConcept:'Battery load test: apply half CCA for 15 sec. Pass: ≥9.6V at 21°C. Cold reduces both capacity and minimum pass voltage. Below 9.6V at standard conditions = replace battery.'},
 
   {id:273,topic:'electrical',topicLabel:'Electrical Systems',diff:'hard',
-  text:"A 421A technician is installing a new component that requires a 10A fused circuit from the battery positive. The wire run is 6m (one way) in a 12V system. The maximum allowable voltage drop is 0.5V. What is the minimum wire gauge required?",
+  text:"A technician is installing a new component that requires a 10A fused circuit from the battery positive. The wire run is 6m (one way) in a 12V system. The maximum allowable voltage drop is 0.5V. What is the minimum wire gauge required?",
   options:['A) 18 AWG','B) 14 AWG','C) 12 AWG','D) 10 AWG'],
   answer:2,
   explanation:'<strong>Wire sizing formula: R = V_drop / I = 0.5/10 = 0.05 Ω total circuit resistance.</strong> Circuit length = 2 × 6m = 12m (total wire length, to and from). Required resistance per metre: 0.05/12 = 0.00417 Ω/m. 12 AWG copper = ~0.00530 Ω/m (slightly high). 10 AWG = ~0.00334 Ω/m (passes). So technically 10 AWG is required for 0.5V drop. In practice 12 AWG is commonly used with slightly higher drop for automotive circuits.',
@@ -2768,7 +2769,7 @@ const questions = [
   keyConcept:'P = I² × R. High current + small resistance = significant heat. Battery terminal at 200A cranking: every milliohm of resistance = 40 watts of heat generation at that point.'},
 
   {id:275,topic:'electrical',topicLabel:'Electrical Systems',diff:'medium',
-  text:"A 421A technician suspects a machine ECM (computer) has failed. Before condemning the ECM, what is the MOST important first step?",
+  text:"A technician suspects a machine ECM (computer) has failed. Before condemning the ECM, what is the MOST important first step?",
   options:['A) Measure ECM supply voltage and ground integrity at the ECM connector','B) Read all active fault codes and note any sensor or circuit codes that could explain the symptoms','C) Clear all fault codes and see if the problem returns','D) Check the ECM part number matches the machine serial number'],
   answer:0,
   explanation:'<strong>An ECM that does not have proper supply voltage and grounds will malfunction — this is not an ECM failure.</strong> Always verify: 1) Battery voltage at ECM power supply pins (B+ and keyswitch). 2) Clean, low-resistance grounds at ECM ground pins. 3) No voltage drop in supply or ground wires. Many "ECM failures" are simply corroded connectors or broken ground straps. Only after confirming power and grounds are correct should the ECM be suspected.',
@@ -2783,7 +2784,7 @@ const questions = [
   keyConcept:'Stall test: low stall = engine power deficit. High stall = stator clutch slipping. Normal stall = compare to OEM spec (typically 1,200-2,200 RPM depending on machine). Always check engine performance first before blaming converter.'},
 
   {id:277,topic:'powertrain',topicLabel:'Powertrain',diff:'hard',
-  text:"A 421A technician is checking a powershift transmission. In 3rd gear, the clutch pack pressure is 1,400 kPa. In 4th gear, the clutch pack pressure drops to 900 kPa (spec: 1,400 kPa). What is the MOST likely cause?",
+  text:"A technician is checking a powershift transmission. In 3rd gear, the clutch pack pressure is 1,400 kPa. In 4th gear, the clutch pack pressure drops to 900 kPa (spec: 1,400 kPa). What is the MOST likely cause?",
   options:['A) Main relief valve is failing — applies only to 4th gear','B) 4th gear clutch pack is leaking internally — excessive clearance between piston and bore is bypassing hydraulic pressure','C) 4th gear solenoid valve is not fully opening — insufficient signal to the valve','D) Transmission filter is clogged — reduced flow only in 4th gear circuit'],
   answer:1,
   explanation:'<strong>Gear-specific low clutch pressure indicates a fault within that gear clutch circuit.</strong> Main pressure is normal in 3rd gear — so main pump and relief are fine. 4th gear only: the clutch pack itself has excessive clearance (worn seals, worn piston bore) allowing hydraulic pressure to bypass. The clutch cannot build or hold adequate pressure. Confirm by performing a clutch pack inspection and measuring piston-to-bore clearance.',
@@ -2804,14 +2805,14 @@ const questions = [
   keyConcept:'Limited-slip differential heat: generated by continuous clutch pack slippage between outputs. Check: tyre circumference difference between wheels. Matched tyre sizes required on tandem drives.'},
 
   {id:280,topic:'powertrain',topicLabel:'Powertrain',diff:'hard',
-  text:"A 421A technician is performing a torque converter coupling phase test. When does the torque converter enter coupling phase and what happens to torque multiplication at that point?",
+  text:"A technician is performing a torque converter coupling phase test. When does the torque converter enter coupling phase and what happens to torque multiplication at that point?",
   options:['A) Coupling phase begins when turbine reaches 90% of impeller speed — torque multiplication drops to 1:1 and stator freewheels','B) Coupling phase begins when stator locks — torque ratio increases to maximum','C) Coupling phase begins at stall — provides maximum torque when the turbine is stationary','D) Coupling phase is a failure mode — normal converters do not enter coupling phase'],
   answer:0,
   explanation:'<strong>Coupling phase begins when turbine speed reaches approximately 85-90% of impeller speed.</strong> At this point, the fluid leaving the turbine is no longer striking the back face of the stator vanes — so the stator overrunning clutch releases and the stator freewheels. Without stator reaction, there is no torque multiplication — the converter acts as a simple fluid coupling with torque ratio of 1:1. This is the normal high-speed operating condition.',
   keyConcept:'Converter phases: Stall = max multiplication (stator locked). Coupling = turbine at ~90% impeller speed, stator freewheels, ratio = 1:1. Converter lock-up clutch (if equipped) bypasses fluid coupling entirely for efficiency.'},
 
   {id:281,topic:'powertrain',topicLabel:'Powertrain',diff:'medium',
-  text:"A 421A technician finds that a heavy equipment transmission modulating valve is stuck in the fully open position. What effect will this have on gear engagement?",
+  text:"A technician finds that a heavy equipment transmission modulating valve is stuck in the fully open position. What effect will this have on gear engagement?",
   options:['A) Engagement will be harsh and abrupt — no gradual pressure buildup in clutch pack','B) Engagement will be very slow — pressure builds too gradually','C) No effect — modulating valve only affects top gear','D) Transmission will not upshift beyond 2nd gear'],
   answer:0,
   explanation:'<strong>The modulating valve controls the rate at which clutch pressure rises during engagement.</strong> A stuck-open modulating valve allows full hydraulic pressure to apply immediately when a gear is selected — no ramp-up. This causes harsh, abrupt engagement (clutch shock), excessive drivetrain shock loading, and poor operator comfort. The modulating valve is essential for smooth, controlled gear engagement. Check for worn spool, stuck spring, or contamination.',
@@ -2832,14 +2833,14 @@ const questions = [
   keyConcept:'Lock-up cycling: operating conditions fluctuating around the engagement threshold. Not a mechanical failure — check TCM lock-up parameters. May require hysteresis adjustment in control strategy.'},
 
   {id:284,topic:'powertrain',topicLabel:'Powertrain',diff:'hard',
-  text:"A 421A technician inspects a planetary gear set and finds a cracked sun gear. The planetary system had been operating with occasional impact loads from ground engagement. What is the MOST likely failure mechanism?",
+  text:"A technician inspects a planetary gear set and finds a cracked sun gear. The planetary system had been operating with occasional impact loads from ground engagement. What is the MOST likely failure mechanism?",
   options:['A) Spalling fatigue — cyclic contact stress exceeded material endurance limit','B) Impact fracture — sudden high-stress loading exceeded material yield strength','C) Thermal fatigue — heat cycles from braking caused surface cracking','D) Corrosion fatigue — the gear operated in wet/salty conditions'],
   answer:1,
   explanation:'<strong>A cracked sun gear with a history of impact loads indicates impact fracture, not fatigue.</strong> Fatigue failures are progressive — multiple surface pits and cracks developing over many cycles. Impact fracture from a single or few severe overload events produces a clean, brittle fracture pattern (chevron marks pointing to origin). Ground engagement impact loads (hitting rocks, stumps) can momentarily exceed the gear material\'s yield strength. Root cause: operator technique or application beyond machine design limits.',
   keyConcept:'Gear failure modes: Spalling/pitting = fatigue (many cycles of contact stress). Impact fracture = single/few overloads (chevron fracture pattern). Wear = abrasion. Thermal = surface hardness loss. Determine mode before recommending fix.'},
 
   {id:285,topic:'powertrain',topicLabel:'Powertrain',diff:'medium',
-  text:"A 421A technician must perform a final drive oil change on a wheel loader. The oil appears milky-white and smells sweet. What do these characteristics indicate?",
+  text:"A technician must perform a final drive oil change on a wheel loader. The oil appears milky-white and smells sweet. What do these characteristics indicate?",
   options:['A) Normal aging of gear oil — the additives have broken down after extended service','B) Water contamination of the gear oil — likely a failed seal allowing water ingress','C) Gear oil has been mixed with engine oil — cross-contamination from a broken seal','D) EP (extreme pressure) additives have reacted with the gear material — normal for worn gears'],
   answer:1,
   explanation:'<strong>Milky white gear oil = water emulsification. Sweet smell = unusual additive reaction, but milky appearance is the primary indicator of water.</strong> Water enters final drives through: worn axle shaft seals, damaged housing gaskets, or submerged operation. Water contamination reduces lubricating film strength (oil film breaks), causes hydrogen embrittlement in bearings, and leads to corrosion. Replace seals, thoroughly flush the housing, and refill with fresh oil.',
@@ -2875,7 +2876,7 @@ const questions = [
   keyConcept:'Brake pull = unequal side forces. Pull toward = MORE brake force that side (or less on opposite). To diagnose: test each brake independently. Common causes: contaminated pads (less friction) opposite side, glazed disc (right or left).'},
 
   {id:290,topic:'brakes',topicLabel:'Brakes & Steering',diff:'medium',
-  text:"A 421A technician is adjusting drum brakes on an articulated dump truck. The specification calls for a shoe-to-drum clearance of 0.3-0.5mm. After adjustment, the clearance measures 0.8mm. What will be the result if the brakes are placed in service?",
+  text:"A technician is adjusting drum brakes on an articulated dump truck. The specification calls for a shoe-to-drum clearance of 0.3-0.5mm. After adjustment, the clearance measures 0.8mm. What will be the result if the brakes are placed in service?",
   options:['A) Brakes will overheat — too little clearance','B) Pedal travel will be excessive before full brake engagement — reduced braking effectiveness','C) Brakes will drag — drum contacts shoe at rest','D) No effect — drum brake clearance is self-adjusting on all ADTs'],
   answer:1,
   explanation:'<strong>Excessive drum brake clearance means the actuating piston must travel farther before the shoe contacts the drum.</strong> This uses up pedal travel before braking begins, resulting in a low/spongy pedal and reduced initial braking response. In emergency braking, the extra pedal travel means the driver pushes further before maximum braking is achieved. Reduce clearance to 0.3-0.5mm specification.',
@@ -2896,7 +2897,7 @@ const questions = [
   keyConcept:'Air brake pushrod stroke limit: ≤51mm (2") for most brake chambers. Over-stroke = failed ASA or worn linings. Inspect BOTH slack adjuster function and lining thickness before returning to service.'},
 
   {id:293,topic:'brakes',topicLabel:'Brakes & Steering',diff:'medium',
-  text:"A 421A technician finds brake disc minimum thickness specification is 28mm. The disc measures 27.2mm on one side and 28.5mm on the other side. What action should be taken?",
+  text:"A technician finds brake disc minimum thickness specification is 28mm. The disc measures 27.2mm on one side and 28.5mm on the other side. What action should be taken?",
   options:['A) Replace the entire brake disc — one side is below minimum','B) Machine (resurface) the disc to make both sides even','C) Replace the disc — minimum thickness specification is measured at the thinnest point. 27.2mm < 28mm minimum','D) Continue in service — average of both sides (27.85mm) is within specification'],
   answer:2,
   explanation:'<strong>Brake disc minimum thickness is measured at the thinnest point — not averaged.</strong> One side at 27.2mm is below the 28mm minimum specification. This indicates uneven wear (from stuck caliper piston, uneven pad wear, or disc runout). Replace the disc. Investigate why uneven wear occurred — a stuck caliper piston on one side causes single-side contact and uneven wear.',
@@ -2910,7 +2911,7 @@ const questions = [
   keyConcept:'Wet disc brake drag after rebuild: piston not retracting. Check: piston seal rolled/misinstalled, brake spring return (if equipped), O-ring swelling. Correct seal installation is critical for brake release.'},
 
   {id:295,topic:'brakes',topicLabel:'Brakes & Steering',diff:'hard',
-  text:"A 421A technician must perform a brake test on a large off-road haul truck (150-tonne payload). What type of brake test verifies the service brake can hold the machine stationary on the steepest rated grade?",
+  text:"A technician must perform a brake test on a large off-road haul truck (150-tonne payload). What type of brake test verifies the service brake can hold the machine stationary on the steepest rated grade?",
   options:['A) Static hold test — park the machine on rated maximum grade, apply service brakes, release parking brake, verify no movement','B) Dynamic stopping distance test — measure stopping distance from rated speed','C) Brake fade test — apply brakes continuously from rated speed for 3 applications','D) Bleed-down test — measure brake release circuit pressure decay rate'],
   answer:0,
   explanation:'<strong>Static hold test verifies service brake gradeability.</strong> The OEM specifies the maximum grade the service brake must hold (typically 30-40% for mining trucks). Test: position on maximum rated slope, apply service brakes only (parking brake released), release foot from pedal after engagement, observe for any movement or brake release. This confirms brake hydraulic pressure, disc wear, and friction material are all adequate.',
@@ -2918,40 +2919,56 @@ const questions = [
 
   // ── PREVENTIVE MAINTENANCE (5 questions, IDs 296-300) ──
   {id:296,topic:'safety',topicLabel:'Preventive Maintenance',diff:'medium',
-  text:"A 421A technician is completing a 500-hour service on a motor grader. The engine oil and filter are changed. After refilling with the specified volume of oil, the dipstick reads above the FULL mark. What should be done FIRST?",
+  text:"A technician is completing a 500-hour service on a motor grader. The engine oil and filter are changed. After refilling with the specified volume of oil, the dipstick reads above the FULL mark. What should be done FIRST?",
   options:['A) Drain oil until the dipstick reads FULL','B) Run the engine for 5 minutes to allow oil to circulate and settle — recheck level before removing oil','C) No action needed — slight overfill is acceptable for high-hour machines','D) Replace the oil filter — filter may not have seated correctly causing oil to back up'],
   answer:1,
   explanation:'<strong>Always allow the engine to run and settle oil through the system before draining excess.</strong> During an oil change, some oil remains in the filter housing and passages. After fill, the oil level may appear high because the filter is empty (air-filled). After a brief run, oil fills the filter and passages — dipstick re-reading gives true level. Draining oil prematurely may result in underfill once the filter is saturated.',
   keyConcept:'Oil fill procedure: fill to spec → run 5 min → shut down → wait 5 min → recheck level. The filter holds 0.5-2L of oil that must be accounted for.'},
 
   {id:297,topic:'safety',topicLabel:'Preventive Maintenance',diff:'hard',
-  text:"A 421A technician reviews oil analysis results for a heavy equipment engine. The report shows: silicon = 28 ppm (normal <10), iron = 45 ppm (normal <30), lead = 8 ppm (normal <5). What do these results indicate together?",
+  text:"A technician reviews oil analysis results for a heavy equipment engine. The report shows: silicon = 28 ppm (normal <10), iron = 45 ppm (normal <30), lead = 8 ppm (normal <5). What do these results indicate together?",
   options:['A) Normal wear patterns — all values within range for this hour interval','B) Dirt ingestion (high Si) + accelerated iron wear (contamination-induced) + bearing wear (high Pb) — investigate air filtration and change oil immediately','C) Coolant leak — high Si indicates antifreeze glycol contamination','D) Fuel dilution — diesel fuel contains trace silicon from fuel system wear'],
   answer:1,
   explanation:'<strong>High silicon = dirt contamination. High iron = accelerated component wear. High lead = bearing wear.</strong> These three together tell a clear story: dirt entered through the air intake (or oil fill), caused abrasive wear on iron components, and the abrasive material has reached and damaged lead-alloyed bearings. Immediate actions: 1) Change oil and filter. 2) Find and repair the air filter, breather, or cover sealing problem. 3) Check air filter condition and sealing.',
   keyConcept:'Oil analysis pattern recognition: Si high = dirt ingestion (check air filter/seals). Fe high = iron component wear. Pb high = bearing wear. Cu high = bronze bushing wear. Na/K high = coolant leak.'},
 
   {id:298,topic:'safety',topicLabel:'Preventive Maintenance',diff:'medium',
-  text:"A 421A technician is lubricating all grease fittings on an articulated dump truck during a 250-hour service. One fitting accepts very little grease before pressure rises significantly. No grease appears at the joint seal. What should the technician do?",
+  text:"A technician is lubricating all grease fittings on an articulated dump truck during a 250-hour service. One fitting accepts very little grease before pressure rises significantly. No grease appears at the joint seal. What should the technician do?",
   options:['A) Apply extra pressure — force grease past the blockage','B) Check if the fitting is blocked or if the joint is overfilled — do not overpressure, investigate why grease is not moving','C) Replace the grease fitting — Zerk fittings fail over time','D) Skip this fitting — the joint is adequately lubricated from last service'],
   answer:1,
   explanation:'<strong>Grease fitting that builds pressure immediately without taking grease indicates a blockage.</strong> Possible causes: 1) Fitting check ball is stuck (clean or replace fitting). 2) Grease passage in the pin is blocked with hardened old grease. 3) The joint is completely packed (correct — no more grease needed). 4) The pin is seized. Applying excessive force can damage seals. Diagnose before applying pressure: remove the fitting and verify it passes air.',
   keyConcept:'Grease fitting resistance: fitting blocked = test with compressed air / replace fitting. Joint packed full = normal, stop greasing. Joint sealed = verify grease path. Never force past unusual resistance.'},
 
   {id:299,topic:'safety',topicLabel:'Preventive Maintenance',diff:'hard',
-  text:"A 421A technician is completing a 1,000-hour service on an excavator. The hydraulic return filter has a restriction indicator showing RED (bypass mode). The filter element is changed. After restart, the indicator shows RED again within 5 minutes. What is the MOST likely cause?",
+  text:"A technician is completing a 1,000-hour service on an excavator. The hydraulic return filter has a restriction indicator showing RED (bypass mode). The filter element is changed. After restart, the indicator shows RED again within 5 minutes. What is the MOST likely cause?",
   options:['A) The replacement filter element is defective — install another new element','B) Hydraulic fluid is heavily contaminated — the new element is immediately loading up with system contamination','C) The bypass spring tension is too low — adjust the bypass relief','D) Hydraulic system temperature is too low — cold oil is thick and causes false bypass indication'],
   answer:1,
   explanation:'<strong>A new filter element bypassing immediately after installation indicates the hydraulic fluid is heavily contaminated.</strong> The filter captures contaminants from the fluid. If the fluid is severely contaminated (from a pump failure, maintenance contamination, or long overdue change), the new element fills rapidly. Solution: flush the system (tank drain, all cylinders and motors cycled, filter changed multiple times), replace the fluid, and identify the contamination source.',
   keyConcept:'Filter bypass immediately after replacement: fluid is severely contaminated. Procedure: drain tank, flush system with new fluid (multiple filter changes), identify contamination source (pump failure, incorrect fluid, external ingestion).'},
 
   {id:300,topic:'safety',topicLabel:'Preventive Maintenance',diff:'medium',
-  text:"A 421A technician inspects a hydraulic cylinder rod and finds minor pitting (corrosion pits, ~0.3mm deep) on the rod surface in the area that passes through the seal. The machine was stored outdoors without rod protection. What is the MOST appropriate action?",
+  text:"A technician inspects a hydraulic cylinder rod and finds minor pitting (corrosion pits, ~0.3mm deep) on the rod surface in the area that passes through the seal. The machine was stored outdoors without rod protection. What is the MOST appropriate action?",
   options:['A) Polish the pits smooth with emery cloth — minor pitting is acceptable','B) Apply a thin coat of grease to prevent further corrosion — seal will bridge over small pits','C) Inspect seal condition and replace if damaged; evaluate if pit depth exceeds the seal\'s ability to maintain sealing — pits >0.3mm on rod surface typically require rod replacement or hard chrome repair','D) Replace the entire cylinder — surface corrosion indicates systemic failure'],
   answer:2,
   explanation:'<strong>Rod surface pitting in the seal area affects seal life and performance.</strong> The rod wiper seal and rod seal rely on a smooth rod surface to function. Pits create pathways for oil leakage and accelerate seal wear. Mild pitting can sometimes be polished, but >0.3mm pits in the seal zone typically require hard chrome re-plating or rod replacement. Replacing seals on a pitted rod will result in premature seal failure. Evaluate severity before deciding on repair.',
   keyConcept:'Cylinder rod pitting: pits in seal zone compromise sealing. Evaluate depth and location. Options: polish minor pits, hard chrome re-plate, or replace rod. New seals on pitted rod = short service life.'}
 ];
+// Deterministic per-question option shuffle — fixes answer-position bias (Phase 8, 2026-07-12)
+(function(){
+  var mkRnd = function(seed){ return function(){ seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; };
+  var LETTERS = ['A) ','B) ','C) ','D) '];
+  for (var qi = 0; qi < questions.length; qi++){
+    var q = questions[qi];
+    if (!q.options || q.options.length !== 4) continue;
+    var rnd = mkRnd(0x5EA1 + (q.id * 2654435761) % 2147483647);
+    var idx = [0,1,2,3];
+    for (var i = 3; i > 0; i--){ var j = Math.floor(rnd() * (i + 1)); var tmp = idx[i]; idx[i] = idx[j]; idx[j] = tmp; }
+    var stripped = q.options.map(function(o){ return o.replace(/^[A-D]\)\s*/, ''); });
+    q.options = idx.map(function(orig, pos){ return LETTERS[pos] + stripped[orig]; });
+    q.answer = idx.indexOf(q.answer);
+  }
+})();
+
 
 // =============================================
 //  STATE

@@ -343,6 +343,7 @@ function reportQuestion(){
 </div>
 <footer>
   <p>Canada Red Seal Exam Prep — Free study resource for Canadian skilled trades apprentices</p>
+  <p style="font-size:.72rem;opacity:.75;margin-top:6px;">Independent, unofficial study resource &mdash; not affiliated with or endorsed by the CCDA, the Red Seal Program, or any provincial/territorial apprenticeship authority. <a href="/disclaimer.html">Details</a></p>
   <p style="margin-top:8px;"><a href="/">Home</a><a href="/study-guide.html">Study Guide</a><a href="/exam-guide.html">Exam Guide</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Use</a><a href="/disclaimer.html">Disclaimer</a></p>
 </footer>
 <script>
@@ -1180,6 +1181,22 @@ const questions=[
    explanation:'<strong>CEC Rule 14-104: next larger standard OCPD size permitted when conductor ampacity does not match a standard rating, up to 800A maximum.</strong> Example: conductor rated 110A — no standard 110A fuse exists. Next standard size (125A) is permitted. This rule applies when conductor ampacity falls between standard OCPD sizes. Above 800A, the conductor must be sized to match the OCPD exactly (use multiple conductors in parallel if needed).',
    keyConcept:'CEC Rule 14-104 (next larger OCPD): applies when conductor ampacity is between standard fuse/breaker sizes. Maximum: 800A OCPD. Standard fuse/breaker sizes: 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 110, 125, 150, 175, 200, 225, 250, 300, 350, 400, 450, 500, 600, 700, 800, 1000, 1200A. Example: 100A conductor — 100A is standard, use 100A. 90A conductor — next standard below is 90A (standard), so use 90A. If 97A conductor — use 100A (next standard up, under 800A limit).'}
 ];
+// Deterministic per-question option shuffle — fixes answer-position bias (Phase 8, 2026-07-12)
+(function(){
+  var mkRnd = function(seed){ return function(){ seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; };
+  var LETTERS = ['A) ','B) ','C) ','D) '];
+  for (var qi = 0; qi < questions.length; qi++){
+    var q = questions[qi];
+    if (!q.options || q.options.length !== 4) continue;
+    var rnd = mkRnd(0x5EA1 + (q.id * 2654435761) % 2147483647);
+    var idx = [0,1,2,3];
+    for (var i = 3; i > 0; i--){ var j = Math.floor(rnd() * (i + 1)); var tmp = idx[i]; idx[i] = idx[j]; idx[j] = tmp; }
+    var stripped = q.options.map(function(o){ return o.replace(/^[A-D]\)\s*/, ''); });
+    q.options = idx.map(function(orig, pos){ return LETTERS[pos] + stripped[orig]; });
+    q.answer = idx.indexOf(q.answer);
+  }
+})();
+
 
 let currentTopic='all',currentDiff='easy',currentIdx=0,answered=false,totalCorrect=0,totalAnswered=0,filteredQs=[],correctStreak=0;
 function getFiltered(){if(currentTopic==='wrongbank'){const wb=JSON.parse(localStorage.getItem('wrongBank_309a')||'[]');const base=questions.filter(q=>wb.includes(q.id));return currentDiff==='all'?base:base.filter(q=>q.diff===currentDiff);}return questions.filter(q=>(currentTopic==='all'||q.topic===currentTopic)&&(currentDiff==='all'||q.diff===currentDiff))}

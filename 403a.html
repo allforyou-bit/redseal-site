@@ -495,6 +495,22 @@ const questions=[
 {id:99,topic:'safety',topicLabel:'Safety & Code',diff:'medium',text:'What information must be recorded and provided to the building owner after commissioning a gas appliance?',options:['A) The appliance serial number only','B) Commissioning documentation should include: gas supply pressure, manifold pressure, combustion analysis readings (CO, CO2, flue temp), safety control verification results, and any deficiencies noted or corrected','C) Only the date of installation is required','D) No documentation is required for residential gas work'],answer:1,explanation:'Professional commissioning documentation provides proof of safe installation and a baseline for future service. Records should include: inlet gas pressure, manifold/burner pressure, combustion analysis (CO2, O2, CO, flue temp, efficiency), safety control test results, vent check, and any deficiencies noted and corrected. Some jurisdictions require documentation submission to the authority.',keyConcept:'Commissioning records: gas pressures + combustion analysis + safety control results. Provide copy to owner. Keep copy in service records. Good practice and often regulatory requirement.'},
 {id:100,topic:'safety',topicLabel:'Safety & Code',diff:'hard',text:'A 403A gas fitter discovers an existing gas installation where the piping runs through an enclosed wall cavity with a union fitting inside the wall. The installation is 15 years old and was done with a permit. What action is required?',options:['A) No action — the installation was permitted and approved 15 years ago','B) The union fitting in the wall cavity is a code violation (CSA B149.1 prohibits mechanical joints in concealed spaces) — the owner must be advised, and the installation should be corrected. As-found condition should be documented','C) Since it was permitted, it can remain — previous permits grandfather all violations','D) Remove the union only if it is currently leaking'],answer:1,explanation:'CSA B149.1 prohibits mechanical joints (unions, couplings) in concealed spaces regardless of when installed. The standard is the current code, not the code at time of installation. A discovered violation must be brought to the owner\'s attention. The gas fitter should document the as-found condition, advise correction, and may be required to report if there is immediate hazard.',keyConcept:'Code compliance is based on current code, not historical code at time of installation. Gas fitters discovering violations: document + advise owner. Report immediately dangerous conditions to authority.'}
 ];
+// Deterministic per-question option shuffle — fixes answer-position bias (Phase 8, 2026-07-12)
+(function(){
+  var mkRnd = function(seed){ return function(){ seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; };
+  var LETTERS = ['A) ','B) ','C) ','D) '];
+  for (var qi = 0; qi < questions.length; qi++){
+    var q = questions[qi];
+    if (!q.options || q.options.length !== 4) continue;
+    var rnd = mkRnd(0x5EA1 + (q.id * 2654435761) % 2147483647);
+    var idx = [0,1,2,3];
+    for (var i = 3; i > 0; i--){ var j = Math.floor(rnd() * (i + 1)); var tmp = idx[i]; idx[i] = idx[j]; idx[j] = tmp; }
+    var stripped = q.options.map(function(o){ return o.replace(/^[A-D]\)\s*/, ''); });
+    q.options = idx.map(function(orig, pos){ return LETTERS[pos] + stripped[orig]; });
+    q.answer = idx.indexOf(q.answer);
+  }
+})();
+
 let filtered=[],currentIdx=0,answered={},currentTopic='all',currentDiff='all';
 let mockQs=[],mockIdx=0,mockAnswers=[],mockTimer=null,mockSecondsLeft=0;
 function initStreak(){const today=new Date().toDateString();const lastDate=localStorage.getItem('streakDate');const yesterday=new Date(Date.now()-86400000).toDateString();let streak=parseInt(localStorage.getItem('studyStreak')||'0');if(lastDate===today){}else if(lastDate===yesterday){streak++;localStorage.setItem('studyStreak',streak);localStorage.setItem('streakDate',today);}else{streak=1;localStorage.setItem('studyStreak',streak);localStorage.setItem('streakDate',today);}const todayKey='todayDate_'+MOCK_PAGE_KEY;const correctKey='todayCorrect_'+MOCK_PAGE_KEY;if(localStorage.getItem(todayKey)!==today){localStorage.setItem(todayKey,today);localStorage.setItem(correctKey,'0');}updateStreakDisplay();}
@@ -565,6 +581,7 @@ updateWrongBankTab();renderTopicProgress();renderScoreHistory();
 </div>
 <footer>
   <p>Canada Red Seal Exam Prep — Free study resource for Canadian skilled trades apprentices</p>
+  <p style="font-size:.72rem;opacity:.75;margin-top:6px;">Independent, unofficial study resource &mdash; not affiliated with or endorsed by the CCDA, the Red Seal Program, or any provincial/territorial apprenticeship authority. <a href="/disclaimer.html">Details</a></p>
   <p style="margin-top:8px;"><a href="/">Home</a><a href="/study-guide.html">Study Guide</a><a href="/exam-guide.html">Exam Guide</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Use</a><a href="/disclaimer.html">Disclaimer</a></p>
 </footer>
 <script>

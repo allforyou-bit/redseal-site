@@ -89,6 +89,19 @@ h2.section { font-size: 15pt; border-bottom: 3px solid #b91c1c; padding-bottom: 
 .footer-note { color: #94a3b8; font-size: 8.5pt; margin-top: 30px; text-align: center; }
 """
 
+LEGAL_PAGE = """
+<div style="page-break-after: always; padding-top: 60px;">
+<h2 class="section">About This Material</h2>
+<div class="guide" style="font-size: 9.5pt; color: #475569;">
+<p><strong>Independent, unofficial study resource.</strong> This publication is not affiliated with, endorsed by, or approved by the Canadian Council of Directors of Apprenticeship (CCDA), Employment and Social Development Canada, the Red Seal Program, Skilled Trades Ontario, or any provincial or territorial apprenticeship authority. &ldquo;Red Seal&rdquo; is used solely to describe the examination for which this material provides practice.</p>
+<p><strong>Originality.</strong> All questions and explanations in this publication are original works created by the author. This material references only publicly available occupational standards (Red Seal Occupational Standard) for topic alignment and reproduces no content from any actual examination.</p>
+<p><strong>No guarantee of results.</strong> This study material is provided for educational and informational purposes only. Success on any certification examination depends on many factors, and no representation is made that using this material will result in passing any exam. Exam content, structure, and weightings are set by certification authorities and may change without notice.</p>
+<p><strong>Technical accuracy.</strong> Code values and technical specifications cited in explanations reflect commonly referenced Canadian standards at the time of writing. Always defer to the current edition of the applicable code or the manufacturer's documentation in real work.</p>
+<p>&copy; 2026 the author. All rights reserved. For personal study use by the purchaser only &mdash; redistribution, resale, or file sharing is prohibited.</p>
+</div>
+</div>
+"""
+
 EXAM_DAY_GUIDE = """
 <h2 class="section">Exam-Day Strategy Guide</h2>
 <div class="guide">
@@ -106,14 +119,17 @@ def build_html(trade, qs, mode):
     n = len(qs)
     title = (f"Free {n}-Question Mock Exam" if mode == 'sample'
              else f"Complete Question Bank &mdash; {n} Questions with Full Explanations")
+    subtitle2 = "Practice for the Red Seal / Certificate of Qualification exam"
     parts = [f"<style>{CSS}</style>"]
     # Cover
     parts.append(f"""<div class="cover">
 <div class="brand">RED SEAL EXAM PREP</div>
 <h1>{name}</h1>
 <div class="sub">{title}</div>
-<div class="meta">Pass mark: 70% &middot; Based on the current National Occupational Analysis<br>{SITE} &middot; Edition 2026-07</div>
+<div class="sub" style="font-size:10.5pt; margin-top:6px;">{subtitle2}</div>
+<div class="meta">Pass mark: 70% &middot; Aligned to the published occupational standard topic weightings<br>{SITE} &middot; Edition 2026-07</div>
 </div>""")
+    parts.append(LEGAL_PAGE)
 
     if mode == 'sample':
         # Questions only, then answer key with explanations
@@ -162,7 +178,7 @@ def build_html(trade, qs, mode):
             rows.append('<tr>' + ''.join(cells) + '</tr>')
         parts.append(f'<table class="key-table">{"".join(rows)}</table>')
 
-    parts.append(f'<div class="footer-note">&copy; 2026 Red Seal Exam Prep &middot; {SITE} &middot; For personal study use only. Not affiliated with or endorsed by the CCDA or red-seal.ca.</div>')
+    parts.append(f'<div class="footer-note">&copy; 2026 &middot; {SITE} &middot; For personal study use only. Independent, unofficial study resource &mdash; not affiliated with or endorsed by the CCDA, the Red Seal Program, or any apprenticeship authority. See "About This Material".</div>')
     return ''.join(parts)
 
 

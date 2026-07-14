@@ -361,6 +361,7 @@ function reportQuestion(){
 </div>
 <footer>
   <p>Canada Red Seal Exam Prep — Free study resource for Canadian skilled trades apprentices</p>
+  <p style="font-size:.72rem;opacity:.75;margin-top:6px;">Independent, unofficial study resource &mdash; not affiliated with or endorsed by the CCDA, the Red Seal Program, or any provincial/territorial apprenticeship authority. <a href="/disclaimer.html">Details</a></p>
   <p style="margin-top:8px;"><a href="/">Home</a><a href="/study-guide.html">Study Guide</a><a href="/exam-guide.html">Exam Guide</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Use</a><a href="/disclaimer.html">Disclaimer</a></p>
 </footer>
 <script>
@@ -846,6 +847,22 @@ explanation:'SMACNA permits slip-and-drive (S & Drive) transverse connections fo
 keyConcept:'SMACNA transverse joint — S&Drive acceptable at ≤2" WG'}
 
 ];
+// Deterministic per-question option shuffle — fixes answer-position bias (Phase 8, 2026-07-12)
+(function(){
+  var mkRnd = function(seed){ return function(){ seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; };
+  var LETTERS = ['A) ','B) ','C) ','D) '];
+  for (var qi = 0; qi < questions.length; qi++){
+    var q = questions[qi];
+    if (!q.options || q.options.length !== 4) continue;
+    var rnd = mkRnd(0x5EA1 + (q.id * 2654435761) % 2147483647);
+    var idx = [0,1,2,3];
+    for (var i = 3; i > 0; i--){ var j = Math.floor(rnd() * (i + 1)); var tmp = idx[i]; idx[i] = idx[j]; idx[j] = tmp; }
+    var stripped = q.options.map(function(o){ return o.replace(/^[A-D]\)\s*/, ''); });
+    q.options = idx.map(function(orig, pos){ return LETTERS[pos] + stripped[orig]; });
+    q.answer = idx.indexOf(q.answer);
+  }
+})();
+
 let currentTopic='all',currentDiff='easy',currentIdx=0,answered=false,totalCorrect=0,totalAnswered=0,filteredQs=[],correctStreak=0;
 function getFiltered(){if(currentTopic==='wrongbank'){const wb=JSON.parse(localStorage.getItem('wrongBank_306a')||'[]');const base=questions.filter(q=>wb.includes(q.id));return currentDiff==='all'?base:base.filter(q=>q.diff===currentDiff);}return questions.filter(q=>(currentTopic==='all'||q.topic===currentTopic)&&(currentDiff==='all'||q.diff===currentDiff))}
 function switchTopic(t,btn){currentTopic=t;currentIdx=0;document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');loadQuestion();if(document.getElementById('flashModeBtn')&&document.getElementById('flashModeBtn').classList.contains('active'))initFlashcards();}
