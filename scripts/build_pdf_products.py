@@ -18,7 +18,7 @@ from playwright.sync_api import sync_playwright
 
 ROOT = r"C:\Users\kayky\Desktop\RedSeal-Project\allforyou-bit.github.io"
 OUT_ROOT = r"C:\Users\kayky\Desktop\RedSeal-Project\PRODUCTS"
-SITE = "https://allforyou-bit.github.io"  # regenerate PDFs after custom-domain migration
+SITE = "https://redsealquiz.ca"
 
 TRADE_NAMES = {
     '421a': '421A Heavy Equipment Technician', '310t': '310T Truck & Transport Mechanic',

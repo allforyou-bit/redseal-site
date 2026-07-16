@@ -18,16 +18,16 @@
 <meta name="description" content="Free 313A Red Seal practice exam — 135 questions: motors, PLCs, instrumentation & power systems. Mock Exam, Flashcards, Wrong Answer Bank. No signup.">
 <meta name="keywords" content="313A Red Seal, Industrial Electrician, Red Seal exam, practice questions, Canada, motors, PLC, instrumentation, CEC 2026">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://allforyou-bit.github.io/313a.html">
+<link rel="canonical" href="https://redsealquiz.ca/313a.html">
 <meta property="og:title" content="313A Industrial Electrician – 135 Free Red Seal Practice Questions 2026">
 <meta property="og:description" content="Free 313A Red Seal practice quiz — 110 questions covering motors, PLCs, instrumentation, power distribution, CEC code and safety. Mock Exam included.">
-<meta property="og:url" content="https://allforyou-bit.github.io/313a.html">
+<meta property="og:url" content="https://redsealquiz.ca/313a.html">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://allforyou-bit.github.io/favicon.svg">
+<meta property="og:image" content="https://redsealquiz.ca/favicon.svg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="313A Industrial Electrician — 135 Free Red Seal Practice Questions 2026">
 <meta name="twitter:description" content="135 free 313A Red Seal practice questions. Mock Exam + Flashcard mode. No signup.">
-<meta name="twitter:image" content="https://allforyou-bit.github.io/favicon.svg">
+<meta name="twitter:image" content="https://redsealquiz.ca/favicon.svg">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6709396576574623" crossorigin="anonymous"></script>
 <script type="application/ld+json">
 {
@@ -170,8 +170,8 @@
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
-  {"@type":"ListItem","position":1,"name":"Home","item":"https://allforyou-bit.github.io/"},
-  {"@type":"ListItem","position":2,"name":"313A Industrial Electrician Practice Exam","item":"https://allforyou-bit.github.io/313a.html"}
+  {"@type":"ListItem","position":1,"name":"Home","item":"https://redsealquiz.ca/"},
+  {"@type":"ListItem","position":2,"name":"313A Industrial Electrician Practice Exam","item":"https://redsealquiz.ca/313a.html"}
 ]}</script>
 <link rel="stylesheet" href="/styles.css">
 <style id="nav-std">
@@ -777,7 +777,7 @@ function renderMockQ(){if(mockIdx>=mockQs.length){showMockResults();return;}cons
 function answerMockQ(i){const q=mockQs[mockIdx];mockAnswers.push({q,chosen:i,correct:i===q.answer});document.querySelectorAll('.mock-opt').forEach((b,idx)=>{b.disabled=true;if(idx===q.answer)b.classList.add('mock-c');else if(idx===i)b.classList.add('mock-w');});const fb=document.getElementById('mockFeedback');fb.style.display='block';fb.innerHTML=`${i===q.answer?'✅ Correct!':'❌ Incorrect.'} <strong>Explanation:</strong> ${q.explanation}<br><div class="key-concept"><strong>Key Concept:</strong> ${q.keyConcept}</div>`;document.getElementById('mockNextBtn').style.display='block';}
 function mockNext(){mockIdx++;renderMockQ();}
 function showMockResults(){clearInterval(mockTimer);const correct=mockAnswers.filter(a=>a.correct).length;const total=mockQs.length;const pct=Math.round((correct/total)*100);const pass=pct>=70;const best=parseInt(localStorage.getItem('mockBest_'+MOCK_PAGE_KEY)||'0');if(pct>best)localStorage.setItem('mockBest_'+MOCK_PAGE_KEY,pct);if(typeof saveMockHistory==='function')saveMockHistory(pct,total);const wrong=mockAnswers.filter(a=>!a.correct);document.getElementById('mockBarFill').style.width='100%';document.getElementById('mockBody').innerHTML=`<div style="text-align:center;padding:20px 0;"><div style="font-size:3rem;font-weight:800;color:${pass?'#27ae60':'#e74c3c'};">${pct}%</div><div style="font-size:1.1rem;font-weight:700;color:#1a3a5c;margin:8px 0;">${pass?'✅ PASS':'❌ FAIL'} — ${correct}/${total} correct</div><div style="font-size:.85rem;color:var(--muted);">Pass mark: 70%</div><div style="display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap;"><button onclick="openMockSetup()" class="btn-mock">Try Again</button><button onclick="shareMockScore(${pct})" class="btn-mock" style="background:#1a3a5c;">Share Score</button><button onclick="downloadMockResults()" class="btn-mock" style="background:#27ae60;">Download Results</button></div></div>${wrong.length?`<div style="margin-top:20px;"><p style="font-weight:700;color:#1a3a5c;margin-bottom:12px;">Review Incorrect (${wrong.length}):</p>${wrong.map(a=>`<div style="background:#fdecea;border-radius:8px;padding:12px;margin-bottom:10px;font-size:.85rem;"><strong>${a.q.text}</strong><br>Your answer: ${['A','B','C','D'][a.chosen]}) ${a.q.options[a.chosen].replace(/^[A-D]\)\s*/,'')}<br>Correct: ${['A','B','C','D'][a.q.answer]}) ${a.q.options[a.q.answer].replace(/^[A-D]\)\s*/,'')}<br><em>${a.q.explanation}</em></div>`).join('')}</div>`:''}` ;}
-function shareMockScore(pct){const text=`I scored ${pct}% on the 313A Red Seal Industrial Electrician Mock Exam! Practice free at https://allforyou-bit.github.io/313a.html`;if(navigator.share){navigator.share({title:'My 313A Mock Exam Score',text});}else{navigator.clipboard.writeText(text).then(()=>alert('Score copied!'));}}
+function shareMockScore(pct){const text=`I scored ${pct}% on the 313A Red Seal Industrial Electrician Mock Exam! Practice free at https://redsealquiz.ca/313a.html`;if(navigator.share){navigator.share({title:'My 313A Mock Exam Score',text});}else{navigator.clipboard.writeText(text).then(()=>alert('Score copied!'));}}
 function downloadMockResults(){const correct=mockAnswers.filter(a=>a.correct).length;const pct=Math.round((correct/mockAnswers.length)*100);let txt=`313A Red Seal Mock Exam Results\n${'='.repeat(40)}\nScore: ${correct}/${mockAnswers.length} (${pct}%) — ${pct>=70?'PASS':'FAIL'}\nDate: ${new Date().toLocaleDateString()}\n\n`;mockAnswers.forEach((a,i)=>{txt+=`Q${i+1} [${a.correct?'✓':'✗'}] ${a.q.text}\n   Correct: ${['A','B','C','D'][a.q.answer]}) ${a.q.options[a.q.answer].replace(/^[A-D]\)\s*/,'')}\n${a.correct?'':('   Your answer: '+['A','B','C','D'][a.chosen]+') '+a.q.options[a.chosen].replace(/^[A-D]\)\s*/,'')+'\n')}`});const blob=new Blob([txt],{type:'text/plain'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='313A-Mock-Results.txt';a.click();URL.revokeObjectURL(url);}
 function closeMock(){clearInterval(mockTimer);document.getElementById('mockOverlay').style.display='none';}
 function downloadStudySheet(){let qs;if(currentTopic==='wrongbank'){const wb=JSON.parse(localStorage.getItem('wrongBank_313a')||'[]');qs=questions.filter(q=>wb.includes(q.id));}else{qs=currentTopic==='all'?questions:questions.filter(q=>q.topic===currentTopic);}const letters=['A','B','C','D'];const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>313A Study Sheet</title><style>body{font-family:Arial,sans-serif;font-size:12px;line-height:1.5;padding:20px}h1{font-size:18px}.q{margin-bottom:16px;page-break-inside:avoid}.qt{font-weight:700}.ans{color:green;font-weight:700}.exp{color:#555;font-size:11px}@media print{.no-print{display:none}}</style></head><body><h1>313A Red Seal — Study Sheet</h1><p class="no-print">Ctrl+P to save as PDF</p><hr>${qs.map((q,i)=>`<div class="q"><div class="qt">${i+1}. ${q.text}</div>${q.options.map((o,j)=>`<div${j===q.answer?' class="ans"':''}>${letters[j]}) ${o.replace(/^[A-D]\)\s*/,'')}</div>`).join('')}<div class="exp">→ ${q.explanation}</div></div>`).join('')}<!-- EXIT INTENT POPUP -->

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://allforyou-bit.github.io/sitemap.xml
+Sitemap: https://redsealquiz.ca/sitemap.xml
