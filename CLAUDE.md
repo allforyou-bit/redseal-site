@@ -1,7 +1,7 @@
 # Red Seal Exam Prep - Project Index
 
 ## Quick Facts
-- Site: https://allforyou-bit.github.io (GitHub Pages, static HTML)
+- Site: **https://redsealquiz.ca** (커스텀 도메인 2026-07-16 이전, GitHub Pages, static HTML; 구주소 allforyou-bit.github.io는 301)
 - Repo: https://github.com/allforyou-bit/allforyou-bit.github.io
 - Files: 46 HTML, 8 trades, 1,110 Qs, 29 articles
 - Stack: Vanilla HTML/CSS/JS, no framework
@@ -27,6 +27,7 @@
 - Email: `lidbil515@gmail.com`
 
 ## Standing Rules
+0. **모든 세션(모델 무관)은 작업 전에 `docs/RUNBOOK.md`를 읽고 그 절차·게이트를 그대로 따른다** — 품질은 모델이 아니라 게이트가 보장한다(사장 지시 2026-07-17). 퀴즈 수정 시 `verify_quiz.py` + `scripts/qc_metrics.py` ALL PASS 없이 배포 금지.
 1. Read `docs/progress.md` for full site state, schema status, and feature checklist
 2. Read `docs/priorities.md` for current task queue before starting new work
 3. All commits: descriptive message, no AI attribution
