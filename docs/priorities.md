@@ -1,7 +1,10 @@
-# Current Priorities — updated 2026-07-11
+# Current Priorities — updated 2026-07-17 (P0 발생)
 
-> 정본 전략 = `docs/OPERATIONS_MONETIZATION_PLAN_20260711.md` (운영·수익화 종합 플랜)
-> ✅ 2026-07-11: 미푸시 hero 커밋 배포 + Phase 6 감사 HIGH 5건 수정·배포 완료
+> 정본 전략 = OPERATIONS_MONETIZATION_PLAN / 조직 = COMPANY_WEB.md / 절차 = RUNBOOK.md
+
+## 🚨 P0 — 트레이드 코드 오배정 시정 (정본 = P0-trade-code-remediation-plan.md)
+11개 중 5개 코드가 타 직종, 276A는 부존재 코드, 403A 가스는 ON 트레이드 아님 (421A 주력상품은 정확).
+**사장 결정 2건(403a/447a 처리 옵션) + 실행 승인 후 전용 세션에서 일괄 실행.**
 
 ## 🔴 Priority 1 — 사용자 액션 (차단기 2개)
 1. **커스텀 도메인 구매** (~US$12/yr, Porkbun/Cloudflare, .ca 추천) → 구매 즉시 Claude에게 알리면 DNS/canonical/sitemap/GA4/Search Console 이전 전부 처리. AdSense가 github.io 서브도메인을 구조적으로 거절하므로 이것 없이는 광고 수익화 불가.
