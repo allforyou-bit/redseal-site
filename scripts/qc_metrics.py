@@ -20,7 +20,7 @@ sys.stdout.reconfigure(encoding='utf-8')
 from playwright.sync_api import sync_playwright
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ALL = ['276a', '306a', '308a', '309a', '310s', '310t', '313a', '403a', '421a', '442a', '447a']
+ALL = ['306a', '308a', '309a', '310s', '310t', '313a', '420b', '421a', '442a', '456a', 'gasfitter-class-a']
 
 def check(qs):
     n = len(qs)

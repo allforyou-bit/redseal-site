@@ -21,11 +21,12 @@ OUT_ROOT = r"C:\Users\kayky\Desktop\RedSeal-Project\PRODUCTS"
 SITE = "https://redsealquiz.ca"
 
 TRADE_NAMES = {
-    '421a': '421A Heavy Equipment Technician', '310t': '310T Truck & Transport Mechanic',
+    '421a': '421A Heavy Duty Equipment Technician', '310t': '310T Truck & Transport Mechanic',
     '309a': '309A Construction Electrician', '310s': '310S Automotive Service Technician',
-    '308a': '308A Refrigeration & AC Mechanic', '276a': '276A Welder',
-    '447a': '447A Plumber', '313a': '313A Industrial Electrician',
-    '442a': '442A Ironworker', '403a': '403A Gas Fitter', '306a': '306A Sheet Metal Worker',
+    '313a': '313A Refrigeration & AC Mechanic', '456a': '456A Welder',
+    '306a': '306A Plumber', '442a': '442A Industrial Electrician',
+    '420b': '420B Ironworker (Generalist)', 'gasfitter-class-a': 'Gasfitter (Class A)',
+    '308a': '308A Sheet Metal Worker',
 }
 SAMPLE_N = 50
 SEED = 20260711  # deterministic sample selection

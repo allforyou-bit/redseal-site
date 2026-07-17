@@ -14,7 +14,7 @@ sys.stdout.reconfigure(encoding='utf-8')
 from playwright.sync_api import sync_playwright
 
 ROOT = r"C:\Users\kayky\Desktop\RedSeal-Project\allforyou-bit.github.io"
-ALL = ['276a','306a','308a','309a','310s','310t','313a','403a','421a','442a','447a']
+ALL = ['306a', '308a', '309a', '310s', '310t', '313a', '420b', '421a', '442a', '456a', 'gasfitter-class-a']
 
 def check_page(page, trade):
     errors = []
@@ -106,7 +106,7 @@ def main():
         for e in r['errors'][:3]:
             print(f'    !! {e}')
     print()
-    print(f'questions 합계: {total}' + (' (전체 11개 기준 목표 1560)' if len(targets) == 11 else ''))
+    print(f'questions 합계: {total}' + (' (전체 11개 기준 목표 1627)' if len(targets) == 11 else ''))
     print('RESULT:', 'ALL PASS' if all_pass else 'FAIL')
 
 if __name__ == '__main__':

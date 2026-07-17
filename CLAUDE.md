@@ -13,7 +13,7 @@
 - Prefers Claude to act autonomously without asking permission each time
 
 ## Key Paths
-- Quiz pages: `{trade}.html` (421a, 310t, 309a, 310s, 308a, 276a, 447a, 313a)
+- Quiz pages (P0 시정 후, 2026-07-17): 421a(Heavy Duty Equip), 310t, 309a, 310s, **306a=Plumber, 308a=Sheet Metal, 313a=Refrigeration&AC, 442a=Industrial Electrician, 456a=Welder, 420b=Ironworker, gasfitter-class-a** / 스텁(구주소): 276a·403a·447a — 절대 콘텐츠 복원 금지
 - Salary guides: `{trade-name}-salary-canada.html`
 - Career guides: `{trade-name}-career-canada.html` or `how-to-become-{trade}-canada.html`
 - Exam tips: `how-to-pass-red-seal-{code}-exam.html`
