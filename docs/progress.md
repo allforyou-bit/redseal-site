@@ -15,7 +15,7 @@
 ### Quiz Pages (12)
 | File | Questions | Topics |
 |------|-----------|--------|
-| 421a.html | 300 | Safety, Engine, Electrical, Hydraulics, Powertrain, Brakes, PM |
+| 421a.html | 357 | Safety, Engine, Electrical, Hydraulics, Powertrain, Brakes+Chassis, HVAC, Structures, Hybrid/EV, PM (전 공식 MWA 커버 — 2026-07-17) |
 | 310t.html | 165 | Air Brakes, Engine, Drivetrain, DOT Compliance, Electrical |
 | 309a.html | 135 | Theory, CEC Code, Motors, Wiring Methods, Safety |
 | 310s.html | 135 | Engine, Brakes, Electrical, Suspension, Transmission |

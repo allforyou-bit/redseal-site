@@ -15,7 +15,7 @@
 ## 🟡 Priority 3 — 수익 엔진 (Week 2~3)
 1. ~~리드마그넷 생성~~ ✅ 7/12 (`PRODUCTS\421a\`, `build_pdf_products.py`)
 2. MailerLite 가입(사용자 5분) → 임베드 폼 교체 + 웰컴 시퀀스 5통
-3. **유료 v1 판매 게이트(FIX-FIRST, 정본=`qc-benchmark-421a-20260712.md`)**: ~~Fix1 정답편향~~ ✅ 7/12 전 트레이드 셔플 → **Fix2 최장보기 텔 제거(222건)** → **Fix3 블루프린트 공백 55문항 신규(HVAC·구조물·하이브리드)** → PDF 재생성 → GO 판정 → Ko-fi 등록(사장). **게이트 통과 전 판매 금지.**
+3. **유료 v1 판매 게이트**: ~~Fix1 정답편향~~ ✅7/12 → ~~Fix2 텔 제거(239건)~~ ✅7/17 → ~~Fix3 공백 57문항(HVAC 20·구조물 20·하이브리드 9·섀시 8, 총 357문항)~~ ✅7/17 → ~~PDF 재생성~~ ✅ → **W3 GO 재판정 진행 중** → GO 시 Ko-fi 등록(사장, 문안=`PRODUCTS\421a\KOFI_LISTING_COPY.md`). 정답 키 추가 교정 2건(id125, id225) 포함. 잔여 소소: 의미 중복 5쌍(69/110·78/183·14/129·98/163·100/166) 교체 — 비차단.
 4. 취소선 정가 표시 OK / 🚫 성능 주장 금지("Pass on First Attempt"·합격률·guaranteed — Competition Act, 정본=`legal-compliance-report-20260712.md`)
 
 ## 🟢 Priority 4 — 트래픽·권위 (Week 4~12)
