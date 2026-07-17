@@ -59,3 +59,23 @@
 | 355 | brakes | https://www.alcoawheels.com/north-america/en/blogs/wheel-torque-do-it-once-and-do-it-right/ |
 | 356 | brakes | https://www.trelleborg-tires.com/-/media/wheels-us/technical-info-us/trelleborgliquidballastingusa.pdf |
 | 357 | brakes | https://avsmanual.com/i.caterpillar/i02063127/ |
+
+## Fix 4 추가분 (2026-07-17)
+
+| id | topic | source |
+|---|---|---|
+| 110(교체) | hydraulic | https://en.wikipedia.org/wiki/JIC_fitting |
+| 183(교체) | powertrain | https://en.wikipedia.org/wiki/Drive_shaft |
+| 129(교체) | electrical | https://weldwiki.com/what-to-disconnect-when-welding-on-a-vehicle/ |
+| 163(교체) | engine | https://www.lubyequipment.com/best-practice/how-to-avoid-liner-pitting/ |
+| 166(교체) | electrical | https://www.tomorrowstechnician.com/battery-cable-safety-starts-with-the-negative/ |
+| 358 | electrical | https://obd-cable.com/j1939-can-high-can-low-battery-normal-voltage-range/ |
+| 359 | electrical | https://www.aa1car.com/library/voltage_drop_testing.htm |
+| 360 | electrical | https://www.interstatebatteries.com/blog/how-to-charge-an-agm-battery |
+| 361 | electrical | https://autodtcs.com/how-to-perform-charging-system-voltage-drop-test-power-ground-paths/ |
+| 362 | electrical | https://www.12voltplanet.co.uk/relay-guide.html |
+| 363 | electrical | https://www.speedwaymotors.com/the-toolbox/crimp-vs-solder-how-to-solder-and-crimp-automotive-wires/143520 |
+| 364 | electrical | https://www.underhoodservice.com/understanding-five-volt-reference-signals/ |
+| 365 | electrical | https://www.transmissiondigest.com/load-testing-solenoid-circuits/ |
+| 366 | electrical | https://www.onallcylinders.com/2017/11/17/fusible-links-go/ |
+| 367 | electrical | https://www.wiringdepot.com/jt-t-tech-articles/Weather-Pack-Terminal-FAQs |
