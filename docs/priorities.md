@@ -1,25 +1,27 @@
-# Current Priorities — updated 2026-07-17
+# Current Priorities — updated 2026-07-18
 
 > 정본 전략 = OPERATIONS_MONETIZATION_PLAN / 조직 = COMPANY_WEB.md / 절차 = RUNBOOK.md
 
-## 🚨 P0 — 트레이드 코드 오배정 시정 (정본 = `P0-trade-code-remediation-plan.md`)
-11개 중 5개 코드가 타 직종, 276A는 부존재 코드, 403A 가스는 ON 트레이드 아님 (421A 주력상품은 정확).
-**✅ 실행 완료(7/17)**: 콘텐츠 스왑 체인 + 신규 456a/420b/gasfitter-class-a + 스텁 3개(276a/403a/447a) + 전역 2,775치환 + 게이트 통과. 잔여 Phase B = 위성 페이지 슬러그 개명(콘텐츠 코드는 교정 완료, 슬러그만 구코드).
+## 🔴 P1 — 사장 액션 (수익 다음 단계 — 전부 사장 결재/계정 필요)
+1. **AdSense 재신청** — ✅준비완료(거절 원인 빈 페이지 재건·카운트 정합·스텁 noindex 전부 라이브 확인). 제출은 Google 약관동의·계정 액션이라 사장이 직접: AdSense 계정 → redsealquiz.ca 검토 요청. 재색인 진행 중이라 지금 신청 가능.
+2. **MailerLite 가입** (계정 생성만, 5분) → 로그인 상태로 알려주시면 Claude가 웰컴 5통·리드마그넷 폼까지 브라우저로 세팅. 문안 완성분 = `PRODUCTS\email\`
+3. About 초안 사실확인 (`PRODUCTS\email\about_page_draft.md`의 [FACT-CHECK] 표시부) → 확인 주시면 About 페이지 반영
 
-## 🔴 P1 — 사장 액션 (수익 개시)
-1. ~~Ko-fi 상품 등록~~ ✅ **완료(7/18) — 라이브: ko-fi.com/s/bd6ed3d51f** (CA$19+ pay-what-you-want, 표시명 Red Seal Exam Prep, 3고지 포함, 퀴즈 결과화면 CTA 배포 활성). **첫 수익 채널 가동.** (확인 권장: Shop→Your terms 저장 반영 육안 1회)
-2. **MailerLite 가입** (5분) → 웰컴 5통·문안 완성분 = `PRODUCTS\email\`
-3. ~~Search Console 속성 추가 + sitemap 제출~~ ✅ **완료(7/18)**: redsealquiz.ca URL-접두어 속성(GA4 자동 인증) + sitemap.xml(71 URL) 제출. 구 속성 allforyou-bit.github.io = 클릭 156·색인 25p 실적 보유(301로 이전 중).
-4. About 초안 사실확인 (`PRODUCTS\email\about_page_draft.md`의 [FACT-CHECK] 표시부)
+## 🟢 자산 현황 (가동 중)
+- **첫 유료 상품 라이브**: ko-fi.com/s/bd6ed3d51f (421A, CA$19+, 표시명 Red Seal Exam Prep) + 결과화면 CTA
+- **Search Console**: redsealquiz.ca 속성+sitemap(72 URL) 제출됨
+- **무료 퀴즈 11트레이드 1,627문항** 전부 품질게이트 통과(텔0·균형·정합)
+- **도구 페이지**: study-planner.html(인터랙티브 학습계획), study-guide/exam-guide(허브)
+- **주간 자동화**: RedSeal_Weekly_Report (수 09:03)
 
-## 🟡 P2 — Claude 큐 (P0 이후 순서)
-1. AdSense 재신청: 빈 껍데기 2p 재건 ✅(7/17) → 재색인 1~2주 대기 → 재신청 (P0 스왑과 순서 조율)
-2. **전 트레이드(421a 제외 10개) de-tell 배치** — RUNBOOK 게이트2 한시 예외 해제 조건
-3. 306a FAQ JSON-LD "~100문항"→120 교정, 421a FAQ JSON-LD 구 블록표 교정 (P0 스왑에 포함)
-3. B 정답비중 감시(34% — 상한 직하), B/D 커버리지 ±3pp 해소(전기 추가분 반영 재계산)
-4. 도구 페이지 후속: 견습시간 계산기(주별 데이터 = scratchpad tooldata/provinces.json 재활용, VERIFY 항목 확인 후)
-5. 리드마그넷 타 트레이드 확장 (이메일 가동 후)
-6. YouTube 문제풀이 쇼츠·Reddit 배급 (트래픽 게이트 G3 진입 시)
+## 🟡 P2 — Claude 자율 큐 (트래픽·확장, 사장 결재 불필요분)
+1. 리드마그넷 타 트레이드 PDF 생성 (이메일 가동 후 즉시 필요 — MailerLite 대기)
+2. YouTube 문제풀이 쇼츠·Reddit 배급 (트래픽 게이트 G3 진입 시)
+3. 타 트레이드 유료화 = 각 트레이드 GO 벤치마크(블루프린트 커버리지 검증) 선행 필요 → 통과분만 Ko-fi 등록(사장)
+4. 견습시간/자격 계산기 도구 (provinces.json 데이터, VERIFY 항목은 "당국 확인"으로 표기)
+5. B/D 커버리지 ±3pp 미세조정 (421a, 비차단 폴리시)
 
-## 완료 로그 (7월)
-7/11 HIGH 5건 수정·hero 배포 / 7/12 Phase 7 오버홀 26건+중복 4쌍·법무 게이트·전 트레이드 셔플 / 7/16 도메인 redsealquiz.ca 이전 완료 / 7/17 웹사업부 RUNBOOK·자동화·Fix2/3/4(421A 367문항)·GO 판정·빈 페이지 재건·P0 발견
+## 완료 로그
+- 7/11 HIGH 5건·hero / 7/12 Phase7 26건+중복4쌍·법무·셔플 / 7/16 도메인 redsealquiz.ca 이전
+- 7/17 RUNBOOK·자동화·Fix2/3/4(421A 367)·GO판정·빈페이지 재건·P0 발견·시정(코드스왑)·Phase B 슬러그·성능주장 54건 제거
+- 7/18 de-tell 전량완료(11트레이드)·Ko-fi 상품 라이브·CTA·표시명 브랜드화·Search Console·카운트 정합 25건·study-planner 신규
