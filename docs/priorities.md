@@ -9,7 +9,7 @@
 ## 🔴 P1 — 사장 액션 (수익 개시)
 1. ~~Ko-fi 상품 등록~~ ✅ **완료(7/18) — 라이브: ko-fi.com/s/bd6ed3d51f** (CA$19+ pay-what-you-want, 표시명 Red Seal Exam Prep, 3고지 포함, 퀴즈 결과화면 CTA 배포 활성). **첫 수익 채널 가동.** (확인 권장: Shop→Your terms 저장 반영 육안 1회)
 2. **MailerLite 가입** (5분) → 웰컴 5통·문안 완성분 = `PRODUCTS\email\`
-3. **Search Console 속성 추가** (redsealquiz.ca, 2분) + sitemap 제출 — exam/study-guide 재색인 요청 포함
+3. ~~Search Console 속성 추가 + sitemap 제출~~ ✅ **완료(7/18)**: redsealquiz.ca URL-접두어 속성(GA4 자동 인증) + sitemap.xml(71 URL) 제출. 구 속성 allforyou-bit.github.io = 클릭 156·색인 25p 실적 보유(301로 이전 중).
 4. About 초안 사실확인 (`PRODUCTS\email\about_page_draft.md`의 [FACT-CHECK] 표시부)
 
 ## 🟡 P2 — Claude 큐 (P0 이후 순서)
