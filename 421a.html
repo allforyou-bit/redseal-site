@@ -3271,7 +3271,7 @@ function answerMockQ(chosen) {
   else { nb.textContent = `Next (${mockIdx+2}/${mockQs.length}) →`; nb.onclick = () => { mockIdx++; renderMockQ(); }; }
 }
 
-const PRODUCT_URL_421A = ''; // W5: Ko-fi 상품 URL 입력 시 결과화면 CTA 자동 활성화 (빈 문자열 = 미노출)
+const PRODUCT_URL_421A = 'https://ko-fi.com/s/bd6ed3d51f'; // W5: Ko-fi 421A Question Bank (라이브 2026-07-18) — 결과화면 CTA 활성
 function showMockResults() {
   let correct = 0; const ts = {};
   mockQs.forEach((q, i) => {
