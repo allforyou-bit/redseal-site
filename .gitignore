@@ -16,3 +16,7 @@ Thumbs.db
 # Python cache
 __pycache__/
 *.pyc
+
+# Internal — moved to private repo redseal-internal (2026-07-20)
+docs/
+scripts/
