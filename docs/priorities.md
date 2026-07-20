@@ -7,7 +7,7 @@
 **✅ 실행 완료(7/17)**: 콘텐츠 스왑 체인 + 신규 456a/420b/gasfitter-class-a + 스텁 3개(276a/403a/447a) + 전역 2,775치환 + 게이트 통과. 잔여 Phase B = 위성 페이지 슬러그 개명(콘텐츠 코드는 교정 완료, 슬러그만 구코드).
 
 ## 🔴 P1 — 사장 액션 (수익 개시)
-1. **Ko-fi 상품 등록** — GO 판정 완료(`qc-verdict-421a-20260717-GO.md`). 문안=`PRODUCTS\421a\KOFI_LISTING_COPY.md` (CA$19 결재 + CIPO 5분 검색). 등록 후 URL 전달 → CTA 활성화
+1. ~~Ko-fi 상품 등록~~ ✅ **완료(7/18) — 라이브: ko-fi.com/s/bd6ed3d51f** (CA$19+ pay-what-you-want, 표시명 Red Seal Exam Prep, 3고지 포함, 퀴즈 결과화면 CTA 배포 활성). **첫 수익 채널 가동.** (확인 권장: Shop→Your terms 저장 반영 육안 1회)
 2. **MailerLite 가입** (5분) → 웰컴 5통·문안 완성분 = `PRODUCTS\email\`
 3. **Search Console 속성 추가** (redsealquiz.ca, 2분) + sitemap 제출 — exam/study-guide 재색인 요청 포함
 4. About 초안 사실확인 (`PRODUCTS\email\about_page_draft.md`의 [FACT-CHECK] 표시부)
