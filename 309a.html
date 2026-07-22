@@ -30,7 +30,7 @@
 <meta name="twitter:image" content="https://redsealquiz.ca/favicon.svg">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6709396576574623" crossorigin="anonymous"></script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many questions are on the Red Seal 309A electrician exam?","acceptedAnswer":{"@type":"Answer","text":"The Red Seal 309A Construction Electrician interprovincial exam contains approximately 100 multiple-choice questions. You have 3 hours to complete it. The minimum passing score is typically 70%. It is a closed-book exam — no Canadian Electrical Code is permitted."}},{"@type":"Question","name":"What CEC rules are most important for the 309A Red Seal exam?","acceptedAnswer":{"@type":"Answer","text":"The most frequently tested CEC areas include: Rule 8-104 (service conductor sizing), Rule 14-104 (next larger OCPD), Rule 12-012 (direct buried cable depths), Rule 26-712 (GFCI in bathrooms and wet locations), Section 28 (motor circuits — conductor sizing at 125% FLA, protection at 250% FLA for time-delay fuses), and load calculation methodology."}},{"@type":"Question","name":"Is the 309A Red Seal exam open or closed book?","acceptedAnswer":{"@type":"Answer","text":"The 309A Red Seal exam is closed book. You cannot bring the Canadian Electrical Code, tables, calculators, or any reference material. You must know key CEC rules, conductor ampacity tables, and load calculation methods from memory. This is why understanding the reasoning behind CEC rules — not just rule numbers — is essential."}}]}
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many questions are on the Red Seal 309A electrician exam?","acceptedAnswer":{"@type":"Answer","text":"The Red Seal 309A Construction Electrician interprovincial exam contains approximately 100 multiple-choice questions. You have up to 4 hours to complete it. The minimum passing score is typically 70%. It is a closed-book exam — no Canadian Electrical Code is permitted."}},{"@type":"Question","name":"What CEC rules are most important for the 309A Red Seal exam?","acceptedAnswer":{"@type":"Answer","text":"The most frequently tested CEC areas include: Rule 8-104 (service conductor sizing), Rule 14-104 (next larger OCPD), Rule 12-012 (direct buried cable depths), Rule 26-712 (GFCI in bathrooms and wet locations), Section 28 (motor circuits — conductor sizing at 125% FLA, protection at 250% FLA for time-delay fuses), and load calculation methodology."}},{"@type":"Question","name":"Is the 309A Red Seal exam open or closed book?","acceptedAnswer":{"@type":"Answer","text":"The 309A Red Seal exam is closed book. You cannot bring the Canadian Electrical Code, tables, calculators, or any reference material. You must know key CEC rules, conductor ampacity tables, and load calculation methods from memory. This is why understanding the reasoning behind CEC rules — not just rule numbers — is essential."}}]}
 </script>
 <style>
 :root{--primary:#1a3a5c;--accent:#f0a500;--green:#27ae60;--red:#e74c3c;--light:#f4f7fb;--card:#fff;--text:#2c3e50;--muted:#7f8c8d;--border:#dce3ec}
@@ -206,7 +206,7 @@ nav{background:#1a3a5c;padding:0 24px;display:flex;align-items:center;position:s
   <div class="intro-box">
 <h2>About the 309A Red Seal Exam — Construction Electrician</h2>
 <p>The <strong>309A Construction Electrician Red Seal exam</strong> is Canada's national certification for electricians working on residential, commercial, and light industrial construction projects. A 309A Red Seal endorsement proves your competency against the Canadian Electrical Code (CEC) and RSOS standards, allowing you to work anywhere in Canada without provincial re-examination.</p>
-<p>The exam consists of <strong>100 multiple-choice questions</strong> drawn from the 2023 Red Seal Occupational Standard, requiring a minimum score of <strong>70%</strong>. Exam duration is <strong>3 hours</strong>.</p>
+<p>The exam consists of <strong>100 multiple-choice questions</strong> drawn from the 2023 Red Seal Occupational Standard, requiring a minimum score of <strong>70%</strong>. Exam duration is <strong>up to 4 hours</strong>.</p>
 
 <h3>Topic Breakdown (2023 RSOS)</h3>
 <ul>
@@ -219,7 +219,7 @@ nav{background:#1a3a5c;padding:0 24px;display:flex;align-items:center;position:s
 </ul>
 
 <h3>Exam Strategy for 309A</h3>
-<p><strong>Know your Code tables.</strong> Multiple exam questions require table lookups — ampacity tables, conduit fill charts, demand factor tables. During the actual exam you have access to the CEC, so practice using it efficiently rather than memorizing every number.</p>
+<p><strong>Know your Code tables.</strong> Multiple exam questions require table lookups — ampacity tables, conduit fill charts, demand factor tables. The 309A Red Seal exam is closed-book — the CEC is not permitted — so you must know these tables and how to apply them from memory.</p>
 <p><strong>Master box fill calculations.</strong> These appear consistently on every 309A exam. Know the cubic-inch volumes per conductor size, device, fitting, and clamp from memory.</p>
 <p><strong>Three-phase calculations.</strong> Know the formulas for balanced 3-phase loads (P = √3 × V × I × PF), transformer kVA sizing, and line vs. phase voltage relationships.</p>
 
@@ -381,9 +381,9 @@ const questions=[
   {id:6,topic:'code',topicLabel:'CEC Code',diff:'hard',
    text:'What is the minimum burial depth required for a 120/240V residential underground feeder (UF cable) under a driveway in Canada per the CEC?',
    options:['A) 300mm (12 inches)','B) 600mm (24 inches)','C) 450mm (18 inches)','D) 900mm (36 inches)'],
-   answer:1,
-   explanation:'<strong>Under driveways: 600mm minimum burial depth.</strong> Standard residential direct burial is 600mm (24"). Under concrete slabs: 100mm acceptable if in conduit. Under driveways subject to vehicle traffic: 600mm. Always check local amendments to the CEC.',
-   keyConcept:'CEC burial depths: general residential 600mm | Under concrete with conduit 100mm | Always check local amendments.'},
+   answer:3,
+   explanation:'<strong>Under a driveway (vehicular traffic): 900mm minimum.</strong> Per CEC Table 53, non-armoured direct-buried cable rated 0–750V requires 600mm of cover in areas NOT subject to vehicular traffic, increasing to 900mm where subject to vehicular traffic such as a driveway. Cover may be reduced by 150mm where mechanical protection (e.g., treated planking) is added over the run. Always check local amendments to the CEC.',
+   keyConcept:'CEC Table 53 (0–750V, non-armoured direct burial): 600mm general | 900mm under vehicular traffic (driveways) | −150mm where mechanical protection is added. Armoured cable (TECK): 450mm/600mm.'},
   {id:7,topic:'motors',topicLabel:'Motors & Controls',diff:'easy',
    text:'What is the purpose of a motor starter overload relay?',
    options:['A) To start and stop the motor remotely','B) To protect the windings from sustained overcurrent','C) To control the motor\'s running speed','D) To reverse the motor\'s direction of rotation'],
@@ -396,7 +396,7 @@ const questions=[
    answer:1,
    explanation:'<strong>Reverse any two phases = reverse rotation.</strong> Three-phase motor direction is determined by phase sequence. Swapping any two of the three power conductors at the motor terminals (or disconnect) reverses the rotating magnetic field and thus the motor direction.',
    keyConcept:'3-phase motor reversal: swap any 2 phase wires. Simple, no parts needed.'},
-  {id:9,topic:'safety',topicLabel:'Safety',diff:'easy',
+  {id:9,topic:'safety',topicLabel:'Electrical Safety',diff:'easy',
    text:'What does LOTO stand for and when must it be applied?',
    options:['A) Load Only, Turn Off — when changing light bulbs','B) Lockout/Tagout — before maintenance or service on equipment','C) Line Output Test Operation — during electrical testing','D) Lock Out, Tag Out — only for high voltage above 600V'],
    answer:1,
@@ -412,22 +412,22 @@ const questions=[
    text:'A voltage drop calculation for a 120V, 20A circuit with a one-way distance of 40 metres using #12 AWG copper wire shows what approximate voltage drop?',
    options:['A) 0.5V','B) 3.2V','C) 9.6V','D) 16V'],
    answer:2,
-   explanation:'<strong>VD = (2 × L × R × I) / 1000.</strong> For #12 AWG copper: resistance ≈ 5.21 Ω/1000m. VD = (2 × 40 × 5.21 × 20) / 1000 ≈ 8.3V. Approximate answer: ~9.6V (about 8% drop). CEC recommends max 3% for branch circuits. This circuit is too long for #12 AWG at 20A.',
-   keyConcept:'CEC recommends max 3% voltage drop on branch circuits. Long runs need larger wire to compensate.'},
+   explanation:'<strong>VD = (2 × L × R × I) / 1000.</strong> Using #12 AWG copper resistance ≈ 6.0 Ω/1000m at operating temperature: VD = (2 × 40 × 6.0 × 20) / 1000 = 9.6V — about an 8% drop. CEC Rule 8-102 sets a mandatory maximum of 3% for a branch circuit, so this run is too long for #12 AWG at 20A; a larger conductor is required.',
+   keyConcept:'CEC Rule 8-102 (mandatory): max 3% voltage drop on a branch circuit, 5% total supply-to-load. Long runs need larger wire to compensate.'},
   {id:12,topic:'theory',topicLabel:'Electrical Theory',diff:'hard',
    text:'A transformer has a primary voltage of 600V, a secondary voltage of 120V, and a primary current of 2A. What is the secondary current (ignoring losses)?',
    options:['A) 0.4A','B) 2A','C) 10A','D) 120A'],
    answer:2,
    explanation:'<strong>Transformer: V1/V2 = I2/I1.</strong> 600/120 = I2/2. I2 = 2 × (600/120) = 2 × 5 = <strong>10A</strong>. Voltage steps down by ratio 5:1, current steps up by same ratio 5:1. Power in = Power out (ideal): 600×2 = 1200VA = 120×10 = 1200VA.',
    keyConcept:'Transformer: turns ratio = voltage ratio = inverse of current ratio. Step-down V → step-up I.'},
-  {id:13,topic:'safety',topicLabel:'Safety',diff:'medium',
+  {id:13,topic:'safety',topicLabel:'Electrical Safety',diff:'medium',
    text:'What is the minimum approach distance for an unqualified worker near an energized overhead power line at 25kV in Canada?',
    options:['A) 1 metre','B) 3 metres','C) 5 metres','D) 10 metres'],
    answer:1,
    explanation:'<strong>25kV = 3 metre minimum approach distance.</strong> Provincial regulations set minimum approach distances based on voltage. At distribution voltages (up to 46kV), unqualified persons must stay at least 3 metres away. Qualified electricians have different limits based on training and PPE.',
    keyConcept:'Unqualified worker: 3m minimum for up to 46kV lines. Always call 811 (Call Before You Dig) for buried lines.'},
   {id:14,topic:'code',topicLabel:'CEC Code',diff:'medium',
-   text:'According to the CEC, what type of receptacle is required in a bathroom within 1 metre of a sink or water source?',
+   text:'According to the CEC, what type of receptacle is required in a bathroom within 1.5 metres of a sink or water source?',
    options:['A) Standard duplex receptacle is acceptable','B) A GFCI-protected receptacle','C) 20A dedicated circuit only','D) Isolated ground receptacle'],
    answer:1,
    explanation:'<strong>GFCI required near water.</strong> The CEC requires GFCI (Ground Fault Circuit Interrupter) protection for receptacles in bathrooms, garages, outdoors, and near water sources. GFCI detects current imbalances as small as 5mA and trips within 1/40th of a second — preventing electrocution.',
@@ -440,10 +440,10 @@ const questions=[
    keyConcept:'Low voltage → motor slips → draws more current → overheats. Single-phasing causes current on only 2 phases with no rotation.'},
   {id:16,topic:'wiring',topicLabel:'Wiring Methods',diff:'easy',
    text:'What is the maximum support spacing for conduit runs of 1-inch EMT in a horizontal run?',
-   options:['A) Every 1 metre','B) Every 3 metres','C) Every 5 metres','D) Every 10 metres'],
+   options:['A) Every 1 metre','B) Every 2 metres','C) Every 5 metres','D) Every 10 metres'],
    answer:1,
-   explanation:'<strong>EMT support spacing: every 3 metres maximum</strong> for horizontal runs. Also required within 1 metre of each box, fitting, or termination. Vertical runs have different spacing requirements. Always check CEC tables and local amendments for specific conduit types and sizes.',
-   keyConcept:'EMT horizontal: support every 3m max + within 1m of boxes. Unsupported conduit sags and can damage conductors.'},
+   explanation:'<strong>1-inch EMT: support every 2 metres maximum.</strong> CEC Rule 12-1010 sets EMT support intervals by trade size — 1.5 m for trade sizes 16–21 (½"–¾"), 2 m for 27–35 (1"–1¼"), and 3 m for 41 and larger (1½"+). EMT must also be secured within 1 m of each box, fitting, or termination. (The 3 m / 10 ft figure is the US NEC value, not the CEC.)',
+   keyConcept:'CEC Rule 12-1010 EMT support: ½"–¾" = 1.5 m, 1"–1¼" = 2 m, 1½"+ = 3 m; plus within 1 m of boxes/fittings. 3 m is the NEC value, not CEC.'},
   {id:17,topic:'theory',topicLabel:'Electrical Theory',diff:'medium',
    text:'A single-phase 240V motor draws 12A at full load with a power factor of 0.85. What is the true power consumption?',
    options:['A) 2880W','B) 2448W','C) 3388W','D) 1440W'],
@@ -454,8 +454,8 @@ const questions=[
    text:'Under the CEC, what is the maximum permitted voltage drop on a combined feeder and branch circuit in a commercial building?',
    options:['A) 1%','B) 3%','C) 5%','D) 8%'],
    answer:2,
-   explanation:'<strong>CEC recommends max 5% combined voltage drop</strong> (feeder + branch circuit) in commercial installations. This is split as: max 2% on feeders + max 3% on branch circuits = 5% total. Excessive voltage drop causes equipment underperformance, overheating, and reduces motor torque.',
-   keyConcept:'CEC voltage drop: 3% max branch circuit, 2% max feeder, 5% max total. These are recommendations, not hard code violations.'},
+   explanation:'<strong>CEC Rule 8-102 (mandatory) limits total voltage drop to 5%</strong> from the supply side of the consumer\'s service to the point of utilization, with a maximum of 3% in any one feeder or branch circuit. So a combined feeder-plus-branch path is capped at 5%. Excessive voltage drop causes equipment underperformance, overheating, and reduced motor torque.',
+   keyConcept:'CEC Rule 8-102 (mandatory "shall"): 3% max in a feeder or branch circuit, 5% max total supply-to-point-of-utilization. Unlike the US NEC, this is an enforceable requirement, not a recommendation.'},
 
   // ── ELECTRICAL THEORY (continued) ──
   {id:19,topic:'theory',topicLabel:'Electrical Theory',diff:'easy',
@@ -534,7 +534,7 @@ const questions=[
    answer:0,
    explanation:'<strong>Synchronous speed = 120 × frequency ÷ number of poles.</strong> At 60Hz with 4 poles: 120 × 60 ÷ 4 = 1800 RPM synchronous. The motor runs at 1750 RPM (slip = 50 RPM = 2.8%). Induction motors always run slightly below synchronous speed — this slip is what induces rotor current to create torque.',
    keyConcept:'Sync speed = 120 × f ÷ poles. 60Hz, 4-pole = 1800 RPM. 60Hz, 2-pole = 3600 RPM. 60Hz, 6-pole = 1200 RPM. Slip = sync speed − actual speed.'},
-  {id:31,topic:'motors',topicLabel:'Motors & Controls',diff:'medium',
+  {id:31,topic:'motors',topicLabel:'Motors & Controls',diff:'easy',
    text:'What is the purpose of a motor overload relay in a motor starter circuit?',
    options:['A) To protect against voltage surges and spikes','B) To protect the windings from sustained overcurrent','C) To limit starting current inrush','D) To provide short circuit protection for the motor'],
    answer:1,
@@ -580,25 +580,25 @@ const questions=[
    keyConcept:'3-phase CEC colours: Red, Black, Blue = line conductors. White/Grey = neutral. Green/bare = ground. 240V single-phase: Black + Red lines, White neutral, Green ground.'},
   {id:38,topic:'wiring',topicLabel:'Wiring Methods',diff:'hard',
    text:'When installing a conduit run, the maximum permitted spacing between conduit supports for 1-inch EMT is:',
-   options:['A) 1.5m (5 ft)','B) 3m (10 ft)','C) 4.5m (15 ft)','D) 6m (20 ft)'],
+   options:['A) 1.5m (5 ft)','B) 2m (6.5 ft)','C) 4.5m (15 ft)','D) 6m (20 ft)'],
    answer:1,
-   explanation:'<strong>EMT support maximum: 3m (10 ft) between supports.</strong> The CEC does not publish a support-spacing table for conduit — Rule 12-1404 requires EMT to be securely fastened in place, and 3m maximum spacing is the accepted industry practice used by inspection authorities. Support is also expected within 1m of each junction box, fitting, or bend. Insufficient support allows conduit to sag, creates stress at fittings, and can damage conductors.',
-   keyConcept:'EMT support (CEC Rule 12-1404): must be securely fastened; 3m (10 ft) maximum spacing is accepted practice. Also support within 1m of each box or fitting.'},
+   explanation:'<strong>1-inch EMT: 2 m maximum between supports.</strong> Contrary to a common misconception, the CEC DOES specify EMT support intervals — Rule 12-1010 requires 1.5 m for trade sizes 16–21 (½"–¾"), 2 m for 27–35 (1"–1¼"), and 3 m for 41 and larger. EMT must also be supported within 1 m of each junction box, fitting, or termination. Insufficient support allows conduit to sag, stresses fittings, and can damage conductors. (3 m / 10 ft is the US NEC figure.)',
+   keyConcept:'EMT support (CEC Rule 12-1010): 1.5 m (½"–¾"), 2 m (1"–1¼"), 3 m (1½"+), plus within 1 m of each box/fitting. The 3 m value is US NEC, not CEC.'},
 
   // ── SAFETY (continued) ──
-  {id:39,topic:'safety',topicLabel:'Safety',diff:'easy',
+  {id:39,topic:'safety',topicLabel:'Electrical Safety',diff:'easy',
    text:'When working on a de-energized 600V electrical panel, the MINIMUM PPE required includes:',
    options:['A) Standard work gloves and safety glasses','B) Voltage-rated gloves, face shield, and FR clothing','C) Leather work gloves and a hard hat only','D) No PPE required since the panel is de-energized'],
    answer:1,
    explanation:'<strong>Electrical PPE required even on de-energized equipment — verification isn\'t perfect.</strong> NFPA 70E and CSA Z462 require arc flash rated PPE when working on or near electrical equipment, as de-energization must be verified and equipment could be inadvertently re-energized. Glove class must be rated for the maximum voltage present. Minimum kit: insulated gloves rated for the voltage, an arc-flash-rated face shield, and flame-resistant (FR) clothing.',
    keyConcept:'Electrical PPE: insulated gloves (voltage rated) + arc flash face shield + FR clothing. Required whenever working on or near energized or recently de-energized electrical equipment.'},
-  {id:40,topic:'safety',topicLabel:'Safety',diff:'medium',
+  {id:40,topic:'safety',topicLabel:'Electrical Safety',diff:'medium',
    text:'Before drilling through a wall to run conduit in an existing building, a technician MUST:',
    options:['A) Drill a test hole first to check for studs','B) Verify the location of hidden wiring, plumbing, and gas lines','C) Notify the building manager and wait 24 hours','D) Assume the wall is clear if no outlets are visible on the surface'],
    answer:1,
    explanation:'<strong>Always locate hidden utilities before drilling.</strong> Drilling into existing wiring can cause electrocution, fires, or arc flash. Drilling into a gas line creates explosion risk. Use stud finders, electronic pipe/cable locators, or thermal cameras to identify hidden utilities. Never assume a wall is clear.',
    keyConcept:'Before drilling: locate all hidden utilities (wiring, plumbing, gas). Use electronic locators. Calling 811 (locate service) required for outdoor excavation — same principle applies indoors.'},
-  {id:41,topic:'safety',topicLabel:'Safety',diff:'hard',
+  {id:41,topic:'safety',topicLabel:'Electrical Safety',diff:'hard',
    text:'An arc flash study determines the Incident Energy at a panel is 12 cal/cm². What PPE level (category) is MINIMUM required?',
    options:['A) Level 1 (4 cal/cm² rating)','B) Level 2 (8 cal/cm² rating)','C) Level 3 (25 cal/cm² rating)','D) Level 4 (40 cal/cm² rating)'],
    answer:2,
@@ -642,7 +642,7 @@ const questions=[
    answer:1,
    explanation:'<strong>CEC 26-724: all 15A and 20A receptacles in dwellings must be tamper-resistant.</strong> Tamper-resistant receptacles (TR) have spring-loaded shutters that require simultaneous pressure from a standard plug to open. Children cannot insert a single object (key, hairpin) into one slot. Required in all new residential construction.',
    keyConcept:'CEC 26-724: TR (tamper-resistant) receptacles required in all 15A and 20A dwelling unit outlets. Shutters require simultaneous insertion to open. Meets child safety requirements.'},
-  {id:48,topic:'safety',topicLabel:'Safety',diff:'medium',
+  {id:48,topic:'safety',topicLabel:'Electrical Safety',diff:'medium',
    text:'A technician is working alone in an electrical room. According to safety regulations, lone-worker requirements typically include:',
    options:['A) No special requirements — electrical work can always be done alone','B) A check-in system, buddy system, or remote monitoring','C) Lone work is prohibited for any electrical task','D) Working alone requires only notifying a supervisor before starting'],
    answer:1,
@@ -720,16 +720,16 @@ const questions=[
    keyConcept:'AFCI: required for dwelling unit receptacle circuits (CEC Rule 26-724(f)) — essentially all 125V receptacles 20A or less, not just bedrooms. Detects arc fault signatures. Different from GFCI (which protects against ground faults/shock). AFCI = fire protection. GFCI = shock protection.'},
   {id:60,topic:'code',topicLabel:'CEC Code',diff:'medium',
    text:'Under the CEC, what is the maximum distance allowed between supports for rigid metal conduit (RMC) for trade size 1 inch?',
-   options:['A) 1.5 m (5 ft)','B) 3 m (10 ft)','C) 4.5 m (15 ft)','D) No limit — conduit is self-supporting'],
+   options:['A) 1.5 m (5 ft)','B) 2 m (6.5 ft)','C) 4.5 m (15 ft)','D) No limit — conduit is self-supporting'],
    answer:1,
-   explanation:'<strong>RMC support spacing: approximately 3 m (10 ft) for 1-inch conduit.</strong> The CEC has no support-spacing table for conduit — Rule 12-1010 requires rigid metal conduit to be securely fastened in place, and approximately 3 m between supports is the accepted industry practice. Conduit near equipment or where it changes direction requires support within 900 mm (3 ft) of boxes and fittings.',
-   keyConcept:'Conduit support (CEC Rule 12-1010): must be securely fastened; ~3 m between supports is accepted practice for 1-inch RMC. Within 900 mm of boxes. EMT support: more frequent (every 1.5 m typical for smaller sizes). Verify accepted spacing with the local inspection authority.'},
+   explanation:'<strong>Rigid metal conduit, trade size 1 (27): 2 m maximum between supports.</strong> CEC Rule 12-1010 tables support intervals by trade size — 1.5 m for trade sizes 16–21, 2 m for 27–35, and 3 m for 41 and larger — and applies to both rigid conduit and EMT. Conduit must also be secured near each box and fitting. Insufficient support stresses couplings and can damage conductors.',
+   keyConcept:'CEC Rule 12-1010 conduit support (rigid & EMT): 1.5 m (sizes 16–21), 2 m (27–35), 3 m (41+); plus secured near each box and fitting. Applies to both RMC and EMT.'},
   {id:61,topic:'code',topicLabel:'CEC Code',diff:'hard',
    text:'Under CEC Section 26, a service entrance conductor with a 200A service must be sized to carry at least:',
    options:['A) The same 200A as the service rating — no adjustment needed','B) 83% of the conductor\'s ampacity — conductors feeding a service must have an ampacity of not less than 83% of the service conductor ampacity, or other CEC-specific rules apply','C) 125% of the continuous load plus 100% of non-continuous load','D) 150A — service entrance conductors are always derated by 25%'],
    answer:2,
-   explanation:'<strong>Service conductor sizing: CEC applies specific rules to service entrances.</strong> For service conductors, the CEC requires that the combined demand load calculation be performed per CEC Section 8 (demand factors). The 125% continuous load rule applies to branch circuits and feeders. Service entrance sizing uses demand factors and the service conductor ampacity must match the service ampere rating with permitted demand factors. Review CEC Section 26 carefully.',
-   keyConcept:'Service entrance sizing: use CEC Section 8 demand factors. 200A service requires conductors rated at 200A after demand factor calculation. Service conductors: sized per calculated demand load, not simply rated at service ampere rating.'},
+   explanation:'<strong>Size the conductor to 125% of the continuous load plus 100% of the non-continuous load.</strong> CEC Rule 8-104 requires that a consumer\'s service (or feeder) conductor not be loaded beyond 80% of its ampacity by a continuous load — equivalently, its ampacity must be at least 125% of the continuous load plus 100% of any non-continuous load. The calculated load itself is first determined with the Section 8 demand factors, then this 125%/100% rule sets the minimum conductor ampacity (see Q93 for a worked example).',
+   keyConcept:'Service/feeder conductor sizing (CEC Rule 8-104): ampacity ≥ 125% of continuous load + 100% of non-continuous load (continuous = 3 h or more). Determine the load with Section 8 demand factors first, then apply the 125%/100% rule. Ambient/bundling derating still applies.'},
   {id:62,topic:'code',topicLabel:'CEC Code',diff:'medium',
    text:'In the CEC, what defines a "wet location" and what wiring method requirements apply?',
    options:['A) Any location where water may drip on the electrical installation — same wiring methods as dry locations','B) A location subject to saturation — requires weatherproof fixtures and wet-rated wiring methods','C) A wet location is defined only as underground wiring locations','D) Wet locations require only a 15-degree drip shield above enclosures'],
@@ -1003,9 +1003,9 @@ const questions=[
   {id:106,topic:'motors',topicLabel:'Motors & Controls',diff:'medium',
    text:'A motor nameplate shows "SF 1.15" (Service Factor). What does this mean?',
    options:['A) The motor can operate at 115% of its rated horsepower continuously without damage','B) The motor can run at 115% of rated horsepower briefly under nameplate conditions','C) Service Factor 1.15 means the motor efficiency is 15% higher than a standard motor','D) SF 1.15 indicates the motor starting torque is 15% above standard motors'],
-   answer:1,
-   explanation:'<strong>Service Factor 1.15: motor can operate at 115% of rated HP temporarily under nameplate conditions.</strong> A motor rated 10 HP with SF 1.15 can handle 11.5 HP loads briefly without permanent damage — at the SF load, the motor will run hotter than at rated HP. SF is not an invitation to run continuously above rated HP — it provides a buffer for momentary overloads. At SF loads, motor life may be shortened. The CEC allows overload relay sizing at 125% of FLA for motors with SF ≥ 1.15.',
-   keyConcept:'Service Factor (SF): ratio of allowable load to rated load. SF 1.15 = 115% rated HP allowable briefly. Not for continuous operation above rated HP. At SF load: temperature rise increases. Motor life reduced at elevated temperatures (motor life halves with every 10°C rise — Arrhenius Law). CEC overload relay sizing: SF ≥1.15 motors → set OL at 125% FLA. SF 1.0 motors → set at 115% FLA.'},
+   answer:0,
+   explanation:'<strong>Service Factor 1.15: the motor may be loaded to 115% of rated HP continuously under standard conditions (per NEMA MG-1).</strong> A 10 HP motor with SF 1.15 can carry 11.5 HP continuously — the service factor is a permissible continuous overload, not just a momentary buffer. It runs hotter at SF load, so continuous operation there does shorten insulation life, and high ambient or altitude reduce the allowable SF. The CEC allows overload relay sizing at 125% of FLA for motors with SF ≥ 1.15.',
+   keyConcept:'Service Factor (SF): multiplier for permissible continuous load. SF 1.15 = 115% rated HP allowable continuously (NEMA MG-1), at higher temperature and reduced insulation life. Life halves per ~10°C rise (Arrhenius). CEC overload sizing: SF ≥1.15 → set OL at 125% FLA; SF 1.0 → 115% FLA.'},
   {id:107,topic:'wiring',topicLabel:'Wiring Methods',diff:'easy',
    text:'When pulling conductors through conduit, what is the maximum allowable conductor fill percentage for a conduit containing three or more conductors?',
    options:['A) 50% fill — half the conduit interior area may be used by conductors','B) 40% fill — the limit for three or more conductors in a conduit','C) 31% fill — applies to two conductors in the same conduit','D) 60% fill — commercial conduit systems allow higher fill than residential'],
