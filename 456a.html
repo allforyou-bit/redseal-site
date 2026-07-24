@@ -772,6 +772,7 @@ function answerMockQ(i){
   document.getElementById('mockNextBtn').style.display='block';
 }
 function mockNext(){mockIdx++;renderMockQ();}
+const PRODUCT_URL_456A = 'https://ko-fi.com/s/e8e2006b00';
 function showMockResults(){
   clearInterval(mockTimer);
   const correct=mockAnswers.filter(a=>a.correct).length;
@@ -794,7 +795,8 @@ function showMockResults(){
         <button onclick="downloadMockResults()" class="btn-mock" style="background:#27ae60;">Download Results</button>
       </div>
     </div>
-    ${wrong.length?`<div style="margin-top:20px;"><p style="font-weight:700;color:#1a3a5c;margin-bottom:12px;">Review Incorrect (${wrong.length}):</p>${wrong.map(a=>`<div style="background:#fdecea;border-radius:8px;padding:12px;margin-bottom:10px;font-size:.85rem;"><strong>${a.q.text}</strong><br>Your answer: ${['A','B','C','D'][a.chosen]}) ${a.q.options[a.chosen].replace(/^[A-D]\)\s*/,'')}<br>Correct: ${['A','B','C','D'][a.q.answer]}) ${a.q.options[a.q.answer].replace(/^[A-D]\)\s*/,'')}<br><em>${a.q.explanation}</em></div>`).join('')}</div>`:''}`;
+    
+    ${PRODUCT_URL_456A?`<div style="background:#fef6e7;border:2px solid #f0a500;border-radius:10px;padding:14px 16px;margin:14px 16px 4px;text-align:center"><div style="font-weight:800;color:#1a3a5c;margin-bottom:4px">${pass?'Keep your edge for exam day':'The pass mark is 70% — close the gap'}</div><div style="font-size:.85rem;color:#7f8c8d;margin-bottom:10px">All 120 questions with full explanations in one printable, offline PDF.</div><a href="${PRODUCT_URL_456A}" target="_blank" rel="noopener" style="display:inline-block;background:#b91c1c;color:#fff;padding:10px 22px;border-radius:8px;font-weight:800;text-decoration:none;font-size:.9rem">Get the 456A Question Bank →</a></div>`:''}${wrong.length?`<div style="margin-top:20px;"><p style="font-weight:700;color:#1a3a5c;margin-bottom:12px;">Review Incorrect (${wrong.length}):</p>${wrong.map(a=>`<div style="background:#fdecea;border-radius:8px;padding:12px;margin-bottom:10px;font-size:.85rem;"><strong>${a.q.text}</strong><br>Your answer: ${['A','B','C','D'][a.chosen]}) ${a.q.options[a.chosen].replace(/^[A-D]\)\s*/,'')}<br>Correct: ${['A','B','C','D'][a.q.answer]}) ${a.q.options[a.q.answer].replace(/^[A-D]\)\s*/,'')}<br><em>${a.q.explanation}</em></div>`).join('')}</div>`:''}`;
 }
 function shareMockScore(pct){
   const text=`I scored ${pct}% on the 456A Red Seal Welder Mock Exam! Practise free at https://redsealquiz.ca/456a.html`;

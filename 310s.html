@@ -1283,6 +1283,7 @@ function answerMockQ(chosen) {
   else { nb.textContent = `Next (${mockIdx+2}/${mockQs.length}) →`; nb.onclick = () => { mockIdx++; renderMockQ(); }; }
 }
 
+const PRODUCT_URL_310S = 'https://ko-fi.com/s/1584a81d22';
 function showMockResults() {
   let correct = 0; const ts = {};
   mockQs.forEach((q, i) => {
@@ -1310,6 +1311,7 @@ function showMockResults() {
       <div style="color:#7f8c8d;font-size:.88rem">${correct} / ${total} correct &nbsp;·&nbsp; ${mins || '<1'} min</div>
       ${isNewBest&&pct>0?'<div style="background:#fff8e1;border:1px solid #f0a500;border-radius:8px;padding:8px 14px;margin-top:10px;font-size:.85rem;color:#b7770d">🌟 New Personal Best!</div>':''}
     </div>
+    ${PRODUCT_URL_310S?`<div style="background:#fef6e7;border:2px solid #f0a500;border-radius:10px;padding:14px 16px;margin:14px 16px 4px;text-align:center"><div style="font-weight:800;color:#1a3a5c;margin-bottom:4px">${passed?'Keep your edge for exam day':'The pass mark is 70% — close the gap'}</div><div style="font-size:.85rem;color:#7f8c8d;margin-bottom:10px">All 135 questions with full explanations in one printable, offline PDF.</div><a href="${PRODUCT_URL_310S}" target="_blank" rel="noopener" style="display:inline-block;background:#b91c1c;color:#fff;padding:10px 22px;border-radius:8px;font-weight:800;text-decoration:none;font-size:.9rem">Get the 310S Question Bank →</a></div>`:''}
     <div style="padding:0 16px">
       <table style="width:100%;border-collapse:collapse;font-size:.88rem;margin-bottom:8px">
         <tr style="background:#f4f7fb"><th style="padding:8px 12px;text-align:left">Topic</th><th style="padding:8px 12px">Score</th><th style="padding:8px 12px">%</th></tr>
