@@ -20,3 +20,8 @@ __pycache__/
 # Internal — moved to private repo redseal-internal (2026-07-20)
 docs/
 scripts/
+
+# Internal — were still being served publicly at redsealquiz.ca (2026-07-25)
+# Kept on disk (Claude Code and the RUNBOOK gate both need them here), copied to redseal-internal
+CLAUDE.md
+verify_quiz.py
