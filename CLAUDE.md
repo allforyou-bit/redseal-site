@@ -3,9 +3,10 @@
 ## Quick Facts
 - Site: **https://redsealquiz.ca** (커스텀 도메인 2026-07-16 이전, GitHub Pages, static HTML; 구주소 allforyou-bit.github.io는 301)
 - Repo: https://github.com/allforyou-bit/allforyou-bit.github.io
-- Files: 46 HTML, 8 trades, 1,110 Qs, 29 articles
+- Files: 97 HTML, 11 trades, 1,632 Qs (421A 367 · 310T 165 · 310S 139 · 309A 135 · 306A 135 · 442A 135 · 456A 120 · 420B 120 · 313A 116 · 308A 100 · Gasfitter 100)
 - Stack: Vanilla HTML/CSS/JS, no framework
-- Deploy: `cd "C:\Users\kayky\Desktop\RedSeal-Project\allforyou-bit.github.io" && git add -A && git commit -m "msg" && git push origin master`
+- Deploy: `cd "C:\Users\kayky\OneDrive\Desktop-Acer\RedSeal-Project\allforyou-bit.github.io" && git add -A && git commit -m "msg" && git push origin master`
+  (구경로 `C:\Users\kayky\Desktop\RedSeal-Project\...`는 위 경로를 가리키는 junction — 스크립트 하드코딩은 그대로 동작)
 
 ## User
 - 421A Heavy Equipment Technician apprentice (intermediate level)
