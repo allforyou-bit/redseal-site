@@ -96,7 +96,7 @@
   @media(max-width:600px){header h1{font-size:1.2rem}.tab-btn{font-size:.75rem;padding:7px 12px}.q-text{font-size:.92rem}}
   .mock-launch-bar{display:flex;align-items:center;justify-content:space-between;background:#fff8e1;border:2px solid #f0a500;border-radius:10px;padding:12px 18px;margin-bottom:18px;flex-wrap:wrap;gap:10px}
   .mock-launch-bar p{font-size:.85rem;color:#5d4037;margin:0}
-  .mock-launch-bar strong{color:#b7770d}
+  .mock-launch-bar strong{color:#8e5c0a}
   .btn-mock{background:#f0a500;color:#fff;border:none;border-radius:8px;padding:10px 22px;font-weight:700;font-size:.88rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;}
   .btn-mock:hover{background:#d4930a}
   .mock-count-btn{background:#f4f7fb;border:2px solid #dce3ec;border-radius:12px;padding:18px 10px;cursor:pointer;color:#1a3a5c;font-family:inherit;width:100%}
@@ -104,7 +104,7 @@
   .mock-opt{background:#f4f7fb;border:2px solid #dce3ec;border-radius:8px;padding:12px 16px;cursor:pointer;text-align:left;font-family:inherit;font-size:.9rem;color:#2c3e50;width:100%;display:block}
   .mock-opt:hover:not(:disabled){border-color:#2d6a9f;background:#eaf0f9}
   .mock-opt.mock-c{background:#e8f9ef;border-color:#27ae60;color:#1a6636}
-  .mock-opt.mock-w{background:#fdecea;border-color:#e74c3c;color:#922b21}
+  .mock-opt.mock-w{background:#fdecea;border-color:#e12e1c;color:#922b21}
   .mock-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:400;align-items:flex-start;justify-content:center;padding:16px;overflow-y:auto}
   .mock-panel{background:#fff;border-radius:16px;width:100%;max-width:680px;margin:auto;box-shadow:0 20px 60px rgba(0,0,0,.3)}
   .mock-head{background:#1a3a5c;border-radius:16px 16px 0 0;padding:16px 20px;display:flex;align-items:center;gap:12px}
@@ -117,7 +117,7 @@
   .btn-mock-next:hover{background:#2d6a9f}
   .update-pill{display:inline-flex;align-items:center;gap:4px;background:#e8f9ef;color:#1a6636;font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:10px;border:1px solid #a9dfbf;margin-left:8px;vertical-align:middle}
   .rsos-pill{display:inline-flex;align-items:center;gap:4px;background:#eaf0f9;color:#1a3a5c;font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:10px;border:1px solid #afc3dc;margin-left:4px;vertical-align:middle}
-  .wrong-tab-btn{background:#fdecea!important;border-color:#e74c3c!important;color:#c0392b!important}
+  .wrong-tab-btn{background:#fdecea!important;border-color:#e12e1c!important;color:#c0392b!important}
   .wrong-tab-btn.active{background:#e74c3c!important;color:#fff!important}
   .topic-progress-panel{background:#fff;border-radius:10px;padding:14px 16px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
   .score-hist-wrap{margin-top:10px;padding-top:10px;border-top:1px solid #eee}
@@ -198,6 +198,34 @@ nav{background:#1a3a5c;padding:0 24px;display:flex;align-items:center;position:s
 @media(max-width:640px){
   table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
 }
+</style>
+<style id="readability-std">
+/* 본문 가독성 기준 (2026-07-29 실측 후 신설)
+   목록에 스타일이 없어 브라우저 기본값(줄간격 1.2 / 항목간격 0)이 적용됐다.
+   같은 상자의 문단은 1.7 인데 목록만 방치돼 소제목과 설명이 한 덩어리로 보였다.
+   개선 전후 실측(456a, 375x812): 줄간격 1.20→1.70, 항목간격 0→12px, 소제목 inline→block */
+.intro-box ul,.intro-box ol,.card ul,.card ol,.fit-section ul,.fit-section ol,
+.container>ul,.container>ol,.sg-card ul,.sg-card ol{margin:12px 0 16px;padding-left:22px}
+.intro-box li,.card li,.fit-section li,.container>ul>li,.container>ol>li,.sg-card li{
+  line-height:1.7;margin-bottom:12px}
+.intro-box li:last-child,.card li:last-child,.fit-section li:last-child{margin-bottom:0}
+.intro-box li>strong:first-child,.card li>strong:first-child,
+.fit-section li>strong:first-child{display:block;margin-bottom:2px}
+/* 내비게이션·푸터 목록은 본문 규칙에서 제외 */
+nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;margin-bottom:0!important}
+@media(max-width:640px){
+  .intro-box p,.intro-box li,.card p,.card li,.fit-section p,.fit-section li{
+    font-size:1rem;line-height:1.7}
+}
+</style>
+<style id="contrast-std">
+/* 대비 보정 (2026-07-29 실측 후) — 모두 WCAG AA 4.5:1 이상으로 계산한 값 */
+.trade-mini-code{color:#9e6d00}            /* 2.08 → 4.52 */
+.q-topic{color:#9e6d00}                    /* 2.08 → 4.52 */
+.trade-mini-qs{color:#1d8147}              /* 2.66 → 4.55 */
+.legal{color:#5e728e}                      /* 2.39 → 4.58 */
+.ac2-tag{color:#8e5c0a}                    /* 3.49 → 4.53 */
+.quiz-code[style*="e67e22"]{background:#b45f14!important}  /* 2.85 → 4.56 */
 </style>
 </head>
 <body>
@@ -342,7 +370,7 @@ nav{background:#1a3a5c;padding:0 24px;display:flex;align-items:center;position:s
     <div class="score-label">Questions Answered Correctly</div>
     <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>
     <div style="margin-top:8px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
-      <span id="streakCount" style="display:none;background:#fff3e0;color:#e65100;font-size:.78rem;font-weight:700;padding:4px 12px;border-radius:10px">🔥 1-day streak</span>
+      <span id="streakCount" style="display:none;background:#fff3e0;color:#c34500;font-size:.78rem;font-weight:700;padding:4px 12px;border-radius:10px">🔥 1-day streak</span>
       <span id="todayCount" style="display:none;background:#e8f9ef;color:#1e8449;font-size:.78rem;font-weight:700;padding:4px 12px;border-radius:10px">&#x2713; 0 correct today</span>
       <span id="inRowStreak" style="display:none;background:linear-gradient(135deg,#ff6b35,#f0a500);color:#fff;font-size:.78rem;font-weight:700;padding:4px 12px;border-radius:10px;box-shadow:0 2px 8px rgba(240,165,0,.35)">🔥 3 in a row!</span>
     </div>
@@ -571,7 +599,7 @@ function recordTopicStat(topic,correct){const stats=JSON.parse(localStorage.getI
 function renderTopicProgress(){const panel=document.getElementById('topicProgressPanel');if(!panel)return;const stats=JSON.parse(localStorage.getItem('topicStats_403a')||'{}');panel.innerHTML='<div style="font-weight:700;font-size:.85rem;margin-bottom:10px;color:#1a3a5c">&#x1F4CA; Topic Progress</div>'+TOPIC_DEFS.map(td=>{const s=stats[td.key]||{c:0,t:0};const pct=s.t?Math.round(s.c/s.t*100):0;const color=pct>=70?'#27ae60':pct>=50?'#f0a500':'#e74c3c';return '<div style="margin-bottom:8px"><div style="display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:3px"><span>'+td.label+'</span><span style="color:'+color+'">'+pct+'% ('+s.c+'/'+s.t+')</span></div><div style="background:#dce3ec;border-radius:6px;height:7px;overflow:hidden"><div style="width:'+pct+'%;height:100%;background:'+color+';border-radius:6px;transition:width .4s"></div></div></div>';}).join('')+'<button onclick="resetTopicStats()" style="margin-top:6px;font-size:.72rem;background:none;border:1px solid #ccc;border-radius:4px;padding:3px 8px;cursor:pointer;color:#767676">Reset Stats</button>';}
 function resetTopicStats(){if(!confirm('Reset all topic progress?'))return;localStorage.removeItem('topicStats_403a');renderTopicProgress();}
 function saveMockHistory(pct,total){const hist=JSON.parse(localStorage.getItem('mockHistory_403a')||'[]');hist.unshift({pct,total,date:new Date().toLocaleDateString()});if(hist.length>5)hist.length=5;localStorage.setItem('mockHistory_403a',JSON.stringify(hist));renderScoreHistory();}
-function renderScoreHistory(){const el=document.getElementById('scoreHistoryList');if(!el)return;const hist=JSON.parse(localStorage.getItem('mockHistory_403a')||'[]');if(!hist.length){el.innerHTML='<span style="color:#aaa;font-size:.78rem">No mock exams yet</span>';return;}el.innerHTML=hist.map(h=>{const color=h.pct>=70?'#27ae60':h.pct>=50?'#f0a500':'#e74c3c';return '<span style="display:inline-flex;align-items:center;gap:4px;background:#f4f7fb;border-radius:20px;padding:3px 10px;font-size:.78rem;font-weight:700;color:'+color+'">'+h.pct+'%<span style="font-weight:400;color:#767676;font-size:.72rem">'+h.date+'</span></span>';}).join('');}
+function renderScoreHistory(){const el=document.getElementById('scoreHistoryList');if(!el)return;const hist=JSON.parse(localStorage.getItem('mockHistory_403a')||'[]');if(!hist.length){el.innerHTML='<span style="color:#727272;font-size:.78rem">No mock exams yet</span>';return;}el.innerHTML=hist.map(h=>{const color=h.pct>=70?'#27ae60':h.pct>=50?'#f0a500':'#e74c3c';return '<span style="display:inline-flex;align-items:center;gap:4px;background:#f4f7fb;border-radius:20px;padding:3px 10px;font-size:.78rem;font-weight:700;color:'+color+'">'+h.pct+'%<span style="font-weight:400;color:#767676;font-size:.72rem">'+h.date+'</span></span>';}).join('');}
 let fcIdx=0,fcQs=[],fcFlipped=false,fcKnownIds=new Set();
 function setQuizMode(mode){const qcard=document.getElementById('questionCard');const fcard=document.getElementById('flashcardSection');const quizUI=document.querySelector('.score-box');const navRow=document.querySelector('.nav-row');const modeBtns=document.querySelectorAll('.mode-btn');modeBtns.forEach(b=>b.classList.remove('active'));document.querySelector('.mode-btn[data-mode="'+mode+'"]')?.classList.add('active');if(mode==='flashcard'){if(qcard)qcard.style.display='none';if(quizUI)quizUI.style.display='none';if(navRow)navRow.style.display='none';if(fcard)fcard.style.display='block';initFlashcards();}else{if(qcard)qcard.style.display='';if(quizUI)quizUI.style.display='';if(navRow)navRow.style.display='';if(fcard)fcard.style.display='none';applyFilter();}}
 function initFlashcards(){fcQs=[...filtered];fcKnownIds=new Set();fcIdx=0;fcFlipped=false;renderFlashcard();}

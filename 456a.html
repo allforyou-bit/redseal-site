@@ -111,7 +111,7 @@
   @media(max-width:600px){header h1{font-size:1.2rem}.tab-btn{font-size:.75rem;padding:7px 12px}.q-text{font-size:.92rem}}
   .mock-launch-bar{display:flex;align-items:center;justify-content:space-between;background:#fff8e1;border:2px solid #f0a500;border-radius:10px;padding:12px 18px;margin-bottom:18px;flex-wrap:wrap;gap:10px}
   .mock-launch-bar p{font-size:.85rem;color:#5d4037;margin:0}
-  .mock-launch-bar strong{color:#b7770d}
+  .mock-launch-bar strong{color:#8e5c0a}
   .btn-mock{background:#f0a500;color:#fff;border:none;border-radius:8px;padding:10px 22px;font-weight:700;font-size:.88rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:background .2s;min-height:44px;display:inline-flex;align-items:center;justify-content:center;}
   .btn-mock:hover{background:#d4930a}
   .mock-count-btn{background:#f4f7fb;border:2px solid #dce3ec;border-radius:12px;padding:18px 10px;cursor:pointer;color:#1a3a5c;transition:all .2s;font-family:inherit;width:100%}
@@ -119,7 +119,7 @@
   .mock-opt{background:#f4f7fb;border:2px solid #dce3ec;border-radius:8px;padding:12px 16px;cursor:pointer;text-align:left;font-family:inherit;font-size:.9rem;color:#2c3e50;transition:all .2s;width:100%;display:block}
   .mock-opt:hover:not(:disabled){border-color:#2d6a9f;background:#eaf0f9}
   .mock-opt.mock-c{background:#e8f9ef;border-color:#27ae60;color:#1a6636}
-  .mock-opt.mock-w{background:#fdecea;border-color:#e74c3c;color:#922b21}
+  .mock-opt.mock-w{background:#fdecea;border-color:#e12e1c;color:#922b21}
   .mock-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:400;align-items:flex-start;justify-content:center;padding:16px;overflow-y:auto}
   .mock-panel{background:#fff;border-radius:16px;width:100%;max-width:680px;margin:auto;box-shadow:0 20px 60px rgba(0,0,0,.3)}
   .mock-head{background:#1a3a5c;border-radius:16px 16px 0 0;padding:16px 20px;display:flex;align-items:center;gap:12px}
@@ -132,7 +132,7 @@
   .btn-mock-next:hover{background:#2d6a9f}
   .update-pill{display:inline-flex;align-items:center;gap:4px;background:#e8f9ef;color:#1a6636;font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:10px;border:1px solid #a9dfbf;margin-left:8px;vertical-align:middle}
   .rsos-pill{display:inline-flex;align-items:center;gap:4px;background:#eaf0f9;color:#1a3a5c;font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:10px;border:1px solid #afc3dc;margin-left:4px;vertical-align:middle}
-  .wrong-tab-btn{background:#fdecea!important;border-color:#e74c3c!important;color:#c0392b!important}
+  .wrong-tab-btn{background:#fdecea!important;border-color:#e12e1c!important;color:#c0392b!important}
   .wrong-tab-btn.active{background:#e74c3c!important;color:#fff!important}
   .topic-progress-panel{background:#fff;border-radius:10px;padding:14px 16px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
   .score-hist-wrap{margin-top:10px;padding-top:10px;border-top:1px solid #eee}
@@ -215,6 +215,34 @@ nav{background:#1a3a5c;padding:0 24px;display:flex;align-items:center;position:s
 @media(max-width:640px){
   table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
 }
+</style>
+<style id="readability-std">
+/* 본문 가독성 기준 (2026-07-29 실측 후 신설)
+   목록에 스타일이 없어 브라우저 기본값(줄간격 1.2 / 항목간격 0)이 적용됐다.
+   같은 상자의 문단은 1.7 인데 목록만 방치돼 소제목과 설명이 한 덩어리로 보였다.
+   개선 전후 실측(456a, 375x812): 줄간격 1.20→1.70, 항목간격 0→12px, 소제목 inline→block */
+.intro-box ul,.intro-box ol,.card ul,.card ol,.fit-section ul,.fit-section ol,
+.container>ul,.container>ol,.sg-card ul,.sg-card ol{margin:12px 0 16px;padding-left:22px}
+.intro-box li,.card li,.fit-section li,.container>ul>li,.container>ol>li,.sg-card li{
+  line-height:1.7;margin-bottom:12px}
+.intro-box li:last-child,.card li:last-child,.fit-section li:last-child{margin-bottom:0}
+.intro-box li>strong:first-child,.card li>strong:first-child,
+.fit-section li>strong:first-child{display:block;margin-bottom:2px}
+/* 내비게이션·푸터 목록은 본문 규칙에서 제외 */
+nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;margin-bottom:0!important}
+@media(max-width:640px){
+  .intro-box p,.intro-box li,.card p,.card li,.fit-section p,.fit-section li{
+    font-size:1rem;line-height:1.7}
+}
+</style>
+<style id="contrast-std">
+/* 대비 보정 (2026-07-29 실측 후) — 모두 WCAG AA 4.5:1 이상으로 계산한 값 */
+.trade-mini-code{color:#9e6d00}            /* 2.08 → 4.52 */
+.q-topic{color:#9e6d00}                    /* 2.08 → 4.52 */
+.trade-mini-qs{color:#1d8147}              /* 2.66 → 4.55 */
+.legal{color:#5e728e}                      /* 2.39 → 4.58 */
+.ac2-tag{color:#8e5c0a}                    /* 3.49 → 4.53 */
+.quiz-code[style*="e67e22"]{background:#b45f14!important}  /* 2.85 → 4.56 */
 </style>
 </head>
 <body>
@@ -372,7 +400,7 @@ nav{background:#1a3a5c;padding:0 24px;display:flex;align-items:center;position:s
     <div class="score-label">Questions Answered Correctly</div>
     <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>
     <div style="margin-top:8px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
-      <span id="streakCount" style="display:none;background:#fff3e0;color:#e65100;font-size:.78rem;font-weight:700;padding:4px 12px;border-radius:10px">🔥 1-day streak</span>
+      <span id="streakCount" style="display:none;background:#fff3e0;color:#c34500;font-size:.78rem;font-weight:700;padding:4px 12px;border-radius:10px">🔥 1-day streak</span>
       <span id="todayCount" style="display:none;background:#e8f9ef;color:#1e8449;font-size:.78rem;font-weight:700;padding:4px 12px;border-radius:10px">&#x2713; 0 correct today</span>
       <span id="inRowStreak" style="display:none;background:linear-gradient(135deg,#ff6b35,#f0a500);color:#fff;font-size:.78rem;font-weight:700;padding:4px 12px;border-radius:10px;box-shadow:0 2px 8px rgba(240,165,0,.35)">🔥 3 in a row!</span>
     </div>
@@ -834,7 +862,7 @@ function downloadStudySheet(){
   const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>456A Study Sheet</title><style>body{font-family:Arial,sans-serif;font-size:12px;line-height:1.5;padding:20px}h1{font-size:18px;margin-bottom:4px}.q{margin-bottom:16px;page-break-inside:avoid}.qt{font-weight:700;margin-bottom:4px}.ans{color:green;font-weight:700}.exp{color:#555;font-size:11px;margin-top:2px}@media print{.no-print{display:none}}</style></head><body><h1>456A Red Seal — Study Sheet</h1><p class="no-print">Press Ctrl+P to save as PDF</p><hr>${qs.map((q,i)=>`<div class="q"><div class="qt">${i+1}. ${q.text}</div>${q.options.map((o,j)=>`<div${j===q.answer?' class="ans"':''}>${letters[j]}) ${o.replace(/^[A-D]\)\s*/,'')}</div>`).join('')}<div class="exp">→ ${q.explanation}</div></div>`).join('')}<!-- EXIT INTENT POPUP -->
 <div id="exitPopup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:10000;align-items:center;justify-content:center;padding:20px">
   <div style="background:white;border-radius:20px;padding:36px 32px;max-width:440px;width:100%;position:relative;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3)">
-    <button onclick="document.getElementById(&apos;exitPopup&apos;).style.display=&apos;none&apos;;sessionStorage.setItem(&apos;exitShown&apos;,&apos;1&apos;)" style="position:absolute;top:14px;right:18px;background:none;border:none;font-size:1.6rem;cursor:pointer;color:#aaa;line-height:1">&times;</button>
+    <button onclick="document.getElementById(&apos;exitPopup&apos;).style.display=&apos;none&apos;;sessionStorage.setItem(&apos;exitShown&apos;,&apos;1&apos;)" style="position:absolute;top:14px;right:18px;background:none;border:none;font-size:1.6rem;cursor:pointer;color:#727272;line-height:1">&times;</button>
     <div style="font-size:2.5rem;margin-bottom:12px">&#128203;</div>
     <h2 style="font-size:1.3rem;color:#1a3a5c;font-weight:800;margin-bottom:8px">Wait &#8212; Free Study Sheet!</h2>
     <p style="font-size:.88rem;color:#555;line-height:1.6;margin-bottom:20px">Get our <strong>Red Seal Quick-Reference PDF</strong> &#8212; key formulas, codes and tips for your trade. Free, no spam.</p>
@@ -845,7 +873,7 @@ function downloadStudySheet(){
       <input type="email" name="email" required placeholder="Your email address" style="border:2px solid #dce3ec;border-radius:8px;padding:11px 14px;font-size:.9rem;font-family:inherit;outline:none;width:100%">
       <button type="submit" style="background:#f0a500;color:white;border:none;border-radius:8px;padding:12px;font-weight:700;font-size:.95rem;cursor:pointer">Send Me the PDF &#8594;</button>
     </form>
-    <p style="font-size:.72rem;color:#aaa;margin-top:10px">Unsubscribe anytime. We respect your privacy.</p>
+    <p style="font-size:.72rem;color:#727272;margin-top:10px">Unsubscribe anytime. We respect your privacy.</p>
   </div>
 </div>
 <script>
@@ -1018,7 +1046,7 @@ function renderScoreHistory(){
   const el=document.getElementById('scoreHistoryList');
   if(!el)return;
   const hist=JSON.parse(localStorage.getItem('mockHistory_276a')||'[]');
-  if(!hist.length){el.innerHTML='<span style="color:#aaa;font-size:.78rem">No mock exams yet</span>';return;}
+  if(!hist.length){el.innerHTML='<span style="color:#727272;font-size:.78rem">No mock exams yet</span>';return;}
   el.innerHTML=hist.map(h=>{
     const color=h.pct>=70?'#27ae60':h.pct>=50?'#f0a500':'#e74c3c';
     return '<span style="display:inline-flex;align-items:center;gap:4px;background:#f4f7fb;border-radius:20px;padding:3px 10px;font-size:.78rem;font-weight:700;color:'+color+'">'+h.pct+'%<span style="font-weight:400;color:#767676;font-size:.72rem">'+h.date+'</span></span>';

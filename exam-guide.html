@@ -92,7 +92,7 @@
   .checklist li { padding:8px 0; font-size:.9rem; border-bottom:1px solid var(--border); display:flex; gap:10px; align-items:flex-start; }
   .checklist li:last-child { border-bottom:none; }
   .checklist li::before { content:'✓'; color:var(--green); font-weight:700; flex-shrink:0; margin-top:1px; }
-  .warn-item::before { content:'✗'; color:#e74c3c; }
+  .warn-item::before { content:'✗'; color:#e12e1c; }
   .trade-table { width:100%; border-collapse:collapse; font-size:.88rem; }
   .trade-table th { background:var(--primary); color:#fff; padding:10px 14px; text-align:left; }
   .trade-table td { padding:9px 14px; border-bottom:1px solid var(--border); }
@@ -100,7 +100,7 @@
   .trade-table a { color:var(--primary); font-weight:600; text-decoration:none; }
   .trade-table a:hover { color:var(--accent); }
   .tip-box { background:#fff8e1; border:1px solid #f0a500; border-radius:10px; padding:16px 18px; margin:14px 0; font-size:.88rem; }
-  .tip-box strong { color:#b7770d; }
+  .tip-box strong { color:#8e5c0a; }
   .faq-item { border-bottom:1px solid var(--border); padding:14px 0; }
   .faq-item:last-child { border-bottom:none; }
   .faq-q { font-weight:700; color:var(--primary); font-size:.92rem; margin-bottom:6px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; }
@@ -151,6 +151,25 @@ nav{background:#1a3a5c;padding:0 24px;display:flex;align-items:center;position:s
 .hero-std .hero-pill{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);color:#fff;font-size:.74rem;font-weight:600;padding:4px 12px;border-radius:14px}
 @media(max-width:600px){.hero-std h1{font-size:1.4rem}.hero-std .hero-sub{font-size:.88rem}}
 </style>
+<style id="readability-std">
+/* 본문 가독성 기준 (2026-07-29 실측 후 신설)
+   목록에 스타일이 없어 브라우저 기본값(줄간격 1.2 / 항목간격 0)이 적용됐다.
+   같은 상자의 문단은 1.7 인데 목록만 방치돼 소제목과 설명이 한 덩어리로 보였다.
+   개선 전후 실측(456a, 375x812): 줄간격 1.20→1.70, 항목간격 0→12px, 소제목 inline→block */
+.intro-box ul,.intro-box ol,.card ul,.card ol,.fit-section ul,.fit-section ol,
+.container>ul,.container>ol,.sg-card ul,.sg-card ol{margin:12px 0 16px;padding-left:22px}
+.intro-box li,.card li,.fit-section li,.container>ul>li,.container>ol>li,.sg-card li{
+  line-height:1.7;margin-bottom:12px}
+.intro-box li:last-child,.card li:last-child,.fit-section li:last-child{margin-bottom:0}
+.intro-box li>strong:first-child,.card li>strong:first-child,
+.fit-section li>strong:first-child{display:block;margin-bottom:2px}
+/* 내비게이션·푸터 목록은 본문 규칙에서 제외 */
+nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;margin-bottom:0!important}
+@media(max-width:640px){
+  .intro-box p,.intro-box li,.card p,.card li,.fit-section p,.fit-section li{
+    font-size:1rem;line-height:1.7}
+}
+</style>
 </head>
 <body>
 
@@ -184,7 +203,7 @@ nav{background:#1a3a5c;padding:0 24px;display:flex;align-items:center;position:s
 <nav aria-label="Breadcrumb" style="background:#f0f4f9;border-bottom:1px solid #dce4ef;padding:7px 24px">
   <ol style="list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:0;margin:0;padding:0;font-size:.8rem">
     <li><a href="https://redsealquiz.ca/" style="color:#1a3a5c;text-decoration:none;font-weight:500">Home</a></li>
-    <li aria-hidden="true" style="color:#aaa;padding:0 3px">&#8250;</li>
+    <li aria-hidden="true" style="color:#727272;padding:0 3px">&#8250;</li>
     <li style="color:#555;font-weight:600" aria-current="page">Red Seal Exam Registration Guide</li>
   </ol>
 </nav>
