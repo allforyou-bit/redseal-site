@@ -162,6 +162,13 @@ nav{background:#1a3a5c;padding:0 24px;display:flex;align-items:center;position:s
 .hero-std .hero-pill{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);color:#fff;font-size:.74rem;font-weight:600;padding:4px 12px;border-radius:14px}
 @media(max-width:600px){.hero-std h1{font-size:1.4rem}.hero-std .hero-sub{font-size:.88rem}}
 </style>
+<style id="tbl-responsive">
+/* 표가 좁은 화면을 넘칠 때 페이지 전체가 아니라 표만 가로 스크롤되게 한다.
+   (2026-07-29: .concept-table 이 375px 화면에서 427px 라 문서가 86px 밀려 있었다) */
+@media(max-width:640px){
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+}
+</style>
 </head>
 <body>
 <nav>
@@ -193,9 +200,9 @@ nav{background:#1a3a5c;padding:0 24px;display:flex;align-items:center;position:s
 <nav aria-label="Breadcrumb" class="breadcrumb">
 <ol style="list-style:none;display:flex;gap:6px;padding:0;margin:0">
 <li><a href="/">Home</a></li>
-<li style="color:#888">›</li>
+<li style="color:#767676">›</li>
 <li><a href="/red-seal-trades.html">Trades</a></li>
-<li style="color:#888">›</li>
+<li style="color:#767676">›</li>
 <li style="color:#555">How to Pass the 420B Ironworker Exam</li>
 </ol>
 </nav>

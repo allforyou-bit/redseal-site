@@ -55,7 +55,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f4f7fb;color:#2c3e50;li
 .hero p{font-size:.92rem;opacity:.88;max-width:640px;margin:0 auto 10px}
 .badge{display:inline-block;background:#f0a500;color:#fff;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:20px;margin-top:6px}
 .container{max-width:860px;margin:0 auto;padding:28px 18px}
-.ad-banner{background:#e8ecf0;border:2px dashed #b0bec5;text-align:center;padding:14px;font-size:.8rem;color:#7f8c8d;margin:16px auto;border-radius:8px}
+.ad-banner{background:#e8ecf0;border:2px dashed #b0bec5;text-align:center;padding:14px;font-size:.8rem;color:#646f70;margin:16px auto;border-radius:8px}
 .card{background:white;border-radius:12px;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,.07);margin-bottom:22px}
 .card h2{color:#1a3a5c;font-size:1.12rem;margin:0 0 14px;padding-bottom:10px;border-bottom:3px solid #f0a500}
 .card h3{color:#1a3a5c;font-size:.97rem;margin:18px 0 8px;font-weight:700}
@@ -70,7 +70,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f4f7fb;color:#2c3e50;li
 .topic-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:14px 0}
 .topic-box{background:#f4f7fb;border-radius:8px;padding:14px 16px;border-left:4px solid #f0a500}
 .topic-box h4{font-size:.85rem;color:#1a3a5c;font-weight:700;margin-bottom:5px}
-.topic-box p{font-size:.8rem;color:#7f8c8d;margin:0;line-height:1.6}
+.topic-box p{font-size:.8rem;color:#646f70;margin:0;line-height:1.6}
 .tip-box{background:#fff8e1;border:1px solid #f0a500;border-radius:10px;padding:14px 16px;margin:12px 0;font-size:.88rem}
 .tip-box strong{color:#b7770d}
 .warn-box{background:#fff0f0;border:1px solid #e74c3c;border-radius:10px;padding:14px 16px;margin:12px 0;font-size:.88rem}
@@ -127,6 +127,13 @@ nav{background:#1a3a5c;padding:0 24px;display:flex;align-items:center;position:s
 .hero-std .hero-meta{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
 .hero-std .hero-pill{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);color:#fff;font-size:.74rem;font-weight:600;padding:4px 12px;border-radius:14px}
 @media(max-width:600px){.hero-std h1{font-size:1.4rem}.hero-std .hero-sub{font-size:.88rem}}
+</style>
+<style id="tbl-responsive">
+/* 표가 좁은 화면을 넘칠 때 페이지 전체가 아니라 표만 가로 스크롤되게 한다.
+   (2026-07-29: .concept-table 이 375px 화면에서 427px 라 문서가 86px 밀려 있었다) */
+@media(max-width:640px){
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+}
 </style>
 </head>
 <body>
@@ -192,7 +199,7 @@ nav{background:#1a3a5c;padding:0 24px;display:flex;align-items:center;position:s
 .week{border-left:4px solid #f0a500;background:#f4f7fb;border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:12px}
 .week b{color:#1a3a5c}
 .tbgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
-.sg-src{font-size:.78rem;color:#7f8c8d;margin-top:14px}
+.sg-src{font-size:.78rem;color:#646f70;margin-top:14px}
 @media(max-width:640px){.sg-table{font-size:.76rem}.sg-table th,.sg-table td{padding:6px 8px}}
 </style>
 
