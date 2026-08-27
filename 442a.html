@@ -632,8 +632,8 @@ const questions=[
   text:"A 460V, 3-phase motor nameplate shows FLA=42A and service factor (SF)=1.15. The motor is running at 46A continuously. What action is MOST appropriate?",
   options:['A) Immediately shut down — current exceeds FLA','B) No action needed — 46A is within the SF rating of 48.3A','C) Replace overload relay set to 42A','D) Add capacitor bank to reduce current draw'],
   answer:1,
-  explanation:'<strong>Service factor allows continuous operation above FLA.</strong> 42A × 1.15 SF = 48.3A maximum continuous rating. Running at 46A is within the service factor. However, if ambient temperature exceeds nameplate rating or altitude is above 3,300 ft, SF may be derated.',
-  keyConcept:'Motor SF: nameplate FLA × SF = maximum continuous current. Operation within SF is acceptable but reduces motor life.'},
+  explanation:'<strong>Service factor allows continuous operation above FLA.</strong> 42A × 1.15 SF = 48.3A maximum continuous capability, so 46A is within the service factor. Do not confuse this with the overload setting: under CEC Rule 28-306, a motor with SF 1.15 or greater has its overload protection selected at not more than 125% of FLA (52.5A here) — so a properly sized overload will not trip at 46A either. If ambient temperature exceeds nameplate rating or altitude is above 3,300 ft, SF may be derated.',
+  keyConcept:'Motor SF = the motor's own continuous capability (115% here). Overload protection for SF ≥ 1.15 motors is sized at max 125% of FLA (CEC 28-306) — two different percentages. Operation within SF is acceptable but reduces motor life.'},
 
   {id:115,topic:'motors',topicLabel:'Motors & Controls',diff:'hard',
   text:"A megohmmeter test on a 600V motor shows 10 MΩ insulation resistance at 20°C. Industry standards (IEEE 43) require a minimum of 1 MΩ per kV plus 1 MΩ. The motor is rated 50 HP. Is the insulation acceptable?",
