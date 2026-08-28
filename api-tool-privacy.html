@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KAYMEDIA Internal Uploader — Privacy Policy</title>
+<style>
+  body{margin:0;background:#f7f7f5;color:#222;font-family:Georgia,serif;line-height:1.6}
+  .wrap{max-width:720px;margin:0 auto;padding:40px 20px 80px}
+  h1{font-size:26px} h2{font-size:19px;margin-top:28px}
+  .meta{color:#666;font-size:14px}
+  code{background:#eee;padding:1px 5px;border-radius:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>KAYMEDIA Internal Uploader — Privacy Policy</h1>
+  <p class="meta">Effective date: August 28, 2026 · Contact: kay.kyeong.lee@gmail.com</p>
+
+  <p>The <strong>KAYMEDIA Internal Uploader</strong> is a private, internal command-line tool
+  operated by a single individual (the owner of the KAYMEDIA YouTube channels). It is not a
+  public product or service: it has no users other than the owner, no sign-up, no distribution,
+  and no public interface. This policy describes how the tool uses YouTube API Services.</p>
+
+  <h2>What the tool does</h2>
+  <ul>
+    <li>Uploads the owner's own finished videos to the owner's own YouTube channels on a
+        schedule (<code>videos.insert</code> with <code>publishAt</code>).</li>
+    <li>Verifies that scheduled videos published correctly and updates their metadata
+        (<code>videos.list</code>, <code>videos.update</code>, <code>thumbnails.set</code>).</li>
+    <li>Manages the owner's own playlists and channel sections
+        (<code>playlists.*</code>, <code>playlistItems.*</code>, <code>channelSections.*</code>).</li>
+    <li>Reads and replies to comments on the owner's own videos
+        (<code>commentThreads.*</code>, <code>comments.*</code>).</li>
+    <li>Reads the owner's own channel analytics (YouTube Analytics API) to guide
+        content decisions.</li>
+  </ul>
+
+  <h2>Data access and storage</h2>
+  <ul>
+    <li>The tool accesses <strong>only channels owned by the authenticated account</strong>.
+        It does not access, collect, or store any third-party user data.</li>
+    <li>Video metadata (titles, descriptions, IDs, publish times) and the owner's own
+        analytics figures are stored <strong>locally on a single machine</strong> owned by the
+        operator, solely for operating the channels. Nothing is sold, shared, or transferred
+        to any third party.</li>
+    <li>OAuth 2.0 credentials are stored locally and used only to authenticate the owner's
+        own account. Access can be revoked at any time at
+        <a href="https://myaccount.google.com/permissions">Google security settings</a>.</li>
+    <li>Comment text written by viewers is read transiently to compose replies on the owner's
+        own videos; it is not compiled, profiled, or retained beyond standard local logs.</li>
+  </ul>
+
+  <h2>Google / YouTube policies</h2>
+  <p>This tool uses YouTube API Services and complies with the
+  <a href="https://www.youtube.com/t/terms">YouTube Terms of Service</a> and the
+  <a href="https://developers.google.com/youtube/terms/api-services-terms-of-service">YouTube
+  API Services Terms of Service</a>. Google's handling of data is described in the
+  <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</p>
+
+  <h2>Data deletion</h2>
+  <p>All locally stored data can be deleted by the operator at any time by deleting the local
+  files. To request deletion of anything related to this tool, contact
+  kay.kyeong.lee@gmail.com.</p>
+
+  <h2>Changes</h2>
+  <p>Any change to this policy will be posted on this page with a new effective date.</p>
+</div>
+</body>
+</html>
