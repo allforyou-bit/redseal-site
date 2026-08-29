@@ -25,3 +25,7 @@ scripts/
 # Kept on disk (Claude Code and the RUNBOOK gate both need them here), copied to redseal-internal
 CLAUDE.md
 verify_quiz.py
+
+# Internal QA scripts still served publicly - same class as the 2026-07-25 fix (2026-08-28)
+verify_hero.py
+verify_nav.py
