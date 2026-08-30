@@ -1,0 +1,15 @@
+# core.autocrlf is true on this machine. Git's binary heuristic has so far
+# classified these correctly, but a PDF that happens to contain no NUL byte in
+# its first 8000 bytes would be treated as text, get its CRLFs rewritten, and
+# arrive corrupted in a fresh clone -- while every local check still passes.
+# Declare it instead of relying on the guess.
+*.pdf   binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.webp  binary
+*.ico   binary
+*.zip   binary
+*.woff  binary
+*.woff2 binary
