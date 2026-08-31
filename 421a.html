@@ -939,11 +939,11 @@ const questions = [
   },
   {
     id:19, topic:'hydraulic', topicLabel:'Hydraulic Systems', diff:'medium',
-    text: 'Which type of hydraulic pump is MOST commonly used in modern heavy equipment for its ability to vary output flow based on demand?',
-    options:['A) Gear pump (fixed displacement)','B) Centrifugal pump','C) Variable displacement piston pump','D) Vane pump (fixed displacement)'],
-    answer:2,
-    explanation:'<strong>Variable displacement piston pumps</strong> are standard on modern heavy equipment. They automatically adjust swashplate angle to match system demand — reducing fuel consumption and heat when flow is not needed. Gear pumps are fixed displacement (less efficient).',
-    keyConcept:'Variable displacement piston pump = most efficient, most common on modern equipment.'
+    text: 'A flow control valve is being added to an excavator boom cylinder circuit so the boom can be lowered at a controlled speed. The boom is an overrunning load — gravity pulls the cylinder down faster than the pump can fill it. Which flow control arrangement is required, and why?',
+    options:['A) Meter-in — throttling the supply oil directly limits how fast gravity can pull the cylinder down','B) Meter-out — throttling the return oil creates back pressure that restrains the load','C) Either arrangement works, because a fixed orifice restricts flow the same way on the inlet or the outlet','D) Neither — set the main relief valve lower so the boom cannot descend faster than the relief setting allows'],
+    answer:1,
+    explanation:'<strong>An overrunning load must be metered on the way OUT.</strong> When gravity is doing the work, the load drives the cylinder ahead of the incoming oil. Throttling the supply (meter-in) does nothing to hold it back — the cylinder simply runs away and cavitates on the inlet side, drawing a vacuum until oil catches up. Throttling the discharge (meter-out) traps oil on the outlet side and builds the back pressure that actually restrains the load, so the cylinder can only move as fast as oil is allowed to leave. Meter-in is the correct choice only for a resistive load, where the actuator is pushing against the work and cannot outrun its supply. A relief valve is not a speed control: with an overrunning load, pressure on the pump side never rises to the relief setting, so lowering the setting changes nothing about descent speed.',
+    keyConcept:'Resistive load = meter-in. Overrunning load (gravity, lowering booms, downhill hydrostatic drive) = meter-out. Meter-in on an overrunning load causes runaway and inlet-side cavitation, not control.'
   },
   {
     id:20, topic:'hydraulic', topicLabel:'Hydraulic Systems', diff:'hard',
