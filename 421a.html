@@ -573,6 +573,7 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
   <div class="topic-tabs" id="topicTabs">
     <button class="tab-btn active" onclick="switchTopic('all', this)">All Topics</button>
     <button class="tab-btn" onclick="switchTopic('safety', this)">A — Safety & Tools</button>
+    <button class="tab-btn" onclick="switchTopic('maintenance', this)">A-3 — Preventive Maintenance</button>
     <button class="tab-btn" onclick="switchTopic('engine', this)">B — Diesel Engine</button>
     <button class="tab-btn" onclick="switchTopic('electrical', this)">C — Electrical</button>
     <button class="tab-btn" onclick="switchTopic('hydraulic', this)">D — Hydraulics</button>
@@ -2946,35 +2947,35 @@ const questions = [
   keyConcept:'Service brake gradeability test: static hold on rated maximum slope with service brakes only. No movement for specified time period = pass. Test also confirms brake fade resistance at sustained application.'},
 
   // ── PREVENTIVE MAINTENANCE (5 questions, IDs 296-300) ──
-  {id:296,topic:'safety',topicLabel:'Preventive Maintenance',diff:'medium',
+  {id:296,topic:'maintenance',topicLabel:'Preventive Maintenance',diff:'medium',
   text:"A technician is completing a 500-hour service on a motor grader. The engine oil and filter are changed. After refilling with the specified volume of oil, the dipstick reads above the FULL mark. What should be done FIRST?",
   options:['A) Replace the oil filter — filter may not have seated correctly causing oil to back up','B) Run the engine for 5 minutes, then recheck the level after shutdown','C) No action needed — slight overfill is acceptable for high-hour machines','D) Drain oil until the dipstick reads at the FULL mark'],
   answer:1,
   explanation:'<strong>Always allow the engine to run and settle oil through the system before draining excess — recheck the level before removing any oil.</strong> During an oil change, some oil remains in the filter housing and passages. After fill, the oil level may appear high because the filter is empty (air-filled). After a brief run, oil fills the filter and passages — dipstick re-reading gives true level. Draining oil prematurely may result in underfill once the filter is saturated.',
   keyConcept:'Oil fill procedure: fill to spec → run 5 min → shut down → wait 5 min → recheck level. The filter holds 0.5-2L of oil that must be accounted for.'},
 
-  {id:297,topic:'safety',topicLabel:'Preventive Maintenance',diff:'hard',
+  {id:297,topic:'maintenance',topicLabel:'Preventive Maintenance',diff:'hard',
   text:"A technician reviews oil analysis results for a heavy equipment engine. The report shows: silicon = 28 ppm (normal <10), iron = 45 ppm (normal <30), lead = 8 ppm (normal <5). What do these results indicate together?",
   options:['A) Fuel dilution — diesel fuel contains trace silicon from fuel system wear','B) Dirt ingestion causing accelerated iron wear and bearing wear','C) Normal wear patterns — all values within range for this hour interval','D) Coolant leak — high Si indicates antifreeze glycol contamination'],
   answer:1,
   explanation:'<strong>High silicon = dirt contamination. High iron = accelerated component wear (contamination-induced). High lead = bearing wear.</strong> These three together tell a clear story: dirt entered through the air intake (or oil fill), caused abrasive wear on iron components, and the abrasive material has reached and damaged lead-alloyed bearings. Immediate actions: 1) Change oil and filter immediately. 2) Investigate air filtration — find and repair the air filter, breather, or cover sealing problem. 3) Check air filter condition and sealing.',
   keyConcept:'Oil analysis pattern recognition: Si high = dirt ingestion (check air filter/seals). Fe high = iron component wear. Pb high = bearing wear. Cu high = bronze bushing wear. Na/K high = coolant leak.'},
 
-  {id:298,topic:'safety',topicLabel:'Preventive Maintenance',diff:'medium',
+  {id:298,topic:'maintenance',topicLabel:'Preventive Maintenance',diff:'medium',
   text:"A technician is lubricating all grease fittings on an articulated dump truck during a 250-hour service. One fitting accepts very little grease before pressure rises significantly. No grease appears at the joint seal. What should the technician do?",
   options:['A) Skip this fitting — the joint is adequately lubricated from last service','B) Apply extra pressure — force the grease past the blockage','C) Replace the grease fitting — Zerk fittings fail over time','D) Investigate for a blocked fitting or a fully packed joint'],
   answer:3,
   explanation:'<strong>A grease fitting that builds pressure immediately without taking grease indicates a blockage — do not overpressure; investigate why grease is not moving.</strong> Possible causes: 1) Fitting check ball is stuck (clean or replace fitting). 2) Grease passage in the pin is blocked with hardened old grease. 3) The joint is completely packed (correct — no more grease needed). 4) The pin is seized. Applying excessive force can damage seals. Diagnose before applying pressure: remove the fitting and verify it passes air.',
   keyConcept:'Grease fitting resistance: fitting blocked = test with compressed air / replace fitting. Joint packed full = normal, stop greasing. Joint sealed = verify grease path. Never force past unusual resistance.'},
 
-  {id:299,topic:'safety',topicLabel:'Preventive Maintenance',diff:'hard',
+  {id:299,topic:'maintenance',topicLabel:'Preventive Maintenance',diff:'hard',
   text:"A technician is completing a 1,000-hour service on an excavator. The hydraulic return filter has a restriction indicator showing RED (bypass mode). The filter element is changed. After restart, the indicator shows RED again within 5 minutes. What is the MOST likely cause?",
   options:['A) The replacement filter element is defective — install another new element','B) Hydraulic system temperature is too low — cold oil is thick and causes false bypass indication','C) The bypass spring tension is too low — adjust the bypass relief','D) Heavily contaminated fluid is rapidly loading the new element'],
   answer:3,
   explanation:'<strong>A new filter element bypassing immediately after installation indicates the hydraulic fluid is heavily contaminated — the new element immediately loads up with system contamination.</strong> The filter captures contaminants from the fluid. If the fluid is severely contaminated (from a pump failure, maintenance contamination, or long overdue change), the new element fills rapidly. Solution: flush the system (tank drain, all cylinders and motors cycled, filter changed multiple times), replace the fluid, and identify the contamination source.',
   keyConcept:'Filter bypass immediately after replacement: fluid is severely contaminated. Procedure: drain tank, flush system with new fluid (multiple filter changes), identify contamination source (pump failure, incorrect fluid, external ingestion).'},
 
-  {id:300,topic:'safety',topicLabel:'Preventive Maintenance',diff:'medium',
+  {id:300,topic:'maintenance',topicLabel:'Preventive Maintenance',diff:'medium',
   text:"A technician inspects a hydraulic cylinder rod and finds minor pitting (corrosion pits, ~0.3mm deep) on the rod surface in the area that passes through the seal. The machine was stored outdoors without rod protection. What is the MOST appropriate action?",
   options:['A) Polish the pits smooth with emery cloth — minor pitting is acceptable','B) Replace the entire cylinder — surface corrosion indicates systemic failure','C) Inspect the seals and evaluate pit depth against rod repair or replacement limits','D) Apply a thin coat of grease to prevent further corrosion — seal will bridge over small pits'],
   answer:2,
@@ -3522,13 +3523,16 @@ function updateWrongBankTab() {
 
 // ── TOPIC PROGRESS ──
 const TOPIC_DEFS_421a = [
-
-  {key:'safety',     label:'Safety & Tools'},
-  {key:'engine',     label:'Diesel Engine'},
-  {key:'electrical', label:'Electrical'},
-  {key:'hydraulic',  label:'Hydraulics'},
-  {key:'powertrain', label:'Powertrain'},
-  {key:'brakes',     label:'Brakes & Steering'}
+  {key:'safety',      label:'Safety & Tools'},
+  {key:'maintenance', label:'Preventive Maintenance'},
+  {key:'engine',      label:'Diesel Engine'},
+  {key:'electrical',  label:'Electrical'},
+  {key:'hydraulic',   label:'Hydraulics'},
+  {key:'powertrain',  label:'Powertrain'},
+  {key:'brakes',      label:'Brakes & Steering'},
+  {key:'hvac',        label:'HVAC & Cab Comfort'},
+  {key:'structures',  label:'Structures & Attachments'},
+  {key:'hybrid',      label:'Hybrid & Electric'}
 ];
 
 function recordTopicStat(topic, correct) {
