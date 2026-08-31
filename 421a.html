@@ -1023,11 +1023,11 @@ const questions = [
   },
   {
     id:29, topic:'brakes', topicLabel:'Brakes & Steering', diff:'hard',
-    text: 'During an air brake system test, a loaded machine loses more than 4 PSI per minute with the engine OFF and brakes released. According to CVSA standards, this machine should be:',
-    options:['A) Tagged for repair within 48 hours','B) Placed out of service immediately','C) Tested again after 10 minutes','D) Driven at reduced speed only'],
-    answer:1,
-    explanation:'<strong>CVSA standard: single vehicle ≤3 PSI/minute leakage (released), ≤4 PSI/minute (applied).</strong> Exceeding this rate indicates significant leakage — the machine must be placed out of service. Brake system integrity is critical for safety on grades.',
-    keyConcept:'Air loss > 3 PSI/min (brakes released) on single vehicle = out of service. Know CVSA limits for exam.'
+    text: 'A single-unit truck is given a static air brake leakage test: the system is charged, the engine is shut off, pressure is allowed to stabilize, and the drop is timed for one minute with the brakes released. The measured loss exceeds the rate allowed for a single vehicle with the brakes released. What must happen to the vehicle?',
+    options:['A) Placed out of service until the leakage is repaired','B) Tagged for repair and driven for up to 48 more hours','C) Retested after ten minutes to confirm the reading','D) Operated at reduced speed until the next inspection'],
+    answer:0,
+    explanation:'<strong>Excessive static air loss is an out-of-service condition, not a defer-and-repair item.</strong> The vehicle cannot be operated until the leak is found and fixed. Note that the released-brake and applied-brake tests have different allowable rates: the applied test permits the higher loss because the service line, relay valve and brake chambers are pressurized as well, so a rate that passes applied can still fail released. Retesting does not change a real leak, and reducing speed does nothing about a system that will not hold air.',
+    keyConcept:'Static air loss test: charge the system, engine off, let pressure settle, then time the drop for one minute. The released and applied tests have different allowable rates, the applied rate being the higher of the two. Exceeding the allowable rate puts the vehicle out of service.'
   },
   {
     id:30, topic:'brakes', topicLabel:'Brakes & Steering', diff:'medium',
@@ -1081,11 +1081,11 @@ const questions = [
   },
   {
     id:36, topic:'safety', topicLabel:'Safety & Tools', diff:'medium',
-    text: 'When using an angle grinder, which PPE is the MINIMUM requirement?',
-    options:['A) Standard safety glasses only','B) Goggles and a disposable dust mask','C) Full face shield, hearing protection, gloves','D) Safety glasses and leather gloves'],
-    answer:2,
-    explanation:'<strong>Grinders require face shield + hearing + gloves minimum.</strong> Grinding discs can shatter and send fragments at high velocity — safety glasses alone do not protect the face. Noise levels exceed 90dB. Gloves protect against sparks and contact. Never use a damaged or wrong-rated disc.',
-    keyConcept:'Angle grinder minimum PPE: full face shield (over safety glasses), hearing protection, gloves. Check disc RPM rating matches grinder.'
+    text: 'A technician is about to use an angle grinder while wearing a full face shield. Which statement about the eye and face protection is correct?',
+    options:['A) Safety glasses are worn under the face shield, not replaced by it','B) A full face shield alone is enough because it covers the whole face','C) Safety glasses alone are enough because the disc guard stops fragments','D) Goggles with a disposable dust mask replace glasses and face shield'],
+    answer:0,
+    explanation:'<strong>A face shield is secondary protection and does not replace primary eye protection.</strong> Fragments ricochet off the bench and off the workpiece and reach the eyes from below and from the sides of an open shield, so impact-rated safety glasses stay on underneath it. A disc guard deflects fragments but cannot contain a burst wheel. A dust mask is respiratory protection and gives no impact protection at all. Hearing protection, leather gloves and flame-resistant clothing complete the grinding set-up.',
+    keyConcept:'Grinding: face shield over safety glasses — both, never one instead of the other. The shield takes the face hit; the glasses stop what comes in underneath it. Check the disc RPM rating against the grinder before starting.'
   },
   {
     id:37, topic:'safety', topicLabel:'Safety & Tools', diff:'hard',
@@ -1418,11 +1418,9 @@ const questions = [
     text: 'When performing a hydraulic pump efficiency test (flow test), what TWO measurements are required?',
     options:['A) Pump inlet vacuum and outlet pressure only','B) Output flow at rated pressure and shaft RPM','C) Temperature and viscosity of the oil','D) Pump RPM and drive shaft torque'],
     answer:1,
-    explanation:'<strong>Pump efficiency = actual flow ÷ theoretical flow × 100%.</strong> Theoretical flow = pump displacement × RPM. Actual output flow is measured with a flow meter at rated test pressure and compared with theoretical flow to calculate volumetric efficiency. Volumetric efficiency below 85% typically indicates pump replacement is needed. Always test at operating temperature.',
-    keyConcept:'Pump efficiency test: flow meter + pressure gauge + RPM. Volumetric efficiency = actual GPM ÷ theoretical GPM × 100%. Below 85% = worn pump.'
+    explanation:'<strong>Volumetric efficiency = actual flow ÷ theoretical flow × 100%.</strong> Theoretical flow = pump displacement × shaft speed, so the test needs the measured output flow at the rated test pressure and the shaft RPM that produced it. Inlet vacuum, oil temperature and drive torque are all worth knowing, but none of them yields volumetric efficiency. Test at operating temperature: cold oil is thicker, slips past worn clearances less readily, and flatters a worn pump.',
+    keyConcept:'Pump flow test: flow meter at rated pressure plus shaft speed. Volumetric efficiency = actual flow ÷ theoretical flow × 100%. Judge the result against the pump specification and against its own earlier readings, not a remembered number.'
   },
-
-  // ── POWERTRAIN (continued) ──
   {
     id:78, topic:'powertrain', topicLabel:'Powertrain', diff:'easy',
     text: 'What is the primary function of a differential in a heavy equipment drive axle?',
@@ -1476,8 +1474,8 @@ const questions = [
     text: 'In a planetary gear set where the RING GEAR is the input, the PLANET CARRIER is held (stationary), and the SUN GEAR is the output — what type of motion results?',
     options:['A) Speed reduction with same direction rotation','B) Speed increase (overdrive) with rotation reversal','C) 1:1 ratio — no gear change','D) The system locks up — no output is possible with carrier held'],
     answer:1,
-    explanation:'<strong>Ring input + carrier held + sun output = speed increase + direction reversal.</strong> The planets walk around the stationary carrier and drive the sun gear in the opposite direction at a multiplied speed. Ratio = 1 + (R/S), but since sun is output: sun spins faster than ring AND in reverse. This is used in reverse gear on some transmissions.',
-    keyConcept:'Planetary combinations: input/held/output determines ratio and direction. Ring input + carrier held + sun output = overdrive + reversal. Know all three basic combinations.'
+    explanation:'<strong>Ring input + carrier held + sun output = speed increase with a change of direction.</strong> With the carrier held, the planets turn on fixed centres and act as idlers: the ring drives them, they drive the sun, and the sun turns the opposite way. The sun makes Nring ÷ Nsun turns for every turn of the ring, so a 72-tooth ring driving an 18-tooth sun spins the sun four times faster and backwards. The 1 + (Nring ÷ Nsun) formula belongs to the held-ring case with the carrier as output, and does not apply here.',
+    keyConcept:'Carrier held: sun speed = ring speed × Nring ÷ Nsun, opposite direction — overdrive with reversal. Ring held, sun input, carrier output: ratio = 1 + Nring ÷ Nsun, a reduction in the same direction.'
   },
   {
     id:85, topic:'powertrain', topicLabel:'Powertrain', diff:'hard',
@@ -1629,11 +1627,11 @@ const questions = [
   },
   {
     id:103, topic:'hydraulic', topicLabel:'Hydraulic Systems', diff:'medium',
-    text:'A hydraulic cylinder extends slowly but retracts quickly. The most likely cause is:',
-    options:['A) Worn cylinder piston seals — fluid bypasses internally','B) A regenerative extend circuit or insufficient cap-end flow','C) Low output pressure from the hydraulic pump','D) Relief valve pressure being set too high'],
+    text:'A boom cylinder with a 2:1 area ratio extends roughly five times slower than it retracts at the same pump flow. Relief pressure is correct and a bypass test shows no leakage past the piston. The most likely cause is:',
+    options:['A) Worn piston seals letting fluid bypass inside the cylinder barrel','B) A restriction in the cap-end supply circuit to the boom cylinder','C) Relief valve pressure set too high for the boom circuit','D) A regenerative extend circuit active in the control valve'],
     answer:1,
-    explanation:'<strong>Slow extend, fast retract: flow imbalance between cap end and rod end.</strong> The cap end (extend side) has a larger area and requires more volume to move the same distance. If the pump is undersized or a regenerative circuit is active, extend speed suffers while retract is normal. Check for flow restriction on the cap-end port line.',
-    keyConcept:'Cylinder extend (cap end) requires more volume than retract (rod end) due to piston area difference. Slow extend = insufficient flow to cap end. Check flow, not pressure.'
+    explanation:'<strong>Extend is normally slower than retract by the area ratio and no more.</strong> Speed = flow ÷ area, so a 2:1 cylinder should extend about twice as slowly as it retracts. Five times slower is four extra times that the areas do not explain, and the bypass test has already ruled out the piston seal, so oil is being throttled on its way to the cap end — a collapsed hose liner, a partly closed line valve, a plugged fitting. Relief pressure sets force, not speed. A regenerative circuit routes rod-end oil back to the cap end and makes extension faster, not slower.',
+    keyConcept:'Cylinder speed = flow ÷ area. Extend is slower than retract in proportion to the bore-to-annular area ratio; anything slower than that ratio is a flow restriction, not a pressure fault.'
   },
   {
     id:104, topic:'hydraulic', topicLabel:'Hydraulic Systems', diff:'medium',
@@ -1656,8 +1654,8 @@ const questions = [
     text:'During a hydraulic pump flow test, the pump produces 80% of rated flow at rated speed and pressure. What does this indicate?',
     options:['A) The pump is working correctly — 80% is the designed efficiency rating','B) The relief valve is set too low, bypassing 20% of flow','C) The pump has excessive internal bypass from worn internals','D) The system has a 20% flow demand from a parallel circuit'],
     answer:2,
-    explanation:'<strong>Volumetric efficiency below 85% indicates a worn pump needing replacement.</strong> A new pump typically delivers 95–98% of rated flow. As internal clearances wear (piston/barrel, port plate), fluid bypasses internally. 80% volumetric efficiency means 20% of displacement is lost to internal leakage — the pump is due for replacement.',
-    keyConcept:'Pump volumetric efficiency = actual flow ÷ theoretical flow × 100%. New pump: 95–98%. Below 85% = replace. Test: flow meter on outlet at rated pressure and speed.'
+    explanation:'<strong>A fifth of the pump displacement is not reaching the outlet.</strong> A pump in good condition delivers most of its rated flow at rated speed and pressure; the shortfall is oil slipping back through internal clearances — piston to bore, port plate, gear to housing — and turning into heat. A relief valve set too low shows up as low system pressure, not as low flow at the test port, and a parallel circuit demand would have been isolated before the test began. No pump is designed to lose a fifth of its output.',
+    keyConcept:'Low measured flow at rated speed and pressure means internal bypass. Volumetric efficiency = actual flow ÷ theoretical flow × 100%, and the missing flow becomes heat. Compare against the pump specification and against earlier readings on the same machine.'
   },
   {
     id:107, topic:'hydraulic', topicLabel:'Hydraulic Systems', diff:'hard',
@@ -1794,11 +1792,11 @@ const questions = [
   },
   {
     id:124, topic:'electrical', topicLabel:'Electrical Systems', diff:'easy',
-    text:'A technician measures 12.2V across a fully charged 12V battery at rest (surface charge removed). What does this indicate?',
+    text:'A technician measures 12.2V across a 12V battery at rest, with any surface charge removed. What does this indicate?',
     options:['A) The battery has a shorted internal cell','B) The battery is fully charged and healthy','C) The charging system is overcharging the battery','D) The battery is approximately 50% discharged'],
     answer:3,
-    explanation:'<strong>12V battery resting voltage: 12.6–12.7V = full, 12.4V = 75%, 12.2V = 50%, 12.0V = 25%, below 11.8V = dead.</strong> Resting voltage below 12.4V indicates a partially or significantly discharged battery. Surface charge must be removed (15-second load or 30-minute rest after charging/driving). 12.2V indicates the battery is approximately half-charged and may not have sufficient CCA for reliable cold starting.',
-    keyConcept:'12V battery resting voltage guide: 12.6V=100%, 12.4V=75%, 12.2V=50%, 12.0V=25%, <11.8V=discharged. Always remove surface charge before testing. Fully charged = 12.6–12.7V.'
+    explanation:'<strong>12V battery resting voltage: 12.6–12.7V = full, 12.4V = 75%, 12.2V = 50%, 12.0V = 25%, below 11.8V = dead.</strong> Resting voltage below 12.4V indicates a partially or significantly discharged battery, so 12.2V is not a healthy full charge. A shorted cell drags resting voltage down near 10.5V, and overcharging shows as high voltage at the battery with the engine running, not as a low resting reading. Surface charge must be removed first (a 15-second load, or 30 minutes rest after charging or driving). At 12.2V the battery may not have enough available CCA for reliable cold starting.',
+    keyConcept:'12V battery resting voltage guide: 12.6V=100%, 12.4V=75%, 12.2V=50%, 12.0V=25%, below 11.8V=discharged. Always remove surface charge before testing. Fully charged = 12.6–12.7V.'
   },
   {
     id:125, topic:'electrical', topicLabel:'Electrical Systems', diff:'medium',
@@ -2502,11 +2500,11 @@ const questions = [
   keyConcept:'Cold hydraulic fluid: high viscosity = slow, stiff operation. Normal warm-up required. Solution: multi-grade hydraulic oil or pre-heating. Do not operate at full speed until fluid reaches operating temperature.'},
 
   {id:233,topic:'hydraulic',topicLabel:'Hydraulic Systems',diff:'hard',
-  text:"A hydraulic cylinder on a skid steer has a very slow extend speed but normal retract speed, at the same pump flow. System pressure is normal. What does this indicate?",
+  text:'A hydraulic cylinder on a skid steer extends more slowly than it retracts at the same pump flow. The difference matches the bore-to-annular area ratio, system pressure is normal, and the cylinder passes a bypass test. What does this indicate?',
   options:['A) Cylinder bore is worn — excessive internal leakage on extend','B) Flow control valve on the extend port is set too restrictive','C) Normal behavior — extend acts on the larger full bore area','D) Counterbalance valve on the rod side is over-set'],
   answer:2,
-  explanation:'<strong>At equal flow rate, a cylinder always extends more slowly than it retracts.</strong> Extend uses the full bore area (π × r²_bore), which is larger; retract uses the smaller annular area (bore area - rod area). With a 100mm bore and 50mm rod: bore area = 78.5 cm², annular area = 58.9 cm². Same flow moves the larger bore area more slowly. Speed = Flow / Area. This is physics, not a defect.',
-  keyConcept:'Cylinder speed = Flow / Area. Full bore (extend) has larger area → slower at same flow. Annular area (retract) is smaller → faster at same flow. Extend is always slower than retract at equal flow.'},
+  explanation:'<strong>At equal flow, a cylinder always extends more slowly than it retracts.</strong> Extend fills the full bore area; retract fills the smaller annular area (bore area minus rod area). With a 100mm bore and a 50mm rod: bore area 78.5 cm², annular area 58.9 cm². Speed = flow ÷ area, so the same flow moves the larger area more slowly, and the two speeds differ in exactly that ratio. Here the measured difference matches the areas, the bypass test is clean and pressure is normal — nothing is wrong. A cylinder that extends far slower than its area ratio predicts is a different matter and points to a restriction in the cap-end circuit.',
+  keyConcept:'Cylinder speed = flow ÷ area. Full bore (extend) is the larger area, so extend is always the slower direction at equal flow. Measure the speed difference against the area ratio before calling it a fault.'},
 
   {id:234,topic:'hydraulic',topicLabel:'Hydraulic Systems',diff:'hard',
   text:"A pilot-operated relief valve is set to 3,000 psi but chatter (rapid oscillation) is observed as the valve opens. What is the MOST likely cause?",
@@ -2516,18 +2514,18 @@ const questions = [
   keyConcept:'Relief valve chatter: blocked pilot damping orifice → unstable pilot → main spool oscillates. Clean orifice. Do NOT enlarge — precise size provides stability margin.'},
 
   {id:235,topic:'hydraulic',topicLabel:'Hydraulic Systems',diff:'hard',
-  text:"A 421A tech is asked to perform a pump volumetric efficiency test. The pump is rated 100 L/min at 2,000 rpm at 200 bar. The tech measures 85 L/min actual output at these conditions. What is the volumetric efficiency and what does it indicate?",
-  options:['A) 85% — critically low, pump requires immediate replacement','B) 15% — measured as efficiency loss, pump is borderline acceptable','C) 85% — pump is new and in perfect condition','D) 85% — acceptable, within the 80-90% range for a working pump'],
-  answer:3,
-  explanation:'<strong>Volumetric efficiency = (Actual flow / Theoretical flow) × 100% = 85/100 = 85%.</strong> New pumps typically achieve 92-97% VE. A working pump at 85% VE indicates significant internal leakage — the pump is worn but still functional. Below 80% VE, the pump may not maintain system pressure under load and should be rebuilt or replaced. Monitor trend over time; rapid decline indicates end of service life.',
-  keyConcept:'Pump VE = actual flow / theoretical flow. New: 92-97%. Serviceable: 85-92%. Replace below: ~80%. Calculate theoretical flow = displacement × speed.'},
+  text:'A pump is rated 100 L/min at 2,000 rpm and 200 bar. At those conditions a 421A tech measures 85 L/min of actual output. What is the volumetric efficiency, and what does the reading mean?',
+  options:['A) 85% — about 15% of pump displacement is lost to internal leakage','B) 85% — the output a new pump of this size is expected to deliver','C) 15% — efficiency is stated as the share of the flow that is lost','D) 85% — pressure rather than flow decides volumetric efficiency'],
+  answer:0,
+  explanation:'<strong>Volumetric efficiency = actual flow ÷ theoretical flow × 100% = 85 ÷ 100 = 85%.</strong> The missing 15 L/min never reaches the outlet: it slips back through internal clearances and turns into heat, which is why a worn pump also runs the oil hotter. Efficiency is quoted as the share delivered, never the share lost. A new pump of this class delivers well up in the nineties, so 85% is a worn pump — judge it against the minimum specified for that pump and against its own earlier test readings, since a falling trend tells you more than any single number. Pressure only sets the test condition; the measurement itself is a flow measurement.',
+  keyConcept:'Volumetric efficiency = actual flow ÷ theoretical flow, measured at rated speed and rated pressure. The shortfall is internal leakage becoming heat. Assess a reading against the pump specification and against its own trend.'},
 
   {id:236,topic:'hydraulic',topicLabel:'Hydraulic Systems',diff:'medium',
-  text:"A machine has a hydraulic brake release system. When the engine shuts down, the brakes must automatically apply. The system uses spring-applied, hydraulically-released brakes. After engine shutdown, the operator reports the machine rolled slightly before stopping. What should be checked?",
-  options:['A) Accumulator pre-charge pressure and charge level — brake release should discharge gradually through accumulator','B) Brake apply solenoid valve — may be holding the brakes released after shutdown','C) Hydraulic pump — may still be producing pressure after shutdown','D) Brake spring tension — springs may have weakened'],
-  answer:1,
-  explanation:'<strong>Spring-applied brakes release hydraulically — pressure holds them open. Loss of pressure = brake application.</strong> If the machine rolls after shutdown, the hydraulic pressure is being held up after engine stop. A stuck-open solenoid valve or a locked accumulator check valve could maintain brake release pressure. The brakes should apply within seconds of engine shutdown as pressure dissipates. Test by monitoring brake circuit pressure immediately after shutdown.',
-  keyConcept:'Spring-applied hydraulic brakes: spring = apply force, hydraulic pressure = release force. Engine off → pressure drops → spring applies brakes. If brakes stay released: check solenoid valve and pressure dissipation rate.'},
+  text:'A machine uses spring-applied, hydraulically-released brakes. After engine shutdown the operator reports that the machine rolled a short distance before the brakes took hold. What does this symptom indicate?',
+  options:['A) Release pressure is bleeding down too slowly after the engine stops','B) The brake springs have weakened and no longer develop full clamp force','C) The hydraulic pump keeps producing pressure after the engine stops','D) The accumulator pre-charge is too low to hold the brakes released'],
+  answer:0,
+  explanation:'<strong>Springs apply these brakes; hydraulic pressure holds them off.</strong> The brake should set within seconds of shutdown as the release circuit dumps to tank. Rolling first and stopping afterwards means the release circuit is still holding pressure and letting it go slowly — a leaking or stuck hold valve, a solenoid trapped in the release position, or an accumulator check valve that will not let the circuit drain. A pump makes no pressure with the engine stopped. Weak springs would give poor holding force all the time rather than a delay. Low accumulator pre-charge would release the brake less, not more. Confirm by watching brake circuit pressure decay immediately after shutdown.',
+  keyConcept:'Spring-applied, hydraulically-released brakes: spring applies, pressure releases. Engine off means release pressure must fall promptly. A delayed brake application is a release circuit still holding pressure — measure its decay rate.'},
 
   {id:237,topic:'hydraulic',topicLabel:'Hydraulic Systems',diff:'hard',
   text:"A technician is diagnosing a hydraulic system with excessive heat generation. A thermal imaging scan shows the highest temperature at a specific control valve bank section. No external leakage is present. What is the MOST likely cause at that location?",
@@ -2544,11 +2542,11 @@ const questions = [
   keyConcept:'Closed-loop travel: one track forward + one reverse = hose connection reversed on one motor. Swap the two work port hoses. Not a motor fault — it responds correctly to the pressure it receives.'},
 
   {id:239,topic:'hydraulic',topicLabel:'Hydraulic Systems',diff:'hard',
-  text:"A technician is performing a cylinder drift test on a loaded boom cylinder. The cylinder drifts down at 25mm/minute with the engine running but control spool in neutral. What component is MOST likely causing this drift?",
-  options:['A) Cylinder piston seal bypassing internally','B) Both A and B could cause this — perform further isolation tests','C) Control valve spool not fully returning to neutral — internal spool leakage','D) Load-sensing signal line leaking'],
-  answer:1,
-  explanation:'<strong>Cylinder drift with spool in neutral can be caused by either the control valve or the cylinder piston seal.</strong> Test to isolate: 1) Disconnect the cylinder rod port line and plug both the cylinder port and the valve port. If drift stops → control valve is leaking. If drift continues → piston seal bypassing. Always isolate systematically rather than guessing. Both are common causes of cylinder drift under load.',
-  keyConcept:'Cylinder drift diagnosis: plug test method. Cap cylinder ports: drift stops → valve leak. Drift continues → cylinder piston seal bypass. Must isolate components to identify source.'},
+  text:'A loaded boom cylinder drifts down at 25mm per minute with the engine running and the control spool in neutral. What must the technician do before condemning a component?',
+  options:['A) Open the rod-end port and watch it for flow while the boom drifts','B) Replace the piston seals, since drift always means seal bypass','C) Replace the control valve section, since drift means spool leakage','D) Raise the main relief setting so the load is held in position'],
+  answer:0,
+  explanation:'<strong>Drift with the spool centred has two possible leak paths and the symptom alone does not separate them.</strong> The oil holding the load in the cap end can escape past the control valve spool, or past the piston seal into the rod end. Disconnect the rod-end line at the cylinder, catch what comes out, and load the boom again with the spool centred: oil appearing at the open rod port came past the piston seal, while a boom that keeps drifting with nothing coming out of that port is losing oil through the valve. Changing either part on the symptom alone is a guess. Relief pressure has no bearing on a centred spool — it caps pressure, it does not hold a load.',
+  keyConcept:'Cylinder drift isolation: cap-end oil can escape past the spool or past the piston. Open the rod-end port and observe — flow there means piston seal bypass; no flow while drift continues means the valve is leaking.'},
 
   {id:240,topic:'hydraulic',topicLabel:'Hydraulic Systems',diff:'hard',
   text:"During hot weather operation, a wheel loader shows cavitation noise from the hydraulic pump at startup. The pump suction line is unobstructed and the reservoir is full. What is the MOST likely cause in hot conditions?",
@@ -2742,11 +2740,11 @@ const questions = [
   keyConcept:'Shorted alternator diode: battery drain when parked + reduced charging output. Open diode: reduced charging output only, no drain. Test: AC ripple voltage on battery — high ripple = diode failure.'},
 
   {id:267,topic:'electrical',topicLabel:'Electrical Systems',diff:'hard',
-  text:"A fuel injection control module receives input from a crankshaft position sensor (CKP). The CKP is a magnetic pickup (MPU) sensor producing an AC voltage. At idle speed, the technician measures 3V AC peak. At 1,500 RPM, the voltage is 12V AC peak. At what RPM would you expect approximately 6V AC peak?",
-  options:['A) 1,200 RPM','B) 750 RPM','C) 1,000 RPM','D) Cannot be calculated without the sensor specifications'],
-  answer:1,
-  explanation:'<strong>Magnetic pickup sensor output voltage is proportional to speed (rate of change of magnetic flux).</strong> At idle (assume ~700 RPM) → 3V. At 1,500 RPM → 12V. The relationship is approximately linear at lower speeds: 3V/700 RPM = 0.00429 V/RPM. For 6V: 6 / 0.00429 = ~1,400 RPM. But using the direct ratio: double 700 RPM = 1,400 RPM ≈ double voltage (6V). However, 750 RPM is the closest answer given the ratio.',
-  keyConcept:'MPU sensor: output voltage proportional to speed (dΦ/dt). Faster rotation = higher voltage AND higher frequency. Low speed = may not produce enough voltage for ECM — minimum RPM threshold exists.'},
+  text:'A crankshaft position sensor is a magnetic pickup (MPU) producing an AC voltage. On the same engine, with the air gap undisturbed, the technician measures 2V AC peak at 600 RPM and 6V AC peak at 1,800 RPM. At what speed would about 4V AC peak be expected?',
+  options:['A) 1,200 RPM','B) 900 RPM','C) 2,400 RPM','D) Cannot be determined — MPU output does not change with speed'],
+  answer:0,
+  explanation:'<strong>A magnetic pickup generates voltage from the rate of change of magnetic flux, so its output rises in proportion to speed.</strong> Both readings sit on one slope: 2V at 600 RPM and 6V at 1,800 RPM are each about 3.3 millivolts per RPM. Read 4V off that slope and it lands at 1,200 RPM — double the speed that gave 2V, double the voltage. Signal frequency scales the same way, which is how the module derives engine speed. Output plainly does change with speed, which is also why an MPU has a minimum cranking speed below which the module sees no usable signal at all.',
+  keyConcept:'Magnetic pickup: amplitude and frequency both rise in proportion to shaft speed at a fixed air gap. Scale linearly between two known readings. Turn it too slowly and the signal is too weak for the module to read.'},
 
   {id:268,topic:'electrical',topicLabel:'Electrical Systems',diff:'hard',
   text:"A 421A tech finds an alternator that is charging at only 13.2V instead of the normal 14.2V on a 12V system. Battery is good and connections are clean. What is the MOST likely cause?",
@@ -2784,11 +2782,11 @@ const questions = [
   keyConcept:'Battery load test: apply half the CCA rating for 15 seconds. Pass voltage is temperature dependent — 9.6V at 21°C (70°F) and above, 9.4V at 10°C, 9.3V at 4°C, 9.1V at -1°C, 8.5V at -18°C. Always correct for battery temperature before calling a fail. Never load test a battery below 12.4V open circuit — charge it first. Do not confuse this shop load test with SAE J537\'s CCA rating test: full rated CCA at -18°C, holding above 7.2V for 30 seconds.'},
 
   {id:273,topic:'electrical',topicLabel:'Electrical Systems',diff:'hard',
-  text:"A technician is installing a new component that requires a 10A fused circuit from the battery positive. The wire run is 6m (one way) in a 12V system. The maximum allowable voltage drop is 0.5V. What is the minimum wire gauge required?",
+  text:'A technician is installing a new component that requires a 10A fused circuit from the battery positive. The wire run is 6m (one way) in a 12V system. The maximum allowable voltage drop is 0.5V. What is the minimum wire gauge required?',
   options:['A) 12 AWG','B) 14 AWG','C) 10 AWG','D) 18 AWG'],
-  answer:0,
-  explanation:'<strong>Wire sizing formula: R = V_drop / I = 0.5/10 = 0.05 Ω total circuit resistance.</strong> Circuit length = 2 × 6m = 12m (total wire length, to and from). Required resistance per metre: 0.05/12 = 0.00417 Ω/m. 12 AWG copper = ~0.00530 Ω/m (slightly high). 10 AWG = ~0.00334 Ω/m (passes). So technically 10 AWG is required for 0.5V drop. In practice 12 AWG is commonly used with slightly higher drop for automotive circuits.',
-  keyConcept:'Wire sizing for voltage drop: R_max = V_drop/I. R_wire = R_max/total length. Select wire gauge with resistance ≤ calculated R. Remember: total length = 2 × one-way run for return path.'},
+  answer:2,
+  explanation:'<strong>Size the wire from the allowed voltage drop, not from the fuse rating.</strong> Total allowed resistance = V ÷ I = 0.5 ÷ 10 = 0.05 Ω. Current travels out and back, so the conductor length is 2 × 6m = 12m, giving 0.05 ÷ 12 = 0.00417 Ω/m as the most the wire may have. Copper at roughly 0.0053 Ω/m for 12 AWG is above that limit and would drop about 0.64V; 10 AWG at roughly 0.0033 Ω/m drops about 0.40V and passes. 14 AWG and 18 AWG are smaller conductors again and drop far more. Remember that a smaller AWG number means a larger wire.',
+  keyConcept:'Voltage drop sizing: R_max = V_drop ÷ I, then divide by the total conductor length (twice the one-way run) to get the maximum ohms per metre. Pick the gauge whose resistance per metre is at or below that figure. Smaller AWG number = bigger wire.'},
 
   {id:274,topic:'electrical',topicLabel:'Electrical Systems',diff:'hard',
   text:"A machine has an intermittent electrical fire smell after long operating hours. Investigation finds a loose battery terminal connection that gets hot during heavy electrical loads. Why does a loose connection generate heat?",
@@ -2884,11 +2882,11 @@ const questions = [
   keyConcept:'Wet disc brake cooling: oil-circulated, oil carries heat to cooler. Excessive temp = cooling oil flow problem (pump, valve, cooler). Check: cooling oil flow rate at brake housing outlet.'},
 
   {id:287,topic:'brakes',topicLabel:'Brakes & Steering',diff:'hard',
-  text:"A crawler excavator secondary brake (swing park brake) is engaged by spring and released hydraulically. After engine shutdown, an operator parks on a 15° slope and the machine begins to roll after 10 minutes. What has failed?",
+  text:'A crawler excavator travel park brake is engaged by spring and released hydraulically. After engine shutdown, an operator parks on a 15° slope and the machine begins to roll after 10 minutes. What has failed?',
   options:['A) The machine is beyond its rated slope capability','B) The brake hold-in valve in the release circuit has failed','C) The brake spring pressure has reduced over time — spring weakened','D) Main hydraulic pump failed — cannot supply brake release pressure'],
   answer:1,
-  explanation:'<strong>A spring-applied brake that lets the machine roll after engine shutdown indicates pressure is being maintained in the release circuit after the engine stops — keeping the spring-applied brake released.</strong> On engine shutdown, the release pressure should drop immediately as the pump stops and the circuit dumps to tank through a relief or dump valve. If pressure bleeds off slowly through a leaking hold valve or accumulator, the brake stays released, then applies suddenly when pressure finally drops. Check the brake release circuit pressure decay rate.',
-  keyConcept:'Spring brake failure after shutdown: brake release circuit retains pressure after engine off. Check: accumulator check valve, dump valve, and brake control solenoid for leakage.'},
+  explanation:'<strong>A spring-applied brake that lets the machine roll after engine shutdown means pressure is still being held in the release circuit, keeping the brake off.</strong> On shutdown the release pressure should drop straight away as the pump stops and the circuit dumps to tank. If it bleeds off slowly through a leaking hold valve or a locked accumulator check valve, the brake stays released and then applies suddenly when pressure finally falls — which is exactly the delay the operator describes. A failed pump would leave no release pressure at all and the brake would be applied, not released; a weakened spring would hold poorly from the moment the machine was parked. Measure the brake release circuit pressure decay rate.',
+  keyConcept:'Spring brake rolls after shutdown: the release circuit is retaining pressure after the engine stops. Check the accumulator check valve, the dump valve and the brake control solenoid for leakage, and time the pressure decay.'},
 
   {id:288,topic:'brakes',topicLabel:'Brakes & Steering',diff:'hard',
   text:"A wheel loader with hydraulic-boosted service brakes has a spongy pedal that requires excessive travel to achieve normal braking. Fluid level is full and no external leaks are present. What is the MOST likely cause?",
