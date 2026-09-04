@@ -296,10 +296,10 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
   </div>
   <div class="difficulty-row">
     <span>Difficulty:</span>
-    <button class="diff-btn easy active" onclick="setDiff('easy',this)">Easy</button>
+    <button class="diff-btn easy active" onclick="setDiff('all',this)">All</button><button class="diff-btn easy" onclick="setDiff('easy',this)">Easy</button>
     <button class="diff-btn medium" onclick="setDiff('medium',this)">Medium</button>
     <button class="diff-btn hard" onclick="setDiff('hard',this)">Hard</button>
-    <button class="diff-btn" style="background:#e8eaf6;color:#3949ab" onclick="setDiff('all',this)">All</button>
+    
   </div>
   <!-- DOWNLOAD STUDY SHEET -->
   
@@ -1226,7 +1226,7 @@ const questions=[
   }
 })();
 
-let currentTopic='all',currentDiff='easy',currentIdx=0,answered=false,totalCorrect=0,totalAnswered=0,filteredQs=[],correctStreak=0;
+let currentTopic='all',currentDiff='all',currentIdx=0,answered=false,totalCorrect=0,totalAnswered=0,filteredQs=[],correctStreak=0;
 function getFiltered(){if(currentTopic==='wrongbank'){const wb=JSON.parse(localStorage.getItem('wrongBank_310s')||'[]');const base=questions.filter(q=>wb.includes(q.id));return currentDiff==='all'?base:base.filter(q=>q.diff===currentDiff);}return questions.filter(q=>(currentTopic==='all'||q.topic===currentTopic)&&(currentDiff==='all'||q.diff===currentDiff))}
 function switchTopic(t,btn){currentTopic=t;currentIdx=0;document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');loadQuestion();if(document.getElementById('flashModeBtn')&&document.getElementById('flashModeBtn').classList.contains('active'))initFlashcards();}
 function setDiff(d,btn){currentDiff=d;currentIdx=0;document.querySelectorAll('.diff-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');loadQuestion();if(document.getElementById('flashModeBtn')&&document.getElementById('flashModeBtn').classList.contains('active'))initFlashcards();}

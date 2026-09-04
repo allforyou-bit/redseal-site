@@ -588,10 +588,10 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
   <!-- DIFFICULTY -->
   <div class="difficulty-row">
     <span>Difficulty:</span>
-    <button class="diff-btn easy active" onclick="setDiff('easy', this)">Easy</button>
+    <button class="diff-btn easy active" onclick="setDiff('all',this)">All</button><button class="diff-btn easy" onclick="setDiff('easy', this)">Easy</button>
     <button class="diff-btn medium" onclick="setDiff('medium', this)">Medium</button>
     <button class="diff-btn hard" onclick="setDiff('hard', this)">Hard</button>
-    <button class="diff-btn" style="background:#e8eaf6;color:#3949ab;" onclick="setDiff('all', this)">All</button>
+    
   </div>
 
   <!-- DOWNLOAD STUDY SHEET -->
@@ -3448,7 +3448,7 @@ const questions = [
 //  STATE
 // =============================================
 let currentTopic = 'all';
-let currentDiff  = 'easy';
+let currentDiff  = 'all';
 let currentIdx   = 0;
 let answered     = false;
 let totalCorrect = 0;
