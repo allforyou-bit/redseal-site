@@ -987,5 +987,142 @@ updateWrongBankTab();renderTopicProgress();renderScoreHistory();
 })();
 </script>
 <style>@keyframes kbdFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}</style>
+
+<script>
+/* STUDY-COMPLETION-CTA — added 2026-09-03.
+   Study mode had no ending: navigate() wrapped silently to question 1, so
+   nobody ever reached a completion moment or an offer. */
+(function(){
+  var SHOP = "https://ko-fi.com/s/53b9fe7161";
+  var PRICE = "US$24";
+  var LABEL = "442A Industrial Electrician";
+  var shown = false;
+
+  function panel(){
+    var el = document.getElementById('studyDone');
+    if (el) return el;
+    /* Anchor on classes, not ids. Three of the eleven pages have no #qText
+       and none has #quizCard, but every one renders .q-text and .q-number.
+       Walk up from .q-text until we reach the block that holds both - that
+       is the question card - and insert after it. */
+    var anchor = document.querySelector('.q-text') ||
+                 document.getElementById('scoreDisplay');
+    if (!anchor) return null;
+    var host = anchor;
+    for (var i = 0; i < 6 && host.parentElement; i++) {
+      host = host.parentElement;
+      if (host.querySelector('.q-number') && host.querySelector('.q-text')) break;
+    }
+    if (!host || !host.parentNode) return null;
+    el = document.createElement('div');
+    el.id = 'studyDone';
+    el.setAttribute('role', 'status');
+    el.style.cssText = 'display:none;margin:18px 0;padding:24px 22px;border-radius:12px;' +
+      'background:#0e233e;color:#fff;text-align:center;box-shadow:0 4px 18px rgba(14,35,62,.22)';
+    host.parentNode.insertBefore(el, host.nextSibling);
+    return el;
+  }
+
+  function score(){
+    var s = (document.getElementById('scoreDisplay') || {}).textContent || '';
+    var m = s.match(/(\d+)\s*\/\s*(\d+)/);
+    if (!m) return null;
+    return { right: +m[1], total: +m[2] };
+  }
+
+  function show(seen){
+    var el = panel(); if (!el) return;
+    var sc = score();
+    var line = sc && sc.total
+      ? 'You answered ' + sc.total + ' and got ' + sc.right +
+        ' right — ' + Math.round(sc.right / sc.total * 100) + '%.'
+      : 'That is every question in this filter.';
+    el.innerHTML =
+      '<p style="font-size:1.15rem;font-weight:800;margin:0 0 6px">' +
+        'You have reached the end of the ' + seen + ' questions.</p>' +
+      '<p style="margin:0 0 16px;opacity:.85;font-size:.92rem">' + line + '</p>' +
+      '<a href="' + SHOP + '" target="_blank" rel="noopener" ' +
+        'style="display:inline-flex;align-items:center;min-height:44px;background:#f0a500;' +
+        'color:#1a3a5c;padding:13px 26px;border-radius:8px;font-weight:800;' +
+        'text-decoration:none;font-size:.95rem">Take the whole bank on paper — ' +
+        PRICE + ' &rarr;</a>' +
+      '<p style="font-size:.78rem;opacity:.72;margin:14px 0 0;line-height:1.5">' +
+        'The printable ' + LABEL + ' bank: every question with no answers shown, ' +
+        'then a quick answer key, then the full explanations. Mark it with a pen ' +
+        'the week before your exam.</p>' +
+      '<button type="button" id="studyAgain" style="margin-top:14px;background:none;' +
+        'border:1px solid rgba(255,255,255,.35);color:#fff;padding:9px 18px;' +
+        'border-radius:7px;font-size:.83rem;cursor:pointer;min-height:44px">' +
+        'Start again from question 1</button>';
+    el.style.display = 'block';
+    var again = document.getElementById('studyAgain');
+    if (again) again.onclick = function(){
+      el.style.display = 'none'; shown = false;
+      try { currentIdx = 0; loadQuestion(); } catch (e) {}
+      el.scrollIntoView({ block: 'start' });
+    };
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  /* Read the position from the counter the page already renders. The eleven
+     pages come from two generations - six keep the working set in filteredQs,
+     the rest in `filtered` - but every one of them writes "Question N of M"
+     into #qNumber, so that is what we read. */
+  function counterEl(){
+    /* six pages carry id="qNumber"; the other five have only class
+       "q-number". Take whichever exists, and only trust it if it really
+       reads "Question N of M". */
+    var el = document.getElementById('qNumber');
+    if (el && /\d+\s*of\s*\d+/.test(el.textContent || '')) return el;
+    var all = document.querySelectorAll('.q-number');
+    for (var i = 0; i < all.length; i++) {
+      if (/\d+\s*of\s*\d+/.test(all[i].textContent || '') && all[i].offsetParent !== null)
+        return all[i];
+    }
+    for (var j = 0; j < all.length; j++) {
+      if (/\d+\s*of\s*\d+/.test(all[j].textContent || '')) return all[j];
+    }
+    return null;
+  }
+  function pos(){
+    var el = counterEl();
+    var m = el && (el.textContent || '').match(/(\d+)\s*of\s*(\d+)/);
+    return m ? { at: +m[1], of: +m[2] } : null;
+  }
+
+  if (typeof navigate === 'function') {
+    var orig = navigate;
+    /* assignment, NOT a function declaration - a re-declaration would hoist
+       over the original and recurse forever */
+    navigate = function(dir){
+      var p = pos();
+      if (dir > 0 && p && p.of > 1 && p.at >= p.of && !shown) {
+        shown = true; show(p.of); return;
+      }
+      if (dir < 0) shown = false;
+      var el = document.getElementById('studyDone');
+      if (el) el.style.display = 'none';
+      return orig.apply(this, arguments);
+    };
+  }
+
+  /* the fixed bottom bar is on every quiz session - put the offer in it */
+  function bar(){
+    var pb = document.getElementById('uxBar');
+    if (!pb || document.getElementById('uxBuy')) return !!pb;
+    var sep = document.createElement('span');
+    sep.style.color = 'rgba(255,255,255,.22)'; sep.textContent = '|';
+    var a = document.createElement('a');
+    a.id = 'uxBuy'; a.href = SHOP; a.target = '_blank'; a.rel = 'noopener';
+    a.textContent = 'Get the PDF ' + PRICE;
+    a.style.cssText = 'color:#f0a500;font-weight:700;text-decoration:none;font-size:.72rem;' +
+      'display:inline-flex;align-items:center;min-height:44px;padding:0 6px';
+    pb.appendChild(sep); pb.appendChild(a);
+    return true;
+  }
+  if (!bar()) { var t = setInterval(function(){ if (bar()) clearInterval(t); }, 400);
+                setTimeout(function(){ clearInterval(t); }, 8000); }
+})();
+</script>
 </body>
 </html>
