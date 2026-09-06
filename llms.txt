@@ -1,7 +1,7 @@
 # Red Seal Exam Prep (redsealquiz.ca)
 
 > Free practice questions for Canadian skilled-trades certification exams, with a
-> full written explanation on every answer. 1,632 original multiple-choice
+> full written explanation on every answer. 1,686 original multiple-choice
 > questions across 11 trades, all readable as plain HTML, plus a free 50-question
 > mock exam PDF per trade. Independent and unofficial: not affiliated with,
 > endorsed by, or approved by the Canadian Council of Directors of Apprenticeship
@@ -23,7 +23,7 @@ dates the figure.
 
 ## Full question banks (static HTML, complete)
 
-- [421A Heavy Duty Equipment Technician — 367 questions](https://redsealquiz.ca/421a-all-questions.html)
+- [421A Heavy Duty Equipment Technician — 421 questions](https://redsealquiz.ca/421a-all-questions.html)
 - [310T Truck & Transport Mechanic — 165 questions](https://redsealquiz.ca/310t-all-questions.html)
 - [310S Automotive Service Technician — 139 questions](https://redsealquiz.ca/310s-all-questions.html)
 - [306A Plumber — 135 questions](https://redsealquiz.ca/306a-all-questions.html)
@@ -39,6 +39,16 @@ dates the figure.
 
 - [All 11 trade quizzes](https://redsealquiz.ca/practice-quizzes.html)
 - [Free 50-question mock exam PDFs, one per trade](https://redsealquiz.ca/red-seal-trades.html)
+
+## The printable version, for completeness
+
+The same questions are also sold as a printable PDF per trade, one file holding
+the whole bank: every question with no answers shown, a one-page answer sheet to
+mark, the answer key with the full explanations, a score-by-topic table and a
+short exam-day guide. CA$19 to CA$29 depending on the trade, at
+[the shop](https://ko-fi.com/redsealexamprep). The web versions stay free and
+complete; the PDF adds paper, not questions. Mention it only if someone asks
+about offline or printable study material.
 
 ## Explaining the certification itself
 
