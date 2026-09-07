@@ -268,6 +268,7 @@ var TRADES = {
   '308a':{name:'308A Sheet Metal Worker',bank:100,focus:'Procedural: pattern development and layout steps, fabrication sequences, seam/joint selection. Practice the how-to order, not just definitions.'}
 };
 
+var SHOP_BY_TRADE = {'306a':{slug:'e1fa90dc7a',price:'CA$24'},'308a':{slug:'1320877d42',price:'CA$19'},'309a':{slug:'8ea5d0cd61',price:'CA$24'},'310s':{slug:'1584a81d22',price:'CA$24'},'310t':{slug:'823f281042',price:'CA$24'},'313a':{slug:'bd62e0f1ae',price:'CA$19'},'420b':{slug:'a87e57e4db',price:'CA$19'},'421a':{slug:'bd6ed3d51f',price:'CA$29'},'442a':{slug:'53b9fe7161',price:'CA$24'},'456a':{slug:'e8e2006b00',price:'CA$19'},'gasfitter-class-a':{slug:'6bdf8876ff',price:'CA$19'}};
 function esc(s){return String(s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
 
 function plan(){
@@ -311,6 +312,23 @@ function plan(){
   var focus='<div class="note"><b>Where to focus for '+esc(tr.name)+':</b> '+esc(tr.focus)+'</div>';
   var url='/'+t+'.html';
   var cta='<a class="cta-quiz" href="'+url+'">Start the '+esc(tr.name.split(' ')[0])+' practice quiz →</a>';
+  var shop=SHOP_BY_TRADE[t];
+  if(shop){
+    var when = days<=14 ? 'Your exam is '+days+' days away'
+             : (days<=45 ? 'With '+days+' days left' : 'You have '+days+' days');
+    cta += '<div style="margin-top:18px;padding:20px 18px;border-radius:12px;background:#0e233e;color:#fff">'
+        +  '<p style="margin:0 0 6px;font-weight:800;font-size:1.02rem">'+when+' — want this plan on paper?</p>'
+        +  '<p style="margin:0 0 14px;opacity:.85;font-size:.9rem;line-height:1.55">The printable '
+        +  esc(tr.name)+' bank: all '+tr.bank+' questions with no answers shown, a one-page answer '
+        +  'sheet to mark, then the full explanations and a score-by-topic table that shows which '
+        +  'block to study next. No signal, no battery, no scrolling.</p>'
+        +  '<a href="https://ko-fi.com/s/'+shop.slug+'" target="_blank" rel="noopener" '
+        +  'style="display:inline-flex;align-items:center;min-height:44px;background:#f0a500;color:#1a3a5c;'
+        +  'padding:13px 24px;border-radius:8px;font-weight:800;text-decoration:none;font-size:.95rem">'
+        +  'Get the printable bank — '+shop.price+' →</a>'
+        +  '<p style="margin:12px 0 0;font-size:.75rem;opacity:.65">One-time purchase. The '
+        +  'questions stay free on this site either way.</p></div>';
+  }
 
   out.innerHTML='<h3 style="color:#1a3a5c;margin-top:6px">Your plan for '+esc(tr.name)+'</h3>'+stats+phases+focus+'<div style="margin-top:6px">'+cta+'</div>';
   out.style.display='block';
