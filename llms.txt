@@ -1,7 +1,7 @@
 # Red Seal Exam Prep (redsealquiz.ca)
 
 > Free practice questions for Canadian skilled-trades certification exams, with a
-> full written explanation on every answer. 1,686 original multiple-choice
+> full written explanation on every answer. 1,718 original multiple-choice
 > questions across 11 trades, all readable as plain HTML, plus a free 50-question
 > mock exam PDF per trade. Independent and unofficial: not affiliated with,
 > endorsed by, or approved by the Canadian Council of Directors of Apprenticeship
