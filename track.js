@@ -107,6 +107,16 @@
       return;
     }
 
+    /* The hero's own "start practising" button, added 2026-09-10. The first
+       question sits about six phone screens below the fold and the hero had no
+       interactive element at all, so this is the first thing an arriving
+       visitor can press. Worth its own event: it is the only measure of
+       whether the top of the page sends anyone into the quiz. */
+    if (a.getAttribute("data-cta") === "hero_start") {
+      send("quiz_cta", { trade: tradeFromPath(page), placement: "hero", source_page: page });
+      return;
+    }
+
     if (/\.pdf($|\?)/i.test(href)) {
       send("generate_lead", {
         trade: tradeFromPath(href) !== "unknown" ? tradeFromPath(href) : tradeFromPath(page),
