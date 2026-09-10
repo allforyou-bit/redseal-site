@@ -141,7 +141,12 @@
      any non-zero count is proof the path now exists. Same condition the page
      itself uses to decide whether to show the resume toast. */
   try {
-    if (document.getElementById("qNumber") || document.querySelector(".q-text")) {
+    /* #questionCard is static markup on exactly the eleven quiz pages and on
+       nothing else. The first version of this guard also accepted .q-text,
+       which the -all-questions pages carry once per question - 421 times on
+       421A - so a returning studier who opened the read-everything page fired
+       quiz_resumed on a page with no quiz and no resume. */
+    if (document.getElementById("questionCard")) {
       var tr = tradeFromPath(location.pathname);
       var at = parseInt(localStorage.getItem("progress_" + tr) || "0", 10);
       if (tr !== "unknown" && at > 0) send("quiz_resumed", { trade: tr, resumed_at: at });
