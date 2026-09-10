@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://redsealquiz.ca/sitemap.xml
+
+# Machine-readable summary of this site for AI assistants
+# https://redsealquiz.ca/llms.txt
