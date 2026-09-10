@@ -524,7 +524,7 @@ function reportQuestion(){
     <a href="/welder-456a-career-canada.html" style="background:white;border-radius:8px;padding:16px;text-decoration:none;color:#1a3a5c;font-size:.87rem;font-weight:600;border-left:4px solid #f0a500;display:block;box-shadow:0 1px 6px rgba(0,0,0,.07)">Welder Career Guide Canada<span style="display:block;font-size:.78rem;color:#646f70;font-weight:400;margin-top:4px">Career guide &amp; apprenticeship path</span></a>
     <a href="/welder-456a-salary-canada.html" style="background:white;border-radius:8px;padding:16px;text-decoration:none;color:#1a3a5c;font-size:.87rem;font-weight:600;border-left:4px solid #f0a500;display:block;box-shadow:0 1px 6px rgba(0,0,0,.07)">456A Welder Salary Guide 2026<span style="display:block;font-size:.78rem;color:#646f70;font-weight:400;margin-top:4px">Province-by-province wage data</span></a>
     <a href="/how-to-pass-red-seal-456a-exam.html" style="background:white;border-radius:8px;padding:16px;text-decoration:none;color:#1a3a5c;font-size:.87rem;font-weight:600;border-left:4px solid #f0a500;display:block;box-shadow:0 1px 6px rgba(0,0,0,.07)">How to Pass the 456A Red Seal Exam<span style="display:block;font-size:.78rem;color:#646f70;font-weight:400;margin-top:4px">Exam strategy &amp; study tips</span></a>
-    <a href="/red-seal-trades.html" style="background:white;border-radius:8px;padding:16px;text-decoration:none;color:#1a3a5c;font-size:.87rem;font-weight:600;border-left:4px solid #f0a500;display:block;box-shadow:0 1px 6px rgba(0,0,0,.07)">All Red Seal Trades Guide<span style="display:block;font-size:.78rem;color:#646f70;font-weight:400;margin-top:4px">Compare all 8 Red Seal trades</span></a>
+    <a href="/red-seal-trades.html" style="background:white;border-radius:8px;padding:16px;text-decoration:none;color:#1a3a5c;font-size:.87rem;font-weight:600;border-left:4px solid #f0a500;display:block;box-shadow:0 1px 6px rgba(0,0,0,.07)">All Red Seal Trades Guide<span style="display:block;font-size:.78rem;color:#646f70;font-weight:400;margin-top:4px">Compare all 11 Red Seal trades</span></a>
   </div>
 </div>
 </div>
@@ -778,7 +778,7 @@ function updateScore(){
 }
 
 // ── MOCK EXAM ──
-function buildMockQs(n){
+function buildMockQs(n){/* The top-up loop below spins forever when n exceeds the bank: every question is already in the pool, nothing gets pushed, pool.length<n stays true. 456A shipped a 135-question button against a 120-question bank and hung the tab of anyone who pressed it. Clamp first. */n=Math.min(n,questions.length);
   const byTopic={};
   questions.forEach(q=>{if(!byTopic[q.topic])byTopic[q.topic]=[];byTopic[q.topic].push(q);});
   const topics=Object.keys(byTopic);
@@ -796,7 +796,7 @@ function openMockSetup(){
       <button class="mock-count-btn" onclick="startMockExam(30)"><div style="font-size:1.5rem;font-weight:800;">30</div><div style="font-size:.78rem;color:var(--muted);">~45 min · Quick</div></button>
       <button class="mock-count-btn" onclick="startMockExam(60)"><div style="font-size:1.5rem;font-weight:800;">60</div><div style="font-size:.78rem;color:var(--muted);">~90 min · Half</div></button>
       <button class="mock-count-btn" onclick="startMockExam(90)"><div style="font-size:1.5rem;font-weight:800;">90</div><div style="font-size:.78rem;color:var(--muted);">~135 min · Full</div></button>
-      <button class="mock-count-btn" onclick="startMockExam(135)"><div style="font-size:1.5rem;font-weight:800;">135</div><div style="font-size:.78rem;color:var(--muted);">~200 min · Real exam</div></button>
+      <button class="mock-count-btn" onclick="startMockExam(120)"><div style="font-size:1.5rem;font-weight:800;">120</div><div style="font-size:.78rem;color:var(--muted);">~180 min · Full bank</div></button>
     </div>`;
 }
 function startMockExam(n){
@@ -1054,7 +1054,7 @@ renderScoreHistory();
 /* MOCK CTA after 25 answers */
 (function(){
   var _a=0,_s=false,_orig=selectAnswer;
-  selectAnswer=function(idx,q){_orig(idx,q);_a++;if(_a>=25&&!_s&&!sessionStorage.getItem('ctaShown276a')){_s=true;sessionStorage.setItem('ctaShown276a','1');var b=document.createElement('div');b.style.cssText='position:fixed;bottom:0;left:0;right:0;background:linear-gradient(135deg,#1a3a5c,#2d6a9f);color:white;padding:16px 20px;z-index:9990;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;box-shadow:0 -4px 20px rgba(0,0,0,.25)';b.innerHTML='<span style="font-size:.92rem;font-weight:600">&#128170; You answered <strong>'+_a+' questions!</strong> Ready for a timed Mock Exam?</span><div style="display:flex;gap:10px;flex-shrink:0"><a href="#mockSection" style="background:#f0a500;color:white;border-radius:8px;padding:10px 20px;font-weight:700;font-size:.88rem;text-decoration:none">Start Mock &#8594;</a><button onclick="this.parentNode.parentNode.remove()" style="background:rgba(255,255,255,.15);color:white;border:1px solid rgba(255,255,255,.3);border-radius:8px;padding:10px 14px;cursor:pointer;font-size:.88rem">Later</button></div>';document.body.appendChild(b);}};
+  selectAnswer=function(idx,q){_orig(idx,q);_a++;if(_a>=25&&!_s&&!sessionStorage.getItem('ctaShown276a')){_s=true;sessionStorage.setItem('ctaShown276a','1');var b=document.createElement('div');b.style.cssText='position:fixed;bottom:0;left:0;right:0;background:linear-gradient(135deg,#1a3a5c,#2d6a9f);color:white;padding:16px 20px;z-index:9990;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;box-shadow:0 -4px 20px rgba(0,0,0,.25)';b.innerHTML='<span style="font-size:.92rem;font-weight:600">&#128170; You answered <strong>'+_a+' questions!</strong> Ready for a timed Mock Exam?</span><div style="display:flex;gap:10px;flex-shrink:0"><button type="button" onclick="openMockSetup()" style="background:#f0a500;color:white;border:none;border-radius:8px;padding:10px 20px;font-weight:700;cursor:pointer;font-size:.88rem">Start Mock &#8594;</button><button onclick="this.parentNode.parentNode.remove()" style="background:rgba(255,255,255,.15);color:white;border:1px solid rgba(255,255,255,.3);border-radius:8px;padding:10px 14px;cursor:pointer;font-size:.88rem">Later</button></div>';document.body.appendChild(b);}};
 })();
 
 </script>
