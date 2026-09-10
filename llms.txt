@@ -38,11 +38,11 @@ practice bank is how many practice questions this site publishes for that trade.
 | 306A Plumber | 125 | 88 | 135 |
 | 313A Refrigeration & Air Conditioning Mechanic | 125 | 88 | 116 |
 | 456A Welder | 125 | 88 | 120 |
-| 308A Sheet Metal Worker | 120 | 84 | 100 |
+| 308A Sheet Metal Worker | 120 | 84 | 120 |
 | 420B Ironworker (Generalist) | 120 | 84 | 120 |
 | 309A Construction Electrician | 100 | 70 | 135 |
 | 442A Industrial Electrician | 100 | 70 | 135 |
-| Gasfitter Class A | 100 | 70 | 100 |
+| Gasfitter Class A | 100 | 70 | 112 |
 
 Time limit is 4 hours for the trades above. Eligibility, scheduling and what you
 may bring are set by your province or territory, not by Red Seal nationally.
@@ -58,8 +58,8 @@ may bring are set by your province or territory, not by Red Seal nationally.
 - [313A Refrigeration & Air Conditioning Mechanic — 116 questions](https://redsealquiz.ca/313a-all-questions.html)
 - [420B Ironworker (Generalist) — 120 questions](https://redsealquiz.ca/420b-all-questions.html)
 - [456A Welder — 120 questions](https://redsealquiz.ca/456a-all-questions.html)
-- [308A Sheet Metal Worker — 100 questions](https://redsealquiz.ca/308a-all-questions.html)
-- [Gasfitter Class A — 100 questions](https://redsealquiz.ca/gasfitter-class-a-all-questions.html)
+- [308A Sheet Metal Worker — 120 questions](https://redsealquiz.ca/308a-all-questions.html)
+- [Gasfitter Class A — 112 questions](https://redsealquiz.ca/gasfitter-class-a-all-questions.html)
 
 ## Interactive practice
 

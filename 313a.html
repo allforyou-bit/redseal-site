@@ -384,7 +384,7 @@ function reportQuestion(){
     <li style="padding:6px 0 6px 26px;position:relative"><span style="position:absolute;left:0;color:#f0a500;font-weight:800">&#10003;</span>File updates included &mdash; when the bank is revised or grows, the latest PDF is in your Ko-fi library</li>
   </ul>
   <div style="text-align:center">
-    <a href="https://ko-fi.com/s/bd62e0f1ae" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:44px;background:#f0a500;color:#1a3a5c;padding:13px 28px;border-radius:8px;font-weight:800;text-decoration:none;font-size:.95rem">Get the 313A Question Bank &mdash; CA$19 &rarr;</a>
+    <a data-cta="quiz_page_offer" href="https://ko-fi.com/s/bd62e0f1ae" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:44px;background:#f0a500;color:#1a3a5c;padding:13px 28px;border-radius:8px;font-weight:800;text-decoration:none;font-size:.95rem">Get the 313A Question Bank &mdash; CA$19 &rarr;</a>
     <p style="font-size:.75rem;opacity:.7;margin:12px 0 0">Instant download &middot; Priced in Canadian dollars &middot; Independent, unofficial study resource &middot; No guarantee of results</p>
   </div>
 </div>
@@ -403,7 +403,7 @@ function reportQuestion(){
 </div>
 <div style="background:#fff;border-top:2px solid #e8ecf0;padding:22px 20px;text-align:center">
   <p style="font-size:.83rem;color:#666;margin-bottom:11px">This site is free. If it helped your studies, a coffee keeps it running &#9749;</p>
-  <a href='https://ko-fi.com/redsealexamprep' target='_blank' rel='noopener' style="display:inline-block;background:#FF5E5B;color:white;padding:10px 26px;border-radius:8px;font-weight:700;font-size:.88rem;text-decoration:none">&#9749; Buy Me a Coffee</a>
+  <a data-cta="footer_tip" href='https://ko-fi.com/redsealexamprep' target='_blank' rel='noopener' style="display:inline-block;background:#FF5E5B;color:white;padding:10px 26px;border-radius:8px;font-weight:700;font-size:.88rem;text-decoration:none">&#9749; Buy Me a Coffee</a>
 </div>
 <footer>
   <p>Canada Red Seal Exam Prep — Free study resource for Canadian skilled trades apprentices</p>
@@ -1169,7 +1169,7 @@ function selectAnswer(idx,q){
   exp.innerHTML=`<strong>${idx===q.answer?'✅ Correct!':'❌ Incorrect — Correct: '+['A','B','C','D'][q.answer]}</strong><br><br>${q.explanation}${q.keyConcept?`<div class="key-concept"><strong>💡 Key Concept:</strong> ${q.keyConcept}</div>`:''}`;
   exp.classList.add('show');document.getElementById('nextBtn').disabled=false;
 }
-function navigate(dir){currentIdx+=dir;loadQuestion()}
+function navigate(dir){currentIdx+=dir;loadQuestion();localStorage.setItem('progress_313a',currentIdx)}
 function updateScore(){
   const pct=totalAnswered>0?Math.round(totalCorrect/totalAnswered*100):0;
   document.getElementById('scoreDisplay').textContent=`${totalCorrect} / ${totalAnswered}`;
@@ -1564,7 +1564,7 @@ function fcMarkAgain(){
 })();
 /* PROGRESS SAVE + RESUME */
 (function(){
-  var si=parseInt(localStorage.getItem('progress_308a')||'0');
+  var si=parseInt(localStorage.getItem('progress_313a')||'0');
   if(si>0){currentIdx=si;if(typeof filteredQs!=='undefined'&&currentIdx>=filteredQs.length)currentIdx=0;if(typeof loadQuestion==='function')loadQuestion();var rt=document.createElement('div');rt.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1a3a5c;color:white;padding:12px 22px;border-radius:24px;font-size:.88rem;font-weight:600;z-index:9998;box-shadow:0 4px 16px rgba(0,0,0,.3);cursor:pointer;white-space:nowrap';rt.innerHTML='&#128204; Resumed from Q.'+(si+1)+' <span style="opacity:.6;font-size:.78rem">tap to dismiss</span>';rt.onclick=function(){if(rt.parentNode)rt.parentNode.removeChild(rt);};document.body.appendChild(rt);setTimeout(function(){if(rt.parentNode)rt.parentNode.removeChild(rt);},4000);}
 })();
 /* MOCK CTA after 25 answers */
@@ -1645,6 +1645,25 @@ function fcMarkAgain(){
   document.body.appendChild(pb);
   var prevPad=parseInt(getComputedStyle(document.body).paddingBottom)||0;
   document.body.style.paddingBottom=(prevPad+40)+'px';
+
+  /* COOKIE-BAR-OVERLAP — added 2026-09-10.
+     The cookie banner is position:fixed;bottom:0;z-index:9999 and this bar is
+     the same edge at z-index:6999, so until the banner was dismissed it sat on
+     top of the only persistent buy button and the only shortcut into the quiz.
+     elementFromPoint on either returned cookieBanner. Lift the banner to rest
+     ON the bar rather than over it; both stay fully visible and tappable. */
+  (function(){
+    var cb=document.getElementById('cookieBanner');
+    if(!cb) return;
+    function lift(){
+      var hidden=getComputedStyle(cb).display==='none';
+      var want=hidden?'0px':((pb.offsetHeight||0)+'px');
+      if(cb.style.bottom!==want) cb.style.bottom=want;
+    }
+    lift();
+    try{ new MutationObserver(lift).observe(cb,{attributes:true,attributeFilter:['style']}); }catch(e){}
+    window.addEventListener('resize',lift);
+  })();
 
   function updBar(){
     var qEl=document.getElementById('qNumber');

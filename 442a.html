@@ -485,7 +485,7 @@ function reportQuestion(){
     <li style="padding:6px 0 6px 26px;position:relative"><span style="position:absolute;left:0;color:#f0a500;font-weight:800">&#10003;</span>File updates included &mdash; when the bank is revised or grows, the latest PDF is in your Ko-fi library</li>
   </ul>
   <div style="text-align:center">
-    <a href="https://ko-fi.com/s/53b9fe7161" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:44px;background:#f0a500;color:#1a3a5c;padding:13px 28px;border-radius:8px;font-weight:800;text-decoration:none;font-size:.95rem">Get the 442A Question Bank &mdash; CA$24 &rarr;</a>
+    <a data-cta="quiz_page_offer" href="https://ko-fi.com/s/53b9fe7161" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:44px;background:#f0a500;color:#1a3a5c;padding:13px 28px;border-radius:8px;font-weight:800;text-decoration:none;font-size:.95rem">Get the 442A Question Bank &mdash; CA$24 &rarr;</a>
     <p style="font-size:.75rem;opacity:.7;margin:12px 0 0">Instant download &middot; Priced in Canadian dollars &middot; Independent, unofficial study resource &middot; No guarantee of results</p>
   </div>
 </div>
@@ -504,7 +504,7 @@ function reportQuestion(){
 </div>
 <div style="background:#fff;border-top:2px solid #e8ecf0;padding:22px 20px;text-align:center">
   <p style="font-size:.83rem;color:#666;margin-bottom:11px">This site is free. If it helped your studies, a coffee keeps it running &#9749;</p>
-  <a href='https://ko-fi.com/redsealexamprep' target='_blank' rel='noopener' style="display:inline-block;background:#FF5E5B;color:white;padding:10px 26px;border-radius:8px;font-weight:700;font-size:.88rem;text-decoration:none">&#9749; Buy Me a Coffee</a>
+  <a data-cta="footer_tip" href='https://ko-fi.com/redsealexamprep' target='_blank' rel='noopener' style="display:inline-block;background:#FF5E5B;color:white;padding:10px 26px;border-radius:8px;font-weight:700;font-size:.88rem;text-decoration:none">&#9749; Buy Me a Coffee</a>
 </div>
 <footer>
   <p>Canada Red Seal Exam Prep — Free study resource for Canadian skilled trades apprentices</p>
@@ -832,7 +832,7 @@ function setTopic(t,btn){currentTopic=t;document.querySelectorAll('.tab-btn').fo
 function setDiff(d,btn){currentDiff=d;document.querySelectorAll('.diff-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');applyFilter();}
 function loadQuestion(){const card=document.getElementById('questionCard');if(!filtered.length){card.innerHTML='<p style="color:var(--muted);text-align:center;padding:40px;">No questions match this filter.</p>';document.getElementById('qCounter').textContent='';return;}const q=filtered[currentIdx];const isAnswered=answered[currentIdx]!==undefined;const userAns=answered[currentIdx];const letters=['A','B','C','D'];card.innerHTML=`<div class="q-header"><span class="q-topic">${q.topicLabel}</span><span class="q-diff ${q.diff}">${q.diff.charAt(0).toUpperCase()+q.diff.slice(1)}</span></div><div class="q-number">Question ${currentIdx+1} of ${filtered.length}</div><div class="q-text">${q.text}</div><div class="options">${q.options.map((o,i)=>`<button class="option-btn${isAnswered?(i===q.answer?' reveal':(i===userAns?' wrong':'')):''}\" onclick="selectAnswer(${i})" ${isAnswered?'disabled':''}><span class="option-letter">${letters[i]}</span><span>${o.replace(/^[A-D]\)\s*/,'')}</span></button>`).join('')}</div><div class="explanation ${isAnswered?'show':''}">${isAnswered?`<strong>Explanation:</strong> ${q.explanation}<div class="key-concept"><strong>Key Concept:</strong> ${q.keyConcept}</div>`:''}</div>`;document.getElementById('prevBtn').disabled=currentIdx===0;document.getElementById('nextBtn').disabled=currentIdx===filtered.length-1;document.getElementById('qCounter').textContent=`${currentIdx+1} / ${filtered.length}`;}
 function selectAnswer(i){if(answered[currentIdx]!==undefined)return;answered[currentIdx]=i;const q=filtered[currentIdx];const isCorrect=i===q.answer;if(isCorrect){const c=parseInt(localStorage.getItem('todayCorrect_'+MOCK_PAGE_KEY)||'0')+1;localStorage.setItem('todayCorrect_'+MOCK_PAGE_KEY,c);}const wb=JSON.parse(localStorage.getItem('wrongBank_313a')||'[]');if(!isCorrect){if(!wb.includes(q.id)){wb.push(q.id);localStorage.setItem('wrongBank_313a',JSON.stringify(wb));}}else{const idx=wb.indexOf(q.id);if(idx>-1){wb.splice(idx,1);localStorage.setItem('wrongBank_313a',JSON.stringify(wb));}}updateWrongBankTab();if(typeof recordTopicStat==='function')recordTopicStat(q.topic,isCorrect);if(isCorrect){window._cs=(window._cs||0)+1;if(window._cs>=2)showComboToast(window._cs);}else{window._cs=0;}updateScore();loadQuestion();updateStreakDisplay();}
-function navigate(dir){currentIdx=Math.max(0,Math.min(filtered.length-1,currentIdx+dir));loadQuestion();}
+function navigate(dir){currentIdx=Math.max(0,Math.min(filtered.length-1,currentIdx+dir));loadQuestion();localStorage.setItem('progress_442a',currentIdx);}
 function updateScore(){const realCorrect=Object.keys(answered).filter(i=>answered[i]===filtered[i]?.answer).length;const total=Object.keys(answered).length;document.getElementById('scoreDisplay').textContent=`${realCorrect} / ${total}`;document.getElementById('progressBar').style.width=filtered.length?`${((currentIdx+1)/filtered.length)*100}%`:'0%';}
 function buildMockQs(n){const byTopic={};questions.forEach(q=>{if(!byTopic[q.topic])byTopic[q.topic]=[];byTopic[q.topic].push(q);});const topics=Object.keys(byTopic);const perTopic=Math.floor(n/topics.length);let pool=[];topics.forEach(t=>{const sh=[...byTopic[t]].sort(()=>Math.random()-.5);pool=pool.concat(sh.slice(0,perTopic));});while(pool.length<n){const all=[...questions].sort(()=>Math.random()-.5);for(const q of all){if(!pool.includes(q)){pool.push(q);if(pool.length>=n)break;}}}return pool.slice(0,n).sort(()=>Math.random()-.5);}
 function openMockSetup(){document.getElementById('mockOverlay').style.display='flex';document.getElementById('mockBody').innerHTML=`<p style="font-size:.95rem;font-weight:600;color:#1a3a5c;margin-bottom:16px;">Select number of questions:</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;"><button class="mock-count-btn" onclick="startMockExam(30)"><div style="font-size:1.5rem;font-weight:800;">30</div><div style="font-size:.78rem;color:var(--muted);">~45 min</div></button><button class="mock-count-btn" onclick="startMockExam(60)"><div style="font-size:1.5rem;font-weight:800;">60</div><div style="font-size:.78rem;color:var(--muted);">~90 min</div></button><button class="mock-count-btn" onclick="startMockExam(90)"><div style="font-size:1.5rem;font-weight:800;">90</div><div style="font-size:.78rem;color:var(--muted);">~135 min</div></button><button class="mock-count-btn" onclick="startMockExam(120)"><div style="font-size:1.5rem;font-weight:800;">120</div><div style="font-size:.78rem;color:var(--muted);">~180 min · Real exam</div></button></div>`;}
@@ -870,7 +870,7 @@ initStreak();applyFilter();initCookieBanner();
 updateWrongBankTab();renderTopicProgress();renderScoreHistory();
 /* ── PROGRESS SAVE + RESUME TOAST ── */
 (function(){
-  var savedIdx = parseInt(localStorage.getItem('progress_313a') || '0');
+  var savedIdx = parseInt(localStorage.getItem('progress_442a') || '0');
   if (savedIdx > 0) {
     currentIdx = savedIdx;
     if (typeof filtered !== 'undefined') {
@@ -938,6 +938,25 @@ updateWrongBankTab();renderTopicProgress();renderScoreHistory();
   document.body.appendChild(pb);
   var prevPad=parseInt(getComputedStyle(document.body).paddingBottom)||0;
   document.body.style.paddingBottom=(prevPad+40)+'px';
+
+  /* COOKIE-BAR-OVERLAP — added 2026-09-10.
+     The cookie banner is position:fixed;bottom:0;z-index:9999 and this bar is
+     the same edge at z-index:6999, so until the banner was dismissed it sat on
+     top of the only persistent buy button and the only shortcut into the quiz.
+     elementFromPoint on either returned cookieBanner. Lift the banner to rest
+     ON the bar rather than over it; both stay fully visible and tappable. */
+  (function(){
+    var cb=document.getElementById('cookieBanner');
+    if(!cb) return;
+    function lift(){
+      var hidden=getComputedStyle(cb).display==='none';
+      var want=hidden?'0px':((pb.offsetHeight||0)+'px');
+      if(cb.style.bottom!==want) cb.style.bottom=want;
+    }
+    lift();
+    try{ new MutationObserver(lift).observe(cb,{attributes:true,attributeFilter:['style']}); }catch(e){}
+    window.addEventListener('resize',lift);
+  })();
 
   function updBar(){
     var qEl=document.getElementById('qNumber');
