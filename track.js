@@ -43,10 +43,19 @@
      until now they arrived as the same event. Runtime-injected CTAs have no
      markup to annotate, so this reads the containers they are appended into. */
   function placement(a) {
-    /* Static CTAs carry data-cta, written once by tools/tag_cta.py and emitted
-       by the generators, so they never depend on a class name surviving a
-       rebuild. The walk below is for the three CTAs that are injected at
-       runtime and have no markup to annotate. */
+    /* Static CTAs carry data-cta, emitted by the generators so they never depend
+       on a class name surviving a rebuild. (An earlier tools/tag_cta.py wrote the
+       first of these; it no longer exists, so the generators and the pages are the
+       only source now - do not go looking for it.)
+
+       On the all-questions pages three placements are tagged separately, because
+       they answer different questions: top_bank is the offer above the questions,
+       interstitial is the one repeated every 60 questions, and interstitial_notes
+       is the cheaper revision-notes line under it. They shared one tag until
+       2026-09-11, which made it impossible to tell which position sold anything.
+
+       The walk below is for the three CTAs that are injected at runtime and have
+       no markup to annotate. */
     var tag = a.getAttribute && a.getAttribute("data-cta");
     if (tag) return tag;
     var n = a, hops = 0;
