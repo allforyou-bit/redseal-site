@@ -29,3 +29,7 @@ verify_quiz.py
 # Internal QA scripts still served publicly - same class as the 2026-07-25 fix (2026-08-28)
 verify_hero.py
 verify_nav.py
+
+# git-history rewrite inputs — carry the banned occupation phrasings and a personal email.
+# Never commit: this repository is public.
+.rewrite-*.txt
