@@ -61,6 +61,89 @@ may bring are set by your province or territory, not by Red Seal nationally.
 - [308A Sheet Metal Worker — 120 questions](https://redsealquiz.ca/308a-all-questions.html)
 - [Gasfitter Class A — 112 questions](https://redsealquiz.ca/gasfitter-class-a-all-questions.html)
 
+## What each bank covers, by topic
+
+The topic areas follow the published occupational standard for each trade. The number after
+each topic is how many practice questions this site publishes for it, so the weighting is
+visible rather than asserted. The free 50-question mock exam for a trade is drawn
+proportionally from these same topics.
+
+### 421A Heavy Duty Equipment Technician — 421 practice questions (official exam: 135)
+Safety & Tools 25 · Diesel Engine 67 · Electrical Systems 62 · Hydraulic Systems 64 · Powertrain 49 · Brakes & Steering 46 · Preventive Maintenance 24 · HVAC & Cab Comfort 29 · Structures & Attachments 30 · Hybrid & Electric Equipment 25
+
+- Read the whole bank: https://redsealquiz.ca/421a-all-questions.html
+- Practise interactively: https://redsealquiz.ca/421a.html
+- Free 50-question mock exam (PDF, no sign-up): https://redsealquiz.ca/dl/421a-free-50-question-mock-exam.pdf
+
+### 310T Truck & Transport Mechanic — 165 practice questions (official exam: 135)
+Air Brakes 36 · Diesel Engine 36 · Electrical Systems 31 · Drivetrain 33 · Regulations & Inspections 29
+
+- Read the whole bank: https://redsealquiz.ca/310t-all-questions.html
+- Practise interactively: https://redsealquiz.ca/310t.html
+- Free 50-question mock exam (PDF, no sign-up): https://redsealquiz.ca/dl/310t-free-50-question-mock-exam.pdf
+
+### 310S Automotive Service Technician — 139 practice questions (official exam: 125)
+Engine 27 · Brakes 28 · Electrical 27 · Suspension 22 · Transmission 25 · HVAC 10
+
+- Read the whole bank: https://redsealquiz.ca/310s-all-questions.html
+- Practise interactively: https://redsealquiz.ca/310s.html
+- Free 50-question mock exam (PDF, no sign-up): https://redsealquiz.ca/dl/310s-free-50-question-mock-exam.pdf
+
+### 306A Plumber — 135 practice questions (official exam: 125)
+Safety & Tools 17 · DWV Systems 34 · Water Supply 27 · Gas Piping 17 · Fixtures 20 · Code & Inspection 20
+
+- Read the whole bank: https://redsealquiz.ca/306a-all-questions.html
+- Practise interactively: https://redsealquiz.ca/306a.html
+- Free 50-question mock exam (PDF, no sign-up): https://redsealquiz.ca/dl/306a-free-50-question-mock-exam.pdf
+
+### 309A Construction Electrician — 135 practice questions (official exam: 100)
+Electrical Theory 29 · CEC Code 36 · Motors & Controls 29 · Electrical Safety 18 · Wiring Methods 23
+
+- Read the whole bank: https://redsealquiz.ca/309a-all-questions.html
+- Practise interactively: https://redsealquiz.ca/309a.html
+- Free 50-question mock exam (PDF, no sign-up): https://redsealquiz.ca/dl/309a-free-50-question-mock-exam.pdf
+
+### 442A Industrial Electrician — 135 practice questions (official exam: 100)
+Safety & Code 23 · Motors & Controls 35 · PLCs 20 · Instrumentation 20 · Power Distribution 20 · Theory 17
+
+- Read the whole bank: https://redsealquiz.ca/442a-all-questions.html
+- Practise interactively: https://redsealquiz.ca/442a.html
+- Free 50-question mock exam (PDF, no sign-up): https://redsealquiz.ca/dl/442a-free-50-question-mock-exam.pdf
+
+### 313A Refrigeration & Air Conditioning Mechanic — 116 practice questions (official exam: 125)
+Refrigeration Cycle 23 · Refrigerants 25 · Components 22 · Controls & Electrical 22 · Troubleshooting 24
+
+- Read the whole bank: https://redsealquiz.ca/313a-all-questions.html
+- Practise interactively: https://redsealquiz.ca/313a.html
+- Free 50-question mock exam (PDF, no sign-up): https://redsealquiz.ca/dl/313a-free-50-question-mock-exam.pdf
+
+### 420B Ironworker (Generalist) — 120 practice questions (official exam: 120)
+Structural Steel Erection 25 · Rigging & Hoisting 23 · Welding & Cutting 18 · Blueprint Reading & Layout 15 · Reinforcing Steel 15 · Safety & Fall Protection 15 · Tools & Equipment 9
+
+- Read the whole bank: https://redsealquiz.ca/420b-all-questions.html
+- Practise interactively: https://redsealquiz.ca/420b.html
+- Free 50-question mock exam (PDF, no sign-up): https://redsealquiz.ca/dl/420b-free-50-question-mock-exam.pdf
+
+### 456A Welder — 120 practice questions (official exam: 125)
+Safety & Tools 15 · OFC 12 · SMAW 24 · GMAW 25 · GTAW 20 · FCAW 12 · Theory 12
+
+- Read the whole bank: https://redsealquiz.ca/456a-all-questions.html
+- Practise interactively: https://redsealquiz.ca/456a.html
+- Free 50-question mock exam (PDF, no sign-up): https://redsealquiz.ca/dl/456a-free-50-question-mock-exam.pdf
+
+### 308A Sheet Metal Worker — 120 practice questions (official exam: 120)
+Layout & Pattern Dev 20 · Sheet Metal Fabrication 25 · Welding & Joining 20 · HVAC Systems 27 · Safety & Code 14 · Tools & Equipment 14
+
+- Read the whole bank: https://redsealquiz.ca/308a-all-questions.html
+- Practise interactively: https://redsealquiz.ca/308a.html
+- Free 50-question mock exam (PDF, no sign-up): https://redsealquiz.ca/dl/308a-free-50-question-mock-exam.pdf
+
+### Gasfitter (Class A) — 112 practice questions (official exam: 100)
+Appliances & Equipment 24 · Gas Supply Systems 19 · Piping Systems 16 · Venting Systems 21 · Combustion Theory 16 · Safety & Code 16
+
+- Read the whole bank: https://redsealquiz.ca/gasfitter-class-a-all-questions.html
+- Practise interactively: https://redsealquiz.ca/gasfitter-class-a.html
+- Free 50-question mock exam (PDF, no sign-up): https://redsealquiz.ca/dl/gasfitter-class-a-free-50-question-mock-exam.pdf
 ## Interactive practice
 
 - [All 11 trade quizzes](https://redsealquiz.ca/practice-quizzes.html)
