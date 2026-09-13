@@ -1,7 +1,7 @@
 # Red Seal Exam Prep (redsealquiz.ca)
 
 > Free practice questions for Canadian skilled-trades certification exams, with a
-> full written explanation on every answer. 1,704 original multiple-choice
+> full written explanation on every answer. 1,675 original multiple-choice
 > questions across 11 trades, all readable as plain HTML, plus a free 50-question
 > mock exam PDF per trade. Independent and unofficial: not affiliated with,
 > endorsed by, or approved by the Canadian Council of Directors of Apprenticeship
@@ -32,34 +32,34 @@ practice bank is how many practice questions this site publishes for that trade.
 
 | Trade | Official exam questions | Minimum to pass (70%) | Free practice bank here |
 |---|---|---|---|
-| 421A Heavy Duty Equipment Technician | 135 | 95 | 418 |
-| 310T Truck & Transport Mechanic | 135 | 95 | 163 |
+| 421A Heavy Duty Equipment Technician | 135 | 95 | 406 |
+| 310T Truck & Transport Mechanic | 135 | 95 | 161 |
 | 310S Automotive Service Technician | 125 | 88 | 139 |
-| 306A Plumber | 125 | 88 | 134 |
+| 306A Plumber | 125 | 88 | 130 |
 | 313A Refrigeration & Air Conditioning Mechanic | 125 | 88 | 115 |
-| 456A Welder | 125 | 88 | 120 |
+| 456A Welder | 125 | 88 | 119 |
 | 308A Sheet Metal Worker | 120 | 84 | 117 |
-| 420B Ironworker (Generalist) | 120 | 84 | 119 |
-| 309A Construction Electrician | 100 | 70 | 133 |
-| 442A Industrial Electrician | 100 | 70 | 134 |
-| Gasfitter Class A | 100 | 70 | 112 |
+| 420B Ironworker (Generalist) | 120 | 84 | 117 |
+| 309A Construction Electrician | 100 | 70 | 131 |
+| 442A Industrial Electrician | 100 | 70 | 130 |
+| Gasfitter Class A | 100 | 70 | 110 |
 
 Time limit is 4 hours for the trades above. Eligibility, scheduling and what you
 may bring are set by your province or territory, not by Red Seal nationally.
 
 ## Full question banks (static HTML, complete)
 
-- [421A Heavy Duty Equipment Technician — 418 questions](https://redsealquiz.ca/421a-all-questions.html)
-- [310T Truck & Transport Mechanic — 163 questions](https://redsealquiz.ca/310t-all-questions.html)
+- [421A Heavy Duty Equipment Technician — 406 questions](https://redsealquiz.ca/421a-all-questions.html)
+- [310T Truck & Transport Mechanic — 161 questions](https://redsealquiz.ca/310t-all-questions.html)
 - [310S Automotive Service Technician — 139 questions](https://redsealquiz.ca/310s-all-questions.html)
-- [306A Plumber — 134 questions](https://redsealquiz.ca/306a-all-questions.html)
-- [309A Construction Electrician — 133 questions](https://redsealquiz.ca/309a-all-questions.html)
-- [442A Industrial Electrician — 134 questions](https://redsealquiz.ca/442a-all-questions.html)
+- [306A Plumber — 130 questions](https://redsealquiz.ca/306a-all-questions.html)
+- [309A Construction Electrician — 131 questions](https://redsealquiz.ca/309a-all-questions.html)
+- [442A Industrial Electrician — 130 questions](https://redsealquiz.ca/442a-all-questions.html)
 - [313A Refrigeration & Air Conditioning Mechanic — 115 questions](https://redsealquiz.ca/313a-all-questions.html)
-- [420B Ironworker (Generalist) — 119 questions](https://redsealquiz.ca/420b-all-questions.html)
-- [456A Welder — 120 questions](https://redsealquiz.ca/456a-all-questions.html)
+- [420B Ironworker (Generalist) — 117 questions](https://redsealquiz.ca/420b-all-questions.html)
+- [456A Welder — 119 questions](https://redsealquiz.ca/456a-all-questions.html)
 - [308A Sheet Metal Worker — 117 questions](https://redsealquiz.ca/308a-all-questions.html)
-- [Gasfitter Class A — 112 questions](https://redsealquiz.ca/gasfitter-class-a-all-questions.html)
+- [Gasfitter Class A — 110 questions](https://redsealquiz.ca/gasfitter-class-a-all-questions.html)
 
 ## What each bank covers, by topic
 
@@ -68,15 +68,15 @@ each topic is how many practice questions this site publishes for it, so the wei
 visible rather than asserted. The free 50-question mock exam for a trade is drawn
 proportionally from these same topics.
 
-### 421A Heavy Duty Equipment Technician — 418 practice questions (official exam: 135)
-Safety & Tools 25 · Diesel Engine 67 · Electrical Systems 62 · Hydraulic Systems 64 · Powertrain 46 · Brakes & Steering 46 · Preventive Maintenance 24 · HVAC & Cab Comfort 29 · Structures & Attachments 30 · Hybrid & Electric Equipment 25
+### 421A Heavy Duty Equipment Technician — 406 practice questions (official exam: 135)
+Safety & Tools 25 · Diesel Engine 62 · Electrical Systems 60 · Hydraulic Systems 61 · Powertrain 44 · Brakes & Steering 46 · Preventive Maintenance 24 · HVAC & Cab Comfort 29 · Structures & Attachments 30 · Hybrid & Electric Equipment 25
 
 - Read the whole bank: https://redsealquiz.ca/421a-all-questions.html
 - Practise interactively: https://redsealquiz.ca/421a.html
 - Free 50-question mock exam (PDF, no sign-up): https://redsealquiz.ca/dl/421a-free-50-question-mock-exam.pdf
 
-### 310T Truck & Transport Mechanic — 163 practice questions (official exam: 135)
-Air Brakes 35 · Diesel Engine 35 · Electrical Systems 31 · Drivetrain 33 · Regulations & Inspections 29
+### 310T Truck & Transport Mechanic — 161 practice questions (official exam: 135)
+Air Brakes 35 · Diesel Engine 33 · Electrical Systems 31 · Drivetrain 33 · Regulations & Inspections 29
 
 - Read the whole bank: https://redsealquiz.ca/310t-all-questions.html
 - Practise interactively: https://redsealquiz.ca/310t.html
@@ -89,22 +89,22 @@ Engine 27 · Brakes 28 · Electrical 27 · Suspension 22 · Transmission 25 · H
 - Practise interactively: https://redsealquiz.ca/310s.html
 - Free 50-question mock exam (PDF, no sign-up): https://redsealquiz.ca/dl/310s-free-50-question-mock-exam.pdf
 
-### 306A Plumber — 134 practice questions (official exam: 125)
-Safety & Tools 17 · DWV Systems 34 · Water Supply 27 · Gas Piping 17 · Fixtures 19 · Code & Inspection 20
+### 306A Plumber — 130 practice questions (official exam: 125)
+Safety & Tools 16 · DWV Systems 34 · Water Supply 25 · Gas Piping 17 · Fixtures 18 · Code & Inspection 20
 
 - Read the whole bank: https://redsealquiz.ca/306a-all-questions.html
 - Practise interactively: https://redsealquiz.ca/306a.html
 - Free 50-question mock exam (PDF, no sign-up): https://redsealquiz.ca/dl/306a-free-50-question-mock-exam.pdf
 
-### 309A Construction Electrician — 133 practice questions (official exam: 100)
-Electrical Theory 29 · CEC Code 36 · Motors & Controls 29 · Electrical Safety 17 · Wiring Methods 22
+### 309A Construction Electrician — 131 practice questions (official exam: 100)
+Electrical Theory 29 · CEC Code 36 · Motors & Controls 28 · Electrical Safety 16 · Wiring Methods 22
 
 - Read the whole bank: https://redsealquiz.ca/309a-all-questions.html
 - Practise interactively: https://redsealquiz.ca/309a.html
 - Free 50-question mock exam (PDF, no sign-up): https://redsealquiz.ca/dl/309a-free-50-question-mock-exam.pdf
 
-### 442A Industrial Electrician — 134 practice questions (official exam: 100)
-Safety & Code 23 · Motors & Controls 35 · PLCs 19 · Instrumentation 20 · Power Distribution 20 · Theory 17
+### 442A Industrial Electrician — 130 practice questions (official exam: 100)
+Safety & Code 23 · Motors & Controls 33 · PLCs 19 · Instrumentation 20 · Power Distribution 18 · Theory 17
 
 - Read the whole bank: https://redsealquiz.ca/442a-all-questions.html
 - Practise interactively: https://redsealquiz.ca/442a.html
@@ -117,15 +117,15 @@ Refrigeration Cycle 23 · Refrigerants 25 · Components 22 · Controls & Electri
 - Practise interactively: https://redsealquiz.ca/313a.html
 - Free 50-question mock exam (PDF, no sign-up): https://redsealquiz.ca/dl/313a-free-50-question-mock-exam.pdf
 
-### 420B Ironworker (Generalist) — 119 practice questions (official exam: 120)
-Structural Steel Erection 25 · Rigging & Hoisting 22 · Welding & Cutting 18 · Blueprint Reading & Layout 15 · Reinforcing Steel 15 · Safety & Fall Protection 15 · Tools & Equipment 9
+### 420B Ironworker (Generalist) — 117 practice questions (official exam: 120)
+Structural Steel Erection 24 · Rigging & Hoisting 22 · Welding & Cutting 18 · Blueprint Reading & Layout 15 · Reinforcing Steel 15 · Safety & Fall Protection 14 · Tools & Equipment 9
 
 - Read the whole bank: https://redsealquiz.ca/420b-all-questions.html
 - Practise interactively: https://redsealquiz.ca/420b.html
 - Free 50-question mock exam (PDF, no sign-up): https://redsealquiz.ca/dl/420b-free-50-question-mock-exam.pdf
 
-### 456A Welder — 120 practice questions (official exam: 125)
-Safety & Tools 15 · OFC 12 · SMAW 24 · GMAW 25 · GTAW 20 · FCAW 12 · Theory 12
+### 456A Welder — 119 practice questions (official exam: 125)
+Safety & Tools 15 · OFC 11 · SMAW 24 · GMAW 25 · GTAW 20 · FCAW 12 · Theory 12
 
 - Read the whole bank: https://redsealquiz.ca/456a-all-questions.html
 - Practise interactively: https://redsealquiz.ca/456a.html
@@ -138,8 +138,8 @@ Layout & Pattern Dev 20 · Sheet Metal Fabrication 24 · Welding & Joining 20 ·
 - Practise interactively: https://redsealquiz.ca/308a.html
 - Free 50-question mock exam (PDF, no sign-up): https://redsealquiz.ca/dl/308a-free-50-question-mock-exam.pdf
 
-### Gasfitter (Class A) — 112 practice questions (official exam: 100)
-Appliances & Equipment 24 · Gas Supply Systems 19 · Piping Systems 16 · Venting Systems 21 · Combustion Theory 16 · Safety & Code 16
+### Gasfitter (Class A) — 110 practice questions (official exam: 100)
+Appliances & Equipment 24 · Gas Supply Systems 19 · Piping Systems 16 · Venting Systems 20 · Combustion Theory 16 · Safety & Code 15
 
 - Read the whole bank: https://redsealquiz.ca/gasfitter-class-a-all-questions.html
 - Practise interactively: https://redsealquiz.ca/gasfitter-class-a.html
@@ -163,7 +163,7 @@ in this file at no extra cost.
 **Exam Revision Notes — CA$12.** Not a question bank. It is the revision note behind
 every question — what each question is actually testing — grouped by the published
 occupational standard topic areas, with repeats collapsed, plus a Numbers & Specs
-quick reference holding every note that carries a figure or a unit. 15 to 41 pages
+quick reference holding every note that carries a figure or a unit. 15 to 40 pages
 depending on the trade. It suits the week before a dated exam, when re-reading the
 whole bank is no longer the best use of the time.
 
