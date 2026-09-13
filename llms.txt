@@ -1,7 +1,7 @@
 # Red Seal Exam Prep (redsealquiz.ca)
 
 > Free practice questions for Canadian skilled-trades certification exams, with a
-> full written explanation on every answer. 1,675 original multiple-choice
+> full written explanation on every answer. 1,685 original multiple-choice
 > questions across 11 trades, all readable as plain HTML, plus a free 50-question
 > mock exam PDF per trade. Independent and unofficial: not affiliated with,
 > endorsed by, or approved by the Canadian Council of Directors of Apprenticeship
@@ -37,9 +37,9 @@ practice bank is how many practice questions this site publishes for that trade.
 | 310S Automotive Service Technician | 125 | 88 | 139 |
 | 306A Plumber | 125 | 88 | 130 |
 | 313A Refrigeration & Air Conditioning Mechanic | 125 | 88 | 115 |
-| 456A Welder | 125 | 88 | 119 |
-| 308A Sheet Metal Worker | 120 | 84 | 117 |
-| 420B Ironworker (Generalist) | 120 | 84 | 117 |
+| 456A Welder | 125 | 88 | 123 |
+| 308A Sheet Metal Worker | 120 | 84 | 119 |
+| 420B Ironworker (Generalist) | 120 | 84 | 121 |
 | 309A Construction Electrician | 100 | 70 | 131 |
 | 442A Industrial Electrician | 100 | 70 | 130 |
 | Gasfitter Class A | 100 | 70 | 110 |
@@ -56,9 +56,9 @@ may bring are set by your province or territory, not by Red Seal nationally.
 - [309A Construction Electrician — 131 questions](https://redsealquiz.ca/309a-all-questions.html)
 - [442A Industrial Electrician — 130 questions](https://redsealquiz.ca/442a-all-questions.html)
 - [313A Refrigeration & Air Conditioning Mechanic — 115 questions](https://redsealquiz.ca/313a-all-questions.html)
-- [420B Ironworker (Generalist) — 117 questions](https://redsealquiz.ca/420b-all-questions.html)
-- [456A Welder — 119 questions](https://redsealquiz.ca/456a-all-questions.html)
-- [308A Sheet Metal Worker — 117 questions](https://redsealquiz.ca/308a-all-questions.html)
+- [420B Ironworker (Generalist) — 121 questions](https://redsealquiz.ca/420b-all-questions.html)
+- [456A Welder — 123 questions](https://redsealquiz.ca/456a-all-questions.html)
+- [308A Sheet Metal Worker — 119 questions](https://redsealquiz.ca/308a-all-questions.html)
 - [Gasfitter Class A — 110 questions](https://redsealquiz.ca/gasfitter-class-a-all-questions.html)
 
 ## What each bank covers, by topic
@@ -117,22 +117,22 @@ Refrigeration Cycle 23 · Refrigerants 25 · Components 22 · Controls & Electri
 - Practise interactively: https://redsealquiz.ca/313a.html
 - Free 50-question mock exam (PDF, no sign-up): https://redsealquiz.ca/dl/313a-free-50-question-mock-exam.pdf
 
-### 420B Ironworker (Generalist) — 117 practice questions (official exam: 120)
-Structural Steel Erection 24 · Rigging & Hoisting 22 · Welding & Cutting 18 · Blueprint Reading & Layout 15 · Reinforcing Steel 15 · Safety & Fall Protection 14 · Tools & Equipment 9
+### 420B Ironworker (Generalist) — 121 practice questions (official exam: 120)
+Structural Steel Erection 24 · Rigging & Hoisting 23 · Welding & Cutting 18 · Blueprint Reading & Layout 15 · Reinforcing Steel 18 · Safety & Fall Protection 14 · Tools & Equipment 9
 
 - Read the whole bank: https://redsealquiz.ca/420b-all-questions.html
 - Practise interactively: https://redsealquiz.ca/420b.html
 - Free 50-question mock exam (PDF, no sign-up): https://redsealquiz.ca/dl/420b-free-50-question-mock-exam.pdf
 
-### 456A Welder — 119 practice questions (official exam: 125)
-Safety & Tools 15 · OFC 11 · SMAW 24 · GMAW 25 · GTAW 20 · FCAW 12 · Theory 12
+### 456A Welder — 123 practice questions (official exam: 125)
+Safety & Tools 17 · OFC 12 · SMAW 24 · GMAW 25 · GTAW 20 · FCAW 12 · Theory 13
 
 - Read the whole bank: https://redsealquiz.ca/456a-all-questions.html
 - Practise interactively: https://redsealquiz.ca/456a.html
 - Free 50-question mock exam (PDF, no sign-up): https://redsealquiz.ca/dl/456a-free-50-question-mock-exam.pdf
 
-### 308A Sheet Metal Worker — 117 practice questions (official exam: 120)
-Layout & Pattern Dev 20 · Sheet Metal Fabrication 24 · Welding & Joining 20 · HVAC Systems 26 · Safety & Code 13 · Tools & Equipment 14
+### 308A Sheet Metal Worker — 119 practice questions (official exam: 120)
+Layout & Pattern Dev 20 · Sheet Metal Fabrication 24 · Welding & Joining 20 · HVAC Systems 27 · Safety & Code 14 · Tools & Equipment 14
 
 - Read the whole bank: https://redsealquiz.ca/308a-all-questions.html
 - Practise interactively: https://redsealquiz.ca/308a.html
