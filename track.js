@@ -126,6 +126,19 @@
       return;
     }
 
+    /* The salary and career pages link into the free quiz from two places,
+       tagged career_bridge (the line above the first section) and career_quiz
+       (the box further down). They were tagged on 2026-09-12 so the two could be
+       told apart, but they are plain internal links - not Ko-fi, not the hero,
+       not a PDF - so no branch here ever sent them and both counted zero. The
+       page's own name does not start with the trade code, so the trade comes
+       from the quiz page the link points at. */
+    var cta = a.getAttribute("data-cta") || "";
+    if (cta === "career_bridge" || cta === "career_quiz") {
+      send("quiz_cta", { trade: tradeFromPath(href), placement: cta, source_page: page });
+      return;
+    }
+
     if (/\.pdf($|\?)/i.test(href)) {
       send("generate_lead", {
         trade: tradeFromPath(href) !== "unknown" ? tradeFromPath(href) : tradeFromPath(page),
