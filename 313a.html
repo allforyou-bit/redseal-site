@@ -1225,6 +1225,8 @@ function startMockExam(n) {
 }
 
 function renderMockQ() {
+  /* showMockResults() replaces #mockBody's contents; restore the question view for the next mock */
+  if (!document.getElementById('mockQText')) document.getElementById('mockBody').innerHTML = '<div id="mockQText" class="mock-q-text"></div><div id="mockOpts" style="display:flex;flex-direction:column;gap:10px"></div><div id="mockFeedback" class="mock-feedback"></div><button id="mockNextBtn" class="btn-mock-next">Next →</button>';
   const q = mockQs[mockIdx], total = mockQs.length;
   document.getElementById('mockProg').textContent = `Question ${mockIdx+1} of ${total}`;
   document.getElementById('mockBarFill').style.width = (mockIdx/total*100) + '%';
@@ -1579,7 +1581,7 @@ function fcMarkAgain(){
 <script>if(!localStorage.getItem('cookieOk')){const b=document.getElementById('cookieBanner');if(b)b.style.display='flex';}</script>
 
 <!-- MOCK LAUNCH MODAL -->
-<div id="mockLaunch" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:400;align-items:center;justify-content:center;padding:16px">
+<div id="mockLaunch" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:401;align-items:center;justify-content:center;padding:16px">
   <div style="background:#fff;border-radius:16px;width:100%;max-width:440px;padding:32px 28px;text-align:center">
     <div style="font-size:2.4rem;margin-bottom:10px">📋</div>
     <h2 style="color:#1a3a5c;font-size:1.2rem;margin-bottom:8px">313A Mock Exam</h2>
