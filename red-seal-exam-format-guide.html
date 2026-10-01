@@ -77,8 +77,15 @@ li{margin-bottom:8px;font-size:.93rem;line-height:1.7}
 .cta-box h3{font-size:1.1rem;margin-bottom:10px;color:white}
 .cta-box p{opacity:.88;font-size:.88rem;margin-bottom:18px}
 .cta-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
-.cta-btn{display:block;background:#f0a500;color:white;text-decoration:none;border-radius:8px;padding:10px;font-weight:700;font-size:.82rem;text-align:center;transition:background .2s}
+.cta-btn{display:flex;align-items:center;justify-content:center;min-height:44px;background:#f0a500;color:white;text-decoration:none;border-radius:8px;padding:10px;font-weight:700;font-size:.82rem;text-align:center;transition:background .2s}
 .cta-btn:hover{background:#d4930a}
+/* Printable-bank row under the format table (2026-10-01): one chip per trade, each a single price, 44px tall */
+.bank-row{background:#fff8e7;border:1px solid #f0c36d;border-radius:10px;padding:14px 16px;margin:4px 0 24px}
+.bank-row p{font-size:.88rem;color:#4a5568;margin:0 0 10px;line-height:1.6}
+.bank-chips{display:flex;flex-wrap:wrap;gap:8px}
+.bank-chips a{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:6px 12px;background:#fff;border:1px solid #f0c36d;border-radius:8px;color:#1a3a5c;font-weight:700;font-size:.85rem;text-decoration:none}
+.bank-chips a b{color:#b45309;font-weight:800}
+.bank-chips a:hover{border-color:#1a3a5c}
 .ad-banner{background:#e8ecf0;border:2px dashed #b0bec5;text-align:center;padding:18px;font-size:.8rem;color:#646f70;margin:24px 0;border-radius:8px}
 .related-section{background:white;border-radius:12px;padding:24px;margin-top:32px;box-shadow:0 2px 10px rgba(0,0,0,.07)}
 .related-section h3{margin-top:0;margin-bottom:14px}
@@ -304,6 +311,23 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
 
   <p>At approximately <strong>1.8&ndash;2.4 minutes per question</strong>, the Red Seal exam tests both your knowledge and your ability to work efficiently under time pressure. Spending more than 3 minutes on any single question is a sign you should flag it, move on, and return.</p>
 
+  <div class="bank-row">
+    <p><strong>Printable question banks, by trade.</strong> Each is a PDF of that trade's full practice bank with the answer key and explanations, plus revision notes as a second file. The same questions are free on the quiz pages linked in the table.</p>
+    <div class="bank-chips">
+      <a data-cta="guide_bank_row" href="https://ko-fi.com/s/bd6ed3d51f" target="_blank" rel="noopener">421A <b>CA$29</b></a>
+      <a data-cta="guide_bank_row" href="https://ko-fi.com/s/823f281042" target="_blank" rel="noopener">310T <b>CA$24</b></a>
+      <a data-cta="guide_bank_row" href="https://ko-fi.com/s/1584a81d22" target="_blank" rel="noopener">310S <b>CA$24</b></a>
+      <a data-cta="guide_bank_row" href="https://ko-fi.com/s/e1fa90dc7a" target="_blank" rel="noopener">306A <b>CA$24</b></a>
+      <a data-cta="guide_bank_row" href="https://ko-fi.com/s/bd62e0f1ae" target="_blank" rel="noopener">313A <b>CA$19</b></a>
+      <a data-cta="guide_bank_row" href="https://ko-fi.com/s/e8e2006b00" target="_blank" rel="noopener">456A <b>CA$19</b></a>
+      <a data-cta="guide_bank_row" href="https://ko-fi.com/s/1320877d42" target="_blank" rel="noopener">308A <b>CA$19</b></a>
+      <a data-cta="guide_bank_row" href="https://ko-fi.com/s/a87e57e4db" target="_blank" rel="noopener">420B <b>CA$19</b></a>
+      <a data-cta="guide_bank_row" href="https://ko-fi.com/s/8ea5d0cd61" target="_blank" rel="noopener">309A <b>CA$24</b></a>
+      <a data-cta="guide_bank_row" href="https://ko-fi.com/s/53b9fe7161" target="_blank" rel="noopener">442A <b>CA$24</b></a>
+      <a data-cta="guide_bank_row" href="https://ko-fi.com/s/6bdf8876ff" target="_blank" rel="noopener">Gasfitter <b>CA$19</b></a>
+    </div>
+  </div>
+
   <h2>Question Format: What Kind of Questions Are on the Red Seal Exam?</h2>
 
   <p>All Red Seal exam questions are <strong>four-option multiple choice</strong>. Each question presents one correct answer and three plausible distractors. The exam is designed to test understanding of concepts — not memorization of isolated facts — which is why simply reading a textbook cover-to-cover rarely produces passing results.</p>
@@ -333,7 +357,7 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
 
   <h2>How Topic Weighting Works</h2>
 
-  <p>The Red Seal exam is divided into <strong>topic blocks</strong> based on the Red Seal Occupational Standard (RSOS). Red Seal publishes the exact number of questions in each block on every trade&rsquo;s exam information page. The total exam. Knowing the weighting tells you where to focus your study time.</p>
+  <p>The Red Seal exam is divided into <strong>topic blocks</strong> based on the Red Seal Occupational Standard (RSOS). Red Seal publishes the exact number of questions in each block on every trade&rsquo;s exam information page. Knowing the weighting tells you where to focus your study time.</p>
 
   <p><strong>421A Heavy Duty Equipment Technician official distribution (135 questions):</strong></p>
   <ul>
