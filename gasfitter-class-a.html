@@ -307,10 +307,11 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
   <!-- bank-offer: written by tools/wire_kofi_ctas.py, edit the template there -->
   <div id="bank-offer" style="scroll-margin-top:64px;background:linear-gradient(135deg,#1a3a5c,#2d6a9f);color:#fff;border-radius:12px;padding:16px 18px;margin:0 0 24px;box-shadow:0 2px 10px rgba(0,0,0,.07)">
     <p style="margin:0 0 6px;font-size:1.02rem;font-weight:800;line-height:1.4;color:#fff">The Gasfitter (Class A) Question Bank &mdash; printable PDF</p>
-    <p style="margin:0 0 12px;font-size:.9rem;line-height:1.6;color:rgba(255,255,255,.92)">All 110 Gasfitter questions with every answer explained, in one 84-page PDF: questions first with no answers shown, then the key, then the explanations. The 18-page Exam Revision Notes are included. Instant download.</p>
+    <p style="margin:0 0 12px;font-size:.9rem;line-height:1.6;color:rgba(255,255,255,.92)">All 110 Gasfitter questions with every answer explained, in one 84-page PDF: questions first with no answers shown, then the key, then the explanations. At the back: one full-length 100-question practice exam made from those same questions, timed to the official 4 hours, with its own answer sheet and key. The 18-page Exam Revision Notes are included. Instant download.</p>
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px">
       <a data-cta="top_offer" href="https://ko-fi.com/s/6bdf8876ff" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;background:#f0a500;color:#1a3a5c;padding:11px 22px;border-radius:8px;font-weight:800;text-decoration:none;font-size:.95rem">Get the Question Bank &mdash; CA$19 &rarr;</a>
       <span style="font-size:.84rem;color:rgba(255,255,255,.9)">The online quiz on this page stays free.</span>
+      <a href="/question-bank-updates.html" style="display:inline-flex;align-items:center;min-height:44px;font-size:.84rem;color:#fff;text-decoration:underline">How we correct the banks</a>
     </div>
   </div>
   <!-- /bank-offer -->
@@ -398,6 +399,17 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
     </div>
     <button class="btn-mock" onclick="openMockSetup()">&#x25B6; Start Mock Exam</button>
   </div>
+  <!-- exam-calendar: written by tools/wire_kofi_ctas.py, edit the template there; /ics.js binds it -->
+  <div class="exam-cal" data-ics-trade="gasfitter-class-a" data-ics-name="Gasfitter (Class A)" hidden style="background:#fff;border:1px solid #dce3ec;border-radius:10px;padding:12px 16px;margin:0 0 18px">
+    <p style="margin:0 0 8px;font-size:.88rem;line-height:1.55;color:#2c3e50"><strong style="color:#1a3a5c">Know your exam date?</strong> Get three calendar reminders: 21 days before (start full mock exams), 7 days before (revision-notes week) and the night before (Numbers &amp; Specs night).</p>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px">
+      <label style="display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:.88rem;font-weight:700;color:#1a3a5c">Exam date <input type="date" data-ics-date style="min-height:44px;padding:6px 10px;border:2px solid #dce3ec;border-radius:8px;font:inherit;font-weight:400;color:#2c3e50;background:#fff"></label>
+      <button type="button" data-ics-add style="display:inline-flex;align-items:center;min-height:44px;background:#fff;color:#1a3a5c;border:2px solid #1a3a5c;padding:10px 18px;border-radius:8px;font-weight:700;cursor:pointer;font-size:.88rem;font-family:inherit;text-align:left">Add my exam countdown to my calendar</button>
+    </div>
+    <p data-ics-msg role="status" aria-live="polite" style="margin:8px 0 0;font-size:.8rem;line-height:1.5;color:#4a5568">Downloads a calendar file (.ics). It is made on your device; the date is not sent anywhere.</p>
+  </div>
+  <script src="/ics.js" defer></script>
+  <!-- /exam-calendar -->
   <div class="nav-row">
     <button class="nav-btn prev" id="prevBtn" onclick="navigate(-1)" disabled>&#x2190; Prev</button>
     <span id="qCounter" style="font-size:.85rem;color:var(--muted);"></span>
