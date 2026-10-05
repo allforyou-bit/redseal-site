@@ -123,10 +123,14 @@
   .mock-opt:hover:not(:disabled){border-color:#2d6a9f;background:#eaf0f9}
   .mock-opt.mock-c{background:#e8f9ef;border-color:#27ae60;color:#1a6636}
   .mock-opt.mock-w{background:#fdecea;border-color:#e12e1c;color:#922b21}
-  /* MOCK-ABOVE-CHROME 2026-10-05: at z-index 400 the cookie banner (999), progress bar (6999), keyboard hint (7100)
-     and 25-answer mock bar (9990) all sat on top of the open mock. A first-time visitor's banner covered the
-     result screen's offer and card-payment line, and taps on options/Next near the bottom hit the banner. */
-  .mock-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:9995;align-items:flex-start;justify-content:center;padding:16px;overflow-y:auto}
+  /* MOCK-ABOVE-CHROME 2026-10-05: fixed layers measured on this page (on load, after 25 practice answers,
+     on a resumed visit): nav 200 (sticky), #cookieBanner 999, #uxBar 6999, keyboard hint 7100 (desktop),
+     25-answer mock bar 9990, resume toast 9998, #comboToast 9999 (pointer-events:none).
+     The overlay sits one above the highest of them, and #cookieBanner is also hidden while it is open
+     (MOCK-HIDES-BANNER, after the banner).
+     At z-index 400 the banner covered the result screen's offer and card-payment line and took
+     26-34 of 50-60 option/Next taps per mock at 375x812 (raised to 9995 earlier the same day). */
+  .mock-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:10000;align-items:flex-start;justify-content:center;padding:16px;overflow-y:auto}
   .mock-panel{background:#fff;border-radius:16px;width:100%;max-width:680px;margin:auto;box-shadow:0 20px 60px rgba(0,0,0,.3)}
   .mock-head{background:#1a3a5c;border-radius:16px 16px 0 0;padding:16px 20px;display:flex;align-items:center;gap:12px}
   .mock-bar-wrap{height:5px;background:#dce3ec}
@@ -501,6 +505,22 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
   <span style="font-size:.84rem;">We use Google Analytics cookies; your study progress is saved in your browser's local storage. <a href="/privacy.html" style="color:#f0a500;">Privacy Policy</a></span>
   <button onclick="acceptCookies()" style="background:#f0a500;color:#fff;border:none;border-radius:6px;padding:8px 18px;font-weight:700;cursor:pointer;font-size:.84rem;min-height:44px;">Accept</button>
 </div>
+<script>
+/* MOCK-HIDES-BANNER 2026-10-05: hide the cookie banner while the mock overlay is open; it comes back when the
+   mock closes unless Accept was pressed (that sets display:none, which this does not touch). Every way the mock
+   opens or closes - start, Try Again, New Exam, Exit, Back to Practice Mode, the timer - writes the overlay's
+   style, so one observer on that attribute covers them all. */
+(function(){
+  function wire(){
+    var ov=document.getElementById('mockOverlay'),cb=document.getElementById('cookieBanner');
+    if(!ov||!cb)return;
+    function sync(){cb.style.visibility=getComputedStyle(ov).display==='none'?'':'hidden';}
+    sync();
+    try{new MutationObserver(sync).observe(ov,{attributes:true,attributeFilter:['style','class']});}catch(e){}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wire);else wire();
+})();
+</script>
 
 <script>
 /* ── COMBO STREAK + REPORT ── */
@@ -881,6 +901,8 @@ function startMockTimer(){
   },1000);
 }
 function renderMockQ(){
+  /* MOCK-SCROLL-TOP 2026-10-05: the overlay kept its scroll position when its content was swapped, so the next question and, after an all-wrong run, the result screen opened part-way down (score up to 1,349 px above the screen at 375x812). Start both at the top. */
+  document.getElementById('mockOverlay').scrollTop=0;
   if(mockIdx>=mockQs.length){showMockResults();return;}
   const q=mockQs[mockIdx];
   const letters=['A','B','C','D'];
@@ -904,6 +926,7 @@ function answerMockQ(i){
 function mockNext(){mockIdx++;renderMockQ();}
 const PRODUCT_URL_456A = 'https://ko-fi.com/s/e8e2006b00';
 function showMockResults(){
+  document.getElementById('mockOverlay').scrollTop=0;
   clearInterval(mockTimer);
   const correct=mockAnswers.filter(a=>a.correct).length;
   const total=mockQs.length;

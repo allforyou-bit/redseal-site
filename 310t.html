@@ -102,7 +102,17 @@ footer a{color:var(--accent);margin:0 8px;text-decoration:none}
   .mock-opt:hover:not(:disabled){border-color:#2d6a9f;background:#eaf0f9}
   .mock-opt.mock-c{background:#e8f9ef;border-color:#27ae60;color:#1a6636}
   .mock-opt.mock-w{background:#fdecea;border-color:#e12e1c;color:#922b21}
-  .mock-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:400;align-items:flex-start;justify-content:center;padding:16px;overflow-y:auto}
+  /* MOCK-ABOVE-CHROME 2026-10-05: fixed layers measured on this page (on load, after 25 practice answers,
+     on a resumed visit): nav 200 (sticky), #uxBar 6999, keyboard hint 7100 (desktop), resume toast 9998,
+     #cookieBanner 9999, #comboToast 9999 (pointer-events:none).
+     (The 25-answer mock bar script further down never shows its bar here: nothing sends the
+     quizAnswered event it waits for.)
+     The overlay sits one above the highest of them, and #cookieBanner is also hidden while it is open
+     (MOCK-HIDES-BANNER, after the banner).
+     #mockLaunch is 10001 so New Exam opens it over a result screen.
+     At z-index 400, #cookieBanner and #uxBar took 27-32 of the 50 option/Next taps in a 25-question
+     mock at 375x812 (19-25 at 1280x800), and the banner covered the result screen's card-payment line. */
+  .mock-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:10000;align-items:flex-start;justify-content:center;padding:16px;overflow-y:auto}
   .mock-panel{background:#fff;border-radius:16px;width:100%;max-width:680px;margin:auto;box-shadow:0 20px 60px rgba(0,0,0,.3)}
   .mock-head{background:#1a3a5c;border-radius:16px 16px 0 0;padding:16px 20px;display:flex;align-items:center;gap:12px}
   .mock-bar-wrap{height:5px;background:#dce3ec}
@@ -1530,6 +1540,8 @@ function startMockExam(n) {
 }
 
 function renderMockQ() {
+  /* MOCK-SCROLL-TOP 2026-10-05: the overlay kept its scroll position when its content was swapped, so the next question and, after an all-wrong run, the result screen opened part-way down (score up to 1,349 px above the screen at 375x812). Start both at the top. */
+  document.getElementById('mockOverlay').scrollTop=0;
   /* showMockResults() replaces #mockBody's contents; restore the question view for the next mock */
   if (!document.getElementById('mockQText')) document.getElementById('mockBody').innerHTML = '<div id="mockQText" class="mock-q-text"></div><div id="mockOpts" style="display:flex;flex-direction:column;gap:10px"></div><div id="mockFeedback" class="mock-feedback"></div><button id="mockNextBtn" class="btn-mock-next">Next →</button>';
   const q = mockQs[mockIdx], total = mockQs.length;
@@ -1569,6 +1581,7 @@ function answerMockQ(chosen) {
 
 const PRODUCT_URL_310T = 'https://ko-fi.com/s/823f281042';
 function showMockResults() {
+  document.getElementById('mockOverlay').scrollTop=0;
   let correct = 0; const ts = {};
   mockQs.forEach((q, i) => {
     if (!ts[q.topicLabel]) ts[q.topicLabel] = {c:0,t:0};
@@ -1780,10 +1793,26 @@ function fcMarkAgain(){fcNav(1);}
   <span>We use Google Analytics cookies; your study progress is saved in your browser's local storage. <a href="/privacy.html" style="color:#f0a500">Privacy Policy</a></span>
   <button onclick="document.getElementById('cookieBanner').style.display='none';localStorage.setItem('cookieOk','1')" style="background:#f0a500;color:#fff;border:none;padding:8px 18px;border-radius:6px;font-weight:700;cursor:pointer;white-space:nowrap">Got it ✓</button>
 </div>
+<script>
+/* MOCK-HIDES-BANNER 2026-10-05: hide the cookie banner while the mock overlay is open; it comes back when the
+   mock closes unless Accept was pressed (that sets display:none, which this does not touch). Every way the mock
+   opens or closes - start, Try Again, New Exam, Exit, Back to Practice Mode, the timer - writes the overlay's
+   style, so one observer on that attribute covers them all. */
+(function(){
+  function wire(){
+    var ov=document.getElementById('mockOverlay'),cb=document.getElementById('cookieBanner');
+    if(!ov||!cb)return;
+    function sync(){cb.style.visibility=getComputedStyle(ov).display==='none'?'':'hidden';}
+    sync();
+    try{new MutationObserver(sync).observe(ov,{attributes:true,attributeFilter:['style','class']});}catch(e){}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wire);else wire();
+})();
+</script>
 <script>if(!localStorage.getItem('cookieOk')){const b=document.getElementById('cookieBanner');if(b)b.style.display='flex';}</script>
 
 <!-- MOCK LAUNCH MODAL -->
-<div id="mockLaunch" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:401;align-items:center;justify-content:center;padding:16px">
+<div id="mockLaunch" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:10001;align-items:center;justify-content:center;padding:16px">
   <div style="background:#fff;border-radius:16px;width:100%;max-width:440px;padding:32px 28px;text-align:center">
     <div style="font-size:2.4rem;margin-bottom:10px">📋</div>
     <h2 style="color:#1a3a5c;font-size:1.2rem;margin-bottom:8px">310T Mock Exam</h2>
