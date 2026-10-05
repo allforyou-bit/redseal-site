@@ -105,7 +105,7 @@ footer a{color:var(--accent);margin:0 8px;text-decoration:none}
   /* MOCK-ABOVE-CHROME 2026-10-05: fixed layers measured on this page (on load, after 25 practice answers,
      on a resumed visit): nav 200 (sticky), #uxBar 6999, keyboard hint 7100 (desktop), resume toast 9998,
      #cookieBanner 9999, #comboToast 9999 (pointer-events:none).
-     (The 25-answer mock bar script further down never shows its bar here: nothing sends the
+     (The 25-answer mock bar, 9990, never showed here until MOCK-BAR-FIRES: nothing sent the
      quizAnswered event it waits for.)
      The overlay sits one above the highest of them, and #cookieBanner is also hidden while it is open
      (MOCK-HIDES-BANNER, after the banner).
@@ -1590,7 +1590,10 @@ function fcMarkAgain(){fcNav(1);}
   var _ansCount = 0;
   var origSA = typeof selectAnswer !== 'undefined' ? selectAnswer : null;
   if (!origSA) return;
-  var _wrapped = selectAnswer;
+  /* MOCK-BAR-FIRES 2026-10-05: nothing ever sent quizAnswered, so this bar never appeared. Send it once for
+     each practice answer that registers (selectAnswer returns early on an answered question), the same
+     count the other quiz pages keep by wrapping selectAnswer. Mock answers do not go through selectAnswer. */
+  selectAnswer = function(idx, q) { var was = answered; origSA(idx, q); if (!was && answered) window.dispatchEvent(new Event('quizAnswered')); };
   window.addEventListener('quizAnswered', function() {
     _ansCount++;
     if (_ansCount >= 25 && !_ctaShown && !sessionStorage.getItem('ctaShown309a')) {
@@ -1744,14 +1747,42 @@ function fcMarkAgain(){fcNav(1);}
       +'<div style="display:flex;gap:4px;align-items:center;margin-bottom:3px"><code style="background:rgba(255,255,255,.18);padding:2px 6px;border-radius:4px;font-size:.71rem">1</code><span style="opacity:.6">to</span><code style="background:rgba(255,255,255,.18);padding:2px 6px;border-radius:4px;font-size:.71rem">4</code><span style="margin-left:4px">Select answer</span></div>'
       +'<div style="display:flex;gap:4px;align-items:center"><code style="background:rgba(255,255,255,.18);padding:2px 6px;border-radius:4px;font-size:.71rem">&#8592;</code><code style="background:rgba(255,255,255,.18);padding:2px 6px;border-radius:4px;font-size:.71rem">&#8594;</code><span style="margin-left:4px">Navigate</span></div>'
       +'<button id="kbdGotIt" style="margin-top:10px;background:#f0a500;border:none;color:#fff;padding:5px 0;border-radius:7px;cursor:pointer;font-size:.73rem;font-weight:700;width:100%;font-family:inherit">Got it &#10003;</button>';
-    document.body.appendChild(kp);
-    document.getElementById('kbdGotIt').onclick=function(){kp.remove();localStorage.setItem('kbdSeen3','1');};
+    /* HINT-AFTER-BANNER 2026-10-05: on a first desktop visit this hint and #cookieBanner overlapped in the
+       bottom-right corner (measured at 1280x800, 1920x1080 and 900x700): where the banner is z-index 999 the hint
+       covered its Accept button, where it is 9999 the banner covered the hint's Got it. The hint now waits until
+       the banner is dismissed; a visitor who has already accepted sees it on load, in the same place as before. */
+    var showKbd=function(){
+      document.body.appendChild(kp);
+      document.getElementById('kbdGotIt').onclick=function(){kp.remove();localStorage.setItem('kbdSeen3','1');};
+    };
+    var kcb=document.getElementById('cookieBanner');
+    if(kcb&&getComputedStyle(kcb).display!=='none'){
+      try{
+        var kmo=new MutationObserver(function(){if(getComputedStyle(kcb).display==='none'){kmo.disconnect();showKbd();}});
+        kmo.observe(kcb,{attributes:true,attributeFilter:['style']});
+      }catch(x){showKbd();}
+    }else showKbd();
   }
 
   /* ── keyboard handler ── */
   document.addEventListener('keydown',function(e){
     if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA'||e.ctrlKey||e.metaKey||e.altKey) return;
     var k=e.key;
+    /* MOCK-KEYS 2026-10-05: with the mock open, 1-4 and the arrows answered and moved the practice question
+       hidden behind it. While #mockOverlay is open they drive the mock instead (1-4 pick that option, right
+       arrow presses Next once it is showing); while the mock-length picker #mockLaunch is open they do nothing. */
+    var mko=document.getElementById('mockOverlay'),mkl=document.getElementById('mockLaunch');
+    if(mkl&&getComputedStyle(mkl).display!=='none') return;
+    if(mko&&getComputedStyle(mko).display!=='none'){
+      if(k>='1'&&k<='4'){
+        var mb=document.querySelectorAll('#mockBody .mock-opt:not([disabled])')[parseInt(k)-1];
+        if(mb){mb.click();e.preventDefault();}
+      }else if(k==='ArrowRight'){
+        var mn=document.getElementById('mockNextBtn');
+        if(mn&&getComputedStyle(mn).display!=='none'){mn.click();e.preventDefault();}
+      }
+      return;
+    }
     if(k>='1'&&k<='4'){
       var opts=document.querySelectorAll('#questionCard .option-btn:not([disabled])');
       var i=parseInt(k)-1;
