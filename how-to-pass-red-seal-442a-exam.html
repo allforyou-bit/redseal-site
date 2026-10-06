@@ -69,7 +69,7 @@
       "name": "What is the hardest part of the 442A Red Seal exam?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Most candidates find PLC ladder logic interpretation and instrumentation signal processing the most challenging sections. PLC questions require reading and interpreting ladder logic diagrams and understanding how normally-open and normally-closed contacts, coils, timers, and counters interact. Instrumentation questions require understanding 4-20mA loop theory, transmitter types, and PID control fundamentals — topics that many electricians encounter in the field without fully understanding the underlying theory."
+        "text": "Red Seal does not publish which sections candidates find hardest. For PLCs, practise reading ladder logic and how normally-open and normally-closed contacts, coils, timers, and counters interact. For instrumentation, study 4-20mA loop theory, transmitter types, and PID control fundamentals."
       }
     }
   ]
@@ -273,7 +273,7 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
     <div class="tip-card">
       <div class="tip-num">Tip 3</div>
       <h3>Read PLC Ladder Logic — Contacts, Coils, Timers, Counters</h3>
-      <p>PLC ladder logic questions are the most technically unique part of the 442A exam — they require a skill that is not tested on any other Red Seal exam. The exam presents ladder logic diagrams and asks what happens under given input conditions. Key elements to know: Normally Open (NO) contact: passes current when the associated input or coil is energized (in the PLC's memory, not physical state). Normally Closed (NC) contact: passes current when the associated coil is NOT energized — used for interlocks and stop buttons. Output coil (O): energized when the rung has current path — sets the bit in PLC memory. TON (Timer On-Delay): begins timing when rung goes TRUE, output contact closes after preset time — common for motor start delays. TOF (Timer Off-Delay): output remains TRUE for preset time after rung goes FALSE — used for lubrication pump run-down. CTU (Count Up): counts rising edges, sets output when accumulated value reaches preset.</p>
+      <p>Red Seal's 442A breakdown gives automated control systems (installing, programming and maintaining them) Task F-30, 6 of the 100 questions, and input/output devices Task F-29, 8 questions (red-seal.ca, checked October 2026). PLCs are not unique to the 442A: the Instrumentation and Control Technician exam has a PLC task of its own (Task 26, 5 of 125 questions). Practise reading ladder logic and predicting what happens under given input conditions. Key elements to know: Normally Open (NO) contact: passes current when the associated input or coil is energized (in the PLC's memory, not physical state). Normally Closed (NC) contact: passes current when the associated coil is NOT energized — used for interlocks and stop buttons. Output coil (O): energized when the rung has current path — sets the bit in PLC memory. TON (Timer On-Delay): begins timing when rung goes TRUE, output contact closes after preset time — common for motor start delays. TOF (Timer Off-Delay): output remains TRUE for preset time after rung goes FALSE — used for lubrication pump run-down. CTU (Count Up): counts rising edges, sets output when accumulated value reaches preset.</p>
     </div>
 
     <div class="tip-card">
@@ -312,7 +312,7 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
       <strong>Mistake 1 — Treating the 442A like the 309A.</strong> Prepare for the PLC, instrumentation and VFD questions with material written for them, not with Construction Electrician study material. Red Seal weights them at about 22 of the 100 (process control systems 17, drives 5; checked September 2026). The 442A is not simply a harder 309A — it tests fundamentally different subject matter.
     </div>
     <div class="danger">
-      <strong>Mistake 2 — Not being able to read PLC ladder logic diagrams.</strong> PLC questions require reading a diagram and predicting output states — a skill that requires dedicated practice. Candidates who have only supervised PLC programming but never traced logic diagrams are frequently surprised by how difficult these questions feel under exam pressure.
+      <strong>Mistake 2 — Not being able to read PLC ladder logic diagrams.</strong> Reading a ladder diagram and predicting output states is a skill that needs dedicated practice, especially if you have supervised PLC programming but never traced the logic yourself.
     </div>
     <div class="danger">
       <strong>Mistake 3 — Confusing star-delta current reduction.</strong> Star-delta reduces starting current to 1/3 of direct-on-line current, not 1/√3. The voltage applied to each winding is reduced by 1/√3 in star configuration, but because current is proportional to voltage, current per winding is also reduced by 1/√3 — and the line current is further reduced by another 1/√3 factor for the delta-to-star line current relationship, making the total reduction 1/3. This calculation appears directly on exams.
