@@ -1170,6 +1170,9 @@ function buildMockQs(n) {
     const h = [...byTopic[t].hard].sort(()=>Math.random()-.5);
     sel.push(...e.slice(0,eN), ...m.slice(0,mN), ...h.slice(0,hN));
   });
+  /* MOCK-TOP-UP 2026-10-14: the difficulty quota above (40% easy, 20% hard in each topic) comes up short wherever a topic has fewer easy or hard questions than its share: the 100 button on 308A built 87 questions, and ?mock=999 built 99 of 120 there and 322 of 406 on 421A. Fill what is missing from the questions not yet picked, at random and without repeats, up to the length asked for or the whole bank. When the quota already fills the mock, nothing is added. */
+  const want = Math.min(n, questions.length);
+  if (sel.length < want) { const used = new Set(sel); sel.push(...questions.filter(q => !used.has(q)).sort(()=>Math.random()-.5).slice(0, want - sel.length)); }
   return sel.sort(()=>Math.random()-.5).slice(0,n);
 }
 
@@ -1225,6 +1228,8 @@ function answerMockQ(chosen) {
 const PRODUCT_URL_308A = 'https://ko-fi.com/s/1320877d42';
 function showMockResults() {
   document.getElementById('mockOverlay').scrollTop=0;
+  /* MOCK-TIMER-STOP 2026-10-14: the timer kept counting on the result screen and, when it ran out, drew the result again (back to the top, the review folded) and saved the same mock to the history a second time. Stop it here, as 306A, 420B, 442A, 456A and Gasfitter do. */
+  clearInterval(mockTimer);
   let correct = 0; const ts = {};
   mockQs.forEach((q, i) => {
     if (!ts[q.topicLabel]) ts[q.topicLabel] = {c:0,t:0};
