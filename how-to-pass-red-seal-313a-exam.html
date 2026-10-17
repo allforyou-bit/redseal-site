@@ -69,7 +69,7 @@
       "name": "What is the hardest part of the 313A Red Seal exam?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Red Seal does not publish which sections candidates find hardest. Refrigeration system diagnosis is demanding: it means reading pressure-temperature relationships to calculate superheat and subcooling values, and using those values to identify system faults. These questions require both accurate mental math and understanding of what normal vs. abnormal values indicate about system condition."
+        "text": "Red Seal does not publish which sections candidates find hardest. Refrigeration system diagnosis needs careful study: it means reading pressure-temperature relationships to calculate superheat and subcooling values, and using those values to identify system faults. These questions require both accurate mental math and understanding of what normal vs. abnormal values indicate about system condition."
       }
     }
   ]
@@ -227,7 +227,7 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
   <!-- AdSense banner placeholder -->
   <div class="article">
 
-    <p>The Red Seal 313A Refrigeration and Air Conditioning Mechanic exam tests theory in depth. It is not enough to know how to charge a system — you need to understand what high suction superheat with normal subcooling tells you about system condition, why a scroll compressor fails on startup when liquid-logged, and what the GWP of R-454B means for refrigerant regulations. Study the reasoning behind refrigeration principles, not just the procedures.</p>
+    <p>The Red Seal 313A Refrigeration and Air Conditioning Mechanic exam tests theory in depth. It is not enough to know how to charge a system — you need to understand what high suction superheat with high subcooling tells you about system condition, what refrigerant that migrated into a scroll compressor during the off cycle does to it at start-up, and what the GWP of R-454B means for refrigerant regulations. Study the reasoning behind refrigeration principles, not just the procedures.</p>
     <p>Here is an accurate breakdown of what the 313A exam tests, how to prioritize your study time, and the specific concepts worth knowing well.</p>
 
     <h2>What the 313A Exam Looks Like</h2>
@@ -259,8 +259,8 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
         <strong>Suction Superheat</strong> = Actual suction temp − Saturation temp at suction pressure<br>
         <strong>Liquid Subcooling</strong> = Saturation temp at discharge pressure − Actual liquid line temp<br><br>
         <strong>High suction superheat + low subcooling</strong> → low refrigerant charge<br>
-        <strong>High suction superheat + normal subcooling</strong> → metering device restriction or low evaporator airflow<br>
-        <strong>Low suction superheat</strong> → overcharge or metering device flooding (liquid slugging risk)<br>
+        <strong>High suction superheat + high subcooling</strong> → liquid-line or metering restriction (Rheem's troubleshooting table gives the same pair for low outdoor ambient and an inefficient compressor)<br>
+        <strong>Low suction superheat</strong> → overcharge, low evaporator airflow or metering device flooding (liquid slugging risk)<br>
         <strong>High subcooling</strong> → overcharge or liquid line restriction
       </div>
     </div>
@@ -280,7 +280,7 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
     <div class="tip-card">
       <div class="tip-num">Tip 4</div>
       <h3>Study Compressor Types and Their Specific Failure Modes</h3>
-      <p>Learn how each compressor type fails in its own way. Scroll compressors: cannot reverse rotation (will not pump refrigerant and can be damaged if wired incorrectly in 3-phase applications — verify rotation direction on installation). Scroll compressors are also vulnerable to liquid slugging on startup if refrigerant has migrated to the crankcase during the off cycle — this is why crankcase heaters are used. Reciprocating compressors: valve failure is a common issue (broken or leaking suction or discharge valves — diagnosed by high suction and low discharge pressure simultaneously). Rotary/scroll: require proper lubrication with appropriate oil type (POE for HFCs, mineral for R-22).</p>
+      <p>Learn how each compressor type fails in its own way. Scroll compressors: they compress in one rotational direction only — a three-phase scroll wired with two phases swapped runs backwards, builds no pressure differential and may sound abnormal. Copeland states that a short period of reverse running (under one hour) has no negative impact on durability and that the internal overload trips after several minutes, but repeated restarts in reverse permanently damage the bearings, so verify rotation at start-up (suction pressure should drop and discharge pressure rise). Scrolls tolerate some liquid — compliance lets the scrolls separate so liquid can pass through — but excessive migration of refrigerant into the shell during the off cycle can still cause oil pump-out on start-up, excessive starting noise and bearing erosion. That is why Copeland ties a crankcase heater to the compressor's charge limit: on its 1.5 to 5 ton air-conditioning scrolls it is recommended on single-phase models when the charge is over the limit and required above 120% of it, and required on three-phase models over the limit when an accumulator cannot drain liquid freely during the off cycle. Reciprocating compressors: defective compressor valves show up as low head pressure with high suction pressure — Rheem's troubleshooting chart lists them under that symptom, alongside a flowcheck piston that is too large and incorrect capillary tubes, and its system problem table gives an inefficient compressor low discharge pressure, high suction pressure and low compressor amps, so rule out the metering device before condemning the compressor. For oil, Copeland's ZBKQ refrigeration scroll catalogue (section 3.4, Oil types) states that in HCFC R-22 applications mineral oil is used in the compressor and that polyol ester (POE) lubricants must be used with HFC refrigerants.</p>
     </div>
 
     <div class="tip-card">
