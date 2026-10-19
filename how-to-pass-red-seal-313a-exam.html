@@ -69,7 +69,7 @@
       "name": "What is the hardest part of the 313A Red Seal exam?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Red Seal does not publish which sections candidates find hardest. Refrigeration system diagnosis needs careful study: it means reading pressure-temperature relationships to calculate superheat and subcooling values, and using those values to identify system faults. These questions require both accurate mental math and understanding of what normal vs. abnormal values indicate about system condition."
+        "text": "Red Seal does not publish which sections candidates find hardest. Refrigeration system diagnosis needs careful study: it means reading pressure-temperature relationships to calculate superheat and subcooling values, and using those values to identify system faults. Doing this well takes accurate arithmetic and an understanding of what normal and abnormal values indicate about system condition."
       }
     }
   ]
@@ -257,9 +257,9 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
       <p>Superheat and subcooling are the two most fundamental diagnostic tools in refrigeration; learn both the calculation and the interpretation. Know the formulas cold:</p>
       <div class="code-box">
         <strong>Suction Superheat</strong> = Actual suction temp − Saturation temp at suction pressure<br>
-        <strong>Liquid Subcooling</strong> = Saturation temp at discharge pressure − Actual liquid line temp<br><br>
+        <strong>Liquid Subcooling</strong> = Saturation temp at liquid line (high-side) pressure − Actual liquid line temp, both read on the liquid line at the condenser outlet (Rheem's subcooling calculation takes the pressure and the temperature at the liquid line service valve)<br><br>
         <strong>High suction superheat + low subcooling</strong> → low refrigerant charge<br>
-        <strong>High suction superheat + high subcooling</strong> → liquid-line or metering restriction (Rheem's troubleshooting table gives the same pair for low outdoor ambient and an inefficient compressor)<br>
+        <strong>High suction superheat + high subcooling</strong> → liquid-line or metering restriction (Rheem's "System Problem Indicators" table, in installation instructions 92-21354-37 and 92-21354-78, gives the same pair for low outdoor ambient and an inefficient compressor)<br>
         <strong>Low suction superheat</strong> → overcharge, low evaporator airflow or metering device flooding (liquid slugging risk)<br>
         <strong>High subcooling</strong> → overcharge or liquid line restriction
       </div>
@@ -274,7 +274,7 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
     <div class="tip-card">
       <div class="tip-num">Tip 3</div>
       <h3>Know TXV vs. EEV Operation and Their Different Failure Modes</h3>
-      <p>Thermostatic Expansion Valves (TXV) and Electronic Expansion Valves (EEV) are both common metering devices with different operating principles and different failure signatures. TXV: mechanically controlled by a sensing bulb on the suction line — it opens when suction superheat rises and closes when it falls. EEV: controlled by an electronic controller using multiple sensor inputs (suction pressure, suction temp, discharge pressure) — allows tighter superheat control and enables variable capacity operation. A failed EEV stepper motor produces a fixed restriction (stuck closed = starved evaporator) or uncontrolled flooding (stuck open = liquid slugging).</p>
+      <p>Thermostatic Expansion Valves (TXV) and Electronic Expansion Valves (EEV) are two metering devices with different operating principles and different failure signatures. TXV: mechanically controlled by a sensing bulb on the suction line — it opens when suction superheat rises and closes when it falls. EEV: controlled by an electronic controller using multiple sensor inputs (suction pressure, suction temp, discharge pressure) — allows tighter superheat control and enables variable capacity operation. A failed EEV stepper motor produces a fixed restriction (stuck closed = starved evaporator) or uncontrolled flooding (stuck open = liquid slugging).</p>
     </div>
 
     <div class="tip-card">
