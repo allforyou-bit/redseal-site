@@ -10,9 +10,14 @@
      generate_lead      free 50-question mock exam PDF downloaded
      quiz_engaged       visitor answered 5 questions in the on-page quiz
      quiz_resumed       a returning visitor landed on a quiz with saved progress
-     quiz_cta           hero "start practising" button, salary/career quiz links
+     quiz_cta           hero "start practising" button, the hero's mock-exam
+                        link, salary/career quiz links
      offer_view         a priced offer was at least half on screen for 1 second
                         (once per placement per page view)
+     offer_visible      the same, and nothing was painted over it: for 1 second
+                        the element at the centre of the link was the link
+                        (once per placement per page view; added 2026-10-22,
+                        offer_view itself is unchanged)
      mock_finished      the mock exam result screen was shown
 
    Parameters worth reporting on (register as GA4 event-scoped custom
@@ -194,6 +199,15 @@
       return;
     }
 
+    /* The hero's second link, added 2026-10-22: "Or take a timed 25-question
+       mock exam", to the page's own ?mock=25. The mock's result screen carries
+       the best-placed offer on the site, but its launcher sits five to nine
+       phone screens down. Same event as the hero button, its own placement. */
+    if (a.getAttribute("data-cta") === "hero_mock") {
+      send("quiz_cta", { trade: tradeFromPath(page), placement: "hero_mock", source_page: page });
+      return;
+    }
+
     /* The salary and career pages link into the free quiz from two places,
        tagged career_bridge (the line above the first section) and career_quiz
        (the box further down). They were tagged on 2026-09-12 so the two could be
@@ -332,6 +346,120 @@
     }
   }
 
+  /* offer_visible - added 2026-10-22 (redseal-internal
+     docs/offer-ux-audit-20261022.md, change #5). An IntersectionObserver
+     measures geometry only and cannot see what is painted over an element,
+     so offer_view also counts offers nobody could see: the sticky bar's link
+     under the mock overlay, a block resting behind the cookie notice or the
+     bottom bar. offer_view stays exactly as it was, so the readouts that
+     count it stay comparable; offer_visible is sent next to it, with the same
+     parameters, once per placement per page view, when an anchor of that
+     placement has been at least half on screen with the tab in front AND the
+     element at the centre of its box (document.elementFromPoint) has been the
+     anchor itself or something inside it, without a break, for VISIBLE_MS.
+     While an anchor is on screen its centre is checked every SAMPLE_MS, so an
+     overlay that opens or closes, or a scroll that moves the link out from
+     under the cookie notice, is seen within a quarter of a second. A link that
+     wraps over two lines is tested at the centre of its largest line box,
+     where its text is. It has its own observer and state, so nothing above
+     changes. */
+  var VISIBLE_MS = 1000, SAMPLE_MS = 250;
+  var visFired = {};  /* placement -> true once offer_visible has fired */
+  var vio = null, visInfo = null, visOn = null, visSince = null, visTimer = 0;
+
+  function visNow() {
+    return window.performance && typeof window.performance.now === "function"
+      ? window.performance.now() : new Date().getTime();
+  }
+
+  function centreIsSelf(a) {
+    var rects = a.getClientRects();
+    if (!rects || !rects.length) return false;
+    var r = rects[0];
+    for (var i = 1; i < rects.length; i++) {
+      if (rects[i].width * rects[i].height > r.width * r.height) r = rects[i];
+    }
+    var x = r.left + r.width / 2, y = r.top + r.height / 2;
+    if (!(x >= 0 && y >= 0 && x < window.innerWidth && y < window.innerHeight)) return false;
+    var e = document.elementFromPoint(x, y);
+    return !!e && (e === a || a.contains(e));
+  }
+
+  function visibleFire(o) {
+    if (visFired[o.placement]) return;
+    visFired[o.placement] = true;
+    var multi = Object.keys(tradesAt[o.placement] || {}).length > 1;
+    send("offer_visible", {
+      placement: o.placement,
+      trade: multi ? "multi" : o.trade,
+      link_type: o.link_type,
+      price_cad: multi ? null : o.price_cad,
+      source_page: location.pathname
+    });
+  }
+
+  function visForget(a) {
+    visOn.delete(a); visSince.delete(a);
+    try { vio.unobserve(a); } catch (e) { /* never break the page */ }
+  }
+
+  function visSample() {
+    visTimer = 0;
+    try {
+      if (document.hidden) { visSince.clear(); return; } /* restarted on return */
+      var t = visNow(), done = [];
+      visOn.forEach(function (a) {
+        var o = visInfo.get(a);
+        if (!o || visFired[o.placement] || !document.documentElement.contains(a)) { done.push(a); return; }
+        if (!centreIsSelf(a)) { visSince.delete(a); return; }
+        if (!visSince.has(a)) visSince.set(a, t);
+        if (t - visSince.get(a) >= VISIBLE_MS) { visibleFire(o); done.push(a); }
+      });
+      for (var i = 0; i < done.length; i++) visForget(done[i]);
+      if (visOn.size) visTimer = setTimeout(visSample, SAMPLE_MS);
+    } catch (e) { /* never break the page */ }
+  }
+
+  function visKick() {
+    if (visTimer) { clearTimeout(visTimer); visTimer = 0; }
+    visSample();
+  }
+
+  function onVisIntersect(entries) {
+    try {
+      var kick = false;
+      for (var i = 0; i < entries.length; i++) {
+        var e = entries[i], a = e.target, o = visInfo.get(a);
+        if (!o || visFired[o.placement]) { visForget(a); continue; }
+        if (e.isIntersecting && e.intersectionRatio >= 0.5) {
+          if (!visOn.has(a)) { visOn.add(a); kick = true; }
+        } else { visOn.delete(a); visSince.delete(a); }
+      }
+      if (kick) visKick();
+    } catch (err) { /* never break the page */ }
+  }
+
+  function onVisVisibility() {
+    try {
+      if (document.hidden) {
+        if (visTimer) { clearTimeout(visTimer); visTimer = 0; }
+        visSince.clear();
+      } else if (visOn.size) visKick();
+    } catch (e) { /* never break the page */ }
+  }
+
+  function registerVisible() {
+    var list = document.querySelectorAll('a[href*="ko-fi.com/"]');
+    for (var i = 0; i < list.length; i++) {
+      var a = list[i];
+      if (visInfo.has(a)) continue;
+      var o = offerInfo(a);
+      visInfo.set(a, o && !o.tip ? o : null);
+      if (!o || o.tip || visFired[o.placement]) continue;
+      vio.observe(a);
+    }
+  }
+
   /* mock_finished - fires when #mockBody turns into the result screen. Read
      from the rendered text rather than by wrapping showMockResults(): the
      eleven pages come from two generations with different variable names,
@@ -361,6 +489,7 @@
   function refresh() {
     refreshTimer = 0;
     try { if (io) registerOffers(); } catch (e) { /* never break the page */ }
+    try { if (vio) registerVisible(); } catch (e) { /* never break the page */ }
     try { checkMock(); } catch (e) { /* never break the page */ }
   }
 
@@ -372,6 +501,16 @@
       document.addEventListener("visibilitychange", onVisibility);
     }
   } catch (e) { io = null; }
+
+  try {
+    if (typeof window.IntersectionObserver === "function" && typeof window.WeakMap === "function" &&
+        typeof window.Map === "function" && typeof window.Set === "function" &&
+        typeof document.elementFromPoint === "function") {
+      visInfo = new WeakMap(); visOn = new Set(); visSince = new Map();
+      vio = new IntersectionObserver(onVisIntersect, { threshold: [0.5] });
+      document.addEventListener("visibilitychange", onVisVisibility);
+    }
+  } catch (e) { vio = null; }
 
   /* The runtime CTAs and the mock result appear long after load. Rescan when
      elements are added - never on text-only changes such as the mock timer

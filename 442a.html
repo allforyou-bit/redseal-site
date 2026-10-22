@@ -294,8 +294,10 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
     <span class="hero-pill">CEC / 2021 RSOS Aligned</span>
   </div>
   <!-- HERO-START-CTA: the hero had no interactive element at all and the first question sits about six phone screens down, so an arriving visitor had nothing to press. -->
-  <div style="margin-top:18px">
+  <!-- HERO-MOCK-CTA (2026-10-22, offer-ux-audit-20261022 #3): the mock launcher sits five to nine phone screens down and its result screen carries the best-placed offer on the site, so a second, quieter link starts the page's own 25-question mock (?mock=25 opens it on load). Beside the button where the row has room, under it on a phone, so the hero is no taller on a desktop. -->
+  <div style="margin-top:18px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 18px">
     <a href="#topicTabs" data-cta="hero_start" style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;background:#f0a500;color:#1a3a5c;padding:13px 26px;border-radius:8px;font-weight:800;text-decoration:none;font-size:.95rem;box-shadow:0 2px 10px rgba(0,0,0,.18)">Start practising &mdash; 130 442A questions &rarr;</a>
+    <a href="/442a.html?mock=25" data-cta="hero_mock" style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 12px;color:#fff;font-weight:700;font-size:.9rem;text-decoration:underline;text-underline-offset:3px">Or take a timed 25-question mock exam &rarr;</a>
   </div>
 </section>
 <!-- AdSense banner placeholder -->
@@ -1085,6 +1087,11 @@ updateWrongBankTab();renderTopicProgress();renderScoreHistory();
   var SHOP = "https://ko-fi.com/s/53b9fe7161";
   var PRICE = "CA$24";
   var LABEL = "442A Industrial Electrician";
+  /* NAME: the bank as the -all-questions page names it (top_bank block).
+     CODE: the short name the bottom bar has room for. They differ only on
+     the Gasfitter page. */
+  var NAME = "442A";
+  var CODE = "442A";
   var shown = false;
 
   function panel(){
@@ -1179,11 +1186,115 @@ updateWrongBankTab();renderTopicProgress();renderScoreHistory();
     return m ? { at: +m[1], of: +m[2] } : null;
   }
 
+  /* PRACTICE-OFFER - added 2026-10-22 (offer-ux-audit-20261022 #1,
+     placement practice_offer). A visitor practising here had no priced
+     offer in front of them: after the hero jump the top offer is above the
+     screen. The -all-questions page's top_bank block, the offer that
+     converts best on the site, sits right before the questions there. So
+     the same block, same words, appears once per page view in the practice
+     path: after the third answered question, directly above the Prev/Next
+     row (inside the question card where Next sits in the card, just above
+     the Next row under the card where it does not). Study mode only - the
+     mock answers through answerMockQ() and flashcards do not answer, so
+     only answers that register through selectAnswer() count. It goes on
+     the next question (Next, Previous, a topic or difficulty filter, a mode
+     switch, Start again) and does not come back in this tab: sessionStorage
+     remembers that it was shown. The question count is read from the bank
+     at run time, so no count is typed here. */
+  var answers = 0;
+  var offerKey = 'practiceOffer_' + SHOP.split('/').pop();
+  var offerDone = false;
+  try { offerDone = !!sessionStorage.getItem(offerKey); } catch (e) {}
+
+  function openOptions(){
+    return document.querySelectorAll('#questionCard .option-btn:not([disabled])').length;
+  }
+  function mockOpen(){
+    var ov = document.getElementById('mockOverlay');
+    return !!ov && getComputedStyle(ov).display !== 'none';
+  }
+  function dropOffer(){
+    var el = document.getElementById('practiceOffer');
+    if (el && el.parentNode) el.parentNode.removeChild(el);
+  }
+  function showOffer(){
+    var nb = document.getElementById('nextBtn');
+    var row = nb && nb.parentNode;
+    var card = document.getElementById('questionCard');
+    var n = 0;
+    try { n = questions.length; } catch (e) {}
+    if (!n || !row || !row.parentNode || !card || card.offsetParent === null || mockOpen()) return false;
+    var el = document.createElement('div');
+    el.id = 'practiceOffer';
+    el.style.cssText = 'background:#fff6e7;border:2px solid #f0a500;border-radius:10px;' +
+      'padding:16px 18px;margin:14px 0;text-align:center';
+    el.innerHTML =
+      '<div style="font-weight:800;color:#1a3a5c">Want these ' + n + ' questions offline?</div>' +
+      '<div style="font-size:.88rem;color:#646f70;margin-top:4px">The ' + NAME +
+        ' Complete Question Bank is the same ' + n + ' questions with full explanations' +
+        ' in one printable PDF &mdash; study without a signal.</div>' +
+      '<a data-cta="practice_offer" href="' + SHOP + '" target="_blank" rel="noopener" ' +
+        'style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;' +
+        'background:#b91c1c;color:#fff;padding:11px 24px;border-radius:8px;font-weight:800;' +
+        'text-decoration:none;font-size:.92rem;margin-top:9px">Get the ' + NAME +
+        ' Question Bank &mdash; ' + PRICE + ' &rarr;</a>' +
+      '<div style="font-size:.78rem;color:#646f70;margin-top:8px">Pay by card or PayPal &mdash;' +
+        ' card payment usually works without a PayPal account.</div>' +
+      '<div style="font-size:.78rem;color:#646f70;margin-top:4px">The online quiz on this page' +
+        ' stays free.</div>';
+    /* Chrome keeps the focused element still when content grows above it
+       (scroll anchoring). After an answer given with the keyboard that is the
+       Next button, so adding the block would move the question up by the
+       block's height. Let the answer's own layout happen first, then add the
+       block with anchoring off for that one layout: the block never moves
+       the question, whichever way the answer was given. */
+    var root = document.documentElement, anchor = root.style.overflowAnchor;
+    void document.body.offsetHeight;
+    root.style.overflowAnchor = 'none';
+    row.parentNode.insertBefore(el, row);
+    void document.body.offsetHeight;
+    root.style.overflowAnchor = anchor;
+    return true;
+  }
+
+  /* Wrapped by assignment, not by declaration (a re-declaration would hoist
+     over the original and recurse forever). An answer counts when the card
+     had open options before the call and none after it - the same on both
+     page generations, whatever their own state variables are called. The
+     first answer also puts the bank link into the bottom bar (STICKY-LINK). */
+  if (typeof selectAnswer === 'function') {
+    var origSelect = selectAnswer;
+    selectAnswer = function(){
+      var open = openOptions();
+      var r = origSelect.apply(this, arguments);
+      try {
+        if (open && !openOptions() && !mockOpen()) {
+          answers++;
+          if (answers === 1) stickyLink();
+          if (answers >= 3 && !offerDone && showOffer()) {
+            offerDone = true;
+            try { sessionStorage.setItem(offerKey, '1'); } catch (e) {}
+          }
+        }
+      } catch (e) {}
+      return r;
+    };
+  }
+  if (typeof loadQuestion === 'function') {
+    var origLoad = loadQuestion;
+    loadQuestion = function(){ dropOffer(); return origLoad.apply(this, arguments); };
+  }
+  if (typeof setQuizMode === 'function') {
+    var origMode = setQuizMode;
+    setQuizMode = function(){ dropOffer(); return origMode.apply(this, arguments); };
+  }
+
   if (typeof navigate === 'function') {
     var orig = navigate;
     /* assignment, NOT a function declaration - a re-declaration would hoist
        over the original and recurse forever */
     navigate = function(dir){
+      dropOffer();
       var p = pos();
       if (dir > 0 && p && p.of > 1 && p.at >= p.of && !shown) {
         shown = true; show(p.of); return;
@@ -1195,22 +1306,50 @@ updateWrongBankTab();renderTopicProgress();renderScoreHistory();
     };
   }
 
-  /* the fixed bottom bar is on every quiz session - put the offer in it */
+  /* the fixed bottom bar is on every quiz session - put the offer in it.
+     STICKY-LINK - revised 2026-10-22 (offer-ux-audit-20261022 #5). It read
+     "Get the PDF" and the price in 11.5 px type from the first second of
+     every page view: it named no product on a page that also gives away a
+     free PDF, and its offer_view counted everyone who opened the page. It
+     now names the bank in 13 px type and joins the bar at the first
+     answered question; until then the bar shows only the progress. On a
+     phone the bar drops its "|" separators and packs tighter, so the longer
+     label keeps it to one row. Where it still cannot fit (a very narrow
+     screen, large text) the link wraps onto a second row, and the cookie
+     notice and the page's bottom padding follow the bar's new height. */
   function bar(){
     var pb = document.getElementById('uxBar');
     if (!pb || document.getElementById('uxBuy')) return !!pb;
+    var h0 = pb.offsetHeight;
+    var pad0 = parseInt(document.body.style.paddingBottom, 10) || 0;
+    var css = document.createElement('style');
+    css.textContent = '#uxBar{flex-wrap:wrap}@media (max-width:479px){#uxBar{gap:6px!important;' +
+      'padding-left:6px!important;padding-right:6px!important}#uxBar>span:not([id]),#uxBuySep{display:none}}';
+    document.head.appendChild(css);
     var sep = document.createElement('span');
+    sep.id = 'uxBuySep';
     sep.style.color = 'rgba(255,255,255,.22)'; sep.textContent = '|';
     var a = document.createElement('a');
     a.id = 'uxBuy'; a.href = SHOP; a.target = '_blank'; a.rel = 'noopener';
-    a.textContent = 'Get the PDF ' + PRICE;
-    a.style.cssText = 'color:#f0a500;font-weight:700;text-decoration:none;font-size:.72rem;' +
-      'display:inline-flex;align-items:center;min-height:44px;padding:0 6px';
+    a.textContent = CODE + ' bank PDF — ' + PRICE;
+    a.style.cssText = 'color:#f0a500;font-weight:800;text-decoration:none;font-size:13px;' +
+      'display:inline-flex;align-items:center;min-height:44px;padding:0 6px;white-space:nowrap';
     pb.appendChild(sep); pb.appendChild(a);
+    function fit(){
+      var h = pb.offsetHeight, cb = document.getElementById('cookieBanner');
+      document.body.style.paddingBottom = (pad0 + Math.max(0, h - h0)) + 'px';
+      if (cb && getComputedStyle(cb).display !== 'none' && cb.style.bottom !== h + 'px')
+        cb.style.bottom = h + 'px';
+    }
+    fit();
+    window.addEventListener('resize', fit);
     return true;
   }
-  if (!bar()) { var t = setInterval(function(){ if (bar()) clearInterval(t); }, 400);
-                setTimeout(function(){ clearInterval(t); }, 8000); }
+  function stickyLink(){
+    if (bar()) return;
+    var t = setInterval(function(){ if (bar()) clearInterval(t); }, 400);
+    setTimeout(function(){ clearInterval(t); }, 8000);
+  }
 })();
 </script>
 </body>
