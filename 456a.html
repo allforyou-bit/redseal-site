@@ -831,7 +831,7 @@ function loadQuestion(){
       <span class="option-letter">${letters[i]}</span><span>${o.replace(/^[A-D]\)\s*/,'')}</span></button>`).join('')}</div>
     <div class="explanation ${isAnswered?'show':''}" id="explanation">${isAnswered?`<strong>Explanation:</strong> ${q.explanation}<div class="key-concept"><strong>Key Concept:</strong> ${q.keyConcept}</div>`:''}</div>`;
   document.getElementById('prevBtn').disabled=currentIdx===0;
-  document.getElementById('nextBtn').disabled=currentIdx===filtered.length-1;
+  document.getElementById('nextBtn').disabled=false;
   document.getElementById('qCounter').textContent=`${currentIdx+1} / ${filtered.length}`;
 }
 
