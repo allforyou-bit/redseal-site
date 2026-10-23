@@ -40,10 +40,10 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
   {"@type":"Question","name":"Are these Red Seal practice quizzes free?","acceptedAnswer":{"@type":"Answer","text":"Yes — all practice questions on this site are completely free. No account, no email, no credit card required. Just open the quiz for your trade and start practising."}},
-  {"@type":"Question","name":"How many practice questions are available?","acceptedAnswer":{"@type":"Answer","text":"There are 1,688 practice questions across 11 Red Seal trades: 421A (406), 310T (161), 310S (139), 309A (131), 306A (130), 442A (130), 456A (125), 420B (121), 313A (115), 308A (120), and Gasfitter Class A (110). All questions include full explanations."}},
-  {"@type":"Question","name":"Which Red Seal quiz should I start with?","acceptedAnswer":{"@type":"Answer","text":"Start with the quiz for your specific trade. If you're in an apprenticeship, you should know which Red Seal code applies to your program. If you're undecided, see our trades comparison guide."}},
-  {"@type":"Question","name":"How accurate are these practice questions to the real Red Seal exam?","acceptedAnswer":{"@type":"Answer","text":"All questions are written against each trade's current Red Seal Occupational Standard (RSOS) — the same framework used in the real exams. Mock exams draw on this site's own practice topics rather than the official exam distribution, which Red Seal publishes on each trade's exam information page."}},
-  {"@type":"Question","name":"What is Mock Exam mode?","acceptedAnswer":{"@type":"Answer","text":"Mock Exam mode generates a timed practice exam in the real exam's four-option multiple-choice format, drawing questions from every topic in that trade's practice bank rather than from the official exam distribution. Sessions run from 25 or 30 questions up to 60–125 depending on the trade, with a countdown timer. Recent scores are saved in your Mock Score History."}}
+  {"@type":"Question","name":"How many practice questions are available?","acceptedAnswer":{"@type":"Answer","text":"There are 1,688 practice questions across 11 Red Seal trades: 421A (406), 310T (161), 310S (139), 309A (131), 306A (130), 442A (130), 456A (125), 420B (121), 308A (120), 313A (115), and Gasfitter Class A (110). All questions include full explanations."}},
+  {"@type":"Question","name":"Which Red Seal quiz should I start with?","acceptedAnswer":{"@type":"Answer","text":"Start with the quiz for your trade. The codes on this site, such as 309A or 456A, are Ontario's trade codes, so if you're not sure which quiz matches your apprenticeship, or you're undecided, see our trades comparison guide."}},
+  {"@type":"Question","name":"How accurate are these practice questions to the real Red Seal exam?","acceptedAnswer":{"@type":"Answer","text":"Red Seal says each exam's questions are developed to assess the activities in the trade's occupational standard. When Red Seal publishes a new standard, exams move to it over time — SkilledTradesBC, for example, has used 420B exams aligned to the 2025 standard since August 31, 2026, while red-seal.ca's 420B trade page still says exams based on the new standard are under development — so check which standard your exam uses with your apprenticeship authority. This site's questions use the exam's four-option multiple-choice format, and its mock exams draw on the site's own practice topics rather than the official exam distribution, which Red Seal publishes on each trade's exam information page."}},
+  {"@type":"Question","name":"What is Mock Exam mode?","acceptedAnswer":{"@type":"Answer","text":"Mock Exam mode generates a timed practice exam in the real exam's four-option multiple-choice format, drawing questions from every topic in that trade's practice bank rather than from the official exam distribution. Sessions run from 25 questions up to 60–125 depending on the trade, with a countdown timer. Your recent mock scores are saved in your browser and shown under Recent Mock Scores on the quiz page."}}
 ]}
 </script>
 <style>
@@ -178,6 +178,7 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
 .ac2-tag{color:#8e5c0a}                    /* 3.49 → 4.53 */
 .quiz-code[style*="e67e22"]{background:#b45f14!important}  /* 2.85 → 4.56 */
 </style>
+<style id="faq-visible-css">.faq-visible{margin:32px 0 8px}.faq-visible details{margin:0 0 10px;background:var(--card,#fff);border-radius:8px;border-left:4px solid var(--accent,#f0a500);box-shadow:0 1px 5px rgba(0,0,0,.07)}.faq-visible summary{display:flex;justify-content:space-between;align-items:center;gap:12px;box-sizing:border-box;min-height:48px;padding:12px 16px;cursor:pointer;list-style:none;color:var(--primary,#1a3a5c);font-weight:700;font-size:.95rem;line-height:1.45;overflow-wrap:anywhere}.faq-visible summary::-webkit-details-marker{display:none}.faq-visible summary::after{content:"\25BC";flex:none;font-size:.75rem;opacity:.6;transition:transform .2s}.faq-visible details[open]>summary::after{transform:rotate(180deg)}.faq-visible summary:focus-visible{outline:3px solid var(--accent,#f0a500);outline-offset:2px}.faq-visible details>p{margin:0;padding:0 16px 14px;line-height:1.7;overflow-wrap:anywhere}</style>
 </head>
 <body>
 <nav>
@@ -230,7 +231,7 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
     <div class="streak-icon">🔥</div>
     <div class="streak-text">
       <h3>Study Streak: <span id="streakCount">0</span> day(s)</h3>
-      <p>Study daily to build your streak. Every question makes you more prepared!</p>
+      <p>Study daily to build your streak.</p>
     </div>
     <div class="streak-days" id="streakDots"></div>
   </div>
@@ -258,7 +259,7 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
 
   <div class="intro-card">
     <h2>About These Practice Quizzes</h2>
-    <p>Every question on this site is written against each trade's current Red Seal Occupational Standard (RSOS) — the same national framework that governs the actual Red Seal exams. Questions are organised into this site's own study topics, which do not map one-to-one onto the standard's Major Work Activities, and every answer carries a written explanation rather than just the correct letter. Banks are reviewed regularly for accuracy.</p>
+    <p>Red Seal says each exam's questions are developed to assess the activities laid out in the trade's Red Seal Occupational Standard (RSOS), and exams move to a new standard over time, so check which standard your exam uses. Questions here are organised into this site's own study topics, which do not map one-to-one onto the standard's Major Work Activities, and every answer carries a written explanation rather than just the correct letter. Banks are reviewed regularly for accuracy.</p>
     <p>All practice material is <strong>completely free</strong> — no signup, no paywall, no credit card. The site is funded by optional Ko-fi support and the paid PDF question banks.</p>
 
     <h3>Quiz Features</h3>
@@ -291,16 +292,16 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
       <div class="feature-item">
         <div class="icon">🔥</div>
         <h4>Study Streak</h4>
-        <p>Daily streak tracking keeps you consistent — the most important factor in exam success.</p>
+        <p>Daily streak tracking counts the days in a row you study.</p>
       </div>
     </div>
 
     <h3 style="margin-top:20px">Which Quiz Should I Start With?</h3>
-    <p>Start with your trade. If you're registered in a 421A apprenticeship, go to the 421A quiz. If you're a 310T apprentice, go to 310T. Each quiz is specifically designed for that trade's Red Seal exam structure and topic weighting.</p>
+    <p>Start with your trade. If you're registered in a 421A apprenticeship, go to the 421A quiz. If you're a 310T apprentice, go to 310T.</p>
     <p>If you're unsure which trade applies to you, see the <a href="/red-seal-trades.html">Red Seal Trades Guide</a> for a full comparison of all 11 trades covered on this site, or use the <a href="/which-red-seal-trade-should-i-choose.html">Which Trade Should I Choose?</a> guide.</p>
 
     <div class="highlight">
-      <strong>Study tip:</strong> Don't just answer questions — read every explanation, even for correct answers. Understanding <em>why</em> an answer is correct builds the conceptual knowledge that lets you answer unfamiliar questions on the real exam.
+      <strong>Study tip:</strong> Don't just answer questions — read every explanation, even for correct answers.
     </div>
   </div>
 
@@ -315,7 +316,7 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
           <span class="qs">406 questions</span>
         </div>
       </div>
-      <p>The largest question bank on this site. Covers safety, diesel engines, hydraulics, electrical systems, powertrain, and braking — all written against the 2023 421A RSOS. Includes detailed explanations referencing real-world diagnostic scenarios.</p>
+      <p>The largest question bank on this site. Covers safety, diesel engines, hydraulics, electrical systems, powertrain, and braking. Includes detailed explanations referencing real-world diagnostic scenarios.</p>
       <p class="topics">Topics: Safety · Engine · Hydraulics · Electrical · Powertrain · Brakes</p>
       <a href="/421a.html" class="btn">Start 421A Quiz →</a><a href="/free-421a-mock-exam.html" style="display:inline-flex;align-items:center;min-height:44px;margin:6px 10px 0 0;padding:4px 0;color:#1a3a5c;font-size:.85rem;font-weight:600;text-decoration:underline">&darr; Free 50-question 421A mock exam PDF</a><a href="/421a-all-questions.html" style="display:inline-flex;align-items:center;min-height:44px;margin:6px 10px 0 0;padding:4px 0;color:#1a3a5c;font-size:.85rem;font-weight:600;text-decoration:underline">All 406 questions &amp; answers</a><a data-cta="hub_card_offer" class="pq-buy" href="https://ko-fi.com/s/bd6ed3d51f" target="_blank" rel="noopener">Printable bank + revision notes <span>CA$29 &rarr;</span></a>
     </div>
@@ -454,13 +455,13 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
 
   <div class="intro-card" style="margin-top:32px">
     <h2>How to Use These Quizzes Effectively</h2>
-    <p>Answering questions randomly is not an effective study strategy. Here's how to get the most out of this tool:</p>
+    <p>One way to use this tool:</p>
     <ol style="padding-left:22px;font-size:.95rem;margin-bottom:16px">
       <li style="margin-bottom:10px"><strong>Start with a baseline assessment.</strong> Do one full pass through all questions in your trade without looking anything up. This identifies your starting knowledge gaps.</li>
       <li style="margin-bottom:10px"><strong>Use Topic Filter to drill weak areas.</strong> Sort your results by topic accuracy. Topics below 60% get priority — spend focused sessions drilling just those blocks.</li>
-      <li style="margin-bottom:10px"><strong>Review every explanation.</strong> Don't just note whether you got it right — read the full explanation. The reasoning is what transfers to unfamiliar questions on the real exam.</li>
-      <li style="margin-bottom:10px"><strong>Work through your Wrong Bank weekly.</strong> The 📕 tab saves every missed question. Reviewing these weekly is the fastest way to close knowledge gaps.</li>
-      <li style="margin-bottom:10px"><strong>Use Mock Exam mode 2–3 weeks before your exam.</strong> Simulated timed conditions reveal test-day pressure patterns that don't show up in untimed practice.</li>
+      <li style="margin-bottom:10px"><strong>Review every explanation.</strong> Don't just note whether you got it right — read the full explanation.</li>
+      <li style="margin-bottom:10px"><strong>Work through your Wrong Bank weekly.</strong> The 📕 tab saves every missed question.</li>
+      <li style="margin-bottom:10px"><strong>Use Mock Exam mode 2–3 weeks before your exam.</strong></li>
     </ol>
 
     <h2 style="margin-top:8px">Further Reading</h2>
@@ -472,6 +473,31 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
       <a href="/free-421a-mock-exam.html" style="background:#eaf0f9;border-radius:8px;padding:16px;text-decoration:none;color:#1a3a5c;font-size:.88rem;font-weight:600;border-left:4px solid #f0a500;display:block">Free 421A Mock Exam PDF<span style="display:block;font-size:.8rem;color:#646f70;font-weight:400;margin-top:4px">50 questions, offline, every answer explained</span></a>
       <a href="/red-seal-exam-format-guide.html" style="background:#eaf0f9;border-radius:8px;padding:16px;text-decoration:none;color:#1a3a5c;font-size:.88rem;font-weight:600;border-left:4px solid #f0a500;display:block">Exam Format Guide<span style="display:block;font-size:.8rem;color:#646f70;font-weight:400;margin-top:4px">Question types, time limits, scoring</span></a>
     </div>
+
+    <section class="faq-visible" id="faq" aria-labelledby="faq-h">
+      <!-- Same questions and answers as this page's FAQPage JSON-LD - change both together (render_visible_faq.py). -->
+      <h2 id="faq-h" style="margin-top:8px">Frequently asked questions</h2>
+      <details>
+        <summary>Are these Red Seal practice quizzes free?</summary>
+        <p>Yes — all practice questions on this site are completely free. No account, no email, no credit card required. Just open the quiz for your trade and start practising.</p>
+      </details>
+      <details>
+        <summary>How many practice questions are available?</summary>
+        <p>There are 1,688 practice questions across 11 Red Seal trades: 421A (406), 310T (161), 310S (139), 309A (131), 306A (130), 442A (130), 456A (125), 420B (121), 308A (120), 313A (115), and Gasfitter Class A (110). All questions include full explanations.</p>
+      </details>
+      <details>
+        <summary>Which Red Seal quiz should I start with?</summary>
+        <p>Start with the quiz for your trade. The codes on this site, such as 309A or 456A, are Ontario's trade codes, so if you're not sure which quiz matches your apprenticeship, or you're undecided, see our trades comparison guide.</p>
+      </details>
+      <details>
+        <summary>How accurate are these practice questions to the real Red Seal exam?</summary>
+        <p>Red Seal says each exam's questions are developed to assess the activities in the trade's occupational standard. When Red Seal publishes a new standard, exams move to it over time — SkilledTradesBC, for example, has used 420B exams aligned to the 2025 standard since August 31, 2026, while red-seal.ca's 420B trade page still says exams based on the new standard are under development — so check which standard your exam uses with your apprenticeship authority. This site's questions use the exam's four-option multiple-choice format, and its mock exams draw on the site's own practice topics rather than the official exam distribution, which Red Seal publishes on each trade's exam information page.</p>
+      </details>
+      <details>
+        <summary>What is Mock Exam mode?</summary>
+        <p>Mock Exam mode generates a timed practice exam in the real exam's four-option multiple-choice format, drawing questions from every topic in that trade's practice bank rather than from the official exam distribution. Sessions run from 25 questions up to 60–125 depending on the trade, with a countdown timer. Your recent mock scores are saved in your browser and shown under Recent Mock Scores on the quiz page.</p>
+      </details>
+    </section>
   </div>
 
   <!-- AdSense banner placeholder -->
