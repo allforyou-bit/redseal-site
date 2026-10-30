@@ -133,26 +133,14 @@
   .mode-switch-row{display:flex;gap:8px;margin-bottom:16px;align-items:center}
   .mode-btn{padding:7px 16px;border-radius:20px;border:2px solid var(--primary);background:#fff;color:var(--primary);font-size:.8rem;font-weight:700;cursor:pointer;transition:all .2s;min-height:44px;display:inline-flex;align-items:center;}
   .mode-btn.active{background:var(--primary);color:#fff}
-  .flashcard-section{display:none;background:#fff;border-radius:14px;padding:24px;box-shadow:0 3px 14px rgba(0,0,0,.10);margin-bottom:20px}
-  .fc-counter{font-size:.78rem;color:var(--muted);margin-bottom:12px;text-align:center}
-  .fc-scene{width:100%;min-height:200px;perspective:900px;cursor:pointer;margin-bottom:16px}
-  .fc-card{width:100%;min-height:200px;position:relative;transform-style:preserve-3d;transition:transform .5s}
-  .fc-front,.fc-back{position:absolute;width:100%;min-height:200px;backface-visibility:hidden;border-radius:10px;padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
-  .fc-front{background:#eaf0f9;border:2px solid var(--primary)}
-  .fc-back{background:#e8f9ef;border:2px solid var(--green);transform:rotateY(180deg)}
-  .fc-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:8px}
-  .fc-btn{padding:9px 20px;border-radius:8px;border:none;font-size:.85rem;font-weight:700;cursor:pointer}
-  .fc-btn.know{background:#27ae60;color:#fff}
-  .fc-btn.again{background:#e74c3c;color:#fff}
-  .fc-nav{display:flex;gap:10px;justify-content:center;margin-top:10px}
-  .fc-nav button{padding:6px 14px;border-radius:6px;border:2px solid var(--border);background:#fff;cursor:pointer;font-size:.82rem;font-weight:600}
+  .flashcard-section{display:none;margin-bottom:20px}.flashcard-section.fc-active{display:block}.fc-mode-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.fc-mode-row h3{font-size:.92rem;color:#1a3a5c;font-weight:700}.fc-counters{display:flex;gap:12px;font-size:.75rem;color:#646f70}.fc-known-count{color:#27ae60;font-weight:700}.fc-wrap{perspective:1000px;cursor:pointer;margin-bottom:10px;min-height:190px}.fc-card{position:relative;min-height:190px;transform-style:preserve-3d;transition:transform .45s;border-radius:12px}.fc-card.flipped{transform:rotateY(180deg)}.fc-front,.fc-back{position:absolute;inset:0;overflow:hidden;min-height:190px;border-radius:12px;padding:24px 20px;display:flex;flex-direction:column;justify-content:center;backface-visibility:hidden}.fc-front{background:linear-gradient(135deg,#1a3a5c,#2d6a9f);color:#fff}.fc-back{background:#e8f9ef;color:#1a6636;transform:rotateY(180deg)}/* the face showing stays in flow and sizes the card, so a long question or answer grows the card instead of running over the buttons */.fc-card:not(.flipped) .fc-front,.fc-card.flipped .fc-back{position:relative;inset:auto;overflow:visible}.fc-topic-lbl{font-size:.67rem;font-weight:700;color:#f0a500;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}.fc-q-text{font-size:.95rem;font-weight:600;line-height:1.6}.fc-ans-text{font-size:1rem;font-weight:700;margin-bottom:8px}.fc-key-text{font-size:.8rem;line-height:1.55;opacity:.85}.fc-hint-text{text-align:center;font-size:.73rem;color:#646f70;margin-bottom:7px}.fc-nav-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}.fc-nav-row button{padding:9px 16px;border:none;border-radius:8px;font-weight:700;font-size:.82rem;cursor:pointer}.fc-btn-prev{background:#e0e0e0;color:#2c3e50}.fc-btn-again{background:#e74c3c;color:#fff}.fc-btn-know{background:#27ae60;color:#fff}.fc-btn-next{background:#1a3a5c;color:#fff}
   .exam-accordion{margin-bottom:20px}
   .exam-accordion summary{cursor:pointer;color:var(--primary);font-weight:700;font-size:.95rem;padding:12px 16px;background:var(--card);border-radius:8px;border-left:4px solid var(--accent);box-shadow:0 1px 5px rgba(0,0,0,.07);list-style:none;display:flex;justify-content:space-between;align-items:center}
   .exam-accordion summary::-webkit-details-marker{display:none}
   .exam-accordion summary::after{content:"\25BC";font-size:.75rem;opacity:.6;transition:transform .2s}
   .exam-accordion[open] summary::after{transform:rotate(180deg)}
   .exam-accordion .concept-section{border-radius:0 0 8px 8px;margin-top:0;box-shadow:0 2px 6px rgba(0,0,0,.06)}
-  @media(max-width:860px){.topic-tabs{overflow-x:auto;flex-wrap:nowrap!important;padding-bottom:6px;scrollbar-width:none}.tab-btn{white-space:nowrap;flex-shrink:0}.mode-switch-row{flex-wrap:wrap}.mock-launch-bar{flex-direction:column;align-items:flex-start}.question-card{padding:16px 14px!important}.difficulty-row{flex-wrap:wrap;gap:6px}header h1{font-size:1.25rem}.container{padding:14px 12px}}
+  @media(max-width:860px){.topic-tabs{overflow-x:auto;flex-wrap:nowrap!important;padding-bottom:6px;scrollbar-width:none}.tab-btn{white-space:nowrap;flex-shrink:0}.mode-switch-row{flex-wrap:wrap}.mock-launch-bar{flex-direction:column;align-items:flex-start}.fc-wrap,.fc-card{min-height:150px!important}.fc-front,.fc-back{min-height:150px!important;padding:16px 14px!important}.question-card{padding:16px 14px!important}.difficulty-row{flex-wrap:wrap;gap:6px}header h1{font-size:1.25rem}.container{padding:14px 12px}}
   @media(max-width:480px){.q-text{font-size:.93rem}.option-btn{font-size:.86rem;padding:10px 12px}}
 </style>
 <script type="application/ld+json">
@@ -1462,84 +1450,16 @@ function renderScoreHistory(){
 // ── Flashcard Mode ──────────────────────────────────────────────
 let fcIdx=0,fcQs=[],fcFlipped=false,fcKnownIds=new Set();
 
-function setQuizMode(mode){
-  const qcard=document.getElementById('questionCard')||document.querySelector('.question-card');
-  const fcard=document.getElementById('flashcardSection');
-  const quizUI=document.querySelector('.score-box');
-  const modeBtns=document.querySelectorAll('.mode-btn');
-  modeBtns.forEach(b=>b.classList.remove('active'));
-  document.querySelector('.mode-btn[data-mode="'+mode+'"]')?.classList.add('active');
-  if(mode==='flashcard'){
-    if(qcard)qcard.style.display='none';
-    if(quizUI)quizUI.style.display='none';
-    if(fcard)fcard.style.display='block';
-    initFlashcards();
-  } else {
-    if(qcard)qcard.style.display='';
-    if(quizUI)quizUI.style.display='';
-    if(fcard)fcard.style.display='none';
-    if(typeof switchTopic==='function')switchTopic(currentTopic,null);
-  }
-}
-
-function initFlashcards(){
-  fcQs=getFiltered();
-  fcKnownIds=new Set();
-  fcIdx=0;
-  fcFlipped=false;
-  renderFlashcard();
-}
-
+function setQuizMode(mode){const qCard=document.getElementById('questionCard')||document.querySelector('.question-card');const fcSec=document.getElementById('flashcardSection');const sBtn=document.getElementById('studyModeBtn');const fBtn=document.getElementById('flashModeBtn');if(mode==='flash'){sBtn.classList.remove('active');fBtn.classList.add('active');if(qCard)qCard.style.display='none';if(fcSec)fcSec.classList.add('fc-active');initFlashcards();}else{sBtn.classList.add('active');fBtn.classList.remove('active');if(qCard)qCard.style.display='block';if(fcSec)fcSec.classList.remove('fc-active');}}
+function initFlashcards(){fcQs=getFiltered();fcKnownIds=new Set();fcIdx=0;fcFlipped=false;renderFlashcard();}
 function getRemaining(){return fcQs.filter(q=>!fcKnownIds.has(q.id));}
-
-function renderFlashcard(){
-  const rem=getRemaining();
-  const counter=document.getElementById('fcCounter');
-  const card=document.getElementById('fcCardInner');
-  const front=document.getElementById('fcFront');
-  const back=document.getElementById('fcBack');
-  if(!rem.length){
-    if(counter)counter.textContent='All done!';
-    if(front)front.innerHTML='<p style="font-size:1.1rem;font-weight:700;color:#27ae60">🎉 You\'ve reviewed all cards!</p>';
-    if(back)back.innerHTML='';
-    if(card)card.style.transform='';
-    fcFlipped=false;
-    return;
-  }
-  if(fcIdx>=rem.length)fcIdx=0;
-  const q=rem[fcIdx];
-  if(counter)counter.textContent='Card '+(fcIdx+1)+' / '+rem.length+' remaining';
-  if(front)front.innerHTML='<p style="font-size:.75rem;font-weight:600;color:#f0a500;margin-bottom:8px;text-transform:uppercase">'+q.topic.toUpperCase()+'</p><p style="font-size:1rem;font-weight:600;line-height:1.5">'+q.q+'</p>';
-  if(back){const correctOpt=q.options[q.answer];const explanation=q.explanation||'';back.innerHTML='<p style="font-size:.72rem;font-weight:700;color:#27ae60;margin-bottom:6px">ANSWER</p><p style="font-size:.95rem;font-weight:700;color:#1a3a5c;margin-bottom:8px">'+correctOpt+'</p>'+(explanation?'<p style="font-size:.78rem;color:#555;line-height:1.5">'+explanation+'</p>':'');}
-  if(card)card.style.transform='';
-  fcFlipped=false;
-}
-
-function flipFlashcard(){
-  const card=document.getElementById('fcCardInner');
-  if(!card)return;
-  fcFlipped=!fcFlipped;
-  card.style.transform=fcFlipped?'rotateY(180deg)':'';
-}
-
-function fcNav(dir){
-  const rem=getRemaining();
-  if(!rem.length)return;
-  fcIdx=(fcIdx+dir+rem.length)%rem.length;
-  renderFlashcard();
-}
-
-function fcMarkKnow(){
-  const rem=getRemaining();
-  if(!rem.length)return;
-  fcKnownIds.add(rem[fcIdx].id);
-  if(fcIdx>=getRemaining().length)fcIdx=0;
-  renderFlashcard();
-}
-
-function fcMarkAgain(){
-  fcNav(1);
-}
+function renderFlashcard(){const rem=getRemaining();const card=document.getElementById('fcCard');const counter=document.getElementById('fcCounter');const knownEl=document.getElementById('fcKnownCount');if(!card)return;fcFlipped=false;card.classList.remove('flipped');if(knownEl)knownEl.textContent=fcKnownIds.size>0?`✓ ${fcKnownIds.size} known`:'';if(rem.length===0){document.getElementById('fcTopicLbl').textContent='🎉 All Done!';document.getElementById('fcQText').textContent=`All ${fcQs.length} cards reviewed!`;document.getElementById('fcAnsText').textContent='';document.getElementById('fcKeyText').textContent='';if(counter)counter.textContent='Complete!';return;}if(fcIdx>=rem.length)fcIdx=0;const q=rem[fcIdx];document.getElementById('fcTopicLbl').textContent=q.topicLabel;document.getElementById('fcQText').textContent=q.text;document.getElementById('fcAnsText').textContent='✓ '+q.options[q.answer];document.getElementById('fcKeyText').textContent=q.keyConcept||'';if(counter)counter.textContent=`Card ${fcIdx+1} of ${rem.length}`;}
+function flipFlashcard(){fcFlipped=!fcFlipped;const card=document.getElementById('fcCard');if(card){fcFlipped?card.classList.add('flipped'):card.classList.remove('flipped');}fcKeepInView();}
+/* The card is as tall as the face showing, so the page changes height on a flip or a new card: keep the card top in view. */
+function fcKeepInView(){const s=document.getElementById('flashcardSection'),w=s&&s.querySelector('.fc-scene,.fc-wrap'),n=document.querySelector('nav');if(!w)return;const h=n?n.offsetHeight:0;if(w.getBoundingClientRect().top<h)window.scrollBy(0,s.getBoundingClientRect().top-h-8);}
+function fcNav(dir){const rem=getRemaining();if(rem.length===0)return;fcIdx=(fcIdx+dir+rem.length)%rem.length;renderFlashcard();fcKeepInView();}
+function fcMarkKnow(){const rem=getRemaining();if(rem[fcIdx])fcKnownIds.add(rem[fcIdx].id);renderFlashcard();fcKeepInView();}
+function fcMarkAgain(){fcNav(1);}
 
 (function migrateTopicStats() {
   const old = JSON.parse(localStorage.getItem('topicStats_306a') || '{}');

@@ -333,9 +333,11 @@
   .fc-wrap{perspective:1000px;cursor:pointer;margin-bottom:10px;min-height:190px;}
   .fc-card{position:relative;min-height:190px;transform-style:preserve-3d;transition:transform .45s;border-radius:12px;}
   .fc-card.flipped{transform:rotateY(180deg);}
-  .fc-front,.fc-back{position:absolute;inset:0;border-radius:12px;padding:24px 20px;display:flex;flex-direction:column;justify-content:center;backface-visibility:hidden;}
+  .fc-front,.fc-back{position:absolute;inset:0;overflow:hidden;min-height:190px;border-radius:12px;padding:24px 20px;display:flex;flex-direction:column;justify-content:center;backface-visibility:hidden;}
   .fc-front{background:linear-gradient(135deg,#1a3a5c,#2d6a9f);color:#fff;}
   .fc-back{background:#e8f9ef;color:#1a6636;transform:rotateY(180deg);}
+  /* the face showing stays in flow and sizes the card, so a long question or answer grows the card instead of running over the buttons */
+  .fc-card:not(.flipped) .fc-front,.fc-card.flipped .fc-back{position:relative;inset:auto;overflow:visible}
   .fc-topic-lbl{font-size:.67rem;font-weight:700;color:#f0a500;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;}
   .fc-q-text{font-size:.95rem;font-weight:600;line-height:1.6;}
   .fc-ans-text{font-size:1rem;font-weight:700;margin-bottom:8px;}
@@ -3981,19 +3983,24 @@ function flipFlashcard() {
   fcFlipped = !fcFlipped;
   const card = document.getElementById('fcCard');
   if (card) { fcFlipped ? card.classList.add('flipped') : card.classList.remove('flipped'); }
+  fcKeepInView();
 }
 
+/* The card is as tall as the face showing, so the page changes height on a flip or a new card: keep the card top in view. */
+function fcKeepInView(){const s=document.getElementById('flashcardSection'),w=s&&s.querySelector('.fc-scene,.fc-wrap'),n=document.querySelector('nav');if(!w)return;const h=n?n.offsetHeight:0;if(w.getBoundingClientRect().top<h)window.scrollBy(0,s.getBoundingClientRect().top-h-8);}
 function fcNav(dir) {
   const rem = getRemaining();
   if (rem.length === 0) return;
   fcIdx = (fcIdx + dir + rem.length) % rem.length;
   renderFlashcard();
+  fcKeepInView();
 }
 
 function fcMarkKnow() {
   const rem = getRemaining();
   if (rem[fcIdx]) fcKnownIds.add(rem[fcIdx].id);
   renderFlashcard();
+  fcKeepInView();
 }
 
 function fcMarkAgain() { fcNav(1); }

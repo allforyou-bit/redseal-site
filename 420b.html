@@ -155,9 +155,12 @@
   .fc-counter{font-size:.78rem;color:var(--muted);margin-bottom:12px;text-align:center}
   .fc-scene{width:100%;min-height:200px;perspective:900px;cursor:pointer;margin-bottom:16px}
   .fc-card{width:100%;min-height:200px;position:relative;transform-style:preserve-3d;transition:transform .5s}
-  .fc-front,.fc-back{position:absolute;width:100%;min-height:200px;backface-visibility:hidden;border-radius:10px;padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+  .fc-card.flipped{transform:rotateY(180deg)}
+  .fc-front,.fc-back{position:absolute;inset:0;overflow:hidden;min-height:200px;backface-visibility:hidden;border-radius:10px;padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
   .fc-front{background:#eaf0f9;border:2px solid var(--primary)}
   .fc-back{background:#e8f9ef;border:2px solid var(--green);transform:rotateY(180deg)}
+  /* the face showing stays in flow and sizes the card, so a long question or answer grows the card instead of running over the buttons */
+  .fc-card:not(.flipped) .fc-front,.fc-card.flipped .fc-back{position:relative;inset:auto;overflow:visible}
   .fc-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:8px}
   .fc-btn{padding:9px 20px;border-radius:8px;border:none;font-size:.85rem;font-weight:700;cursor:pointer}
   .fc-btn.know{background:#27ae60;color:#fff}
@@ -1045,7 +1048,7 @@ function renderFlashcard(){
     if(counter)counter.textContent='All done!';
     if(front)front.innerHTML='<p style="font-size:1.1rem;font-weight:700;color:#27ae60">🎉 You\'ve reviewed all cards!</p>';
     if(back)back.innerHTML='';
-    if(card)card.style.transform='';
+    if(card)card.classList.remove('flipped');
     fcFlipped=false;
     return;
   }
@@ -1054,7 +1057,7 @@ function renderFlashcard(){
   if(counter)counter.textContent='Card '+(fcIdx+1)+' / '+rem.length+' remaining';
   if(front)front.innerHTML='<p style="font-size:.75rem;font-weight:600;color:#f0a500;margin-bottom:8px;text-transform:uppercase">'+(q.topicLabel||q.topic).toUpperCase()+'</p><p style="font-size:1rem;font-weight:600;line-height:1.5">'+(q.text||q.q)+'</p>';
   if(back){const correctOpt=q.options[q.answer];const explanation=q.explanation||'';back.innerHTML='<p style="font-size:.72rem;font-weight:700;color:#27ae60;margin-bottom:6px">ANSWER</p><p style="font-size:.95rem;font-weight:700;color:#1a3a5c;margin-bottom:8px">'+correctOpt.replace(/^[A-D]\)\s*/,'')+'</p>'+(explanation?'<p style="font-size:.78rem;color:#555;line-height:1.5">'+explanation+'</p>':'');}
-  if(card)card.style.transform='';
+  if(card)card.classList.remove('flipped');
   fcFlipped=false;
 }
 
@@ -1062,14 +1065,17 @@ function flipFlashcard(){
   const card=document.getElementById('fcCardInner');
   if(!card)return;
   fcFlipped=!fcFlipped;
-  card.style.transform=fcFlipped?'rotateY(180deg)':'';
+  card.classList.toggle('flipped',fcFlipped);fcKeepInView();
 }
 
+/* The card is as tall as the face showing, so the page changes height on a flip or a new card: keep the card top in view. */
+function fcKeepInView(){const s=document.getElementById('flashcardSection'),w=s&&s.querySelector('.fc-scene,.fc-wrap'),n=document.querySelector('nav');if(!w)return;const h=n?n.offsetHeight:0;if(w.getBoundingClientRect().top<h)window.scrollBy(0,s.getBoundingClientRect().top-h-8);}
 function fcNav(dir){
   const rem=getRemaining();
   if(!rem.length)return;
   fcIdx=(fcIdx+dir+rem.length)%rem.length;
   renderFlashcard();
+  fcKeepInView();
 }
 
 function fcMarkKnow(){
@@ -1078,6 +1084,7 @@ function fcMarkKnow(){
   fcKnownIds.add(rem[fcIdx].id);
   if(fcIdx>=getRemaining().length)fcIdx=0;
   renderFlashcard();
+  fcKeepInView();
 }
 
 function fcMarkAgain(){
