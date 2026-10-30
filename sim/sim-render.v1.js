@@ -3,8 +3,10 @@
    the three modes: Explore (part descriptions), Operate (live derive()) and Find the fault
    (fault scenarios through diagnoseView()).
    Rules kept here:
-   - Only existing nodes change during animation: classes, transform attributes and one CSS
-     variable. Motion is CSS only, off under prefers-reduced-motion and behind the pause button.
+   - Only existing nodes change during animation: classes, transform attributes and CSS variables.
+     Motion is CSS only. Under prefers-reduced-motion it stays off until the visitor presses Play.
+     The page lands in Drive with the lever at Forward, so the first view of the drawing shows oil
+     moving; Pause is always available.
    - Fault scenarios draw the circuit pressure-neutral: no line states, no flow arrows, no valve,
      heat or brake states. The only evidence is the relative bar of each reading the user takes.
    - Readings are relative bars, never numbers or units.
@@ -59,7 +61,9 @@
 
   var E, def, T, app, svg, el = {}, stepInputs = [];
   var lines = {}, comps = {}, ports = {}, spin = {}, piston = { x: null };
-  var mode = "explore", reduce = false, paused = false, started = false;
+  var FORWARD = 60;   /* lever position of the Forward and Reverse presets, and of the landing view */
+  var SWASH_DEG = 34; /* tilt of the swashplate bar at full stroke */
+  var mode = "operate", reduce = false, paused = false, started = false;
   var op = { inp: null, st: null, raf: 0, last: 0 };
   var dg = { sc: null, setup: null, steps: {}, taken: {}, items: {}, solved: {}, done: false, num: {} };
 
@@ -119,14 +123,25 @@
     if (el.piston && piston.x !== x) { el.piston.setAttribute("transform", "translate(" + x + " 0)"); piston.x = x; }
   }
 
+  /* the swashplate bar tilts with the stroke, and the arrows run faster with it */
+  function setSwash(s) {
+    s = +s || 0;
+    var a = Math.round(s * SWASH_DEG * 10) / 10;
+    if (el.swash && el.swashA !== a) { el.swash.setAttribute("transform", "rotate(" + a + " 170 112)"); el.swashA = a; }
+    flag(comps.pump, "stk", Math.abs(s) > 0.02);
+    var d = Math.round(Math.max(0.5, Math.min(2.4, 0.62 / Math.max(Math.abs(s), 0.05))) * 20) / 20;
+    if (el.flow && el.flowD !== d) { el.flow.style.setProperty("--fl", d + "s"); el.flowD = d; }
+  }
+
   function setSpin(id, g, speed) {
-    var d = Math.round(Math.max(0.35, Math.min(4, 0.6 / Math.max(+speed || 0, 0.05))) * 20) / 20;
+    var d = Math.round(Math.max(0.3, Math.min(4, 0.42 / Math.max(+speed || 0, 0.05))) * 20) / 20;
     if (spin[id] !== d) { g.style.setProperty("--spin", d + "s"); spin[id] = d; }
   }
 
   function paintComps(cs) {
     var c = cs || {};
     setPiston(c.servo ? c.servo.pos : 0);
+    setSwash(c.pump ? c.pump.swash : 0);
     flag(comps.solFwd, "on", c.solFwd && c.solFwd.energized);
     flag(comps.solRev, "on", c.solRev && c.solRev.energized);
     flag(comps.chargeRelief, "open", c.chargeRelief && c.chargeRelief.open);
@@ -179,7 +194,7 @@
 
   function kick() {
     if (mode === "diagnose") return;
-    if (reduce || typeof root.requestAnimationFrame !== "function") {
+    if ((reduce && paused) || typeof root.requestAnimationFrame !== "function") {
       op.st = settle(op.st, op.inp);
       paintOp();
       return;
@@ -229,6 +244,8 @@
     el.joy.addEventListener("input", function () { setLever(el.joy.value); });
     el.joy.addEventListener("change", function () { setLever(el.joy.value); });
     byId("op-neutral").addEventListener("click", function () { setLever(0); });
+    byId("op-fwd").addEventListener("click", function () { setLever(FORWARD); });
+    byId("op-rev").addEventListener("click", function () { setLever(-FORWARD); });
     all(app, "[data-range]").forEach(function (b) {
       b.addEventListener("click", function () {
         op.inp.range = b.getAttribute("data-range") === "high" ? "high" : "low";
@@ -236,7 +253,34 @@
         kick();
       });
     });
-    setLever(0);
+    setLever(FORWARD);
+  }
+
+  /* ---------- the dock on narrow screens (CSS decides the width) ---------- */
+  /* a bar at the bottom edge (the site cookie notice) keeps its place: the dock sits on top of it */
+  function dockClear() {
+    var b = byId("cookieBanner"), h = 0;
+    if (b && b.style.display !== "none" && !b.hidden) h = Math.round(b.getBoundingClientRect().height);
+    if (el.dockB !== h) { app.style.setProperty("--dock-b", h + "px"); el.dockB = h; }
+  }
+
+  function bindDock() {
+    var end = byId("sim-end");
+    if (!end || typeof root.IntersectionObserver !== "function") return;
+    app.classList.add("sim-dockable");
+    var io = new root.IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.target === app) flag(app, "sim-away", !e.isIntersecting); });
+      /* on while the end of the simulator is still below the screen, so only the simulator is ever under it.
+         Read from the live position: a long jump can carry the 1 px end mark right past the screen, and then
+         only the entry for the whole simulator fires. */
+      flag(app, "sim-dockon", end.getBoundingClientRect().top >= root.innerHeight);
+      dockClear();
+    });
+    io.observe(end);
+    io.observe(app);
+    dockClear();
+    root.addEventListener("resize", dockClear);
+    doc.addEventListener("click", function () { root.setTimeout(dockClear, 0); });
   }
 
   /* ---------- Explore ---------- */
@@ -274,6 +318,8 @@
       body.appendChild(art);
     }
     el.info.hidden = false;
+    /* on a phone the panel sits below the drawing: without this a tap seems to do nothing */
+    if (el.info.scrollIntoView) el.info.scrollIntoView({ block: "nearest" });
     text(el.status, name + ": details shown in the panel.");
     el.warn.hidden = true;
   }
@@ -499,6 +545,7 @@
 
   function pickScenario(sc, btn) {
     dg.sc = sc; dg.steps = {}; dg.taken = {}; dg.done = false;
+    resultBox("", "");
     var keys = Object.keys(def.setups);
     dg.setup = keys.indexOf("neutral") >= 0 ? "neutral" : keys[0];
     all(el.scen, "button").forEach(function (b) { press(b, b === btn); });
@@ -609,10 +656,20 @@
     if (user) ga("mode_change", { placement: m, trade: TRADE });
   }
 
+  function showMotion() {
+    flag(app, "sim-still", paused);
+    flag(app, "sim-play", reduce && !paused);
+    flag(app, "sim-rmon", reduce);
+    el.rm.hidden = !reduce;
+    text(el.pause, paused ? "Play animation" : "Pause animation");
+  }
+
+  /* the device setting decides until the next press of the button */
   function applyMotion() {
+    var was = reduce;
     reduce = !!(el.mq && el.mq.matches);
-    el.pause.disabled = reduce;
-    text(el.pause, reduce ? "Animation off (reduced motion)" : paused ? "Play animation" : "Pause animation");
+    if (reduce !== was) paused = reduce;
+    showMotion();
     if (reduce && mode !== "diagnose") { stopLoop(); kick(); }
   }
 
@@ -627,10 +684,9 @@
       b.addEventListener("click", function () { var m = b.getAttribute("data-mode"); if (m !== mode) setMode(m, true); });
     });
     el.pause.addEventListener("click", function () {
-      if (reduce) return;
       paused = !paused;
-      flag(app, "sim-still", paused);
-      text(el.pause, paused ? "Play animation" : "Pause animation");
+      showMotion();
+      if (mode !== "diagnose") kick();
     });
     el.mq = typeof root.matchMedia === "function" ? root.matchMedia("(prefers-reduced-motion: reduce)") : null;
     if (el.mq) {
@@ -672,6 +728,9 @@
       if (T.ports[p]) g.setAttribute("data-name", "Test port: " + T.ports[p]);
     });
     el.piston = svg.querySelector(".sv-pis");
+    el.swash = svg.querySelector(".sw-bar");
+    el.flow = svg.querySelector(".lines");
+    el.rm = byId("sim-rm");
     el.status = byId("sim-status");
     el.warn = byId("sim-warn");
     el.info = byId("sim-info");
@@ -701,10 +760,11 @@
       op.inp.toggles = { pressureLimiter: false, loopFlushing: false };
       op.st = settle(E.init(ID), op.inp);
       bindShell();
+      applyMotion();
       bindOperate();
       bindDiagnose();
-      applyMotion();
-      setMode("explore", false);
+      bindDock();
+      setMode("operate", false);
       app.setAttribute("data-sim", "ready");
     } catch (err) {
       fail(err);
