@@ -20,6 +20,18 @@
                         offer_view itself is unchanged)
      mock_finished      the mock exam result screen was shown
 
+   Simulator events (sent by sim/sim-render.v1.js through the same gtag, not by
+   this file; the page went public 2026-11-02). Registered parameters only:
+     sim_start          first use of the simulator in a page view (click, input
+                        or key); placement = the mode in use, trade = 421a
+     mode_change        the visitor switched mode; placement = explore, operate
+                        or diagnose, trade = 421a
+     fault_solved       a Find the fault scenario solved, once per scenario per
+                        page view; placement = sim_<fault id>, trade = 421a
+   The offer card shown after a solve is a static data-cta="sim_result" link,
+   so its clicks and impressions come from this file as buy_click,
+   offer_view and offer_visible with placement sim_result.
+
    Parameters worth reporting on (register as GA4 event-scoped custom
    dimensions - GA4 only keeps them from the day they are registered):
      placement, trade, link_type, source_page, price_cad

@@ -163,6 +163,7 @@ Appliances & Equipment 24 · Gas Supply Systems 19 · Piping Systems 16 · Venti
 
 - [All 11 trade quizzes](https://redsealquiz.ca/practice-quizzes.html)
 - [Free 50-question mock exam PDFs, one per trade](https://redsealquiz.ca/red-seal-trades.html)
+- [421A closed-loop hydrostatic drive simulator: drive it, then find the fault from test-port readings](https://redsealquiz.ca/421a-hydrostatic-drive-simulator.html)
 
 ## The printable version, for completeness
 
