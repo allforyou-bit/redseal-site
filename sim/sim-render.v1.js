@@ -176,7 +176,8 @@
     var v = E.derive(op.st, op.inp);
     paintLines(v.lines);
     paintComps(v.comps);
-    say(v.status, v.warnings);
+    /* in Explore a chosen part keeps its line; a frame of the lever ramp must not write over it */
+    if (mode !== "explore" || !svg.querySelector(".sel")) say(v.status, v.warnings);
   }
 
   function frame(ts) {
