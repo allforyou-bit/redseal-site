@@ -177,6 +177,8 @@
     text(ui.ref, rf ? U.healthy + ": " + ref.text : "");
     ui.ref.hidden = !rf;
     flag(ui.read, "dc-blocked", !!(r && r.blocked));
+    /* a prompt in place of a reading (pick a scenario, place the leads): smaller type, and no value note */
+    flag(ui.read, "dc-msg", !(r && !r.blocked && v === r.text) && !(r && r.blocked));
   }
 
   function paint() {
