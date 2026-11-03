@@ -1,0 +1,114 @@
+/* DC circuit fault lab, v1: the drawing, the meter dock and the offer card of
+   dc-circuit-fault-simulator.html, on top of the shared simulator sheet (sim-std.css, inlined in the page).
+   - No state is shown by colour alone: line states differ in width, outline and dash as well as colour;
+     lamps show their level by the number of rays; a blown fuse shows a broken link, a removed one an
+     empty dashed holder; the switch blade moves; an unplugged connector opens a gap; a disconnected
+     battery leaves a gap at its negative post; each lead marker carries a sign.
+   - Targets: test points and parts are 50-unit circles and boxes (46 px or more on a 360 px phone);
+     buttons and links are 44 px or more.
+   - Motion: the current arrows use the sim-std.css keyframes, so Pause, off-screen and reduced motion
+     (arrows wait for Play) work as on the hydrostatic drive page. */
+
+/* ---------- drawing ---------- */
+.dc-svg .lbl{font-style:normal;fill:#2c3e50}
+.dc-svg .dc-st{font-size:10px;font-weight:700;fill:#1a3a5c}
+.dc-svg .blk{font-size:10px;fill:#4a5568}
+.dc-svg .pol{font-size:12px;font-weight:700}
+.dc-svg .chassis{fill:#2c3e50}
+.dc-svg .sym.plate{stroke-width:2.2}
+.dc-svg .sym.post,.dc-svg .sym.nut{fill:#2c3e50}
+.dc-svg .sym.pin{stroke-width:2}
+.dc-svg .sw-blade{stroke-width:2.6}
+.dc-svg .sw-o{display:none}
+.dc-svg .sw-open .sw-o{display:inline}
+.dc-svg .sw-open .sw-c{display:none}
+
+/* line states, in the drawing and in the key: neutral grey until the renderer paints a state, and in
+   Find the fault (no state classes there) */
+.dc-svg .ln .lm{stroke:#6b7280;stroke-width:2.5px}
+.dc-app .ln.st-pos .lo{stroke:#1f1f1f;stroke-width:6.5px}
+.dc-app .ln.st-pos .lm{stroke:#D55E00;stroke-width:4px;stroke-dasharray:none}
+.dc-app .ln.st-mid .lo{stroke:#1f1f1f;stroke-width:6.5px;stroke-dasharray:9 5}
+.dc-app .ln.st-mid .lm{stroke:#E69F00;stroke-width:4px;stroke-dasharray:9 5}
+.dc-app .ln.st-gnd .lm{stroke:#0072B2;stroke-width:2.5px;stroke-dasharray:none}
+.dc-app .ln.st-pos .fa{stroke:#D55E00}
+.dc-app .ln.st-mid .fa{stroke:#9e6d00}
+.dc-app .ln.st-gnd .fa{stroke:#0072B2}
+.dc-app .ln.mv.st-pos:not(.rev) .faf,.dc-app .ln.mv.st-pos.rev .far,
+.dc-app .ln.mv.st-mid:not(.rev) .faf,.dc-app .ln.mv.st-mid.rev .far,
+.dc-app .ln.mv.st-gnd:not(.rev) .faf,.dc-app .ln.mv.st-gnd.rev .far,
+.dc-app .key-mv .faf{display:inline}
+
+/* lamps: none, 2 or 6 rays, and the fill as a second cue */
+.dc-svg .ray{display:none;stroke:#9e6d00;stroke-width:2.2px;stroke-linecap:round}
+.dc-svg .lv-dim .ray.r2,.dc-svg .lv-bright .ray{display:inline}
+.dc-svg .lv-dim .bulb{fill:#fbe7a6}
+.dc-svg .lv-bright .bulb{fill:#f2b705}
+
+/* fuses: in place, blown (broken link), removed (empty dashed holder) */
+.dc-svg .fz-brk{display:none}
+.dc-svg .fz-blown .fz-ok,.dc-svg .fz-removed .fz-ok{display:none}
+.dc-svg .fz-blown .fz-brk{display:inline;stroke:#b45f14;stroke-width:2.2px}
+.dc-svg .fz-removed .fz-body{stroke-dasharray:3 3;fill:#f4f7fb}
+
+/* an unplugged connector opens a gap between its halves */
+.dc-svg .cut .cn-lo{transform:translateY(9px)}
+/* a disconnected battery: the negative cable leaves the post (the battery group comes first in the drawing) */
+.dc-svg [data-el="BAT1"].pw-off ~ [data-el="CABLE_NEG"] .dc-tail{visibility:hidden}
+
+/* test points and the red and black lead markers */
+.dc-svg .tp .tpl{fill:#fff;stroke:#1a3a5c;stroke-width:2px}
+.dc-svg .tp.has-red .tpl{stroke:#b71c1c;stroke-width:3.5px}
+.dc-svg .tp.has-black .tpl{stroke:#1f1f1f;stroke-width:3.5px}
+.dc-svg .lead circle{stroke:#fff;stroke-width:2px}
+.dc-svg .lead-red circle{fill:#b71c1c}
+.dc-svg .lead-black circle{fill:#1f1f1f}
+.dc-svg .lead text{fill:#fff;font-size:15px;font-weight:700;font-style:normal}
+/* a tap reaches the targets of the mode only: parts in Explore, test points in the other modes */
+.dc-app[data-mode="explore"] .dc-svg .tp{pointer-events:none;opacity:.45}
+.dc-app:not([data-mode="explore"]) .dc-svg [data-info]{pointer-events:none}
+
+/* ---------- the meter dock: the reading, then V and ohms, Red and Black, Switch, Battery ---------- */
+.dc-dock{margin:0 0 12px}
+.dc-read{margin:0 0 8px;padding:6px 10px;border-left:4px solid var(--primary);border-radius:6px;background:var(--light);line-height:1.3}
+.dc-read p{margin:0}
+.dc-meter{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 10px}
+.dc-val{min-height:1.2em;color:var(--primary);font-size:1.35rem;font-weight:800;line-height:1.2;font-variant-numeric:tabular-nums}
+.dc-leads{flex:1 1 150px;color:#4a5568;font-size:.8rem;line-height:1.3}
+.dc-ref{margin-top:2px!important;font-size:.84rem;font-weight:700}
+.dc-read .dc-note{font-size:.72rem;line-height:1.3}
+.dc-blocked .dc-val{color:#8b2a12;font-size:.9rem;font-weight:700;line-height:1.35}
+.dc-keys{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:0}
+.dc-kg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.dc-keys .sim-tog{min-width:0;padding:6px 4px;font-size:.88rem}
+.dc-keys .dc-red{border-color:#b71c1c;color:#b71c1c}
+.dc-keys .dc-black{border-color:#1f1f1f;color:#1f1f1f}
+.dc-keys .dc-red[aria-pressed="true"]{background:#b71c1c;color:#fff}
+.dc-keys .dc-black[aria-pressed="true"]{background:#1f1f1f;color:#fff}
+@media(min-width:560px){.dc-keys{grid-template-columns:2fr 2fr 1fr 1fr}}
+.dc-pt{text-align:left}
+/* narrow screens: in Meter and Find the fault the dock is fixed to the bottom edge while the simulator is
+   on screen, and slides away once its end comes into view (.sim-dockon, set by sim-shell.v1.js); without
+   the observer it stays in the page flow. It sits above the site cookie notice (--dock-b). Two key rows
+   up to 559 px, one row above. */
+@media(max-width:899px){
+.dc-app.sim-dockable:not([data-mode="explore"]) .sim-side>.dc-dock{position:fixed;left:0;right:0;bottom:var(--dock-b,0px);z-index:150;margin:0;padding:4px 8px calc(6px + env(safe-area-inset-bottom,0px));background:#fff;border-top:2px solid var(--primary);box-shadow:0 -2px 10px rgba(0,0,0,.18);transform:translateY(calc(100% + var(--dock-b,0px) + 12px));visibility:hidden;transition:transform .16s ease,visibility .16s}
+.dc-app.sim-dockable.sim-dockon:not([data-mode="explore"]) .sim-side>.dc-dock{transform:none;visibility:visible}
+/* room under the panel, the same whether the dock shows or not, so the last control can scroll clear of it;
+   about the dock height (two key rows, the reading, the label; step 5 measures it in a browser) */
+.dc-app.sim-dockable:not([data-mode="explore"]) .sim-side{padding-bottom:190px}
+.dc-app.sim-dockable.sim-dockon:not([data-mode="explore"]) .sim-warn{position:fixed;left:8px;right:8px;bottom:calc(var(--dock-b,0px) + 194px + env(safe-area-inset-bottom,0px));z-index:150;margin:0!important;padding:6px 10px;border-radius:6px;background:#fff3e6;box-shadow:0 1px 6px rgba(0,0,0,.25);font-size:.84rem;line-height:1.35;pointer-events:none}
+}
+@media(min-width:560px) and (max-width:899px){
+.dc-app.sim-dockable:not([data-mode="explore"]) .sim-side{padding-bottom:140px}
+.dc-app.sim-dockable.sim-dockon:not([data-mode="explore"]) .sim-warn{bottom:calc(var(--dock-b,0px) + 144px + env(safe-area-inset-bottom,0px))}
+}
+
+/* ---------- offer card: five trades, free questions first, then the printable PDF ---------- */
+.dc-chips{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.dc-chip{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:8px;border-radius:8px;background:rgba(255,255,255,.08)}
+.dc-chip-t{flex:0 0 3.4em;font-weight:800;letter-spacing:.5px}
+.dc-offer .dc-chip a{flex:1 1 200px;min-height:44px;padding:8px 12px;line-height:1.3}
+
+/* ---------- motion ---------- */
+@media (prefers-reduced-motion: reduce){.dc-dock{transition:none!important}}

@@ -14,7 +14,8 @@
      fuses, the switch and the battery carry a word, the leads a sign and a label.
    - A lead is placed by a tap, by Enter or Space on a focused test point, or (Find the fault) from the
      test point list.
-   Drawing contract: [data-el] groups (element ids, optional .dc-nm and .dc-st text), [data-tp] groups
+   Drawing contract: [data-el] groups (element ids, optional .dc-nm and .dc-st text, optional data-name:
+   kept, except where the name changes with the view), [data-tp] groups
    with data-cx and data-cy (or a circle.hit), [data-view] on view-only groups, g#lead-red, g#lead-black. */
 (function (root) {
   "use strict";
@@ -372,7 +373,9 @@
   function collect() {
     all(svg, "[data-el]").forEach(function (g) {
       var id = g.getAttribute("data-el"), c = g.getAttribute("class") || "";
-      els[id] = { g: g, base: c, cls: c, word: g.querySelector(".dc-st"), nm: g.querySelector(".dc-nm"), fixed: g.getAttribute("data-name") };
+      /* a page data-name is kept, except for a name that changes with the view (Battery, Battery 1) */
+      els[id] = { g: g, base: c, cls: c, word: g.querySelector(".dc-st"), nm: g.querySelector(".dc-nm"),
+        fixed: NAMES24[id] ? null : g.getAttribute("data-name") };
     });
     all(svg, "[data-tp]").forEach(function (g) {
       var p = g.getAttribute("data-tp"), c = g.querySelector("circle.hit") || g.querySelector("circle");
