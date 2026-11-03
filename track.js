@@ -20,8 +20,10 @@
                         offer_view itself is unchanged)
      mock_finished      the mock exam result screen was shown
 
-   Simulator events (sent by sim/sim-render.v1.js through the same gtag, not by
-   this file; the page went public 2026-11-02). Registered parameters only:
+   Simulator events (sent through the same gtag, not by this file: the 421A
+   hydrostatic page by sim/sim-render.v1.js, public 2026-11-02; the DC circuit
+   fault lab by sim/sim-shell.v1.js, public 2026-11-03, trade = multi, Meter for
+   operate). Registered parameters only:
      sim_start          first use of the simulator in a page view (click, input
                         or key); placement = the mode in use, trade = 421a
      mode_change        the visitor switched mode; placement = explore, operate
@@ -30,7 +32,8 @@
                         page view; placement = sim_<fault id>, trade = 421a
    The offer card shown after a solve is a static data-cta="sim_result" link,
    so its clicks and impressions come from this file as buy_click,
-   offer_view and offer_visible with placement sim_result.
+   offer_view and offer_visible with placement sim_result. The DC card shows no
+   price, so a buy_click from it carries no price_cad.
 
    Parameters worth reporting on (register as GA4 event-scoped custom
    dimensions - GA4 only keeps them from the day they are registered):
