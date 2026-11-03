@@ -15,11 +15,11 @@
 
   var BOX = 50, W = 360, NS = "http://www.w3.org/2000/svg";
   var PART_TYPES = ["source", "fuse", "switch", "lamp"];
-  var DOCK_CTL = ["s1", "power"], METER_CTL = ["unplugC1", "removeF1"], SHORT = { power: "Battery" };
+  var DOCK_CTL = ["s1", "power"], METER_CTL = ["unplugC1", "unplugC2", "removeF1"], SHORT = { power: "Battery" };
   var L = {
     meterGroup: "Meter setting", leadGroup: "Lead to place", viewGroup: "System voltage", ctlGroup: "Circuit controls",
     tpGroup: "Test points", readsHead: "Readings", volts: "DC volts", ohms: "Resistance",
-    ptsHint: "A tap on a test point places the selected lead. The meter reads as soon as both leads are on."
+    ptsHint: "A tap on a test point places the selected lead, and the meter reads as soon as both leads are on. Across a part means one lead on each side of it: across the switch is fuse 1 output to switch output."
   };
   var CSS = ".dcb .hit{fill:rgba(0,0,0,0);stroke:none}.dcb .sym{fill:none;stroke:#2c3e50;stroke-width:1.6}" +
     ".dcb .sym.body{fill:#fff}.dcb .lbl{font:11px Segoe UI,Arial,sans-serif;fill:#2c3e50}.dcb .dc-st{font-weight:700}" +

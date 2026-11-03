@@ -117,7 +117,7 @@
     fail: "The simulator could not start in this browser. The text below still works.",
     pick: "Pick a scenario to start.", scenario: "Scenario", report: "Symptom", causeHead: "Choose the cause",
     cause: "Cause", more: "Take more readings before choosing a cause.", solved: "Solved:",
-    notIt: "Not the cause in this scenario.", ifIt: "If it were %s, the readings would show:",
+    notIt: "Not the cause in this scenario.", ifIt: "%s: if that were the cause, the readings would show:",
     reveal: "Show the cause", revealed: "The cause in this scenario:", why: "Why",
     apart: "How to tell it apart", details: "details shown in the panel."
   };
@@ -329,7 +329,9 @@
       if (!dg.sc || dg.done) return;
       if (H.ready && !H.ready(dg.sc)) {
         resultBox("", U.more);
-        el.reveal.hidden = true;
+        /* a way out for a visitor who cannot find the missing reading: the cause can still be shown
+           (no offer), as after a wrong pick */
+        el.reveal.hidden = false;
         say(U.more, []);
         return;
       }

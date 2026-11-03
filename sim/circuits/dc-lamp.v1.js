@@ -163,7 +163,7 @@
       /* labels for the inputs; replaceFuse is the scenario action that clears a blown fuse */
       controls: {
         power: "Battery connected", s1: "Switch", removeF1: "Remove fuse 1", unplugC1: "Unplug lamp 1",
-        unplugC2: "Unplug lamp 2", replaceFuse: "Replace fuse"
+        unplugC2: "Unplug lamp 2", replaceFuse: "Replace fuse 1"
       },
       /* shown instead of a resistance reading (measure().blocked) */
       blocked: {

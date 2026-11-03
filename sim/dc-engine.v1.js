@@ -192,7 +192,8 @@
     return x;
   }
 
-  /* extra: { meter: [nodeA, nodeB] } or { inject: [nodeIn, nodeOut, amps] }; zeroEmf: ohmmeter */
+  /* extra: { meter: [nodeA, nodeB] }, { inject: [nodeIn, nodeOut, amps] } or { leak: siemens from every node
+     to the reference }; zeroEmf: ohmmeter */
   function solveNet(def, els, extra, zeroEmf) {
     var P = def.params, ref = def.ref, idx = {}, list = [], A = [], b = [], i, j;
     def.nodes.forEach(function (nd) { if (nd !== ref && present(els, nd)) { idx[nd] = list.length; list.push(nd); } });
@@ -211,6 +212,7 @@
       if (el.type === "source" && !zeroEmf) { inject(el.b, el.emf * el.g); inject(el.a, -el.emf * el.g); }
     });
     if (extra && extra.meter) stamp(extra.meter[0], extra.meter[1], 1 / P.rMeter);
+    if (extra && extra.leak) for (i = 0; i < nn; i++) A[i][i] += extra.leak;
     if (extra && extra.inject) { inject(extra.inject[0], extra.inject[2]); inject(extra.inject[1], -extra.inject[2]); }
     var x = gauss(A, b), v = {}, cur = {};
     v[ref] = 0;
@@ -261,14 +263,16 @@
   }
   function nodeState(v, nom) { var q = v / nom; return q >= 0.9 ? "pos" : q <= 0.1 ? "gnd" : "mid"; }
 
+  /* fixed decimals with halves rounded up (toFixed alone turns 2.55 into 2.5 but 0.45 into 0.5) */
+  function fixed(x, d) { var p = Math.pow(10, d); return (Math.round(x * p + 1e-7) / p).toFixed(d); }
   function fmt(mode, x, nom) {
     if (mode === "ohms") {
       if (x == null) return "OL";
-      if (x < 200) return x.toFixed(1) + " \u03A9";
-      if (x < 2e5) return (x / 1000).toFixed(2) + " k\u03A9";
-      return (x / 1e6).toFixed(2) + " M\u03A9";
+      if (x < 200) return fixed(x, 1) + " \u03A9";
+      if (x < 2e5) return fixed(x / 1000, 2) + " k\u03A9";
+      return fixed(x / 1e6, 2) + " M\u03A9";
     }
-    var d = nom > 60 ? 1 : 2, t = Math.abs(x).toFixed(d);
+    var d = nom > 60 ? 1 : 2, t = fixed(Math.abs(x), d);
     return (x < 0 && +t !== 0 ? "\u2212" : "") + t + " V";
   }
 
@@ -290,10 +294,15 @@
   function derive(id, inputs) {
     var def = getDef(id), n = norm(def, inputs), s = settle(def, n), nom = def.views[n.view].nominal, P = def.params;
     var nodes = {}, elements = {};
-    Object.keys(s.sol.v).forEach(function (nd) { nodes[nd] = nodeState(s.sol.v[nd], nom); });
+    /* line colours: the voltage a meter to the reference would show. Every node gets the meter input
+       resistance to the reference, so a wire cut off from the supply reads near 0 V and is drawn near
+       ground, as the meter and the legend say; a driven node moves by microvolts. Flow and lamps keep
+       the plain solution. */
+    var vd = solveNet(def, s.els, { leak: 1 / P.rMeter }, false).v;
+    Object.keys(vd).forEach(function (nd) { nodes[nd] = nodeState(vd[nd], nom); });
     s.els.forEach(function (el) {
       if (el.id === "_fault") return;
-      var i = s.sol.i[el.id], mid = (s.sol.v[el.a] + s.sol.v[el.b]) / 2;
+      var i = s.sol.i[el.id], mid = (vd[el.a] + vd[el.b]) / 2;
       elements[el.id] = { state: nodeState(mid, nom), flow: Math.abs(i) > P.flowMin, dir: i > 0 ? 1 : i < 0 ? -1 : 0 };
     });
     return { view: n.view, nodes: nodes, elements: elements, lamps: lampLevels(def, n, s), fuses: fuseStates(s), blown: s.blown };

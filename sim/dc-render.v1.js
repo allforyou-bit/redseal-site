@@ -42,7 +42,7 @@
   var PANEL = { explore: "Explore the parts", meter: "Measure the circuit", diagnose: "Fault scenarios" };
   var HINT = {
     explore: "Tap a part of the drawing, or move to it with the Tab key and press Enter, to read what it is.",
-    meter: "Tap a test point, or move to it with the Tab key and press Enter, to place the selected lead. The meter reads as soon as both leads are on.",
+    meter: "Tap a test point ring, or move to it with the Tab key and press Enter, to place the selected lead. The names of the points the leads are on show under the reading, and the meter reads as soon as both leads are on.",
     diagnose: "Pick a scenario, read the symptom, set the controls, take readings, then choose the cause."
   };
   var LAND = ["TP_L1P", "TP_CH"];      /* Meter lands on a reading: lamp 1 positive to chassis ground */
@@ -62,7 +62,7 @@
     view: "view.", offView: "lead taken off: that test point is not in this view.", fresh: "New fuse in place.",
     again: "%s opened again as soon as it went in.", closed: "closed", open: "open", conn: "connected",
     disc: "disconnected", board: "Parts and test points of the example circuit",
-    more: "Check more test points before choosing a cause."
+    more: "Take more readings before choosing a cause. Some tests need the controls set first; the What to test column of the fault table lists them."
   };
 
   var Sh, E, S, def, T, ID, svg, has, copy, all, flag, press, text, make, button;
