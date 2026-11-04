@@ -1,0 +1,116 @@
+/* Motor starter control lab (view C24 of the relay control fault lab), v1: the ladder drawing, the meter
+   dock and the offer card of motor-starter-control-circuit-simulator.html, on top of the shared simulator
+   sheet (sim-std.css, inlined in the page). Patterns copied from dc-std.css, which this sheet leaves alone.
+   - No state is shown by colour alone: wires differ in width, outline and dash as well as colour; a contact
+     moves its blade and carries a word; a pressed button moves its push stem in; the coil shows field marks
+     and a word when the contactor pulls in; the motor block carries a word; a supply that is off is drawn
+     dashed; each lead marker carries a sign.
+   - Targets: test points and parts are 50-unit circles and boxes (46 px or more on a 360 px phone);
+     buttons and links are 44 px or more.
+   - Motion: the current arrows use the sim-std.css keyframes, so Pause, off-screen and reduced motion
+     (arrows wait for Play) work as on the other simulator pages. */
+
+/* ---------- drawing ---------- */
+.ctl-svg .lbl{font-style:normal;fill:#2c3e50}
+.ctl-svg .sub{font-size:9.5px;fill:#4a5568}
+.ctl-svg .ctl-st{font-size:10px;font-weight:700;fill:#1a3a5c}
+.ctl-svg .blk{font-size:10px;fill:#4a5568}
+.ctl-svg .pol{font-size:12px;font-weight:700}
+.ctl-svg .rail{font-size:11px;font-weight:700;fill:#1a3a5c}
+.ctl-svg .co-m{font-size:12px;font-weight:800}
+.ctl-svg .sw-blade{stroke-width:2.6}
+
+/* contacts: the closed or the open blade. Printed state first (normally open parts carry f-no), then the
+   state the renderer sets (sw-closed, sw-open; ct-on for the motor block), which wins */
+.ctl-svg .sw-o{display:none}
+.ctl-svg .f-no .sw-c{display:none}
+.ctl-svg .f-no .sw-o{display:inline}
+.ctl-svg .sw-closed .sw-c,.ctl-svg .ct-on .sw-c{display:inline}
+.ctl-svg .sw-closed .sw-o,.ctl-svg .ct-on .sw-o{display:none}
+.ctl-svg .sw-open .sw-o{display:inline}
+.ctl-svg .sw-open .sw-c{display:none}
+/* a pressed pushbutton: the push stem moves in */
+.ctl-svg .pb{transition:transform .12s ease}
+.ctl-svg .pressed .pb{transform:translateX(-5px)}
+.ctl-svg .pressed .pb .sym{stroke:#1a3a5c;stroke-width:2.2}
+
+/* the contactor coil: fill and field marks when it pulls in */
+.ctl-svg .mag{display:none;fill:none;stroke:#9e6d00;stroke-width:2px;stroke-linecap:round}
+.ctl-svg .co-on .coil{fill:#f2b705}
+.ctl-svg .co-on .mag{display:inline}
+/* the motor block follows the contactor */
+.ctl-svg .ct-on .mtr{fill:#d8ecf8;stroke-width:2.4}
+/* a supply that is off: a dashed box */
+.ctl-svg .pw-off .psu{stroke-dasharray:4 3;fill:#f4f7fb}
+
+/* line states, in the drawing and in the key: neutral grey until the renderer paints a state, and in
+   Find the fault (no state classes there) */
+.ctl-svg .ln .lm{stroke:#6b7280;stroke-width:2.5px}
+.ctl-app .ln.st-pos .lo{stroke:#1f1f1f;stroke-width:6.5px}
+.ctl-app .ln.st-pos .lm{stroke:#D55E00;stroke-width:4px;stroke-dasharray:none}
+.ctl-app .ln.st-mid .lo{stroke:#1f1f1f;stroke-width:6.5px;stroke-dasharray:9 5}
+.ctl-app .ln.st-mid .lm{stroke:#E69F00;stroke-width:4px;stroke-dasharray:9 5}
+.ctl-app .ln.st-gnd .lm{stroke:#0072B2;stroke-width:2.5px;stroke-dasharray:none}
+.ctl-app .ln.st-pos .fa{stroke:#D55E00}
+.ctl-app .ln.st-mid .fa{stroke:#9e6d00}
+.ctl-app .ln.st-gnd .fa{stroke:#0072B2}
+.ctl-app .ln.mv.st-pos:not(.rev) .faf,.ctl-app .ln.mv.st-pos.rev .far,
+.ctl-app .ln.mv.st-mid:not(.rev) .faf,.ctl-app .ln.mv.st-mid.rev .far,
+.ctl-app .ln.mv.st-gnd:not(.rev) .faf,.ctl-app .ln.mv.st-gnd.rev .far,
+.ctl-app .key-mv .faf{display:inline}
+
+/* test points and the red and black lead markers */
+.ctl-svg .tp .tpl{fill:#fff;stroke:#1a3a5c;stroke-width:2px}
+.ctl-svg .tp.has-red .tpl{stroke:#b71c1c;stroke-width:3.5px}
+.ctl-svg .tp.has-black .tpl{stroke:#1f1f1f;stroke-width:3.5px}
+.ctl-svg .lead circle{stroke:#fff;stroke-width:2px}
+.ctl-svg .lead-red circle{fill:#b71c1c}
+.ctl-svg .lead-black circle{fill:#1f1f1f}
+.ctl-svg .lead text{fill:#fff;font-size:15px;font-weight:700;font-style:normal}
+/* a tap reaches the targets of the mode only: parts in Explore, test points in the other modes */
+.ctl-app[data-mode="explore"] .ctl-svg .tp{pointer-events:none;opacity:.45}
+.ctl-app:not([data-mode="explore"]) .ctl-svg [data-info]{pointer-events:none}
+
+/* ---------- the meter dock: the reading, then V and ohms, Red and Black, START and STOP ---------- */
+.ctl-dock{margin:0 0 12px}
+.ctl-read{margin:0 0 8px;padding:6px 10px;border-left:4px solid var(--primary);border-radius:6px;background:var(--light);line-height:1.3}
+.ctl-read p{margin:0}
+.ctl-meter{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 10px}
+.ctl-val{min-height:1.2em;color:var(--primary);font-size:1.35rem;font-weight:800;line-height:1.2;font-variant-numeric:tabular-nums}
+.ctl-leads{flex:1 1 150px;color:#4a5568;font-size:.8rem;line-height:1.3}
+.ctl-ref{margin-top:2px!important;font-size:.84rem;font-weight:700}
+.ctl-read .ctl-note{font-size:.72rem;line-height:1.3}
+.ctl-blocked .ctl-val{color:#8b2a12;font-size:.9rem;font-weight:700;line-height:1.35}
+/* a prompt in place of a reading: smaller type, and the value note only beside a value */
+.ctl-msg .ctl-val{font-size:1rem;font-weight:700;line-height:1.35}
+.ctl-msg .ctl-note{display:none}
+/* two rows of two groups: V and ohms with Red and Black, then START with STOP (tap, hold) */
+.ctl-keys{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:0}
+.ctl-kg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.ctl-keys .sim-tog,.ctl-keys .sim-btn{min-width:0;padding:4px 3px;font-size:.84rem;line-height:1.2}
+.ctl-keys .ctl-red{border-color:#b71c1c;color:#b71c1c}
+.ctl-keys .ctl-black{border-color:#1f1f1f;color:#1f1f1f}
+.ctl-keys .ctl-red[aria-pressed="true"]{background:#b71c1c;color:#fff}
+.ctl-keys .ctl-black[aria-pressed="true"]{background:#1f1f1f;color:#fff}
+.ctl-pt{text-align:left}
+/* narrow screens: in Operate and meter and in Find the fault the dock is fixed to the bottom edge while the
+   simulator is on screen, and slides away once its end comes into view (.sim-dockon, set by
+   sim-shell.v1.js); without the observer it stays in the page flow. It sits above the site cookie notice
+   (--dock-b). */
+@media(max-width:899px){
+.ctl-app.sim-dockable:not([data-mode="explore"]) .sim-side>.ctl-dock{position:fixed;left:0;right:0;bottom:var(--dock-b,0px);z-index:150;margin:0;padding:4px 8px calc(6px + env(safe-area-inset-bottom,0px));background:#fff;border-top:2px solid var(--primary);box-shadow:0 -2px 10px rgba(0,0,0,.18);transform:translateY(calc(100% + var(--dock-b,0px) + 12px));visibility:hidden;transition:transform .16s ease,visibility .16s}
+.ctl-app.sim-dockable.sim-dockon:not([data-mode="explore"]) .sim-side>.ctl-dock{transform:none;visibility:visible}
+/* room under the panel, the same whether the dock shows or not, so the last control can scroll clear of it */
+.ctl-app.sim-dockable:not([data-mode="explore"]) .sim-side{padding-bottom:200px}
+.ctl-app .sim-bar .sim-pause{position:static;width:auto;margin-left:auto;padding:6px 12px;font-size:.84rem}
+.ctl-app.sim-dockable.sim-dockon:not([data-mode="explore"]) .sim-warn{position:fixed;left:8px;right:8px;bottom:calc(var(--dock-b,0px) + 204px + env(safe-area-inset-bottom,0px));z-index:150;margin:0!important;padding:6px 10px;border-radius:6px;background:#fff3e6;box-shadow:0 1px 6px rgba(0,0,0,.25);font-size:.84rem;line-height:1.35;pointer-events:none}
+}
+
+/* ---------- offer card: two trades, free questions first, then the printable PDF ---------- */
+.ctl-chips{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.ctl-chip{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:8px;border-radius:8px;background:rgba(255,255,255,.08)}
+.ctl-chip-t{flex:0 0 3.4em;font-weight:800;letter-spacing:.5px}
+.ctl-offer .ctl-chip a{flex:1 1 200px;min-height:44px;padding:8px 12px;line-height:1.3}
+
+/* ---------- motion ---------- */
+@media (prefers-reduced-motion: reduce){.ctl-dock,.ctl-svg .pb{transition:none!important}}
