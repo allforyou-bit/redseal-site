@@ -163,6 +163,7 @@ Appliances & Equipment 24 · Gas Supply Systems 19 · Piping Systems 16 · Venti
 
 - [All 11 trade quizzes](https://redsealquiz.ca/practice-quizzes.html)
 - [Free 50-question mock exam PDFs, one per trade](https://redsealquiz.ca/red-seal-trades.html)
+- [Free trade simulators: every simulator on the site and which trades each one fits](https://redsealquiz.ca/red-seal-trade-simulators.html)
 - [421A closed-loop hydrostatic drive simulator: drive it, then find the fault from test-port readings](https://redsealquiz.ca/421a-hydrostatic-drive-simulator.html)
 - [DC circuit fault simulator for 421A, 310T, 310S, 309A and 442A: meter an example 12 V and 24 V lamp circuit, then find opens, shorts and high-resistance connections](https://redsealquiz.ca/dc-circuit-fault-simulator.html)
 
