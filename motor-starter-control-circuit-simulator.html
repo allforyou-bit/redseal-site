@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FSSHZMWVLW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FSSHZMWVLW');
+</script>
+<script src="/track.js" defer></script>
+<meta name="google-site-verification" content="AySEYGsNWhilNyl3EpVTQu6a3p0l6E1ZCe7P0EUN8O8" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-sid="meta.title">Motor Starter Control Circuit Simulator: Start, Stop, Seal-In</title>
+<meta name="description" data-sid="meta.description" content="Meter an example 24 V DC start/stop circuit with a seal-in contact and an overload contact, then find the open or stuck part.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://redsealquiz.ca/motor-starter-control-circuit-simulator.html">
+<meta property="og:title" content="Motor Starter Control Circuit Simulator: Start, Stop, Seal-In">
+<meta property="og:description" content="Meter an example 24 V DC start/stop circuit with a seal-in contact and an overload contact, then find the open or stuck part.">
+<meta property="og:url" content="https://redsealquiz.ca/motor-starter-control-circuit-simulator.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://redsealquiz.ca/og-card-v2.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does the seal-in contact do?","acceptedAnswer":{"@type":"Answer","text":"It is a normally open contact on the contactor, wired across START, that closes when the contactor picks up and keeps the coil energized after START is released."}},{"@type":"Question","name":"Why does the motor not restart after a power cut?","acceptedAnswer":{"@type":"Answer","text":"With three-wire control the seal-in contact opens when the coil loses power, so the circuit waits for START: low-voltage protection."}},{"@type":"Question","name":"What should happen after the overload relay trips?","acceptedAnswer":{"@type":"Answer","text":"Find what made it trip before relying on a reset: resetting closes the overload contact again but does not remove the cause, and START must then be pressed again."}},{"@type":"Question","name":"Why hold START while measuring?","acceptedAnswer":{"@type":"Answer","text":"Holding START closes the gap a sound circuit has at rest, so an open part becomes the only break and reads the control voltage; with START released, it can show nothing."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Motor Starter Control Circuit Simulator: Start, Stop, Seal-In","description":"Meter an example 24 V DC start/stop circuit with a seal-in contact and an overload contact, then find the open or stuck part.","url":"https://redsealquiz.ca/motor-starter-control-circuit-simulator.html","applicationCategory":"EducationalApplication","operatingSystem":"Any","inLanguage":"en-CA","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"CAD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://redsealquiz.ca/"},{"@type":"ListItem","position":2,"name":"Motor Starter Control Circuit Simulator","item":"https://redsealquiz.ca/motor-starter-control-circuit-simulator.html"}]}</script>
+<link rel="stylesheet" href="/styles.css">
+<style id="nav-std">
+nav{background:#1a3a5c;padding:0 24px;display:flex;align-items:center;position:sticky;top:0;z-index:200;box-shadow:0 2px 8px rgba(0,0,0,.2);min-height:52px;font-family:'Segoe UI',Arial,sans-serif;line-height:1.7;width:100%}
+.nav-brand{color:white;text-decoration:none;font-weight:800;font-size:.92rem;white-space:nowrap;margin-right:auto;display:flex;align-items:center;gap:6px}
+.nav-links{display:flex;align-items:center;gap:4px;margin-left:auto}
+.nav-links>a{color:rgba(255,255,255,.85);text-decoration:none;font-weight:600;font-size:.85rem;padding:8px 12px;border-radius:6px;transition:all .2s;white-space:nowrap}
+.nav-links>a:hover,.nav-links>a.active{color:#f0a500;background:rgba(255,255,255,.08)}
+.nav-dropdown{position:relative}
+.nav-drop-btn{background:none;border:none;color:rgba(255,255,255,.85);font-weight:600;font-size:.85rem;cursor:pointer;font-family:inherit;padding:8px 12px;border-radius:6px;display:inline-flex;align-items:center;gap:4px;transition:all .2s;white-space:nowrap}
+.nav-drop-btn:hover{color:#f0a500;background:rgba(255,255,255,.08)}
+.nav-drop-menu{display:none;position:absolute;top:calc(100% + 6px);left:0;background:#1a3a5c;border-radius:10px;box-shadow:0 10px 32px rgba(0,0,0,.35);min-width:230px;z-index:300;border:1px solid rgba(255,255,255,.12);padding:6px 0}
+.nav-dropdown.open .nav-drop-menu{display:block}
+.nav-drop-menu a{display:block;padding:9px 18px;color:rgba(255,255,255,.85);text-decoration:none;font-size:.84rem;font-weight:600;transition:all .15s}
+.nav-drop-menu a:hover{background:rgba(255,255,255,.1);color:#f0a500;padding-left:22px}
+.nav-toggle{display:none;background:none;border:none;color:white;font-size:1.4rem;cursor:pointer;padding:8px;margin-left:12px;flex-shrink:0}
+@media(max-width:820px){
+  .nav-toggle{display:flex;align-items:center;justify-content:center}
+  .nav-links{display:none;position:absolute;top:52px;left:0;right:0;background:#1a3a5c;flex-direction:column;align-items:stretch;z-index:201;box-shadow:0 8px 24px rgba(0,0,0,.35);border-top:1px solid rgba(255,255,255,.1);max-height:80vh;overflow-y:auto;padding:6px 0}
+  .nav-links.open{display:flex}
+  .nav-links>a{padding:12px 20px!important;border-bottom:1px solid rgba(255,255,255,.07)!important;border-radius:0!important;font-size:.9rem!important}
+  .nav-dropdown{width:100%}
+  .nav-drop-btn{width:100%;padding:12px 20px!important;border-bottom:1px solid rgba(255,255,255,.07);border-radius:0;font-size:.9rem!important;justify-content:space-between}
+  .nav-drop-menu{position:static;background:#0d2440;box-shadow:none;border-radius:0;border:none;border-top:none;padding:0}
+  .nav-drop-menu a{padding:10px 20px 10px 34px!important;border-bottom:1px solid rgba(255,255,255,.04)!important;font-size:.86rem!important}
+}
+</style>
+<style id="hero-std">
+.hero-std{background:linear-gradient(135deg,#0f2540 0%,#1a3a5c 45%,#2d6a9f 100%);color:#fff;padding:48px 24px 42px;text-align:center;font-family:'Segoe UI',Arial,sans-serif;line-height:1.6}
+.hero-std .hero-kicker{display:inline-block;background:#f0a500;color:#fff;font-size:.78rem;font-weight:800;letter-spacing:2px;padding:4px 14px;border-radius:14px;margin-bottom:14px;text-transform:uppercase}
+.hero-std h1{font-size:1.85rem;font-weight:800;color:#fff;margin:0 auto 10px;max-width:760px;line-height:1.3}
+.hero-std h1 span{color:#f0a500}
+.hero-std .hero-sub{font-size:.98rem;color:rgba(255,255,255,.88);max-width:620px;margin:0 auto 18px}
+.hero-std .hero-meta{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.hero-std .hero-pill{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);color:#fff;font-size:.74rem;font-weight:600;padding:4px 12px;border-radius:14px}
+@media(max-width:600px){.hero-std h1{font-size:1.4rem}.hero-std .hero-sub{font-size:.88rem}}
+</style>
+<style id="tbl-responsive">
+/* 표가 좁은 화면을 넘칠 때 페이지 전체가 아니라 표만 가로 스크롤되게 한다.
+   (2026-07-29: .concept-table 이 375px 화면에서 427px 라 문서가 86px 밀려 있었다) */
+@media(max-width:640px){
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+}
+</style>
+<style id="readability-std">
+/* 본문 가독성 기준 (2026-07-29 실측 후 신설)
+   목록에 스타일이 없어 브라우저 기본값(줄간격 1.2 / 항목간격 0)이 적용됐다.
+   같은 상자의 문단은 1.7 인데 목록만 방치돼 소제목과 설명이 한 덩어리로 보였다.
+   개선 전후 실측(456a, 375x812): 줄간격 1.20→1.70, 항목간격 0→12px, 소제목 inline→block */
+.intro-box ul,.intro-box ol,.card ul,.card ol,.fit-section ul,.fit-section ol,
+.container>ul,.container>ol,.sg-card ul,.sg-card ol{margin:12px 0 16px;padding-left:22px}
+.intro-box li,.card li,.fit-section li,.container>ul>li,.container>ol>li,.sg-card li{
+  line-height:1.7;margin-bottom:12px}
+.intro-box li:last-child,.card li:last-child,.fit-section li:last-child{margin-bottom:0}
+.intro-box li>strong:first-child,.card li>strong:first-child,
+.fit-section li>strong:first-child{display:block;margin-bottom:2px}
+/* 내비게이션·푸터 목록은 본문 규칙에서 제외 */
+nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;margin-bottom:0!important}
+@media(max-width:640px){
+  .intro-box p,.intro-box li,.card p,.card li,.fit-section p,.fit-section li{
+    font-size:1rem;line-height:1.7}
+}
+</style>
+<style id="faq-visible-css">.faq-visible{margin:32px 0 8px}.faq-visible details{margin:0 0 10px;background:var(--card,#fff);border-radius:8px;border-left:4px solid var(--accent,#f0a500);box-shadow:0 1px 5px rgba(0,0,0,.07)}.faq-visible summary{display:flex;justify-content:space-between;align-items:center;gap:12px;box-sizing:border-box;min-height:48px;padding:12px 16px;cursor:pointer;list-style:none;color:var(--primary,#1a3a5c);font-weight:700;font-size:.95rem;line-height:1.45;overflow-wrap:anywhere}.faq-visible summary::-webkit-details-marker{display:none}.faq-visible summary::after{content:"\25BC";flex:none;font-size:.75rem;opacity:.6;transition:transform .2s}.faq-visible details[open]>summary::after{transform:rotate(180deg)}.faq-visible summary:focus-visible{outline:3px solid var(--accent,#f0a500);outline-offset:2px}.faq-visible details>p{margin:0;padding:0 16px 14px;line-height:1.7;overflow-wrap:anywhere}</style>
+<style id="sim-std">
+:root{--primary:#1a3a5c;--accent:#f0a500;--green:#27ae60;--red:#e74c3c;--light:#f4f7fb;--card:#ffffff;--text:#2c3e50;--border:#dce3ec}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--light);color:var(--text);font-family:'Segoe UI',Arial,sans-serif}
+[hidden]{display:none!important}
+[id]{scroll-margin-top:64px}
+.hero-std{padding:14px 16px 12px}
+.hero-std h1{font-size:1.5rem;margin:0 auto 6px;line-height:1.25}
+.hero-std .hero-kicker{margin:0;padding:3px 10px;font-size:.72rem;letter-spacing:1px;line-height:1.5}
+.hero-std .hero-pill{padding:3px 10px;line-height:1.5}
+.hero-std .hero-meta{align-items:center}
+@media(max-width:600px){.hero-std{padding:10px 8px 10px}.hero-std h1{font-size:1.2rem}.hero-std .hero-meta{gap:6px}.hero-std .hero-pill{padding:3px 8px;font-size:.7rem;white-space:nowrap}}
+.sim-page{max-width:1120px;margin:0 auto;padding:12px 16px 8px;line-height:1.7}
+.sim-lead{max-width:780px;margin:0 0 10px;font-size:1rem}
+.sim-discline{max-width:780px;margin:0 0 14px;padding:8px 12px;border-left:4px solid #b45f14;border-radius:6px;background:#fdf6ec;font-size:.86rem;line-height:1.5}
+.sim-app{position:relative;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.07);padding:12px;margin:0 0 14px}
+.sim-end{height:1px}
+.sim-vh{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;padding:0}
+.sim-bar{position:relative;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin:0 0 10px}
+.sim-rm{flex:1 1 100%;margin:0;color:#4a5568;font-size:.84rem;line-height:1.4}
+.sim-modes{display:flex;flex-wrap:wrap;gap:6px}
+.sim-mode,.sim-tog,.sim-btn,.sim-cause{min-height:44px;min-width:44px;padding:8px 14px;border:2px solid var(--primary);border-radius:8px;background:#fff;color:var(--primary);font:inherit;font-size:.92rem;font-weight:700;line-height:1.3;cursor:pointer}
+.sim-mode[aria-pressed="true"],.sim-tog[aria-pressed="true"]{background:var(--primary);color:#fff}
+.sim-mode[aria-pressed="true"]{box-shadow:inset 0 -4px 0 var(--accent)}
+.sim-tog[aria-pressed="true"]::before{content:"\2713\00a0"}
+.sim-btn[disabled],.sim-cause[disabled]{cursor:default;opacity:.6}
+.sim-app button:focus-visible,.sim-app a:focus-visible,.sim-app input:focus-visible,.sim-sec summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.sim-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.sim-fig{min-width:0}
+.sim-fig .sim-svg{display:block;width:100%;height:auto;max-width:520px;margin:0 auto;touch-action:manipulation}
+.sim-side{min-width:0}
+@media(min-width:900px){.sim-grid{grid-template-columns:minmax(0,430px) minmax(0,1fr)}.sim-fig{position:sticky;top:60px;align-self:start}}
+@media(max-width:520px){.sim-page{padding:8px 8px 8px}.sim-app{padding:4px;border-radius:10px}.sim-bar,.sim-side{padding:4px 4px}.sim-bar{margin:0 0 4px}}
+/* schematic symbols */
+.sim-svg text{font-family:'Segoe UI',Arial,sans-serif}
+.sim-svg .sym{fill:none;stroke:#2c3e50;stroke-width:1.4;stroke-linejoin:round;stroke-linecap:round}
+.sim-svg .sym.body{fill:#fff}
+.sim-svg .sym.thin{stroke-width:1}
+.sim-svg .sym.dash{stroke-width:1;stroke-dasharray:3 2}
+.sim-svg .sym.link{stroke-width:1.1}
+.sim-svg .sym.rod{stroke-width:2.4}
+.sim-svg .sym.pis{stroke-width:3}
+.sim-svg .symf{fill:#2c3e50;stroke:none}
+.sim-svg .encl{fill:none;stroke:#5b6b7c;stroke-width:1;stroke-dasharray:8 3 2 3}
+.sim-svg .dot{fill:#2c3e50}
+.sim-svg .lbl{font-size:11px;fill:#4a5568;font-style:italic}
+.sim-svg .lbl.sm{font-size:10px}
+.sim-svg .lbl-c{fill:#7a4e00;font-weight:700;font-style:normal}
+.sim-svg .pill rect{fill:var(--primary)}
+.sim-svg .pill text{fill:#fff;font-size:10.5px;font-weight:700;text-anchor:middle}
+.sim-svg .tpl,.sim-svg .tpb{fill:none;stroke:var(--primary);stroke-width:1.6}
+.sim-svg .hit{fill:rgba(0,0,0,0);stroke:none}
+.sim-svg [role="button"]{cursor:pointer}
+.sim-svg [role="button"]:focus{outline:none}
+.sim-svg [role="button"]:focus-visible .hit{stroke:var(--accent);stroke-width:3px;vector-effect:non-scaling-stroke}
+.sim-svg .sel .hit{fill:rgba(240,165,0,.14);stroke:#9e6d00;stroke-width:2px;stroke-dasharray:5 3;vector-effect:non-scaling-stroke}
+@media(hover:hover){.sim-svg [role="button"]:hover .hit{fill:rgba(26,58,92,.07)}}
+.sim-svg .rot{fill:none;stroke:none}
+.sim-svg .sw-bar{fill:none;stroke:none}
+.sim-svg .cp.stk .sw-bar{stroke:#6d97c0;stroke-width:7px;stroke-linecap:round}
+/* line states: colour + width + pattern (legend in the page text) */
+.ln path{fill:none;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.ln .lo{stroke:none}
+.ln .fa{display:none;fill:#fff;stroke-width:2px}
+.ln .lm{stroke:#2c3e50;stroke-width:2px}
+.ln.k-pilot .lm{stroke-width:1.5px;stroke-dasharray:7 4}
+.ln.k-drain .lm{stroke-width:1.5px;stroke-dasharray:2 3}
+.ln.st-idle .lm{stroke:#8a8a8a;stroke-width:1.5px}
+.ln.st-high .lm{stroke:#D55E00;stroke-width:6px;stroke-dasharray:none}
+.ln.st-low .lm{stroke:#0072B2;stroke-width:3.5px;stroke-dasharray:none}
+.ln.st-charge .lo{stroke:#1f1f1f;stroke-width:5px}
+.ln.st-charge .lm{stroke:#E69F00;stroke-width:3px;stroke-dasharray:none}
+.ln.st-pilot .lo{stroke:#1f1f1f;stroke-width:4px;stroke-dasharray:7 4}
+.ln.st-pilot .lm{stroke:#CC79A7;stroke-width:2px;stroke-dasharray:7 4}
+.ln.st-drain .lo{stroke:#1f1f1f;stroke-width:3.5px;stroke-dasharray:2 3}
+.ln.st-drain .lm{stroke:#56B4E9;stroke-width:1.5px;stroke-dasharray:2 3}
+.ln.st-suction .lm{stroke:#000;stroke-width:2px;stroke-dasharray:none}
+.ln.st-high .fa{stroke:#D55E00}
+.ln.st-low .fa{stroke:#0072B2}
+.ln.mv.st-high:not(.rev) .faf,.ln.mv.st-high.rev .far,.ln.mv.st-low:not(.rev) .faf,.ln.mv.st-low.rev .far,.lg-sw .faf{display:inline}
+.ln.mv .fa{animation:simfl-r var(--fl,1.2s) linear infinite}
+.ln.mv.st-low .fa{animation-duration:calc(var(--fl,1.2s)*1.7)}
+.ln.mv .fx-l{animation-name:simfl-l}
+.ln.mv .fx-d{animation-name:simfl-d}
+.ln.mv .fx-u{animation-name:simfl-u}
+.ln.mv.rev .fa{animation-direction:reverse}
+.ln.st-pilot.pr .lm{animation:simpulse 1.4s ease-in-out infinite}
+/* the arrows move by exactly one spacing (FLOW_STEP in the generator) */
+@keyframes simfl-r{to{transform:translateX(54px)}}
+@keyframes simfl-l{to{transform:translateX(-54px)}}
+@keyframes simfl-d{to{transform:translateY(54px)}}
+@keyframes simfl-u{to{transform:translateY(-54px)}}
+@keyframes simpulse{50%{stroke-opacity:.35}}
+@keyframes simspin{to{transform:rotate(360deg)}}
+/* component states */
+.sim-svg [data-comp].on .solbox{fill:#CC79A7}
+.sim-svg .mf-chk.open .ball{fill:#E69F00}
+.sim-svg .mf-rv.open .rv-arr{transform:translateY(-6px)}
+.sim-svg .mf-rv.open .rv-arr .sym{stroke:#D55E00;stroke-width:2.2}
+.sim-svg .mf-rv.open .rv-arr .symf{fill:#D55E00}
+.sim-svg .cp.open .rv-arr{transform:translateX(-6px)}
+.sim-svg .cp.open .rv-arr .sym{stroke:#0072B2;stroke-width:2.2}
+.sim-svg .cp.open .rv-arr .symf{fill:#0072B2}
+.sim-svg .cp.turn .rot{stroke:#6d97c0;stroke-width:7;stroke-dasharray:30 6 8 6 8 6 8 6 8 14;transform-box:fill-box;transform-origin:center;animation:simspin var(--spin,1.2s) linear infinite}
+.sim-svg .cp.turn.rev .rot{animation-direction:reverse}
+.sim-svg .cp.dmin .spd rect+rect{fill:#1a3a5c}
+.sim-svg .cp.rel .bk-pis{transform:translateX(-8px)}
+.sim-svg [data-comp="flushValve"].on .body{fill:#d8ecf8}
+/* test ports in fault scenarios */
+.sim-svg .tp.dim{opacity:.3}
+.sim-svg .tp.pick .hit{stroke:#9e6d00;stroke-width:2px;stroke-dasharray:4 3;vector-effect:non-scaling-stroke}
+.sim-svg .tp.got .hit{stroke:#1d8147;stroke-width:2.5px;stroke-dasharray:none;vector-effect:non-scaling-stroke}
+.sim-svg .tp.got .pill rect{fill:#1d8147}
+/* line colours, short form */
+.sim-key{display:flex;flex-wrap:wrap;gap:2px 12px;list-style:none;margin:6px 0 0;padding:0 4px;color:#4a5568;font-size:.76rem;line-height:1.5}
+.sim-key li{display:flex;align-items:center;gap:5px}
+.key-sw{flex:none;width:26px;height:10px;overflow:visible}
+.sim-app[data-mode="diagnose"] .sim-key{display:none}
+/* side panel */
+.sim-live{min-height:44px;margin:0 0 12px;padding:8px 12px;border-left:4px solid var(--primary);border-radius:6px;background:var(--light);font-size:.92rem}
+.sim-live p{margin:0}
+.sim-warn{margin-top:6px!important;color:#8b2a12;font-weight:700}
+.sim-warn::before{content:"\26A0\FE0E\00a0"}
+.sim-fail{padding:8px 12px;border-left:4px solid #b45f14;background:#fdf6ec;border-radius:6px}
+.sim-h{margin:0 0 6px;color:var(--primary);font-size:1.1rem}
+.sim-h3{margin:16px 0 6px;color:var(--primary);font-size:.98rem}
+.sim-hint{margin:0 0 10px;color:#4a5568;font-size:.88rem}
+.sim-dgnote{margin:0 0 10px;font-size:.88rem;color:#4a5568}
+.sim-row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
+.sim-col{display:flex;flex-direction:column;gap:8px}
+.sim-cause{text-align:left}
+.sim-cause.tried{border-style:dashed;color:#6b4a00}
+.sim-cause.tried::after{content:"\00a0\2014 not this one"}
+.sim-info h3{margin:0 0 6px;color:var(--primary);font-size:1rem}
+.sim-info p{margin:0 0 8px;font-size:.92rem}
+.sim-info .sim-part{margin:0 0 10px}
+.sim-dock{margin:4px 0 12px}
+.sim-lever{margin:0}
+.sim-presets{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.sim-presets button{min-width:0;padding:8px 2px}
+.sim-lever label{display:inline-block;font-weight:700;font-size:.92rem}
+.sim-lever output{margin-left:8px;font-weight:700;color:#1a3a5c}
+.sim-ends{display:flex;justify-content:space-between;font-size:.82rem;color:#4a5568}
+.sim-lever input[type="range"]{display:block;width:100%;height:44px;margin:0 0 6px;background:transparent;-webkit-appearance:none;appearance:none;cursor:pointer;touch-action:pan-y}
+.sim-lever input[type="range"]::-webkit-slider-runnable-track{height:8px;border-radius:4px;background:#c7d2de}
+.sim-lever input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:44px;height:44px;margin-top:-18px;border-radius:50%;border:4px solid #fff;background:var(--primary);box-shadow:0 0 0 2px var(--primary)}
+.sim-lever input[type="range"]::-moz-range-track{height:8px;border-radius:4px;background:#c7d2de}
+.sim-lever input[type="range"]::-moz-range-thumb{width:36px;height:36px;border-radius:50%;border:4px solid #fff;background:var(--primary);box-shadow:0 0 0 2px var(--primary)}
+.sim-symptom{margin:0 0 8px;padding:8px 12px;border-left:4px solid var(--accent);background:#fffaf0;border-radius:6px;font-weight:600}
+.sim-step{margin:0 0 6px;font-size:.9rem}
+.sim-cond{margin:0 0 6px;font-size:.88rem;color:#4a5568}
+.sim-reads{list-style:none;margin:0 0 8px;padding:0}
+.sim-rd{margin:0 0 8px;padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:#fff}
+.sim-rd p{margin:0}
+.sim-rd-h{font-size:.9rem}
+.sim-gauge{position:relative;height:14px;margin:8px 0 6px;border-radius:7px;background:#e3e9f0}
+.sim-gauge-f{position:absolute;left:0;top:0;bottom:0;border-radius:7px;background:var(--primary)}
+.sim-gauge-n{position:absolute;top:-4px;bottom:-4px;width:4px;margin-left:-2px;border-radius:2px;background:#b45f14}
+.sim-rd-v{font-size:.88rem;font-weight:700}
+.sim-rd-note{margin-top:2px!important;font-size:.78rem;color:#4a5568}
+.sim-result{margin:12px 0;padding:10px 12px;border-left:4px solid var(--primary);border-radius:6px;background:var(--light)}
+.sim-result.ok{border-left-color:#1d8147;background:#eef8f1}
+.sim-result.no{border-left-color:#b45f14;background:#fdf6ec}
+.sim-result h4{margin:10px 0 4px;color:var(--primary);font-size:.92rem}
+.sim-result p{margin:0 0 8px;font-size:.92rem}
+.sim-verdict{font-weight:700}
+.sim-offer{margin:14px 0 4px;padding:14px;border-radius:10px;background:var(--primary);color:#fff}
+.sim-offer-t{margin:0 0 10px;font-weight:700}
+.sim-offer-links{display:flex;flex-wrap:wrap;gap:10px}
+.sim-offer a{display:inline-flex;align-items:center;min-height:44px;padding:10px 16px;border-radius:8px;font-weight:800;text-decoration:none}
+.sim-offer-buy{background:var(--accent);color:var(--primary)}
+.sim-offer-free{border:2px solid rgba(255,255,255,.7);color:#fff}
+/* page text */
+.sim-sec{margin:0 0 20px;padding:20px;border-radius:12px;background:var(--card);box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.sim-sec h2{margin:0 0 12px;padding-bottom:8px;border-bottom:3px solid var(--accent);color:var(--primary);font-size:1.2rem}
+.sim-fold{margin:0 0 10px;padding:0}
+.sim-fold>details>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px;padding:8px 16px;cursor:pointer;list-style:none}
+.sim-fold>details>summary::-webkit-details-marker{display:none}
+.sim-fold>details>summary::after{content:"+";flex:none;color:var(--primary);font-size:1.5rem;font-weight:700;line-height:1}
+.sim-fold>details[open]>summary::after{content:"\2212"}
+.sim-fold h2{margin:0;padding:0;border:0;font-size:1.05rem;line-height:1.35}
+.sim-fold-b{padding:2px 16px 14px}
+.sim-sec h3{margin:16px 0 6px;color:var(--primary);font-size:1.02rem}
+.sim-sec p{margin:0 0 10px}
+.sim-legend{list-style:none;margin:0 0 10px;padding:0}
+.sim-legend li{display:flex;gap:12px;align-items:flex-start;margin:0 0 10px}
+.sim-legend p{margin:0}
+.lg-sw{flex:none;width:64px;height:18px;margin-top:5px;overflow:visible}
+.lg-sw .lbl{font-size:7px;font-family:'Segoe UI',Arial,sans-serif;text-anchor:middle}
+.sim-parts{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.sim-part{padding:12px 14px;border:1px solid var(--border);border-radius:10px}
+.sim-sec .sim-part h3{margin:0 0 6px}
+.sim-part p{font-size:.92rem}
+.sim-tbl table{width:100%;border-collapse:collapse;font-size:.88rem;line-height:1.55}
+.sim-tbl th,.sim-tbl td{padding:8px;border:1px solid var(--border);vertical-align:top;text-align:left}
+.sim-tbl thead th{background:var(--primary);color:#fff}
+.sim-tbl tbody th{background:var(--light)}
+@media(max-width:640px){.sim-tbl th,.sim-tbl td{min-width:12em}}
+.sim-why{margin-top:14px}
+.sim-why details{margin:0 0 10px;border-left:4px solid var(--accent);border-radius:8px;background:#fff;box-shadow:0 1px 5px rgba(0,0,0,.07)}
+.sim-why summary{display:flex;align-items:center;min-height:48px;padding:10px 16px;cursor:pointer;color:var(--primary);font-weight:700;line-height:1.45}
+.sim-why h4{margin:4px 16px;color:var(--primary);font-size:.92rem}
+.sim-why p{margin:0 16px 12px}
+.sim-disc{border-left:4px solid #b45f14}
+.sim-fold.sim-disc{margin-bottom:20px}
+.sim-src{color:#4a5568;font-size:.86rem}
+.faq-visible.sim-sec{margin:0 0 20px}
+footer{margin-top:40px;padding:24px;background:#1a3a5c;color:rgba(255,255,255,.75);text-align:center;font-size:.8rem}
+footer a{margin:0 4px;color:#f0a500;text-decoration:none}
+footer p:last-child a{display:inline-block;padding:12px 4px}
+/* narrow screens: the controls stay with the drawing. The dock is fixed in Drive only, and slides away
+   once the end of the simulator comes on screen (.sim-dockon, set by an IntersectionObserver), so it only
+   ever sits over the simulator itself. Without that observer it stays in the page flow. */
+@media(max-width:899px){
+.sim-bar{min-height:44px}
+.sim-modes{flex:1 1 100%;flex-wrap:nowrap}
+.sim-mode{flex:1 1 auto;min-width:0;padding:8px 6px}
+.sim-pause{position:absolute;top:calc(100% + 4px);right:0;z-index:2;width:84px;min-height:44px;padding:2px 4px;border-width:1px;font-size:.76rem;line-height:1.2}
+.sim-app.sim-rmon .sim-pause{position:static;width:auto;flex:none;padding:8px 14px;border-width:2px;font-size:.92rem}
+.sim-app.sim-rmon .sim-rm{flex:1 1 150px}
+.sim-app.sim-rmon.sim-still .sim-pause{background:var(--primary);color:#fff}
+.sim-dockable .sim-panel[data-panel="operate"] .sim-dock{position:fixed;left:0;right:0;bottom:var(--dock-b,0px);z-index:150;margin:0;padding:4px 8px calc(6px + env(safe-area-inset-bottom,0px));background:#fff;border-top:2px solid var(--primary);box-shadow:0 -2px 10px rgba(0,0,0,.18);transform:translateY(calc(100% + var(--dock-b,0px) + 12px));visibility:hidden;transition:transform .16s ease,visibility .16s}
+.sim-dockable.sim-dockon .sim-panel[data-panel="operate"] .sim-dock{transform:none;visibility:visible}
+.sim-dockable .sim-lever{display:grid;grid-template-columns:62px minmax(0,1fr);align-items:center;gap:6px}
+.sim-dockable .sim-lever label{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.sim-dockable .sim-lever output{margin:0;font-size:.84rem;line-height:1.2}
+.sim-dockable .sim-ends{display:none}
+.sim-dockable .sim-lever input[type="range"]{margin:0}
+.sim-app[data-mode="operate"] .sim-svg{max-height:calc(100vh - 176px);max-height:calc(100svh - 176px)}
+.sim-app[data-mode="operate"].sim-dockable.sim-dockon .sim-warn{position:fixed;left:8px;right:8px;bottom:calc(var(--dock-b,0px) + 110px + env(safe-area-inset-bottom,0px));z-index:150;margin:0!important;padding:6px 10px;border-radius:6px;background:#fff3e6;box-shadow:0 1px 6px rgba(0,0,0,.25);font-size:.84rem;line-height:1.35;pointer-events:none}
+}
+/* motion: paused with the button, stopped while the simulator is off screen, and off for reduced motion
+   until the visitor presses Play (.sim-play) */
+.sim-app.sim-still *,.sim-app.sim-away *{animation-play-state:paused!important}
+@media (prefers-reduced-motion: reduce){.sim-app:not(.sim-play) *,.sim-app:not(.sim-play) *::before,.sim-app:not(.sim-play) *::after,.sim-sec *{animation:none!important;transition:none!important}.sim-dock{transition:none!important}}
+</style>
+<link rel="stylesheet" href="sim/ctl-std.css?v=1">
+<script src="sim/ctl-engine.v1.js?v=1" defer></script>
+<script src="sim/circuits/ctl-24.v1.js?v=1" defer></script>
+<script src="sim/sim-shell.v1.js?v=2" defer></script>
+<script src="sim/ctl-render.v1.js?v=1" defer></script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-brand">🔧 Red Seal Prep</a>
+  <button class="nav-toggle" aria-label="Menu" id="navToggle">☰</button>
+  <div class="nav-links" id="navLinks">
+    <a href="/">Home</a>
+    <div class="nav-dropdown" id="tradesDrop">
+                  <button class="nav-drop-btn" id="tradesBtn" aria-haspopup="true">Trades ▾</button>
+      <div class="nav-drop-menu">
+        <a href="/456a.html">456A Welder</a>
+        <a href="/308a.html">308A Sheet Metal Worker</a>
+        <a href="/313a.html">313A HVAC/Refrigeration</a>
+        <a href="/309a.html">309A Construction Electrician</a>
+        <a href="/310s.html">310S Automotive Service Tech</a>
+        <a href="/310t.html">310T Truck &amp; Transport Mechanic</a>
+        <a href="/442a.html">442A Industrial Electrician</a>
+        <a href="/gasfitter-class-a.html">Gasfitter (Class A)</a>
+        <a href="/421a.html">421A Heavy Duty Equipment Tech</a>
+        <a href="/420b.html">420B Ironworker</a>
+        <a href="/306a.html">306A Plumber</a>
+      </div>
+    </div>
+    <a href="/practice-quizzes.html">Quizzes</a>
+    <a href="/red-seal-trades.html">Guides</a>
+    <a href="/about.html">About</a>
+  </div>
+</nav>
+
+<section class="hero-std">
+  <h1>Motor Starter Control Circuit <span>Simulator</span></h1>
+  <div class="hero-meta">
+    <span class="hero-kicker">24 V DC control</span>
+    <span class="hero-pill">Updated November 2026</span>
+    <span class="hero-pill">Free, no sign-up</span>
+  </div>
+</section>
+
+<main class="sim-page" id="main">
+<section class="sim-app ctl-app" id="sim-app" aria-labelledby="sim-app-h" data-mode="meter" data-circuit="ctl-24" data-trade="multi">
+<h2 class="sim-vh" id="sim-app-h">Simulator</h2>
+<div class="sim-bar">
+<div class="sim-modes" role="group" aria-label="Simulator mode">
+<button type="button" class="sim-mode" data-mode="explore" aria-pressed="false">Explore</button>
+<button type="button" class="sim-mode" data-mode="meter" aria-pressed="true">Operate and meter</button>
+<button type="button" class="sim-mode" data-mode="diagnose" aria-pressed="false">Find the fault</button>
+</div>
+<button type="button" class="sim-btn sim-pause" id="sim-pause">Pause animation</button>
+<p class="sim-rm" id="sim-rm" hidden>This device asks for reduced motion, so the animation waits for Play.</p>
+</div>
+<div class="sim-grid">
+<div class="sim-fig">
+<svg class="sim-svg ctl-svg" viewBox="0 0 360 520" role="group" aria-labelledby="ctl-svg-t" xmlns="http://www.w3.org/2000/svg"><title id="ctl-svg-t">Example motor starter control circuit, ladder diagram</title><defs><clipPath id="fc-nP-0"><rect x="17" y="36" width="18" height="384"/></clipPath><clipPath id="fc-nP-1"><rect x="26" y="27" width="124" height="18"/></clipPath><clipPath id="fc-nP-2"><rect x="141" y="36" width="18" height="28"/></clipPath><clipPath id="fc-nF-0"><rect x="141" y="92" width="18" height="54"/></clipPath><clipPath id="fc-nO-0"><rect x="141" y="178" width="18" height="52"/></clipPath><clipPath id="fc-nS-0"><rect x="141" y="262" width="18" height="42"/></clipPath><clipPath id="fc-nS-st-0"><rect x="141" y="304" width="18" height="22"/></clipPath><clipPath id="fc-nS-se-0"><rect x="150" y="295" width="65" height="18"/></clipPath><clipPath id="fc-nS-se-1"><rect x="206" y="304" width="18" height="22"/></clipPath><clipPath id="fc-nC-st-0"><rect x="141" y="358" width="18" height="14"/></clipPath><clipPath id="fc-nC-se-0"><rect x="206" y="358" width="18" height="14"/></clipPath><clipPath id="fc-nC-se-1"><rect x="150" y="363" width="65" height="18"/></clipPath><clipPath id="fc-nC-0"><rect x="141" y="372" width="18" height="47"/></clipPath><clipPath id="fc-n0-0"><rect x="141" y="445" width="18" height="47"/></clipPath><clipPath id="fc-n0-1"><rect x="26" y="483" width="124" height="18"/></clipPath><clipPath id="fc-n0-2"><rect x="17" y="468" width="18" height="24"/></clipPath></defs><g class="ln k-wire" data-node="nP" data-flow="FU1"><path class="lo" d="M26 420 L26 36 L150 36 L150 64"/><path class="lm" d="M26 420 L26 36 L150 36 L150 64"/><g clip-path="url(#fc-nP-0)"><path class="fa faf fx-u" d="M26.0 467.0 L32.0 481.0 L20.0 481.0 Z M26.0 413.0 L32.0 427.0 L20.0 427.0 Z M26.0 359.0 L32.0 373.0 L20.0 373.0 Z M26.0 305.0 L32.0 319.0 L20.0 319.0 Z M26.0 251.0 L32.0 265.0 L20.0 265.0 Z M26.0 197.0 L32.0 211.0 L20.0 211.0 Z M26.0 143.0 L32.0 157.0 L20.0 157.0 Z M26.0 89.0 L32.0 103.0 L20.0 103.0 Z M26.0 35.0 L32.0 49.0 L20.0 49.0 Z M26.0 -19.0 L32.0 -5.0 L20.0 -5.0 Z"/><path class="fa far fx-u" d="M26.0 481.0 L20.0 467.0 L32.0 467.0 Z M26.0 427.0 L20.0 413.0 L32.0 413.0 Z M26.0 373.0 L20.0 359.0 L32.0 359.0 Z M26.0 319.0 L20.0 305.0 L32.0 305.0 Z M26.0 265.0 L20.0 251.0 L32.0 251.0 Z M26.0 211.0 L20.0 197.0 L32.0 197.0 Z M26.0 157.0 L20.0 143.0 L32.0 143.0 Z M26.0 103.0 L20.0 89.0 L32.0 89.0 Z M26.0 49.0 L20.0 35.0 L32.0 35.0 Z M26.0 -5.0 L20.0 -19.0 L32.0 -19.0 Z"/></g><g clip-path="url(#fc-nP-1)"><path class="fa faf fx-r" d="M-21.0 36.0 L-35.0 42.0 L-35.0 30.0 Z M33.0 36.0 L19.0 42.0 L19.0 30.0 Z M87.0 36.0 L73.0 42.0 L73.0 30.0 Z M141.0 36.0 L127.0 42.0 L127.0 30.0 Z M195.0 36.0 L181.0 42.0 L181.0 30.0 Z"/><path class="fa far fx-r" d="M-35.0 36.0 L-21.0 30.0 L-21.0 42.0 Z M19.0 36.0 L33.0 30.0 L33.0 42.0 Z M73.0 36.0 L87.0 30.0 L87.0 42.0 Z M127.0 36.0 L141.0 30.0 L141.0 42.0 Z M181.0 36.0 L195.0 30.0 L195.0 42.0 Z"/></g><g clip-path="url(#fc-nP-2)"><path class="fa faf fx-d" d="M150.0 -11.0 L144.0 -25.0 L156.0 -25.0 Z M150.0 43.0 L144.0 29.0 L156.0 29.0 Z M150.0 97.0 L144.0 83.0 L156.0 83.0 Z"/><path class="fa far fx-d" d="M150.0 -25.0 L156.0 -11.0 L144.0 -11.0 Z M150.0 29.0 L156.0 43.0 L144.0 43.0 Z M150.0 83.0 L156.0 97.0 L144.0 97.0 Z"/></g></g><g class="ln k-wire" data-node="nF" data-flow="FU1"><path class="lo" d="M150 92 L150 146"/><path class="lm" d="M150 92 L150 146"/><g clip-path="url(#fc-nF-0)"><path class="fa faf fx-d" d="M150.0 45.0 L144.0 31.0 L156.0 31.0 Z M150.0 99.0 L144.0 85.0 L156.0 85.0 Z M150.0 153.0 L144.0 139.0 L156.0 139.0 Z"/><path class="fa far fx-d" d="M150.0 31.0 L156.0 45.0 L144.0 45.0 Z M150.0 85.0 L156.0 99.0 L144.0 99.0 Z M150.0 139.0 L156.0 153.0 L144.0 153.0 Z"/></g></g><g class="ln k-wire" data-node="nO" data-flow="OL"><path class="lo" d="M150 178 L150 230"/><path class="lm" d="M150 178 L150 230"/><g clip-path="url(#fc-nO-0)"><path class="fa faf fx-d" d="M150.0 131.0 L144.0 117.0 L156.0 117.0 Z M150.0 185.0 L144.0 171.0 L156.0 171.0 Z M150.0 239.0 L144.0 225.0 L156.0 225.0 Z"/><path class="fa far fx-d" d="M150.0 117.0 L156.0 131.0 L144.0 131.0 Z M150.0 171.0 L156.0 185.0 L144.0 185.0 Z M150.0 225.0 L156.0 239.0 L144.0 239.0 Z"/></g></g><g class="ln k-wire" data-node="nS" data-flow="STOP"><path class="lo" d="M150 262 L150 304"/><path class="lm" d="M150 262 L150 304"/><g clip-path="url(#fc-nS-0)"><path class="fa faf fx-d" d="M150.0 215.0 L144.0 201.0 L156.0 201.0 Z M150.0 269.0 L144.0 255.0 L156.0 255.0 Z M150.0 323.0 L144.0 309.0 L156.0 309.0 Z"/><path class="fa far fx-d" d="M150.0 201.0 L156.0 215.0 L144.0 215.0 Z M150.0 255.0 L156.0 269.0 L144.0 269.0 Z M150.0 309.0 L156.0 323.0 L144.0 323.0 Z"/></g></g><g class="ln k-wire" data-node="nS" data-flow="START"><path class="lo" d="M150 304 L150 326"/><path class="lm" d="M150 304 L150 326"/><g clip-path="url(#fc-nS-st-0)"><path class="fa faf fx-d" d="M150.0 257.0 L144.0 243.0 L156.0 243.0 Z M150.0 311.0 L144.0 297.0 L156.0 297.0 Z M150.0 365.0 L144.0 351.0 L156.0 351.0 Z"/><path class="fa far fx-d" d="M150.0 243.0 L156.0 257.0 L144.0 257.0 Z M150.0 297.0 L156.0 311.0 L144.0 311.0 Z M150.0 351.0 L156.0 365.0 L144.0 365.0 Z"/></g></g><g class="ln k-wire" data-node="nS" data-flow="SEAL"><path class="lo" d="M150 304 L215 304 L215 326"/><path class="lm" d="M150 304 L215 304 L215 326"/><g clip-path="url(#fc-nS-se-0)"><path class="fa faf fx-r" d="M103.0 304.0 L89.0 310.0 L89.0 298.0 Z M157.0 304.0 L143.0 310.0 L143.0 298.0 Z M211.0 304.0 L197.0 310.0 L197.0 298.0 Z M265.0 304.0 L251.0 310.0 L251.0 298.0 Z"/><path class="fa far fx-r" d="M89.0 304.0 L103.0 298.0 L103.0 310.0 Z M143.0 304.0 L157.0 298.0 L157.0 310.0 Z M197.0 304.0 L211.0 298.0 L211.0 310.0 Z M251.0 304.0 L265.0 298.0 L265.0 310.0 Z"/></g><g clip-path="url(#fc-nS-se-1)"><path class="fa faf fx-d" d="M215.0 257.0 L209.0 243.0 L221.0 243.0 Z M215.0 311.0 L209.0 297.0 L221.0 297.0 Z M215.0 365.0 L209.0 351.0 L221.0 351.0 Z"/><path class="fa far fx-d" d="M215.0 243.0 L221.0 257.0 L209.0 257.0 Z M215.0 297.0 L221.0 311.0 L209.0 311.0 Z M215.0 351.0 L221.0 365.0 L209.0 365.0 Z"/></g></g><g class="ln k-wire" data-node="nC" data-flow="START"><path class="lo" d="M150 358 L150 372"/><path class="lm" d="M150 358 L150 372"/><g clip-path="url(#fc-nC-st-0)"><path class="fa faf fx-d" d="M150.0 311.0 L144.0 297.0 L156.0 297.0 Z M150.0 365.0 L144.0 351.0 L156.0 351.0 Z M150.0 419.0 L144.0 405.0 L156.0 405.0 Z"/><path class="fa far fx-d" d="M150.0 297.0 L156.0 311.0 L144.0 311.0 Z M150.0 351.0 L156.0 365.0 L144.0 365.0 Z M150.0 405.0 L156.0 419.0 L144.0 419.0 Z"/></g></g><g class="ln k-wire" data-node="nC" data-flow="SEAL"><path class="lo" d="M215 358 L215 372 L150 372"/><path class="lm" d="M215 358 L215 372 L150 372"/><g clip-path="url(#fc-nC-se-0)"><path class="fa faf fx-d" d="M215.0 311.0 L209.0 297.0 L221.0 297.0 Z M215.0 365.0 L209.0 351.0 L221.0 351.0 Z M215.0 419.0 L209.0 405.0 L221.0 405.0 Z"/><path class="fa far fx-d" d="M215.0 297.0 L221.0 311.0 L209.0 311.0 Z M215.0 351.0 L221.0 365.0 L209.0 365.0 Z M215.0 405.0 L221.0 419.0 L209.0 419.0 Z"/></g><g clip-path="url(#fc-nC-se-1)"><path class="fa faf fx-l" d="M262.0 372.0 L276.0 366.0 L276.0 378.0 Z M208.0 372.0 L222.0 366.0 L222.0 378.0 Z M154.0 372.0 L168.0 366.0 L168.0 378.0 Z M100.0 372.0 L114.0 366.0 L114.0 378.0 Z"/><path class="fa far fx-l" d="M276.0 372.0 L262.0 378.0 L262.0 366.0 Z M222.0 372.0 L208.0 378.0 L208.0 366.0 Z M168.0 372.0 L154.0 378.0 L154.0 366.0 Z M114.0 372.0 L100.0 378.0 L100.0 366.0 Z"/></g></g><g class="ln k-wire" data-node="nC" data-flow="MCOIL"><path class="lo" d="M150 372 L150 419"/><path class="lm" d="M150 372 L150 419"/><g clip-path="url(#fc-nC-0)"><path class="fa faf fx-d" d="M150.0 325.0 L144.0 311.0 L156.0 311.0 Z M150.0 379.0 L144.0 365.0 L156.0 365.0 Z M150.0 433.0 L144.0 419.0 L156.0 419.0 Z"/><path class="fa far fx-d" d="M150.0 311.0 L156.0 325.0 L144.0 325.0 Z M150.0 365.0 L156.0 379.0 L144.0 379.0 Z M150.0 419.0 L156.0 433.0 L144.0 433.0 Z"/></g></g><g class="ln k-wire" data-node="n0" data-flow="MCOIL"><path class="lo" d="M150 445 L150 492 L26 492 L26 468"/><path class="lm" d="M150 445 L150 492 L26 492 L26 468"/><g clip-path="url(#fc-n0-0)"><path class="fa faf fx-d" d="M150.0 398.0 L144.0 384.0 L156.0 384.0 Z M150.0 452.0 L144.0 438.0 L156.0 438.0 Z M150.0 506.0 L144.0 492.0 L156.0 492.0 Z"/><path class="fa far fx-d" d="M150.0 384.0 L156.0 398.0 L144.0 398.0 Z M150.0 438.0 L156.0 452.0 L144.0 452.0 Z M150.0 492.0 L156.0 506.0 L144.0 506.0 Z"/></g><g clip-path="url(#fc-n0-1)"><path class="fa faf fx-l" d="M197.0 492.0 L211.0 486.0 L211.0 498.0 Z M143.0 492.0 L157.0 486.0 L157.0 498.0 Z M89.0 492.0 L103.0 486.0 L103.0 498.0 Z M35.0 492.0 L49.0 486.0 L49.0 498.0 Z M-19.0 492.0 L-5.0 486.0 L-5.0 498.0 Z"/><path class="fa far fx-l" d="M211.0 492.0 L197.0 498.0 L197.0 486.0 Z M157.0 492.0 L143.0 498.0 L143.0 486.0 Z M103.0 492.0 L89.0 498.0 L89.0 486.0 Z M49.0 492.0 L35.0 498.0 L35.0 486.0 Z M-5.0 492.0 L-19.0 498.0 L-19.0 486.0 Z"/></g><g clip-path="url(#fc-n0-2)"><path class="fa faf fx-u" d="M26.0 539.0 L32.0 553.0 L20.0 553.0 Z M26.0 485.0 L32.0 499.0 L20.0 499.0 Z M26.0 431.0 L32.0 445.0 L20.0 445.0 Z"/><path class="fa far fx-u" d="M26.0 553.0 L20.0 539.0 L32.0 539.0 Z M26.0 499.0 L20.0 485.0 L32.0 485.0 Z M26.0 445.0 L20.0 431.0 L32.0 431.0 Z"/></g></g><g class="ctl-p k-source" data-el="PSU" data-info="supply" data-name="24 V DC control supply"><rect class="hit" x="1" y="419" width="50" height="50" rx="6"/><rect class="sym body psu" x="10" y="420" width="32" height="48" rx="3"/><text class="lbl pol" x="26" y="435" text-anchor="middle">+</text><text class="lbl blk" x="26" y="449" text-anchor="middle">DC</text><text class="lbl pol" x="26" y="463" text-anchor="middle">−</text><text class="lbl ctl-nm" x="50" y="438">24 V DC</text><text class="lbl ctl-nm sub" x="50" y="450">control supply</text><text class="lbl ctl-st" x="50" y="462"></text></g><g class="ctl-p k-fuse" data-el="FU1" data-info="control_fuse" data-name="Control fuse"><rect class="hit" x="125" y="53" width="50" height="50" rx="6"/><rect class="sym body fz-body" x="144" y="64" width="12" height="28" rx="2"/><path class="sym" d="M150 64 L150 92"/><text class="lbl ctl-nm" x="134" y="82" text-anchor="end">Control fuse</text></g><g class="ctl-p k-switch" data-el="OL" data-info="ol_contact" data-name="Overload contact (normally closed)"><rect class="hit" x="125" y="137" width="50" height="50" rx="6"/><path class="sym sw-blade sw-c" d="M150 146 L153 176"/><path class="sym sw-blade sw-o" d="M150 146 L165 171"/><circle class="sym body term" cx="150" cy="146" r="2.6"/><circle class="sym body term" cx="150" cy="178" r="2.6"/><text class="lbl ctl-nm" x="134" y="158" text-anchor="end">Overload contact</text><text class="lbl ctl-nm sub" x="134" y="170" text-anchor="end">normally closed</text><text class="lbl ctl-st" x="134" y="182" text-anchor="end"></text></g><g class="ctl-p k-switch" data-el="STOP" data-info="stop_button" data-name="STOP pushbutton (normally closed)"><rect class="hit" x="125" y="221" width="50" height="50" rx="6"/><path class="sym sw-blade sw-c" d="M150 230 L153 260"/><path class="sym sw-blade sw-o" d="M150 230 L165 255"/><circle class="sym body term" cx="150" cy="230" r="2.6"/><circle class="sym body term" cx="150" cy="262" r="2.6"/><g class="pb"><path class="sym dash" d="M157 246 L174 246"/><path class="sym" d="M174 240 L174 252"/></g><text class="lbl ctl-nm" x="134" y="242" text-anchor="end">STOP pushbutton</text><text class="lbl ctl-nm sub" x="134" y="254" text-anchor="end">normally closed</text><text class="lbl ctl-st" x="134" y="266" text-anchor="end"></text></g><g class="ctl-p k-switch f-no" data-el="START" data-info="start_button" data-name="START pushbutton (normally open)"><rect class="hit" x="125" y="317" width="50" height="50" rx="6"/><path class="sym sw-blade sw-c" d="M150 326 L153 356"/><path class="sym sw-blade sw-o" d="M150 326 L165 351"/><circle class="sym body term" cx="150" cy="326" r="2.6"/><circle class="sym body term" cx="150" cy="358" r="2.6"/><g class="pb"><path class="sym dash" d="M157 342 L174 342"/><path class="sym" d="M174 336 L174 348"/></g><text class="lbl ctl-nm" x="134" y="338" text-anchor="end">START pushbutton</text><text class="lbl ctl-nm sub" x="134" y="350" text-anchor="end">normally open</text><text class="lbl ctl-st" x="134" y="362" text-anchor="end"></text></g><g class="ctl-p k-contact f-no" data-el="SEAL" data-info="seal_contact" data-name="Seal-in contact (normally open)"><rect class="hit" x="190" y="317" width="50" height="50" rx="6"/><path class="sym sw-blade sw-c" d="M215 326 L218 356"/><path class="sym sw-blade sw-o" d="M215 326 L230 351"/><circle class="sym body term" cx="215" cy="326" r="2.6"/><circle class="sym body term" cx="215" cy="358" r="2.6"/><text class="lbl ctl-nm" x="229" y="338">Seal-in</text><text class="lbl ctl-nm sub" x="229" y="350">contact M</text><text class="lbl ctl-st" x="229" y="362"></text></g><g class="ctl-p k-coil" data-el="MCOIL" data-info="contactor_coil" data-name="Contactor coil"><rect class="hit" x="125" y="407" width="50" height="50" rx="6"/><circle class="sym body coil" cx="150" cy="432" r="13"/><text class="lbl co-m" x="150" y="436" text-anchor="middle">M</text><path class="mag" d="M132 424 Q127 432 132 440 M168 424 Q173 432 168 440"/><text class="lbl ctl-nm" x="180" y="428">Contactor</text><text class="lbl ctl-nm sub" x="180" y="440">coil M</text><text class="lbl ctl-st" x="180" y="452"></text></g><g class="ctl-mb f-no" data-ct="M" data-info="power_circuit" data-name="Motor power circuit (line voltage, not measured here)"><rect class="hit" x="200" y="56" width="148" height="228" rx="6"/><rect class="encl" x="196" y="52" width="156" height="236" rx="4"/><text class="lbl blk" x="274" y="70" text-anchor="middle">Motor power circuit</text><text class="lbl blk" x="274" y="83" text-anchor="middle">(line voltage,</text><text class="lbl blk" x="274" y="96" text-anchor="middle">not measured here)</text><path class="sym" d="M236 106 L236 132"/><path class="sym sw-blade sw-c" d="M236 132 L239 158"/><path class="sym sw-blade sw-o" d="M236 132 L251 153"/><circle class="sym body term" cx="236" cy="132" r="2.6"/><circle class="sym body term" cx="236" cy="160" r="2.6"/><circle class="sym body term" cx="236" cy="106" r="2.6"/><text class="lbl blk" x="226" y="150" text-anchor="middle">M</text><path class="sym" d="M274 106 L274 132"/><path class="sym sw-blade sw-c" d="M274 132 L277 158"/><path class="sym sw-blade sw-o" d="M274 132 L289 153"/><circle class="sym body term" cx="274" cy="132" r="2.6"/><circle class="sym body term" cx="274" cy="160" r="2.6"/><circle class="sym body term" cx="274" cy="106" r="2.6"/><text class="lbl blk" x="264" y="150" text-anchor="middle">M</text><path class="sym" d="M312 106 L312 132"/><path class="sym sw-blade sw-c" d="M312 132 L315 158"/><path class="sym sw-blade sw-o" d="M312 132 L327 153"/><circle class="sym body term" cx="312" cy="132" r="2.6"/><circle class="sym body term" cx="312" cy="160" r="2.6"/><circle class="sym body term" cx="312" cy="106" r="2.6"/><text class="lbl blk" x="302" y="150" text-anchor="middle">M</text><path class="sym" d="M274 160 L274 216 M236 160 L236 200 L258 222 M312 160 L312 200 L290 222"/><circle class="sym body mtr" cx="274" cy="236" r="20"/><text class="lbl blk" x="274" y="240" text-anchor="middle">Motor</text><text class="lbl ctl-st" x="274" y="276" text-anchor="middle"></text></g><text class="lbl rail" x="158" y="40">+24 V</text><text class="lbl rail" x="160" y="496">0 V (control common)</text><circle class="dot" cx="150" cy="304" r="2.6"/><circle class="dot" cx="150" cy="372" r="2.6"/><g class="tps"><g class="tp" data-tp="TP_P" data-cx="95" data-cy="36" data-name="Test point: Supply +24 V"><circle class="hit" cx="95" cy="36" r="25"/><circle class="tpl" cx="95" cy="36" r="5.5"/></g><g class="tp" data-tp="TP_F" data-cx="150" data-cy="122" data-name="Test point: Fuse output"><circle class="hit" cx="150" cy="122" r="25"/><circle class="tpl" cx="150" cy="122" r="5.5"/></g><g class="tp" data-tp="TP_O" data-cx="150" data-cy="206" data-name="Test point: After the overload contact"><circle class="hit" cx="150" cy="206" r="25"/><circle class="tpl" cx="150" cy="206" r="5.5"/></g><g class="tp" data-tp="TP_S" data-cx="150" data-cy="290" data-name="Test point: After STOP"><circle class="hit" cx="150" cy="290" r="25"/><circle class="tpl" cx="150" cy="290" r="5.5"/></g><g class="tp" data-tp="TP_C" data-cx="150" data-cy="392" data-name="Test point: Coil, + side"><circle class="hit" cx="150" cy="392" r="25"/><circle class="tpl" cx="150" cy="392" r="5.5"/></g><g class="tp" data-tp="TP_0" data-cx="95" data-cy="492" data-name="Test point: 0 V (control common)"><circle class="hit" cx="95" cy="492" r="25"/><circle class="tpl" cx="95" cy="492" r="5.5"/></g></g><g id="lead-red" class="lead lead-red" pointer-events="none" aria-hidden="true" display="none"><circle r="11"/><text y="5" text-anchor="middle">+</text></g><g id="lead-black" class="lead lead-black" pointer-events="none" aria-hidden="true" display="none"><circle r="11"/><text y="5" text-anchor="middle">−</text></g></svg>
+<ul class="sim-key" aria-label="Line colours"><li><svg class="key-sw" viewBox="0 0 26 10" aria-hidden="true" focusable="false"><g class="ln k-wire st-pos"><path class="lo" d="M1 5 L25 5"/><path class="lm" d="M1 5 L25 5"/></g></svg>Near the supply voltage</li><li><svg class="key-sw" viewBox="0 0 26 10" aria-hidden="true" focusable="false"><g class="ln k-wire st-mid"><path class="lo" d="M1 5 L25 5"/><path class="lm" d="M1 5 L25 5"/></g></svg>Voltage partly lost</li><li><svg class="key-sw" viewBox="0 0 26 10" aria-hidden="true" focusable="false"><g class="ln k-wire st-gnd"><path class="lo" d="M1 5 L25 5"/><path class="lm" d="M1 5 L25 5"/></g></svg>Near 0 V</li><li><svg class="key-sw" viewBox="0 0 26 10" aria-hidden="true" focusable="false"><g class="ln k-wire st-pos key-mv"><path class="lo" d="M1 5 L25 5"/><path class="lm" d="M1 5 L25 5"/><path class="fa faf" d="M18.5 5.0 L9.5 8.8 L9.5 1.2 Z"/></g></svg>Current flowing</li></ul>
+</div>
+<div class="sim-side">
+<div class="sim-live" id="sim-live" aria-live="polite"><p id="sim-status"></p><p class="sim-warn" id="sim-warn" hidden></p></div>
+<p class="sim-fail" id="sim-fail" hidden>The simulator could not start in this browser. The drawing, the legend and the text below still work.</p>
+<noscript><p class="sim-fail">The simulator controls need JavaScript. The drawing, the legend and the text below work without it.</p></noscript>
+<div class="sim-dock ctl-dock" id="sim-dock"><div class="ctl-read" id="ctl-read"><div class="ctl-meter" id="ctl-meter" aria-live="polite" aria-atomic="true"><p class="ctl-val" id="ctl-val" aria-describedby="ctl-note"></p><p class="ctl-leads" id="ctl-leads"></p></div><p class="ctl-ref" id="ctl-ref" hidden></p><p class="ctl-note sim-rd-note" id="ctl-note">Computed value for this example circuit, not a service limit.</p></div><div class="sim-row ctl-keys" id="ctl-keys"><div class="ctl-kg" role="group" aria-label="Meter setting"><button type="button" class="sim-tog" data-meter="volts" aria-label="DC volts" aria-pressed="true">V</button><button type="button" class="sim-tog" data-meter="ohms" aria-label="Resistance" aria-pressed="false">Ω</button></div><div class="ctl-kg" role="group" aria-label="Lead to place"><button type="button" class="sim-tog ctl-red" data-lead="red" aria-label="Red lead" aria-pressed="true">Red</button><button type="button" class="sim-tog ctl-black" data-lead="black" aria-label="Black lead" aria-pressed="false">Black</button></div><div class="ctl-kg" role="group" aria-label="START pushbutton"><button type="button" class="sim-btn" data-tap="start">Tap START</button><button type="button" class="sim-tog" data-ctl="start" aria-pressed="false">Hold START</button></div><div class="ctl-kg" role="group" aria-label="STOP pushbutton"><button type="button" class="sim-btn" data-tap="stop">Tap STOP</button><button type="button" class="sim-tog" data-ctl="stop" aria-pressed="false">Hold STOP</button></div></div></div>
+<div class="sim-panel" data-panel="explore" hidden><h2 class="sim-h">Explore the parts</h2><p class="sim-hint">Tap a part of the drawing, or move to it with the Tab key and press Enter, to read what it is.</p><div class="sim-info" id="sim-info" hidden><div id="sim-info-body"></div></div></div><div class="sim-panel" data-panel="meter"><h2 class="sim-h">Operate and measure</h2><p class="sim-hint">Tap START or STOP, or hold one, to operate the circuit. Tap a test point ring, or move to it with the Tab key and press Enter, to place the selected lead. The meter reads as soon as both leads are on.</p><div class="sim-row" role="group" aria-label="Circuit controls" id="ctl-mctl"><button type="button" class="sim-tog" data-ctl="power" aria-pressed="true">Supply on</button><button type="button" class="sim-tog" data-ctl="tripOL" aria-pressed="true">Overload contact (reset)</button></div></div><div class="sim-panel" data-panel="diagnose" hidden><h2 class="sim-h">Fault scenarios</h2><p class="sim-hint">Pick a scenario, read the symptom, operate the circuit, take readings, then choose the cause.</p><div class="sim-row" role="group" aria-label="Scenario" id="dg-scen"></div><div id="dg-case" hidden><h3 class="sim-h3">Symptom</h3><p class="sim-symptom" id="dg-symptom"></p><div id="dg-work"><div class="sim-row" role="group" aria-label="Circuit controls" id="dg-ctl"></div><p class="sim-cond" id="dg-cond"></p><h3 class="sim-h3">Test points</h3><p class="sim-hint">A tap on a test point places the selected lead, and the meter reads as soon as both leads are on. Across a part means one lead on each side of it: across the control fuse is supply +24 V to fuse output.</p><div class="sim-row" role="group" aria-label="Test points" id="dg-pts"></div><h3 class="sim-h3">Readings</h3><ul class="sim-reads" id="dg-reads"></ul></div><h3 class="sim-h3">Choose the cause</h3><div class="sim-col" role="group" aria-label="Cause" id="dg-causes"><button type="button" class="sim-cause" data-fault="f_coil" hidden>Contactor coil open</button><button type="button" class="sim-cause" data-fault="f_fuse" hidden>Control fuse open</button><button type="button" class="sim-cause" data-fault="f_ol" hidden>Overload contact open (tripped)</button><button type="button" class="sim-cause" data-fault="f_start" hidden>START contacts do not close</button><button type="button" class="sim-cause" data-fault="f_start_stuck" hidden>START contacts stuck closed</button><button type="button" class="sim-cause" data-fault="f_stop" hidden>STOP contacts open</button><button type="button" class="sim-cause" data-fault="f_seal" hidden>Seal-in contact does not close</button></div><div class="sim-result" id="dg-result" hidden><p class="sim-verdict" id="dg-verdict"></p><div id="dg-more"></div><button type="button" class="sim-btn" id="dg-reveal" hidden>Show the cause</button></div><div class="sim-offer ctl-offer" id="sim-offer" hidden><p class="sim-offer-t">Keep practising: motor control questions for your trade</p><ul class="ctl-chips"><li class="ctl-chip"><span class="ctl-chip-t" aria-hidden="true">309A</span><a class="sim-offer-free" href="https://redsealquiz.ca/309a-all-questions.html#t2"><span class="sim-vh">309A </span>Motors &amp; Controls questions, free</a><a class="sim-offer-buy" data-cta="sim_result" href="https://ko-fi.com/s/8ea5d0cd61" target="_blank" rel="noopener"><span class="sim-vh">309A </span>Printable PDF with every answer explained</a></li><li class="ctl-chip"><span class="ctl-chip-t" aria-hidden="true">442A</span><a class="sim-offer-free" href="https://redsealquiz.ca/442a-all-questions.html#t1"><span class="sim-vh">442A </span>Motors &amp; Controls questions, free</a><a class="sim-offer-buy" data-cta="sim_result" href="https://ko-fi.com/s/53b9fe7161" target="_blank" rel="noopener"><span class="sim-vh">442A </span>Printable PDF with every answer explained</a></li></ul></div></div></div>
+</div>
+</div>
+<div class="sim-end" id="sim-end" aria-hidden="true"></div>
+</section>
+
+<p class="sim-discline"><span data-sid="disc.s1">This is a study simulation for trade exams, not a test or repair procedure.</span> <span data-sid="disc.s2">Readings are computed values for this example circuit, not service figures.</span></p>
+<p class="sim-lead"><span data-sid="meta.description">Meter an example 24 V DC start/stop circuit with a seal-in contact and an overload contact, then find the open or stuck part.</span></p><p class="sim-lead"><span data-sid="intro.s1">This free simulator puts a virtual meter on an example 24 V DC motor starter control circuit: a control fuse, an overload contact, STOP and START pushbuttons, a seal-in contact and the contactor coil.</span> <span data-sid="intro.s2">It is for 309A and 442A apprentices studying three-wire control and how to read a control circuit with a meter.</span> <span data-sid="intro.s3">It is a simplified teaching model, not any real starter, so every reading is a computed value for this example circuit.</span></p>
+<section class="sim-sec sim-fold" id="how" aria-labelledby="how-h"><details><summary><h2 id="how-h">How the start, stop and seal-in circuit works</h2></summary><div class="sim-fold-b"><h3 id="how-three_wire">Three-wire control and the seal-in contact</h3><p><span data-sid="hiw.s1">A magnetic motor starter is a contactor and an overload relay: current in the contactor coil pulls the contacts closed, and a spring opens them when the coil current falls away.</span> <span data-sid="hiw.s2">Three-wire control uses a magnetic contactor and a holding contact; in this example circuit the holding contact, called the seal-in contact, is wired across a momentary START pushbutton.</span> <span data-sid="hiw.s3">Once the contactor picks up, the seal-in contact closes and keeps the coil energized after START is released.</span> <span data-sid="hiw.s4">STOP is a normally closed pushbutton in series with the coil, so pressing it opens the circuit and the contactor drops out.</span> <span data-sid="hiw.s5">The overload relay’s normally closed contacts are in series with the coil too, so when the overload relay trips they open and the motor stops.</span></p><h3 id="how-lvp">Low-voltage protection</h3><p><span data-sid="hiw.s6">After a power cut, a three-wire circuit does not restart by itself; someone has to press START again. This is called low-voltage protection.</span> <span data-sid="hiw.s7">Low-voltage protection suits loads whose sudden restart could cause damage or injury; loads that should come back on by themselves suit low-voltage release instead.</span></p><h3 id="how-meter">Reading the meter</h3><p><span data-sid="hiw.s8">Across a closed contact a voltmeter reads close to zero; across an open contact it reads the control voltage, as long as the rest of the path through the coil is complete.</span> <span data-sid="hiw.s9">A control circuit path has one load, here the coil, and while the circuit works that load carries the full control voltage.</span> <span data-sid="hiw.s10">In this example circuit, running, the coil reads 23.97 V and the closed STOP contacts read 0.00 V.</span> <span data-sid="hiw.s11">At rest, in this example circuit, the open START pushbutton and seal-in contact read 24.00 V across them.</span> <span data-sid="hiw.s12">Some faults show only while START is held: with START released, the open START and seal-in contacts also break the path, so an open fuse, overload contact, STOP or coil has nothing across it.</span> <span data-sid="hiw.s13">In this simulator the ohmmeter works only with the supply off; in this example circuit the coil reads 60.2 Ω and a closed STOP reads 0.2 Ω, the resistance of the meter leads.</span></p><h3 id="how-power">What this simulator does not measure</h3><p><span data-sid="hiw.s14">The motor and its power circuit run at line voltage and are only drawn here; the meter reaches only the 24 V DC control circuit of this example.</span></p></div></details></section>
+<section class="sim-sec sim-fold" id="parts" aria-labelledby="parts-h"><details><summary><h2 id="parts-h">Parts of the circuit</h2></summary><div class="sim-fold-b"><div class="sim-parts"><article class="sim-part" id="part-supply" data-part="supply"><h3>24 V DC control supply</h3><p><strong>Symbol:</strong> <span data-sid="comp.supply.symbol.s1">A box marked 24 V DC, with its + side feeding the circuit and its other side the 0 V control common.</span></p><p><strong>What it does:</strong> <span data-sid="comp.supply.role.s1">It powers the control circuit, separate from the line voltage that runs the motor; control circuits can run at a lower voltage than the motor they control.</span></p><p><strong>If it fails:</strong> <span data-sid="comp.supply.if_it_fails.s1">With the supply off, nothing in the control circuit is energized and the contactor cannot pick up.</span></p></article><article class="sim-part" id="part-control_fuse" data-part="control_fuse"><h3>Control fuse</h3><p><strong>Symbol:</strong> <span data-sid="comp.control_fuse.symbol.s1">A narrow rectangle in the line from the supply.</span></p><p><strong>What it does:</strong> <span data-sid="comp.control_fuse.role.s1">It protects the supply, the coil and the control wiring, opening when too much current flows.</span></p><p><strong>If it fails:</strong> <span data-sid="comp.control_fuse.if_it_fails.s1">An open control fuse breaks the whole control circuit, so START does nothing; with START held, the supply voltage stands across the fuse.</span></p></article><article class="sim-part" id="part-ol_contact" data-part="ol_contact"><h3>Overload contact</h3><p><strong>Symbol:</strong> <span data-sid="comp.ol_contact.symbol.s1">A normally closed contact: the blade rests against its fixed contact until the overload relay trips.</span></p><p><strong>What it does:</strong> <span data-sid="comp.ol_contact.role.s1">It belongs to the overload relay and is in series with the coil, so when it opens the coil loses its current.</span></p><p><strong>If it fails:</strong> <span data-sid="comp.ol_contact.if_it_fails.s1">While it is open, the contactor cannot pick up; resetting closes it, but the contactor stays out until START is pressed, and it is advisable to find what tripped the overload relay.</span></p></article><article class="sim-part" id="part-stop_button" data-part="stop_button"><h3>STOP pushbutton</h3><p><strong>Symbol:</strong> <span data-sid="comp.stop_button.symbol.s1">A normally closed pushbutton: its contact stays closed until the button is pressed.</span></p><p><strong>What it does:</strong> <span data-sid="comp.stop_button.role.s1">Pressing it opens the circuit, the coil loses its current and the contactor drops out.</span></p><p><strong>If it fails:</strong> <span data-sid="comp.stop_button.if_it_fails.s1">If its contacts stay open, START does nothing, and with START held the supply voltage stands across STOP.</span></p></article><article class="sim-part" id="part-start_button" data-part="start_button"><h3>START pushbutton</h3><p><strong>Symbol:</strong> <span data-sid="comp.start_button.symbol.s1">A normally open pushbutton: its contact closes only while the button is pressed.</span></p><p><strong>What it does:</strong> <span data-sid="comp.start_button.role.s1">A press energizes the coil, and once the contactor picks up, the seal-in contact keeps the coil energized.</span></p><p><strong>If it fails:</strong> <span data-sid="comp.start_button.if_it_fails.s1">If its contacts do not close, nothing happens; if they stick closed, the contactor picks up as soon as the supply comes on.</span></p></article><article class="sim-part" id="part-seal_contact" data-part="seal_contact"><h3>Seal-in contact</h3><p><strong>Symbol:</strong> <span data-sid="comp.seal_contact.symbol.s1">A normally open contact drawn across START and marked M, because the contactor moves it.</span></p><p><strong>What it does:</strong> <span data-sid="comp.seal_contact.role.s1">It closes when the contactor picks up and keeps the coil energized after START is released.</span></p><p><strong>If it fails:</strong> <span data-sid="comp.seal_contact.if_it_fails.s1">If it does not close, the motor runs only while START is held.</span></p></article><article class="sim-part" id="part-contactor_coil" data-part="contactor_coil"><h3>Contactor coil</h3><p><strong>Symbol:</strong> <span data-sid="comp.contactor_coil.symbol.s1">The coil of contactor M, on the 0 V side of the circuit.</span></p><p><strong>What it does:</strong> <span data-sid="comp.contactor_coil.role.s1">Current in the coil pulls the contactor’s contacts closed; it is the one load in the circuit and carries the full control voltage while energized.</span></p><p><strong>If it fails:</strong> <span data-sid="comp.contactor_coil.if_it_fails.s1">An open coil has the full supply voltage across it with START held but draws no current, so the contactor never picks up.</span></p></article><article class="sim-part" id="part-power_circuit" data-part="power_circuit"><h3>Motor power circuit (line voltage, not measured here)</h3><p><strong>Symbol:</strong> <span data-sid="comp.power_circuit.symbol.s1">Three main contacts marked M feeding the motor, inside a dashed box.</span></p><p><strong>What it does:</strong> <span data-sid="comp.power_circuit.role.s1">The contactor’s main contacts switch the motor at line voltage; this simulator draws them but does not measure them.</span></p><p><strong>If it fails:</strong> <span data-sid="comp.power_circuit.if_it_fails.s1">Power circuit faults are outside this simulator; finding them is work at line voltage.</span></p></article></div></div></details></section>
+<section class="sim-sec sim-fold" id="faults" aria-labelledby="faults-h"><details><summary><h2 id="faults-h">Fault-finding table</h2></summary><div class="sim-fold-b"><div class="sim-tbl"><table id="tbl-faults"><thead><tr><th scope="col">Fault</th><th scope="col">Symptom</th><th scope="col">What to test</th><th scope="col">What you would see</th><th scope="col">Cause</th></tr></thead><tbody><tr data-fault="f_fuse"><th scope="row">Control fuse open</th><td data-k="symptom"><span data-sid="fault.f_fuse.symptom.s1">Nothing happens when START is pressed.</span></td><td data-k="test"><span data-sid="fault.f_fuse.what_to_test.s1">Hold START and measure across each part in turn, from the control fuse to the coil.</span></td><td data-k="see"><span data-sid="fault.f_fuse.what_you_would_see.s1">In this example circuit, with START held, 24.00 V across the control fuse and 0.00 V across every other part.</span></td><td data-k="cause"><span data-sid="fault.f_fuse.cause_short">Control fuse open</span></td></tr><tr data-fault="f_ol"><th scope="row">Overload contact open (tripped)</th><td data-k="symptom"><span data-sid="fault.f_ol.symptom.s1">Nothing happens when START is pressed.</span></td><td data-k="test"><span data-sid="fault.f_ol.what_to_test.s1">Hold START, then measure across the overload contact.</span></td><td data-k="see"><span data-sid="fault.f_ol.what_you_would_see.s1">In this example circuit, 24.00 V across the overload contact while START is held, and 0.00 V once it is released.</span></td><td data-k="cause"><span data-sid="fault.f_ol.cause_short">Overload contact open (tripped)</span></td></tr><tr data-fault="f_stop"><th scope="row">STOP contacts open</th><td data-k="symptom"><span data-sid="fault.f_stop.symptom.s1">Nothing happens when START is pressed.</span></td><td data-k="test"><span data-sid="fault.f_stop.what_to_test.s1">Hold START and measure across STOP.</span></td><td data-k="see"><span data-sid="fault.f_stop.what_you_would_see.s1">In this example circuit, 24.00 V across the STOP contacts while START is held.</span></td><td data-k="cause"><span data-sid="fault.f_stop.cause_short">STOP contacts open</span></td></tr><tr data-fault="f_start"><th scope="row">START contacts do not close</th><td data-k="symptom"><span data-sid="fault.f_start.symptom.s1">Nothing happens when START is pressed.</span></td><td data-k="test"><span data-sid="fault.f_start.what_to_test.s1">Hold START and measure across START.</span></td><td data-k="see"><span data-sid="fault.f_start.what_you_would_see.s1">In this example circuit, 24.00 V across START even while it is held.</span></td><td data-k="cause"><span data-sid="fault.f_start.cause_short">START contacts do not close</span></td></tr><tr data-fault="f_seal"><th scope="row">Seal-in contact does not close</th><td data-k="symptom"><span data-sid="fault.f_seal.symptom.s1">The motor runs only while START is held.</span></td><td data-k="test"><span data-sid="fault.f_seal.what_to_test.s1">Hold START, then release it and watch the contactor.</span></td><td data-k="see"><span data-sid="fault.f_seal.what_you_would_see.s1">In this example circuit, with START held, the reading across each part matches a sound circuit (0.00 V across START, 23.97 V across the coil); dropping out on release is the evidence.</span></td><td data-k="cause"><span data-sid="fault.f_seal.cause_short">Seal-in contact does not close</span></td></tr><tr data-fault="f_coil"><th scope="row">Contactor coil open</th><td data-k="symptom"><span data-sid="fault.f_coil.symptom.s1">Nothing happens when START is pressed: the contactor does not pick up.</span></td><td data-k="test"><span data-sid="fault.f_coil.what_to_test.s1">Hold START and measure across the coil; then, with the supply off, measure the coil’s resistance.</span></td><td data-k="see"><span data-sid="fault.f_coil.what_you_would_see.s1">In this example circuit, 24.00 V across the coil with START held while the contactor stays out, and the ohmmeter shows OL, an open, across the coil with the supply off.</span></td><td data-k="cause"><span data-sid="fault.f_coil.cause_short">Contactor coil open</span></td></tr><tr data-fault="f_start_stuck"><th scope="row">START contacts stuck closed</th><td data-k="symptom"><span data-sid="fault.f_start_stuck.symptom.s1">The contactor picks up as soon as the supply comes on, and STOP holds it off only while pressed.</span></td><td data-k="test"><span data-sid="fault.f_start_stuck.what_to_test.s1">Turn the supply on with no button pressed; then, with the supply off, measure across START.</span></td><td data-k="see"><span data-sid="fault.f_start_stuck.what_you_would_see.s1">In this example circuit, the contactor picks up with no button pressed, so the circuit no longer gives low-voltage protection; with the supply off, START reads 0.2 Ω where a sound circuit reads OL.</span></td><td data-k="cause"><span data-sid="fault.f_start_stuck.cause_short">START contacts stuck closed</span></td></tr></tbody></table></div><div class="sim-why"><details data-fault="f_fuse"><summary>Control fuse open: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="fault.f_fuse.why.s1">With START held, the open fuse is the one break left in the series path, so no current flows and the supply voltage stands across the fuse.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="fault.f_fuse.distinguish_from.s1">An open overload contact, STOP, START or coil gives the same symptom; the reading across each part with START held shows which one is open.</span></p></details><details data-fault="f_ol"><summary>Overload contact open (tripped): why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="fault.f_ol.why.s1">The overload contact is in series with the coil, so while it is open the coil gets no current.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="fault.f_ol.distinguish_from.s1">In this example circuit, with START held, the fuse reads 0.00 V, where an open fuse would read 24.00 V; the supply voltage stands across the overload contact instead.</span></p></details><details data-fault="f_stop"><summary>STOP contacts open: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="fault.f_stop.why.s1">STOP is normally closed and in series with the coil, so contacts that stay open break the circuit just as holding STOP does.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="fault.f_stop.distinguish_from.s1">With START held, the supply voltage stands across STOP, not across the fuse or the overload contact.</span></p></details><details data-fault="f_start"><summary>START contacts do not close: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="fault.f_start.why.s1">Until the seal-in contact closes, START is the only path to the coil, so contacts that never close leave the coil without current.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="fault.f_start.distinguish_from.s1">In this example circuit, with START held, the coil reads 0.00 V, where an open coil would read 24.00 V; the supply voltage stands across START instead.</span></p></details><details data-fault="f_seal"><summary>Seal-in contact does not close: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="fault.f_seal.why.s1">Without the seal-in contact nothing holds the coil once START is released, so the contactor drops out.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="fault.f_seal.distinguish_from.s1">Every reading with START held matches a sound circuit, so the clue is the contactor dropping out when START is released.</span></p></details><details data-fault="f_coil"><summary>Contactor coil open: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="fault.f_coil.why.s1">An open coil draws no current, so it cannot pull the contacts in, though with START held the full supply voltage stands across it.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="fault.f_coil.distinguish_from.s1">A sound coil also carries the supply voltage while energized, so the clue is full voltage while the contactor stays out, then OL on the ohmmeter with the supply off.</span></p></details><details data-fault="f_start_stuck"><summary>START contacts stuck closed: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="fault.f_start_stuck.why.s1">Contacts that stay closed act like START held all the time, so the coil is energized whenever the supply is on, STOP is released and the overload contact is closed.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="fault.f_start_stuck.distinguish_from.s1">A sound three-wire circuit stays off when the supply comes on; that loss of low-voltage protection is the clue.</span></p></details></div></div></details></section>
+<section class="sim-sec sim-fold sim-disc" id="about-model" aria-labelledby="about-model-h"><details><summary><h2 id="about-model-h">About this simulator</h2></summary><div class="sim-fold-b"><p><span data-sid="disc.s3">The circuit is generic and does not copy the wiring of any real product.</span> <span data-sid="disc.s4">Real control circuits and every motor power circuit are work for qualified persons, following the employer’s lockout and electrical safety procedures.</span> <span data-sid="disc.s5">On a real machine, pressing START runs the motor and whatever it drives.</span></p><p class="sim-src"><span data-sid="disc.sources.s1">Sources: an open trade-training textbook on basic motor control and the practice question banks on this site.</span> <span data-sid="disc.sources.s2">Checked November 2026.</span></p></div></details></section>
+<section class="faq-visible sim-sec" id="faq" aria-labelledby="faq-h">
+<!-- Same questions and answers as this page’s FAQPage JSON-LD - change both together. -->
+<h2 id="faq-h">Frequently asked questions</h2><details><summary data-sid="faq.seal.q">What does the seal-in contact do?</summary><p><span data-sid="faq.seal.a.s1">It is a normally open contact on the contactor, wired across START, that closes when the contactor picks up and keeps the coil energized after START is released.</span></p></details><details><summary data-sid="faq.lvp.q">Why does the motor not restart after a power cut?</summary><p><span data-sid="faq.lvp.a.s1">With three-wire control the seal-in contact opens when the coil loses power, so the circuit waits for START: low-voltage protection.</span></p></details><details><summary data-sid="faq.ol.q">What should happen after the overload relay trips?</summary><p><span data-sid="faq.ol.a.s1">Find what made it trip before relying on a reset: resetting closes the overload contact again but does not remove the cause, and START must then be pressed again.</span></p></details><details><summary data-sid="faq.meter.q">Why hold START while measuring?</summary><p><span data-sid="faq.meter.a.s1">Holding START closes the gap a sound circuit has at rest, so an open part becomes the only break and reads the control voltage; with START released, it can show nothing.</span></p></details></section>
+</main>
+
+<footer>
+  <p>Canada Red Seal Exam Prep — Free study resource for Canadian skilled trades apprentices</p>
+  <p style="font-size:.72rem;opacity:.75;margin-top:6px;">Independent, unofficial study resource &mdash; not affiliated with or endorsed by the CCDA, the Red Seal Program, or any provincial/territorial apprenticeship authority. No guarantee of exam results. Paid downloads are final sale except for a corrupted or inaccessible file or a duplicate purchase, reported within 14 days &mdash; <a href="/terms.html#refunds">refund policy</a>. <a href="/disclaimer.html">Details</a></p>
+  <p style="margin-top:8px;"><a href="/">Home</a><a href="/study-guide.html">Study Guide</a><a href="/exam-guide.html">Exam Guide</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Use</a><a href="/disclaimer.html">Disclaimer</a></p>
+</footer>
+
+<script>
+(function(){
+  var nt=document.getElementById('navToggle'),nl=document.getElementById('navLinks');
+  var td=document.getElementById('tradesDrop'),tb=document.getElementById('tradesBtn');
+  if(nt&&nl)nt.addEventListener('click',function(){var o=nl.classList.toggle('open');nt.textContent=o?'✕':'☰';});
+  if(tb&&td){tb.addEventListener('click',function(e){e.stopPropagation();td.classList.toggle('open');});
+  document.addEventListener('click',function(){if(td)td.classList.remove('open');});}
+})();
+</script>
+</body>
+</html>
