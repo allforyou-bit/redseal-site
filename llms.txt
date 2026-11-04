@@ -166,6 +166,7 @@ Appliances & Equipment 24 · Gas Supply Systems 19 · Piping Systems 16 · Venti
 - [Free trade simulators: every simulator on the site and which trades each one fits](https://redsealquiz.ca/red-seal-trade-simulators.html)
 - [421A closed-loop hydrostatic drive simulator: drive it, then find the fault from test-port readings](https://redsealquiz.ca/421a-hydrostatic-drive-simulator.html)
 - [DC circuit fault simulator for 421A, 310T, 310S, 309A and 442A: meter an example 12 V and 24 V lamp circuit, then find opens, shorts and high-resistance connections](https://redsealquiz.ca/dc-circuit-fault-simulator.html)
+- [Motor starter control circuit simulator for 309A and 442A: operate an example 24 V DC start/stop circuit with a seal-in contact, meter each part, then find the open or stuck part](https://redsealquiz.ca/motor-starter-control-circuit-simulator.html)
 
 ## The printable version, for completeness
 
