@@ -199,6 +199,10 @@ questions are free to read here.
 - [How long a Canadian apprenticeship takes](https://redsealquiz.ca/how-long-red-seal-apprenticeship-canada.html)
 - [Which Red Seal trade to choose](https://redsealquiz.ca/which-red-seal-trade-should-i-choose.html)
 - [Trades in demand in Canada](https://redsealquiz.ca/trades-in-demand-canada-2026.html)
+- [Canada Apprentice Loan, checked against the official pages](https://redsealquiz.ca/canada-apprentice-loan.html):
+  up to $4,000 per period of technical training for up to 5 periods, interest-free since April 1, 2023, no payments
+  while registered (up to 312 weeks); who qualifies (not Quebec, not high school students), the application window
+  (3 months before training starts to its last day) and when repayment starts.
 - [Tradesperson's tools deduction and apprentice mechanic tools deduction, checked against CRA](https://redsealquiz.ca/tradesperson-tools-deduction-canada.html):
   employed tradespeople can deduct the lesser of $1,000 and the cost of eligible tools minus $1,471 (tax year 2025);
   eligible apprentice mechanics can claim a second deduction on top and carry unused amounts forward. Form T2200,
