@@ -199,6 +199,11 @@ questions are free to read here.
 - [How long a Canadian apprenticeship takes](https://redsealquiz.ca/how-long-red-seal-apprenticeship-canada.html)
 - [Which Red Seal trade to choose](https://redsealquiz.ca/which-red-seal-trade-should-i-choose.html)
 - [Trades in demand in Canada](https://redsealquiz.ca/trades-in-demand-canada-2026.html)
+- [Labour mobility deduction for tradespeople, checked against CRA Guide T4044](https://redsealquiz.ca/labour-mobility-deduction-tradespeople.html):
+  construction tradespeople and apprentices can deduct up to $4,000 a year of temporary relocation expenses (lodging,
+  one round trip, meals on it) when the temporary lodging is at least 150 km closer to the work location than home and
+  they are away at least 36 hours; per relocation also capped at 50% of that location's employment income; unused
+  amounts carry forward; Form T777 line 11, line 22900 (tax year 2025).
 - [Canada Apprentice Loan, checked against the official pages](https://redsealquiz.ca/canada-apprentice-loan.html):
   up to $4,000 per period of technical training for up to 5 periods, interest-free since April 1, 2023, no payments
   while registered (up to 312 weeks); who qualifies (not Quebec, not high school students), the application window
