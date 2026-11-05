@@ -199,6 +199,10 @@ questions are free to read here.
 - [How long a Canadian apprenticeship takes](https://redsealquiz.ca/how-long-red-seal-apprenticeship-canada.html)
 - [Which Red Seal trade to choose](https://redsealquiz.ca/which-red-seal-trade-should-i-choose.html)
 - [Trades in demand in Canada](https://redsealquiz.ca/trades-in-demand-canada-2026.html)
+- [Tradesperson's tools deduction and apprentice mechanic tools deduction, checked against CRA](https://redsealquiz.ca/tradesperson-tools-deduction-canada.html):
+  employed tradespeople can deduct the lesser of $1,000 and the cost of eligible tools minus $1,471 (tax year 2025);
+  eligible apprentice mechanics can claim a second deduction on top and carry unused amounts forward. Form T2200,
+  Form T777 lines 1770 and 9131, line 22900; the calculator reproduces CRA's two worked examples ($1,000 and $4,029).
 - [Red Seal Completion Bonus, checked against canada.ca](https://redsealquiz.ca/red-seal-completion-bonus.html):
   the federal $5,000 for each designated Red Seal trade, for journeypersons who
   completed an apprenticeship and were certified on or after April 1, 2025.
