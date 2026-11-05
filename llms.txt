@@ -205,6 +205,14 @@ questions are free to read here.
   work location than home and they are required to be away at least 36 hours; per relocation also capped at 50% of
   their employment income from construction activities at that location; reimbursed or allowance-covered costs do
   not count; unused amounts carry forward; Form T777 line 11, line 22900 (tax year 2025).
+- [EI for apprentices in technical training, checked against canada.ca](https://redsealquiz.ca/ei-for-apprentices-technical-training.html):
+  apprentices whose province or territory has referred them to full-time technical training (sometimes called
+  block-release training) may be able to get EI regular benefits while they attend: a new 16-digit reference code for
+  each block, an online application that can be made as early as 7 days before the last day of work, one waiting week
+  per apprenticeship program, benefits ending on the last day of the course for those on leave, and for most people 55%
+  of average insurable weekly earnings up to $729 a week (as of January 1, 2026). The $400-a-week Apprenticeship
+  Training Grant for eligible weeks of mandatory in-class training beginning on or after January 3, 2027 is announced,
+  not in effect. Independent guide; the canada.ca pages are the authority.
 - [Canada Apprentice Loan, checked against the official pages](https://redsealquiz.ca/canada-apprentice-loan.html):
   up to $4,000 per period of technical training for up to 5 periods (5 x $4,000), interest-free since April 1, 2023, no payments
   while registered (up to 312 weeks); who qualifies (not Quebec, not high school students), the application window
