@@ -201,15 +201,17 @@ questions are free to read here.
 - [Trades in demand in Canada](https://redsealquiz.ca/trades-in-demand-canada-2026.html)
 - [Labour mobility deduction for tradespeople, checked against CRA Guide T4044](https://redsealquiz.ca/labour-mobility-deduction-tradespeople.html):
   construction tradespeople and apprentices can deduct up to $4,000 a year of temporary relocation expenses (lodging,
-  one round trip, meals on it) when the temporary lodging is at least 150 km closer to the work location than home and
-  they are away at least 36 hours; per relocation also capped at 50% of that location's employment income; unused
-  amounts carry forward; Form T777 line 11, line 22900 (tax year 2025).
+  one round trip, meals on it) when, among other conditions, the temporary lodging is at least 150 km closer to each
+  work location than home and they are required to be away at least 36 hours; per relocation also capped at 50% of
+  their employment income from construction activities at that location; reimbursed or allowance-covered costs do
+  not count; unused amounts carry forward; Form T777 line 11, line 22900 (tax year 2025).
 - [Canada Apprentice Loan, checked against the official pages](https://redsealquiz.ca/canada-apprentice-loan.html):
-  up to $4,000 per period of technical training for up to 5 periods, interest-free since April 1, 2023, no payments
+  up to $4,000 per period of technical training for up to 5 periods (5 x $4,000), interest-free since April 1, 2023, no payments
   while registered (up to 312 weeks); who qualifies (not Quebec, not high school students), the application window
   (3 months before training starts to its last day) and when repayment starts.
 - [Tradesperson's tools deduction and apprentice mechanic tools deduction, checked against CRA](https://redsealquiz.ca/tradesperson-tools-deduction-canada.html):
-  employed tradespeople can deduct the lesser of $1,000 and the cost of eligible tools minus $1,471 (tax year 2025);
+  employed tradespeople can deduct the lesser of $1,000 and the cost of eligible tools minus $1,471 (tax year 2025;
+  the cost used is capped at tradesperson employment income plus apprenticeship grants);
   eligible apprentice mechanics can claim a second deduction on top and carry unused amounts forward. Form T2200,
   Form T777 lines 1770 and 9131, line 22900; the calculator reproduces CRA's two worked examples ($1,000 and $4,029).
 - [Red Seal Completion Bonus, checked against canada.ca](https://redsealquiz.ca/red-seal-completion-bonus.html):
