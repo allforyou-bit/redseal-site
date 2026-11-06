@@ -167,6 +167,7 @@ Appliances & Equipment 24 · Gas Supply Systems 19 · Piping Systems 16 · Venti
 - [421A closed-loop hydrostatic drive simulator: drive it, then find the fault from test-port readings](https://redsealquiz.ca/421a-hydrostatic-drive-simulator.html)
 - [DC circuit fault simulator for 421A, 310T, 310S, 309A and 442A: meter an example 12 V and 24 V lamp circuit, then find opens, shorts and high-resistance connections](https://redsealquiz.ca/dc-circuit-fault-simulator.html)
 - [Motor starter control circuit simulator for 309A and 442A: operate an example 24 V DC start/stop circuit with a seal-in contact, meter each part, then find the open or stuck part](https://redsealquiz.ca/motor-starter-control-circuit-simulator.html)
+- [Planetary gear set simulator for 421A and 310S: drive, hold and lock the members of an example planetary gear set, see the ratio and torque, then find a slipping band or clutch](https://redsealquiz.ca/planetary-gear-set-simulator.html)
 
 ## The printable version, for completeness
 
