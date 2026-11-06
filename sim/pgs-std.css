@@ -1,0 +1,99 @@
+/* Planetary gear set simulator, v1: the gear drawing, the device icons, the member strip, the dock and the
+   offer card of planetary-gear-set-simulator.html, on top of the shared simulator sheet (sim-std.css,
+   inlined in the page). Patterns copied from ctl-std.css, which this sheet leaves alone.
+   - No state is shown by colour alone: a held member carries a hatch, an applied band is solid and close
+     to the drum while a released one is dashed and apart, applied clutch plates touch while released ones
+     stand apart, and every device and member carries a word.
+   - Targets: gears, the band and the device boxes are large; keys are 44 px or more.
+   - Motion: the renderer turns groups by their transform attribute only; nothing here animates. */
+
+/* ---------- drawing ---------- */
+.pgs-svg .lbl{font-style:normal;fill:#2c3e50;font-size:11px}
+.pgs-svg .dvn{font-size:10.5px;fill:#2c3e50}
+.pgs-svg .pgs-st{font-size:10.5px;font-weight:700;fill:#1a3a5c}
+.pgs-svg .gear{stroke:#1f2933;stroke-width:1.2}
+.pgs-svg .sun{fill:#f6c766}
+.pgs-svg .ring{fill:#8fd1bb}
+.pgs-svg .planet{fill:#d5d8de}
+.pgs-svg .carrier{fill:#9cc4e4;stroke:#9cc4e4;stroke-width:22px;stroke-linejoin:round}
+.pgs-svg .arm{stroke:#0072B2;stroke-width:5px;stroke-linecap:round}
+.pgs-svg .arm-end{fill:#0072B2;stroke:#fff;stroke-width:1.5}
+.pgs-svg .pin{fill:#0072B2}
+.pgs-svg .pin-c{fill:#5b6573}
+.pgs-svg .shaft-c{fill:#9e6d00}
+.pgs-svg .mark{stroke:#1f2933;stroke-width:3.5px;stroke-linecap:round}
+.pgs-svg .k-R .mark{stroke:#00573f}
+.pgs-svg .k-S .mark{stroke:#7a4d00}
+/* a held member: a hatch over it (the hatch, not the colour, says held) */
+.pgs-svg .hatch{stroke:#1f1f1f;stroke-width:2px}
+.pgs-svg .hov{display:none;fill:url(#pgs-hatch);stroke:#1f1f1f;stroke-width:1.5px;pointer-events:none}
+.pgs-svg path.hov[data-hov="C"]{fill:none;stroke:url(#pgs-hatch);stroke-width:22px}
+.pgs-svg .hov.on{display:inline}
+
+/* the band: applied (solid, on the drum) or released (dashed, apart); neutral in Find the fault */
+.pgs-svg .band{fill:none;stroke:#5b3a1a;stroke-width:5.5px;stroke-linecap:round}
+.pgs-svg .band.dv-r{stroke-dasharray:7 5;stroke-width:4px;stroke:#8a6a4a}
+.pgs-svg .anchor{fill:#5b3a1a}
+.pgs-svg .hit-arc{fill:none;stroke:transparent;stroke-width:24px;pointer-events:stroke}
+/* clutch plates: applied (touching) or released (apart); steel plates dark, friction plates light */
+.pgs-svg .pl{fill:#4a5568}
+.pgs-svg .pl.fr{fill:#c9a66b}
+.pgs-svg .case{stroke:#4a5568;stroke-width:1.6px}
+.pgs-svg .shaft{stroke:#4a5568;stroke-width:5px;stroke-linecap:round}
+.pgs-svg .hit{fill:transparent}
+.pgs-svg .dv-a,.pgs-svg .dv-r{display:none}
+.pgs-svg .dv-on .dv-a,.pgs-svg .dv-off .dv-r{display:inline}
+/* before the renderer runs and in Find the fault: the released picture, greyed, with no word */
+.pgs-svg .pgs-dv:not(.dv-on):not(.dv-off) .dv-r{display:inline;opacity:.55}
+.pgs-svg .band.dv-a{stroke:#5b3a1a}
+.pgs-app[data-mode="explore"] .pgs-svg [data-info]{cursor:pointer}
+.pgs-app:not([data-mode="explore"]) .pgs-svg [data-info]{pointer-events:none}
+.pgs-svg .sel .gear,.pgs-svg .sel .band,.pgs-svg .sel .pl{stroke:#D55E00;stroke-width:2.5px}
+
+/* ---------- member strip ---------- */
+.pgs-strip{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:4px}
+.pgs-strip li{display:grid;grid-template-columns:12px minmax(0,1fr) auto;grid-template-areas:"sw nm v" "sw role role" "sw tr tr";gap:1px 8px;align-items:center;padding:4px 8px;border-radius:6px;background:var(--light);font-size:.86rem;line-height:1.25}
+.pgs-sw{grid-area:sw;align-self:stretch;border-radius:3px}
+.k-S .pgs-sw{background:#E69F00}
+.k-C .pgs-sw{background:#0072B2}
+.k-R .pgs-sw{background:#009E73}
+.pgs-nm{grid-area:nm;font-weight:700}
+.pgs-role{grid-area:role;color:#4a5568;font-size:.8rem}
+.pgs-role::before{content:"Role: "}
+.pgs-v{grid-area:v;font-weight:800;color:var(--primary);font-variant-numeric:tabular-nums}
+.pgs-tr{grid-area:tr;position:relative;height:8px;border-radius:4px;background:#e2e8f0;overflow:hidden}
+.pgs-tr::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;background:#4a5568}
+.pgs-sf{position:absolute;top:0;bottom:0;left:50%;width:50%;background:var(--primary);transform-origin:left center;transform:scaleX(var(--v,0))}
+.pgs-strip li[data-role="held"]{background-image:repeating-linear-gradient(45deg,rgba(0,0,0,.09) 0 3px,transparent 3px 8px)}
+.pgs-note{margin:4px 0 0;font-size:.72rem;line-height:1.3;color:#4a5568}
+.pgs-app[data-mode="diagnose"] .pgs-strip,.pgs-app[data-mode="diagnose"] .pgs-note{display:none}
+
+/* ---------- Operate readings ---------- */
+.pgs-read{margin:6px 0 0;padding:6px 10px;border-left:4px solid var(--primary);border-radius:6px;background:var(--light);line-height:1.35}
+.pgs-read p{margin:2px 0}
+.pgs-big{color:var(--primary);font-size:1.15rem;font-weight:800}
+.pgs-extra{margin:4px 0 0;padding-left:18px}
+.pgs-why{margin:0 0 4px;font-size:.84rem;color:#4a5568}
+
+/* ---------- dock: three rows of keys, a label over each ---------- */
+.pgs-dock{margin:0 0 12px}
+.pgs-keys{display:grid;gap:4px}
+.pgs-kr{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;align-items:end}
+.pgs-kl{grid-column:1/-1;font-size:.72rem;font-weight:700;color:#4a5568;line-height:1.1}
+.pgs-kr .sim-tog,.pgs-kr .sim-btn{min-width:0;min-height:44px;padding:2px 3px;font-size:.8rem;line-height:1.15}
+.pgs-kr .sim-tog:disabled{opacity:.45;text-decoration:line-through}
+.pgs-dock[hidden]{display:none}
+@media(max-width:899px){
+.pgs-app.sim-dockable:not([data-mode="explore"]) .sim-side>.pgs-dock{position:fixed;left:0;right:0;bottom:var(--dock-b,0px);z-index:150;margin:0;padding:3px 8px calc(4px + env(safe-area-inset-bottom,0px));background:#fff;border-top:2px solid var(--primary);box-shadow:0 -2px 10px rgba(0,0,0,.18);transform:translateY(calc(100% + var(--dock-b,0px) + 12px));visibility:hidden;transition:transform .16s ease,visibility .16s}
+.pgs-app.sim-dockable.sim-dockon:not([data-mode="explore"]) .sim-side>.pgs-dock{transform:none;visibility:visible}
+.pgs-app.sim-dockable:not([data-mode="explore"]) .sim-side{padding-bottom:190px}
+.pgs-app .sim-bar .sim-pause{position:static;width:auto;margin-left:auto;padding:6px 12px;font-size:.84rem}
+}
+
+/* ---------- offer card: two trades, free questions first, then the printable PDF ---------- */
+.pgs-chips{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.pgs-chip{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:8px;border-radius:8px;background:rgba(255,255,255,.08)}
+.pgs-chip-t{flex:0 0 3.4em;font-weight:800;letter-spacing:.5px}
+.pgs-offer .pgs-chip a{flex:1 1 200px;min-height:44px;padding:8px 12px;line-height:1.3}
+
+@media (prefers-reduced-motion: reduce){.pgs-dock{transition:none!important}}

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FSSHZMWVLW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FSSHZMWVLW');
+</script>
+<script src="/track.js" defer></script>
+<meta name="google-site-verification" content="AySEYGsNWhilNyl3EpVTQu6a3p0l6E1ZCe7P0EUN8O8" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>if(/[?&]embed=1(&|$)/.test(location.search))document.documentElement.classList.add("sim-embedded");</script>
+<title data-sid="meta.title">Planetary Gear Set Simulator: Ratios and Slip Faults</title>
+<meta name="description" data-sid="meta.description" content="Drive, hold and lock the members of an example planetary gear set to see its ratio and torque, then find a slipping band or clutch from test readings.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://redsealquiz.ca/planetary-gear-set-simulator.html">
+<meta property="og:title" content="Planetary Gear Set Simulator: Ratios and Slip Faults">
+<meta property="og:description" content="Drive, hold and lock the members of an example planetary gear set to see its ratio and torque, then find a slipping band or clutch from test readings.">
+<meta property="og:url" content="https://redsealquiz.ca/planetary-gear-set-simulator.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://redsealquiz.ca/og-card-v2.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What happens when two members of a planetary gear set are locked together?","acceptedAnswer":{"@type":"Answer","text":"With no member held, all three members turn as one at input speed, a 1.00:1 direct drive, and the planet gears do not turn on their pins."}},{"@type":"Question","name":"What happens when no member is held and none are locked together?","acceptedAnswer":{"@type":"Answer","text":"With nothing held and nothing locked, the set has nothing to push against, so the output is not driven and no torque is transmitted: the set is in neutral. Locking two members together instead gives direct drive."}},{"@type":"Question","name":"Does the number of planet gears change the ratio?","acceptedAnswer":{"@type":"Answer","text":"No. The speed relation uses the sun and ring tooth counts and has no term for the number of planets."}},{"@type":"Question","name":"How does one planetary gear set give reverse?","acceptedAnswer":{"@type":"Answer","text":"In a simple planetary gear set, hold the carrier and drive the sun or the ring: the planets then turn on fixed pins and the output turns the opposite way. In this example, the sun driving with the carrier held gives a 2.40:1 reverse reduction."}},{"@type":"Question","name":"Why can a worn band or clutch hold a light load but slip under a heavy one?","acceptedAnswer":{"@type":"Answer","text":"The torque a band or clutch must carry rises with the load, so a weakened one can still hold the smaller torque of a light load but slips once the torque is more than it can hold."}},{"@type":"Question","name":"Which trades is this simulator for?","acceptedAnswer":{"@type":"Answer","text":"It fits the transmission topics of the 421A Heavy Duty Equipment Technician and 310S Automotive Service Technician exams. More simulators are listed on the trade simulators page."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Planetary Gear Set Simulator: Ratios and Slip Faults","description":"Drive, hold and lock the members of an example planetary gear set to see its ratio and torque, then find a slipping band or clutch from test readings.","url":"https://redsealquiz.ca/planetary-gear-set-simulator.html","applicationCategory":"EducationalApplication","operatingSystem":"Any","inLanguage":"en-CA","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"CAD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://redsealquiz.ca/"},{"@type":"ListItem","position":2,"name":"Planetary Gear Set Simulator","item":"https://redsealquiz.ca/planetary-gear-set-simulator.html"}]}</script>
+<link rel="stylesheet" href="/styles.css">
+<style id="nav-std">
+nav{background:#1a3a5c;padding:0 24px;display:flex;align-items:center;position:sticky;top:0;z-index:200;box-shadow:0 2px 8px rgba(0,0,0,.2);min-height:52px;font-family:'Segoe UI',Arial,sans-serif;line-height:1.7;width:100%}
+.nav-brand{color:white;text-decoration:none;font-weight:800;font-size:.92rem;white-space:nowrap;margin-right:auto;display:flex;align-items:center;gap:6px}
+.nav-links{display:flex;align-items:center;gap:4px;margin-left:auto}
+.nav-links>a{color:rgba(255,255,255,.85);text-decoration:none;font-weight:600;font-size:.85rem;padding:8px 12px;border-radius:6px;transition:all .2s;white-space:nowrap}
+.nav-links>a:hover,.nav-links>a.active{color:#f0a500;background:rgba(255,255,255,.08)}
+.nav-dropdown{position:relative}
+.nav-drop-btn{background:none;border:none;color:rgba(255,255,255,.85);font-weight:600;font-size:.85rem;cursor:pointer;font-family:inherit;padding:8px 12px;border-radius:6px;display:inline-flex;align-items:center;gap:4px;transition:all .2s;white-space:nowrap}
+.nav-drop-btn:hover{color:#f0a500;background:rgba(255,255,255,.08)}
+.nav-drop-menu{display:none;position:absolute;top:calc(100% + 6px);left:0;background:#1a3a5c;border-radius:10px;box-shadow:0 10px 32px rgba(0,0,0,.35);min-width:230px;z-index:300;border:1px solid rgba(255,255,255,.12);padding:6px 0}
+.nav-dropdown.open .nav-drop-menu{display:block}
+.nav-drop-menu a{display:block;padding:9px 18px;color:rgba(255,255,255,.85);text-decoration:none;font-size:.84rem;font-weight:600;transition:all .15s}
+.nav-drop-menu a:hover{background:rgba(255,255,255,.1);color:#f0a500;padding-left:22px}
+.nav-toggle{display:none;background:none;border:none;color:white;font-size:1.4rem;cursor:pointer;padding:8px;margin-left:12px;flex-shrink:0}
+@media(max-width:820px){
+  .nav-toggle{display:flex;align-items:center;justify-content:center}
+  .nav-links{display:none;position:absolute;top:52px;left:0;right:0;background:#1a3a5c;flex-direction:column;align-items:stretch;z-index:201;box-shadow:0 8px 24px rgba(0,0,0,.35);border-top:1px solid rgba(255,255,255,.1);max-height:80vh;overflow-y:auto;padding:6px 0}
+  .nav-links.open{display:flex}
+  .nav-links>a{padding:12px 20px!important;border-bottom:1px solid rgba(255,255,255,.07)!important;border-radius:0!important;font-size:.9rem!important}
+  .nav-dropdown{width:100%}
+  .nav-drop-btn{width:100%;padding:12px 20px!important;border-bottom:1px solid rgba(255,255,255,.07);border-radius:0;font-size:.9rem!important;justify-content:space-between}
+  .nav-drop-menu{position:static;background:#0d2440;box-shadow:none;border-radius:0;border:none;border-top:none;padding:0}
+  .nav-drop-menu a{padding:10px 20px 10px 34px!important;border-bottom:1px solid rgba(255,255,255,.04)!important;font-size:.86rem!important}
+}
+</style>
+<style id="hero-std">
+.hero-std{background:linear-gradient(135deg,#0f2540 0%,#1a3a5c 45%,#2d6a9f 100%);color:#fff;padding:48px 24px 42px;text-align:center;font-family:'Segoe UI',Arial,sans-serif;line-height:1.6}
+.hero-std .hero-kicker{display:inline-block;background:#f0a500;color:#fff;font-size:.78rem;font-weight:800;letter-spacing:2px;padding:4px 14px;border-radius:14px;margin-bottom:14px;text-transform:uppercase}
+.hero-std h1{font-size:1.85rem;font-weight:800;color:#fff;margin:0 auto 10px;max-width:760px;line-height:1.3}
+.hero-std h1 span{color:#f0a500}
+.hero-std .hero-sub{font-size:.98rem;color:rgba(255,255,255,.88);max-width:620px;margin:0 auto 18px}
+.hero-std .hero-meta{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.hero-std .hero-pill{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);color:#fff;font-size:.74rem;font-weight:600;padding:4px 12px;border-radius:14px}
+@media(max-width:600px){.hero-std h1{font-size:1.4rem}.hero-std .hero-sub{font-size:.88rem}}
+</style>
+<style id="tbl-responsive">
+/* 표가 좁은 화면을 넘칠 때 페이지 전체가 아니라 표만 가로 스크롤되게 한다.
+   (2026-07-29: .concept-table 이 375px 화면에서 427px 라 문서가 86px 밀려 있었다) */
+@media(max-width:640px){
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+}
+</style>
+<style id="readability-std">
+/* 본문 가독성 기준 (2026-07-29 실측 후 신설)
+   목록에 스타일이 없어 브라우저 기본값(줄간격 1.2 / 항목간격 0)이 적용됐다.
+   같은 상자의 문단은 1.7 인데 목록만 방치돼 소제목과 설명이 한 덩어리로 보였다.
+   개선 전후 실측(456a, 375x812): 줄간격 1.20→1.70, 항목간격 0→12px, 소제목 inline→block */
+.intro-box ul,.intro-box ol,.card ul,.card ol,.fit-section ul,.fit-section ol,
+.container>ul,.container>ol,.sg-card ul,.sg-card ol{margin:12px 0 16px;padding-left:22px}
+.intro-box li,.card li,.fit-section li,.container>ul>li,.container>ol>li,.sg-card li{
+  line-height:1.7;margin-bottom:12px}
+.intro-box li:last-child,.card li:last-child,.fit-section li:last-child{margin-bottom:0}
+.intro-box li>strong:first-child,.card li>strong:first-child,
+.fit-section li>strong:first-child{display:block;margin-bottom:2px}
+/* 내비게이션·푸터 목록은 본문 규칙에서 제외 */
+nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;margin-bottom:0!important}
+@media(max-width:640px){
+  .intro-box p,.intro-box li,.card p,.card li,.fit-section p,.fit-section li{
+    font-size:1rem;line-height:1.7}
+}
+</style>
+<style id="faq-visible-css">.faq-visible{margin:32px 0 8px}.faq-visible details{margin:0 0 10px;background:var(--card,#fff);border-radius:8px;border-left:4px solid var(--accent,#f0a500);box-shadow:0 1px 5px rgba(0,0,0,.07)}.faq-visible summary{display:flex;justify-content:space-between;align-items:center;gap:12px;box-sizing:border-box;min-height:48px;padding:12px 16px;cursor:pointer;list-style:none;color:var(--primary,#1a3a5c);font-weight:700;font-size:.95rem;line-height:1.45;overflow-wrap:anywhere}.faq-visible summary::-webkit-details-marker{display:none}.faq-visible summary::after{content:"\25BC";flex:none;font-size:.75rem;opacity:.6;transition:transform .2s}.faq-visible details[open]>summary::after{transform:rotate(180deg)}.faq-visible summary:focus-visible{outline:3px solid var(--accent,#f0a500);outline-offset:2px}.faq-visible details>p{margin:0;padding:0 16px 14px;line-height:1.7;overflow-wrap:anywhere}</style>
+<style id="sim-std">
+:root{--primary:#1a3a5c;--accent:#f0a500;--green:#27ae60;--red:#e74c3c;--light:#f4f7fb;--card:#ffffff;--text:#2c3e50;--border:#dce3ec}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--light);color:var(--text);font-family:'Segoe UI',Arial,sans-serif}
+[hidden]{display:none!important}
+[id]{scroll-margin-top:64px}
+.hero-std{padding:14px 16px 12px}
+.hero-std h1{font-size:1.5rem;margin:0 auto 6px;line-height:1.25}
+.hero-std .hero-kicker{margin:0;padding:3px 10px;font-size:.72rem;letter-spacing:1px;line-height:1.5}
+.hero-std .hero-pill{padding:3px 10px;line-height:1.5}
+.hero-std .hero-meta{align-items:center}
+@media(max-width:600px){.hero-std{padding:10px 8px 10px}.hero-std h1{font-size:1.2rem}.hero-std .hero-meta{gap:6px}.hero-std .hero-pill{padding:3px 8px;font-size:.7rem;white-space:nowrap}}
+.sim-page{max-width:1120px;margin:0 auto;padding:12px 16px 8px;line-height:1.7}
+.sim-lead{max-width:780px;margin:0 0 10px;font-size:1rem}
+.sim-discline{max-width:780px;margin:0 0 14px;padding:8px 12px;border-left:4px solid #b45f14;border-radius:6px;background:#fdf6ec;font-size:.86rem;line-height:1.5}
+.sim-app{position:relative;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.07);padding:12px;margin:0 0 14px}
+.sim-end{height:1px}
+.sim-vh{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;padding:0}
+.sim-bar{position:relative;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin:0 0 10px}
+.sim-rm{flex:1 1 100%;margin:0;color:#4a5568;font-size:.84rem;line-height:1.4}
+.sim-modes{display:flex;flex-wrap:wrap;gap:6px}
+.sim-mode,.sim-tog,.sim-btn,.sim-cause{min-height:44px;min-width:44px;padding:8px 14px;border:2px solid var(--primary);border-radius:8px;background:#fff;color:var(--primary);font:inherit;font-size:.92rem;font-weight:700;line-height:1.3;cursor:pointer}
+.sim-mode[aria-pressed="true"],.sim-tog[aria-pressed="true"]{background:var(--primary);color:#fff}
+.sim-mode[aria-pressed="true"]{box-shadow:inset 0 -4px 0 var(--accent)}
+.sim-tog[aria-pressed="true"]::before{content:"\2713\00a0"}
+.sim-btn[disabled],.sim-cause[disabled]{cursor:default;opacity:.6}
+.sim-app button:focus-visible,.sim-app a:focus-visible,.sim-app input:focus-visible,.sim-sec summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.sim-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.sim-fig{min-width:0}
+.sim-fig .sim-svg{display:block;width:100%;height:auto;max-width:520px;margin:0 auto;touch-action:manipulation}
+.sim-side{min-width:0}
+@media(min-width:900px){.sim-grid{grid-template-columns:minmax(0,430px) minmax(0,1fr)}.sim-fig{position:sticky;top:60px;align-self:start}}
+@media(max-width:520px){.sim-page{padding:8px 8px 8px}.sim-app{padding:4px;border-radius:10px}.sim-bar,.sim-side{padding:4px 4px}.sim-bar{margin:0 0 4px}}
+/* schematic symbols */
+.sim-svg text{font-family:'Segoe UI',Arial,sans-serif}
+.sim-svg .sym{fill:none;stroke:#2c3e50;stroke-width:1.4;stroke-linejoin:round;stroke-linecap:round}
+.sim-svg .sym.body{fill:#fff}
+.sim-svg .sym.thin{stroke-width:1}
+.sim-svg .sym.dash{stroke-width:1;stroke-dasharray:3 2}
+.sim-svg .sym.link{stroke-width:1.1}
+.sim-svg .sym.rod{stroke-width:2.4}
+.sim-svg .sym.pis{stroke-width:3}
+.sim-svg .symf{fill:#2c3e50;stroke:none}
+.sim-svg .encl{fill:none;stroke:#5b6b7c;stroke-width:1;stroke-dasharray:8 3 2 3}
+.sim-svg .dot{fill:#2c3e50}
+.sim-svg .lbl{font-size:11px;fill:#4a5568;font-style:italic}
+.sim-svg .lbl.sm{font-size:10px}
+.sim-svg .lbl-c{fill:#7a4e00;font-weight:700;font-style:normal}
+.sim-svg .pill rect{fill:var(--primary)}
+.sim-svg .pill text{fill:#fff;font-size:10.5px;font-weight:700;text-anchor:middle}
+.sim-svg .tpl,.sim-svg .tpb{fill:none;stroke:var(--primary);stroke-width:1.6}
+.sim-svg .hit{fill:rgba(0,0,0,0);stroke:none}
+.sim-svg [role="button"]{cursor:pointer}
+.sim-svg [role="button"]:focus{outline:none}
+.sim-svg [role="button"]:focus-visible .hit{stroke:var(--accent);stroke-width:3px;vector-effect:non-scaling-stroke}
+.sim-svg .sel .hit{fill:rgba(240,165,0,.14);stroke:#9e6d00;stroke-width:2px;stroke-dasharray:5 3;vector-effect:non-scaling-stroke}
+@media(hover:hover){.sim-svg [role="button"]:hover .hit{fill:rgba(26,58,92,.07)}}
+.sim-svg .rot{fill:none;stroke:none}
+.sim-svg .sw-bar{fill:none;stroke:none}
+.sim-svg .cp.stk .sw-bar{stroke:#6d97c0;stroke-width:7px;stroke-linecap:round}
+/* line states: colour + width + pattern (legend in the page text) */
+.ln path{fill:none;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.ln .lo{stroke:none}
+.ln .fa{display:none;fill:#fff;stroke-width:2px}
+.ln .lm{stroke:#2c3e50;stroke-width:2px}
+.ln.k-pilot .lm{stroke-width:1.5px;stroke-dasharray:7 4}
+.ln.k-drain .lm{stroke-width:1.5px;stroke-dasharray:2 3}
+.ln.st-idle .lm{stroke:#8a8a8a;stroke-width:1.5px}
+.ln.st-high .lm{stroke:#D55E00;stroke-width:6px;stroke-dasharray:none}
+.ln.st-low .lm{stroke:#0072B2;stroke-width:3.5px;stroke-dasharray:none}
+.ln.st-charge .lo{stroke:#1f1f1f;stroke-width:5px}
+.ln.st-charge .lm{stroke:#E69F00;stroke-width:3px;stroke-dasharray:none}
+.ln.st-pilot .lo{stroke:#1f1f1f;stroke-width:4px;stroke-dasharray:7 4}
+.ln.st-pilot .lm{stroke:#CC79A7;stroke-width:2px;stroke-dasharray:7 4}
+.ln.st-drain .lo{stroke:#1f1f1f;stroke-width:3.5px;stroke-dasharray:2 3}
+.ln.st-drain .lm{stroke:#56B4E9;stroke-width:1.5px;stroke-dasharray:2 3}
+.ln.st-suction .lm{stroke:#000;stroke-width:2px;stroke-dasharray:none}
+.ln.st-high .fa{stroke:#D55E00}
+.ln.st-low .fa{stroke:#0072B2}
+.ln.mv.st-high:not(.rev) .faf,.ln.mv.st-high.rev .far,.ln.mv.st-low:not(.rev) .faf,.ln.mv.st-low.rev .far,.lg-sw .faf{display:inline}
+.ln.mv .fa{animation:simfl-r var(--fl,1.2s) linear infinite}
+.ln.mv.st-low .fa{animation-duration:calc(var(--fl,1.2s)*1.7)}
+.ln.mv .fx-l{animation-name:simfl-l}
+.ln.mv .fx-d{animation-name:simfl-d}
+.ln.mv .fx-u{animation-name:simfl-u}
+.ln.mv.rev .fa{animation-direction:reverse}
+.ln.st-pilot.pr .lm{animation:simpulse 1.4s ease-in-out infinite}
+/* the arrows move by exactly one spacing (FLOW_STEP in the generator) */
+@keyframes simfl-r{to{transform:translateX(54px)}}
+@keyframes simfl-l{to{transform:translateX(-54px)}}
+@keyframes simfl-d{to{transform:translateY(54px)}}
+@keyframes simfl-u{to{transform:translateY(-54px)}}
+@keyframes simpulse{50%{stroke-opacity:.35}}
+@keyframes simspin{to{transform:rotate(360deg)}}
+/* component states */
+.sim-svg [data-comp].on .solbox{fill:#CC79A7}
+.sim-svg .mf-chk.open .ball{fill:#E69F00}
+.sim-svg .mf-rv.open .rv-arr{transform:translateY(-6px)}
+.sim-svg .mf-rv.open .rv-arr .sym{stroke:#D55E00;stroke-width:2.2}
+.sim-svg .mf-rv.open .rv-arr .symf{fill:#D55E00}
+.sim-svg .cp.open .rv-arr{transform:translateX(-6px)}
+.sim-svg .cp.open .rv-arr .sym{stroke:#0072B2;stroke-width:2.2}
+.sim-svg .cp.open .rv-arr .symf{fill:#0072B2}
+.sim-svg .cp.turn .rot{stroke:#6d97c0;stroke-width:7;stroke-dasharray:30 6 8 6 8 6 8 6 8 14;transform-box:fill-box;transform-origin:center;animation:simspin var(--spin,1.2s) linear infinite}
+.sim-svg .cp.turn.rev .rot{animation-direction:reverse}
+.sim-svg .cp.dmin .spd rect+rect{fill:#1a3a5c}
+.sim-svg .cp.rel .bk-pis{transform:translateX(-8px)}
+.sim-svg [data-comp="flushValve"].on .body{fill:#d8ecf8}
+/* test ports in fault scenarios */
+.sim-svg .tp.dim{opacity:.3}
+.sim-svg .tp.pick .hit{stroke:#9e6d00;stroke-width:2px;stroke-dasharray:4 3;vector-effect:non-scaling-stroke}
+.sim-svg .tp.got .hit{stroke:#1d8147;stroke-width:2.5px;stroke-dasharray:none;vector-effect:non-scaling-stroke}
+.sim-svg .tp.got .pill rect{fill:#1d8147}
+/* line colours, short form */
+.sim-key{display:flex;flex-wrap:wrap;gap:2px 12px;list-style:none;margin:6px 0 0;padding:0 4px;color:#4a5568;font-size:.76rem;line-height:1.5}
+.sim-key li{display:flex;align-items:center;gap:5px}
+.key-sw{flex:none;width:26px;height:10px;overflow:visible}
+.sim-app[data-mode="diagnose"] .sim-key{display:none}
+/* side panel */
+.sim-live{min-height:44px;margin:0 0 12px;padding:8px 12px;border-left:4px solid var(--primary);border-radius:6px;background:var(--light);font-size:.92rem}
+.sim-live p{margin:0}
+.sim-warn{margin-top:6px!important;color:#8b2a12;font-weight:700}
+.sim-warn::before{content:"\26A0\FE0E\00a0"}
+.sim-fail{padding:8px 12px;border-left:4px solid #b45f14;background:#fdf6ec;border-radius:6px}
+.sim-h{margin:0 0 6px;color:var(--primary);font-size:1.1rem}
+.sim-h3{margin:16px 0 6px;color:var(--primary);font-size:.98rem}
+.sim-hint{margin:0 0 10px;color:#4a5568;font-size:.88rem}
+.sim-dgnote{margin:0 0 10px;font-size:.88rem;color:#4a5568}
+.sim-row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
+.sim-col{display:flex;flex-direction:column;gap:8px}
+.sim-cause{text-align:left}
+.sim-cause.tried{border-style:dashed;color:#6b4a00}
+.sim-cause.tried::after{content:"\00a0\2014 not this one"}
+.sim-info h3{margin:0 0 6px;color:var(--primary);font-size:1rem}
+.sim-info p{margin:0 0 8px;font-size:.92rem}
+.sim-info .sim-part{margin:0 0 10px}
+.sim-dock{margin:4px 0 12px}
+.sim-lever{margin:0}
+.sim-presets{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.sim-presets button{min-width:0;padding:8px 2px}
+.sim-lever label{display:inline-block;font-weight:700;font-size:.92rem}
+.sim-lever output{margin-left:8px;font-weight:700;color:#1a3a5c}
+.sim-ends{display:flex;justify-content:space-between;font-size:.82rem;color:#4a5568}
+.sim-lever input[type="range"]{display:block;width:100%;height:44px;margin:0 0 6px;background:transparent;-webkit-appearance:none;appearance:none;cursor:pointer;touch-action:pan-y}
+.sim-lever input[type="range"]::-webkit-slider-runnable-track{height:8px;border-radius:4px;background:#c7d2de}
+.sim-lever input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:44px;height:44px;margin-top:-18px;border-radius:50%;border:4px solid #fff;background:var(--primary);box-shadow:0 0 0 2px var(--primary)}
+.sim-lever input[type="range"]::-moz-range-track{height:8px;border-radius:4px;background:#c7d2de}
+.sim-lever input[type="range"]::-moz-range-thumb{width:36px;height:36px;border-radius:50%;border:4px solid #fff;background:var(--primary);box-shadow:0 0 0 2px var(--primary)}
+.sim-symptom{margin:0 0 8px;padding:8px 12px;border-left:4px solid var(--accent);background:#fffaf0;border-radius:6px;font-weight:600}
+.sim-step{margin:0 0 6px;font-size:.9rem}
+.sim-cond{margin:0 0 6px;font-size:.88rem;color:#4a5568}
+.sim-reads{list-style:none;margin:0 0 8px;padding:0}
+.sim-rd{margin:0 0 8px;padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:#fff}
+.sim-rd p{margin:0}
+.sim-rd-h{font-size:.9rem}
+.sim-gauge{position:relative;height:14px;margin:8px 0 6px;border-radius:7px;background:#e3e9f0}
+.sim-gauge-f{position:absolute;left:0;top:0;bottom:0;border-radius:7px;background:var(--primary)}
+.sim-gauge-n{position:absolute;top:-4px;bottom:-4px;width:4px;margin-left:-2px;border-radius:2px;background:#b45f14}
+.sim-rd-v{font-size:.88rem;font-weight:700}
+.sim-rd-note{margin-top:2px!important;font-size:.78rem;color:#4a5568}
+.sim-result{margin:12px 0;padding:10px 12px;border-left:4px solid var(--primary);border-radius:6px;background:var(--light)}
+.sim-result.ok{border-left-color:#1d8147;background:#eef8f1}
+.sim-result.no{border-left-color:#b45f14;background:#fdf6ec}
+.sim-result h4{margin:10px 0 4px;color:var(--primary);font-size:.92rem}
+.sim-result p{margin:0 0 8px;font-size:.92rem}
+.sim-verdict{font-weight:700}
+.sim-offer{margin:14px 0 4px;padding:14px;border-radius:10px;background:var(--primary);color:#fff}
+.sim-offer-t{margin:0 0 10px;font-weight:700}
+.sim-offer-links{display:flex;flex-wrap:wrap;gap:10px}
+.sim-offer a{display:inline-flex;align-items:center;min-height:44px;padding:10px 16px;border-radius:8px;font-weight:800;text-decoration:none}
+.sim-offer-buy{background:var(--accent);color:var(--primary)}
+.sim-offer-free{border:2px solid rgba(255,255,255,.7);color:#fff}
+/* page text */
+.sim-sec{margin:0 0 20px;padding:20px;border-radius:12px;background:var(--card);box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.sim-sec h2{margin:0 0 12px;padding-bottom:8px;border-bottom:3px solid var(--accent);color:var(--primary);font-size:1.2rem}
+.sim-fold{margin:0 0 10px;padding:0}
+.sim-fold>details>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px;padding:8px 16px;cursor:pointer;list-style:none}
+.sim-fold>details>summary::-webkit-details-marker{display:none}
+.sim-fold>details>summary::after{content:"+";flex:none;color:var(--primary);font-size:1.5rem;font-weight:700;line-height:1}
+.sim-fold>details[open]>summary::after{content:"\2212"}
+.sim-fold h2{margin:0;padding:0;border:0;font-size:1.05rem;line-height:1.35}
+.sim-fold-b{padding:2px 16px 14px}
+.sim-sec h3{margin:16px 0 6px;color:var(--primary);font-size:1.02rem}
+.sim-sec p{margin:0 0 10px}
+.sim-legend{list-style:none;margin:0 0 10px;padding:0}
+.sim-legend li{display:flex;gap:12px;align-items:flex-start;margin:0 0 10px}
+.sim-legend p{margin:0}
+.lg-sw{flex:none;width:64px;height:18px;margin-top:5px;overflow:visible}
+.lg-sw .lbl{font-size:7px;font-family:'Segoe UI',Arial,sans-serif;text-anchor:middle}
+.sim-parts{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.sim-part{padding:12px 14px;border:1px solid var(--border);border-radius:10px}
+.sim-sec .sim-part h3{margin:0 0 6px}
+.sim-part p{font-size:.92rem}
+.sim-tbl table{width:100%;border-collapse:collapse;font-size:.88rem;line-height:1.55}
+.sim-tbl th,.sim-tbl td{padding:8px;border:1px solid var(--border);vertical-align:top;text-align:left}
+.sim-tbl thead th{background:var(--primary);color:#fff}
+.sim-tbl tbody th{background:var(--light)}
+@media(max-width:640px){.sim-tbl th,.sim-tbl td{min-width:12em}}
+.sim-why{margin-top:14px}
+.sim-why details{margin:0 0 10px;border-left:4px solid var(--accent);border-radius:8px;background:#fff;box-shadow:0 1px 5px rgba(0,0,0,.07)}
+.sim-why summary{display:flex;align-items:center;min-height:48px;padding:10px 16px;cursor:pointer;color:var(--primary);font-weight:700;line-height:1.45}
+.sim-why h4{margin:4px 16px;color:var(--primary);font-size:.92rem}
+.sim-why p{margin:0 16px 12px}
+.sim-disc{border-left:4px solid #b45f14}
+.sim-fold.sim-disc{margin-bottom:20px}
+.sim-src{color:#4a5568;font-size:.86rem}
+.faq-visible.sim-sec{margin:0 0 20px}
+footer{margin-top:40px;padding:24px;background:#1a3a5c;color:rgba(255,255,255,.75);text-align:center;font-size:.8rem}
+footer a{margin:0 4px;color:#f0a500;text-decoration:none}
+footer p:last-child a{display:inline-block;padding:12px 4px}
+/* narrow screens: the controls stay with the drawing. The dock is fixed in Drive only, and slides away
+   once the end of the simulator comes on screen (.sim-dockon, set by an IntersectionObserver), so it only
+   ever sits over the simulator itself. Without that observer it stays in the page flow. */
+@media(max-width:899px){
+.sim-bar{min-height:44px}
+.sim-modes{flex:1 1 100%;flex-wrap:nowrap}
+.sim-mode{flex:1 1 auto;min-width:0;padding:8px 6px}
+.sim-pause{position:absolute;top:calc(100% + 4px);right:0;z-index:2;width:84px;min-height:44px;padding:2px 4px;border-width:1px;font-size:.76rem;line-height:1.2}
+.sim-app.sim-rmon .sim-pause{position:static;width:auto;flex:none;padding:8px 14px;border-width:2px;font-size:.92rem}
+.sim-app.sim-rmon .sim-rm{flex:1 1 150px}
+.sim-app.sim-rmon.sim-still .sim-pause{background:var(--primary);color:#fff}
+.sim-dockable .sim-panel[data-panel="operate"] .sim-dock{position:fixed;left:0;right:0;bottom:var(--dock-b,0px);z-index:150;margin:0;padding:4px 8px calc(6px + env(safe-area-inset-bottom,0px));background:#fff;border-top:2px solid var(--primary);box-shadow:0 -2px 10px rgba(0,0,0,.18);transform:translateY(calc(100% + var(--dock-b,0px) + 12px));visibility:hidden;transition:transform .16s ease,visibility .16s}
+.sim-dockable.sim-dockon .sim-panel[data-panel="operate"] .sim-dock{transform:none;visibility:visible}
+.sim-dockable .sim-lever{display:grid;grid-template-columns:62px minmax(0,1fr);align-items:center;gap:6px}
+.sim-dockable .sim-lever label{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.sim-dockable .sim-lever output{margin:0;font-size:.84rem;line-height:1.2}
+.sim-dockable .sim-ends{display:none}
+.sim-dockable .sim-lever input[type="range"]{margin:0}
+.sim-app[data-mode="operate"] .sim-svg{max-height:calc(100vh - 176px);max-height:calc(100svh - 176px)}
+.sim-app[data-mode="operate"].sim-dockable.sim-dockon .sim-warn{position:fixed;left:8px;right:8px;bottom:calc(var(--dock-b,0px) + 110px + env(safe-area-inset-bottom,0px));z-index:150;margin:0!important;padding:6px 10px;border-radius:6px;background:#fff3e6;box-shadow:0 1px 6px rgba(0,0,0,.25);font-size:.84rem;line-height:1.35;pointer-events:none}
+}
+/* motion: paused with the button, stopped while the simulator is off screen, and off for reduced motion
+   until the visitor presses Play (.sim-play) */
+.sim-app.sim-still *,.sim-app.sim-away *{animation-play-state:paused!important}
+@media (prefers-reduced-motion: reduce){.sim-app:not(.sim-play) *,.sim-app:not(.sim-play) *::before,.sim-app:not(.sim-play) *::after,.sim-sec *{animation:none!important;transition:none!important}.sim-dock{transition:none!important}}
+/* embed mode (?embed=1 sets html.sim-embedded before the page draws): the simulator, its safety note and a
+   link back to the full page; the site menus, the explanation, the offer card and the footer are left out */
+.sim-embed-bar{display:none}
+html.sim-embedded nav,html.sim-embedded .hero-std,html.sim-embedded footer,html.sim-embedded .sim-page>.sim-sec:not(.sim-disc),html.sim-embedded .sim-offer{display:none!important}
+html.sim-embedded .sim-embed-bar{display:block;margin:12px 0;text-align:center}
+html.sim-embedded .sim-embed-bar a{display:inline-flex;align-items:center;min-height:44px;padding:0 8px}
+.sim-embed-code{display:block;width:100%;min-height:7em;margin:6px 0;padding:8px;border:1px solid #c9d3df;border-radius:6px;font:.8rem/1.4 ui-monospace,Consolas,monospace}
+</style>
+<link rel="stylesheet" href="sim/pgs-std.css?v=1">
+<script src="sim/pgs-engine.v1.js?v=1" defer></script>
+<script src="sim/circuits/pgs-simple.v1.js?v=1" defer></script>
+<script src="sim/sim-shell.v1.js?v=2" defer></script>
+<script src="sim/pgs-render.v1.js?v=1" defer></script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-brand">🔧 Red Seal Prep</a>
+  <button class="nav-toggle" aria-label="Menu" id="navToggle">☰</button>
+  <div class="nav-links" id="navLinks">
+    <a href="/">Home</a>
+    <div class="nav-dropdown" id="tradesDrop">
+                  <button class="nav-drop-btn" id="tradesBtn" aria-haspopup="true">Trades ▾</button>
+      <div class="nav-drop-menu">
+        <a href="/456a.html">456A Welder</a>
+        <a href="/308a.html">308A Sheet Metal Worker</a>
+        <a href="/313a.html">313A HVAC/Refrigeration</a>
+        <a href="/309a.html">309A Construction Electrician</a>
+        <a href="/310s.html">310S Automotive Service Tech</a>
+        <a href="/310t.html">310T Truck &amp; Transport Mechanic</a>
+        <a href="/442a.html">442A Industrial Electrician</a>
+        <a href="/gasfitter-class-a.html">Gasfitter (Class A)</a>
+        <a href="/421a.html">421A Heavy Duty Equipment Tech</a>
+        <a href="/420b.html">420B Ironworker</a>
+        <a href="/306a.html">306A Plumber</a>
+      </div>
+    </div>
+    <a href="/practice-quizzes.html">Quizzes</a>
+    <a href="/red-seal-trades.html">Guides</a>
+    <a href="/about.html">About</a>
+  </div>
+</nav>
+
+<section class="hero-std">
+  <h1>Planetary Gear Set <span>Simulator</span></h1>
+  <div class="hero-meta">
+    <span class="hero-kicker">One simple planetary gear set</span>
+    <span class="hero-pill">Updated November 2026</span>
+    <span class="hero-pill">Free, no sign-up</span>
+  </div>
+</section>
+
+<main class="sim-page" id="main">
+<section class="sim-app pgs-app" id="sim-app" aria-labelledby="sim-app-h" data-mode="operate" data-set="pgs-simple" data-trade="multi">
+<h2 class="sim-vh" id="sim-app-h">Simulator</h2>
+<div class="sim-bar">
+<div class="sim-modes" role="group" aria-label="Simulator mode">
+<button type="button" class="sim-mode" data-mode="explore" aria-pressed="false">Explore</button>
+<button type="button" class="sim-mode" data-mode="operate" aria-pressed="true">Operate</button>
+<button type="button" class="sim-mode" data-mode="diagnose" aria-pressed="false">Find the fault</button>
+</div>
+<button type="button" class="sim-btn sim-pause" id="sim-pause">Pause animation</button>
+<p class="sim-rm" id="sim-rm" hidden>This device asks for reduced motion, so the animation waits for Play.</p>
+</div>
+<div class="sim-grid">
+<div class="sim-fig">
+<svg class="sim-svg pgs-svg" viewBox="0 0 360 430" role="group" aria-labelledby="pgs-svg-t" xmlns="http://www.w3.org/2000/svg"><title id="pgs-svg-t">Example simple planetary gear set, face view, with a band and three clutches</title><defs><pattern id="pgs-hatch" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(45)"><path d="M0 0 L0 7" class="hatch"/></pattern><path id="pgs-planet" d="M32.24 -3 L40.22 -1.57 L40.22 1.57 L32.24 3 L31.69 6.64 L38.89 10.36 L37.97 13.35 L29.92 12.37 L28.32 15.68 L34.11 21.36 L32.35 23.95 L24.95 20.64 L22.44 23.33 L26.3 30.47 L23.85 32.42 L17.75 27.07 L14.57 28.91 L16.15 36.87 L13.24 38.01 L8.99 31.1 L5.4 31.92 L4.57 39.99 L1.44 40.22 L-0.58 32.37 L-4.25 32.09 L-7.42 39.56 L-10.48 38.86 L-10.1 30.76 L-13.52 29.42 L-18.75 35.61 L-21.47 34.05 L-18.71 26.42 L-21.59 24.12 L-28.42 28.5 L-30.55 26.21 L-25.67 19.73 L-27.74 16.69 L-35.56 18.86 L-36.92 16.04 L-30.34 11.29 L-31.43 7.77 L-39.54 7.54 L-40 4.45 L-32.32 1.84 L-32.32 -1.84 L-40 -4.45 L-39.54 -7.54 L-31.43 -7.77 L-30.34 -11.29 L-36.92 -16.04 L-35.56 -18.86 L-27.74 -16.69 L-25.67 -19.73 L-30.55 -26.21 L-28.42 -28.5 L-21.59 -24.12 L-18.71 -26.42 L-21.47 -34.05 L-18.75 -35.61 L-13.52 -29.42 L-10.1 -30.76 L-10.48 -38.86 L-7.42 -39.56 L-4.25 -32.09 L-0.58 -32.37 L1.44 -40.22 L4.57 -39.99 L5.4 -31.92 L8.99 -31.1 L13.24 -38.01 L16.15 -36.87 L14.57 -28.91 L17.75 -27.07 L23.85 -32.42 L26.3 -30.47 L22.44 -23.33 L24.95 -20.64 L32.35 -23.95 L34.11 -21.36 L28.32 -15.68 L29.92 -12.37 L37.97 -13.35 L38.89 -10.36 L31.69 -6.64 Z"/></defs><g transform="translate(180 172)"><g class="pgs-p pgs-dv" data-info="band" data-name="Band" data-dv="band"><path class="hit-arc" d="M-141.19 -40.48 A146.88 146.88 0 0 1 141.19 -40.48"/><path class="band dv-a" d="M-135.67 -49.38 A144.38 144.38 0 0 1 135.67 -49.38"/><path class="band dv-r" d="M-139.9 -50.92 A148.88 148.88 0 0 1 139.9 -50.92"/><rect class="anchor" x="-150.53" y="-57.97" width="10" height="10" rx="2"/><rect class="anchor" x="138.53" y="-57.97" width="14" height="10" rx="2"/><text class="lbl dvn" x="-3" y="-156.88" text-anchor="end">Band</text><text class="lbl pgs-st" x="3" y="-156.88" text-anchor="start"></text></g><g data-rot="R" transform="rotate(0)"><g class="pgs-p pgs-m k-R" data-info="ring_gear" data-name="Ring gear, 72 teeth in this example gearset"><path class="gear ring" fill-rule="evenodd" d="M130.36 2.16 L122.44 3.95 L122.31 6.73 L130.05 9.21 L129.67 13.51 L121.63 14.61 L121.26 17.37 L128.75 20.51 L128 24.77 L119.89 25.16 L119.29 27.87 L126.47 31.65 L125.36 35.83 L117.24 35.51 L116.4 38.16 L123.23 42.55 L121.76 46.62 L113.7 45.59 L112.64 48.16 L119.06 53.13 L117.23 57.05 L109.29 55.33 L108.01 57.79 L113.97 63.31 L111.81 67.05 L104.06 64.64 L102.56 66.99 L108.02 73 L105.54 76.54 L98.03 73.47 L96.33 75.67 L101.25 82.14 L98.47 85.45 L91.25 81.73 L89.37 83.78 L93.7 90.65 L90.65 93.7 L83.78 89.37 L81.73 91.25 L85.45 98.47 L82.14 101.25 L75.67 96.33 L73.47 98.03 L76.54 105.54 L73 108.02 L66.99 102.56 L64.64 104.06 L67.05 111.81 L63.31 113.97 L57.79 108.01 L55.33 109.29 L57.05 117.23 L53.13 119.06 L48.16 112.64 L45.59 113.7 L46.62 121.76 L42.55 123.23 L38.16 116.4 L35.51 117.24 L35.83 125.36 L31.65 126.47 L27.87 119.29 L25.16 119.89 L24.77 128 L20.51 128.75 L17.37 121.26 L14.61 121.63 L13.51 129.67 L9.21 130.05 L6.73 122.31 L3.95 122.44 L2.16 130.36 L-2.16 130.36 L-3.95 122.44 L-6.73 122.31 L-9.21 130.05 L-13.51 129.67 L-14.61 121.63 L-17.37 121.26 L-20.51 128.75 L-24.77 128 L-25.16 119.89 L-27.87 119.29 L-31.65 126.47 L-35.83 125.36 L-35.51 117.24 L-38.16 116.4 L-42.55 123.23 L-46.62 121.76 L-45.59 113.7 L-48.16 112.64 L-53.13 119.06 L-57.05 117.23 L-55.33 109.29 L-57.79 108.01 L-63.31 113.97 L-67.05 111.81 L-64.64 104.06 L-66.99 102.56 L-73 108.02 L-76.54 105.54 L-73.47 98.03 L-75.67 96.33 L-82.14 101.25 L-85.45 98.47 L-81.73 91.25 L-83.78 89.37 L-90.65 93.7 L-93.7 90.65 L-89.37 83.78 L-91.25 81.73 L-98.47 85.45 L-101.25 82.14 L-96.33 75.67 L-98.03 73.47 L-105.54 76.54 L-108.02 73 L-102.56 66.99 L-104.06 64.64 L-111.81 67.05 L-113.97 63.31 L-108.01 57.79 L-109.29 55.33 L-117.23 57.05 L-119.06 53.13 L-112.64 48.16 L-113.7 45.59 L-121.76 46.62 L-123.23 42.55 L-116.4 38.16 L-117.24 35.51 L-125.36 35.83 L-126.47 31.65 L-119.29 27.87 L-119.89 25.16 L-128 24.77 L-128.75 20.51 L-121.26 17.37 L-121.63 14.61 L-129.67 13.51 L-130.05 9.21 L-122.31 6.73 L-122.44 3.95 L-130.36 2.16 L-130.36 -2.16 L-122.44 -3.95 L-122.31 -6.73 L-130.05 -9.21 L-129.67 -13.51 L-121.63 -14.61 L-121.26 -17.37 L-128.75 -20.51 L-128 -24.77 L-119.89 -25.16 L-119.29 -27.87 L-126.47 -31.65 L-125.36 -35.83 L-117.24 -35.51 L-116.4 -38.16 L-123.23 -42.55 L-121.76 -46.62 L-113.7 -45.59 L-112.64 -48.16 L-119.06 -53.13 L-117.23 -57.05 L-109.29 -55.33 L-108.01 -57.79 L-113.97 -63.31 L-111.81 -67.05 L-104.06 -64.64 L-102.56 -66.99 L-108.02 -73 L-105.54 -76.54 L-98.03 -73.47 L-96.33 -75.67 L-101.25 -82.14 L-98.47 -85.45 L-91.25 -81.73 L-89.37 -83.78 L-93.7 -90.65 L-90.65 -93.7 L-83.78 -89.37 L-81.73 -91.25 L-85.45 -98.47 L-82.14 -101.25 L-75.67 -96.33 L-73.47 -98.03 L-76.54 -105.54 L-73 -108.02 L-66.99 -102.56 L-64.64 -104.06 L-67.05 -111.81 L-63.31 -113.97 L-57.79 -108.01 L-55.33 -109.29 L-57.05 -117.23 L-53.13 -119.06 L-48.16 -112.64 L-45.59 -113.7 L-46.62 -121.76 L-42.55 -123.23 L-38.16 -116.4 L-35.51 -117.24 L-35.83 -125.36 L-31.65 -126.47 L-27.87 -119.29 L-25.16 -119.89 L-24.77 -128 L-20.51 -128.75 L-17.37 -121.26 L-14.61 -121.63 L-13.51 -129.67 L-9.21 -130.05 L-6.73 -122.31 L-3.95 -122.44 L-2.16 -130.36 L2.16 -130.36 L3.95 -122.44 L6.73 -122.31 L9.21 -130.05 L13.51 -129.67 L14.61 -121.63 L17.37 -121.26 L20.51 -128.75 L24.77 -128 L25.16 -119.89 L27.87 -119.29 L31.65 -126.47 L35.83 -125.36 L35.51 -117.24 L38.16 -116.4 L42.55 -123.23 L46.62 -121.76 L45.59 -113.7 L48.16 -112.64 L53.13 -119.06 L57.05 -117.23 L55.33 -109.29 L57.79 -108.01 L63.31 -113.97 L67.05 -111.81 L64.64 -104.06 L66.99 -102.56 L73 -108.02 L76.54 -105.54 L73.47 -98.03 L75.67 -96.33 L82.14 -101.25 L85.45 -98.47 L81.73 -91.25 L83.78 -89.37 L90.65 -93.7 L93.7 -90.65 L89.37 -83.78 L91.25 -81.73 L98.47 -85.45 L101.25 -82.14 L96.33 -75.67 L98.03 -73.47 L105.54 -76.54 L108.02 -73 L102.56 -66.99 L104.06 -64.64 L111.81 -67.05 L113.97 -63.31 L108.01 -57.79 L109.29 -55.33 L117.23 -57.05 L119.06 -53.13 L112.64 -48.16 L113.7 -45.59 L121.76 -46.62 L123.23 -42.55 L116.4 -38.16 L117.24 -35.51 L125.36 -35.83 L126.47 -31.65 L119.29 -27.87 L119.89 -25.16 L128 -24.77 L128.75 -20.51 L121.26 -17.37 L121.63 -14.61 L129.67 -13.51 L130.05 -9.21 L122.31 -6.73 L122.44 -3.95 L130.36 -2.16 Z M139.88 0 A139.88 139.88 0 1 0 -139.88 0 A139.88 139.88 0 1 0 139.88 0 Z"/><path class="mark" d="M132.88 0 L140.88 0"/><path class="hov" data-hov="R" fill-rule="evenodd" d="M131.38 0 A131.38 131.38 0 1 0 -131.38 0 A131.38 131.38 0 1 0 131.38 0 Z M138.88 0 A138.88 138.88 0 1 0 -138.88 0 A138.88 138.88 0 1 0 138.88 0 Z"/></g></g><g data-rot="C" transform="rotate(0)"><g class="pgs-p pgs-m k-C" data-info="planet_carrier" data-name="Planet carrier"><path class="gear carrier" stroke-linejoin="round" d="M89.25 0 L-44.62 77.29 L-44.63 -77.29 Z"/><path class="arm" d="M0 0 L57.25 99.16"/><circle class="arm-end" cx="57.25" cy="99.16" r="5"/><circle class="pin" cx="89.25" cy="0" r="5"/><circle class="pin" cx="-44.62" cy="77.29" r="5"/><circle class="pin" cx="-44.63" cy="-77.29" r="5"/><path class="hov" data-hov="C" stroke-linejoin="round" d="M89.25 0 L-44.62 77.29 L-44.63 -77.29 Z"/></g><g class="pgs-p pgs-m k-P" data-info="planet_gears" data-name="Planet gears, three of 21 teeth in this example gearset"><g transform="rotate(0) translate(89.25 0)"><g class="pgs-spin" transform="rotate(0)"><use href="#pgs-planet" class="gear planet"/><circle class="pin-c" r="4"/></g></g><g transform="rotate(120) translate(89.25 0)"><g class="pgs-spin" transform="rotate(0)"><use href="#pgs-planet" class="gear planet"/><circle class="pin-c" r="4"/></g></g><g transform="rotate(240) translate(89.25 0)"><g class="pgs-spin" transform="rotate(0)"><use href="#pgs-planet" class="gear planet"/><circle class="pin-c" r="4"/></g></g></g></g><g data-rot="S" transform="rotate(0)"><g class="pgs-p pgs-m k-S" data-info="sun_gear" data-name="Sun gear, 30 teeth in this example gearset"><path class="gear sun" d="M48.02 -3.12 L55.98 -1.52 L55.98 1.52 L48.02 3.12 L47.62 6.93 L55.07 10.15 L54.44 13.13 L46.32 13.04 L45.14 16.68 L51.76 21.38 L50.52 24.16 L42.6 22.39 L40.69 25.7 L46.18 31.67 L44.39 34.14 L37.02 30.75 L34.45 33.6 L38.59 40.58 L36.32 42.62 L29.81 37.78 L26.72 40.03 L29.31 47.72 L26.67 49.24 L21.31 43.15 L17.81 44.71 L18.75 52.77 L15.85 53.71 L11.87 46.64 L8.13 47.43 L7.37 55.51 L4.34 55.83 L1.91 48.09 L-1.91 48.09 L-4.34 55.83 L-7.37 55.51 L-8.13 47.43 L-11.87 46.64 L-15.85 53.71 L-18.75 52.77 L-17.81 44.71 L-21.31 43.15 L-26.67 49.24 L-29.31 47.72 L-26.72 40.03 L-29.81 37.78 L-36.32 42.62 L-38.59 40.58 L-34.45 33.6 L-37.02 30.75 L-44.39 34.14 L-46.18 31.67 L-40.69 25.7 L-42.6 22.39 L-50.52 24.16 L-51.76 21.38 L-45.14 16.68 L-46.32 13.04 L-54.44 13.13 L-55.07 10.15 L-47.62 6.93 L-48.02 3.12 L-55.98 1.52 L-55.98 -1.52 L-48.02 -3.12 L-47.62 -6.93 L-55.07 -10.15 L-54.44 -13.13 L-46.32 -13.04 L-45.14 -16.68 L-51.76 -21.38 L-50.52 -24.16 L-42.6 -22.39 L-40.69 -25.7 L-46.18 -31.67 L-44.39 -34.14 L-37.02 -30.75 L-34.45 -33.6 L-38.59 -40.58 L-36.32 -42.62 L-29.81 -37.78 L-26.72 -40.03 L-29.31 -47.72 L-26.67 -49.24 L-21.31 -43.15 L-17.81 -44.71 L-18.75 -52.77 L-15.85 -53.71 L-11.87 -46.64 L-8.13 -47.43 L-7.37 -55.51 L-4.34 -55.83 L-1.91 -48.09 L1.91 -48.09 L4.34 -55.83 L7.37 -55.51 L8.13 -47.43 L11.87 -46.64 L15.85 -53.71 L18.75 -52.77 L17.81 -44.71 L21.31 -43.15 L26.67 -49.24 L29.31 -47.72 L26.72 -40.03 L29.81 -37.78 L36.32 -42.62 L38.59 -40.58 L34.45 -33.6 L37.02 -30.75 L44.39 -34.14 L46.18 -31.67 L40.69 -25.7 L42.6 -22.39 L50.52 -24.16 L51.76 -21.38 L45.14 -16.68 L46.32 -13.04 L54.44 -13.13 L55.07 -10.15 L47.62 -6.93 Z"/><path class="mark" d="M6 0 L44.12 0"/><circle class="shaft-c" r="8"/><path class="hov" data-hov="S" d="M47.12 0 A47.12 47.12 0 1 0 -47.12 0 A47.12 47.12 0 1 0 47.12 0 Z"/></g></g></g><g class="pgs-devs"><g class="pgs-p pgs-dv" data-info="holding_clutch" data-name="Sun holding clutch" data-dv="holdS"><rect class="hit" x="8" y="334" width="104" height="92" rx="6"/><g class="dv-a"><rect class="pl" x="49.1" y="342" width="3.4" height="28" rx="1"/><rect class="pl fr" x="53.7" y="342" width="3.4" height="28" rx="1"/><rect class="pl" x="58.3" y="342" width="3.4" height="28" rx="1"/><rect class="pl fr" x="62.9" y="342" width="3.4" height="28" rx="1"/><rect class="pl" x="67.5" y="342" width="3.4" height="28" rx="1"/></g><g class="dv-r"><rect class="pl" x="43.3" y="342" width="3.4" height="28" rx="1"/><rect class="pl fr" x="50.8" y="342" width="3.4" height="28" rx="1"/><rect class="pl" x="58.3" y="342" width="3.4" height="28" rx="1"/><rect class="pl fr" x="65.8" y="342" width="3.4" height="28" rx="1"/><rect class="pl" x="73.3" y="342" width="3.4" height="28" rx="1"/></g><path class="case" d="M34 376 L86 376"/><path class="case" d="M36 376 L30 383"/><path class="case" d="M44 376 L38 383"/><path class="case" d="M52 376 L46 383"/><path class="case" d="M60 376 L54 383"/><path class="case" d="M68 376 L62 383"/><path class="case" d="M76 376 L70 383"/><path class="case" d="M84 376 L78 383"/><text class="lbl dvn" x="60" y="396" text-anchor="middle">Sun holding</text><text class="lbl dvn" x="60" y="408" text-anchor="middle">clutch</text><text class="lbl pgs-st" x="60" y="420" text-anchor="middle"></text></g><g class="pgs-p pgs-dv" data-info="holding_clutch" data-name="Carrier holding clutch" data-dv="holdC"><rect class="hit" x="128" y="334" width="104" height="92" rx="6"/><g class="dv-a"><rect class="pl" x="169.1" y="342" width="3.4" height="28" rx="1"/><rect class="pl fr" x="173.7" y="342" width="3.4" height="28" rx="1"/><rect class="pl" x="178.3" y="342" width="3.4" height="28" rx="1"/><rect class="pl fr" x="182.9" y="342" width="3.4" height="28" rx="1"/><rect class="pl" x="187.5" y="342" width="3.4" height="28" rx="1"/></g><g class="dv-r"><rect class="pl" x="163.3" y="342" width="3.4" height="28" rx="1"/><rect class="pl fr" x="170.8" y="342" width="3.4" height="28" rx="1"/><rect class="pl" x="178.3" y="342" width="3.4" height="28" rx="1"/><rect class="pl fr" x="185.8" y="342" width="3.4" height="28" rx="1"/><rect class="pl" x="193.3" y="342" width="3.4" height="28" rx="1"/></g><path class="case" d="M154 376 L206 376"/><path class="case" d="M156 376 L150 383"/><path class="case" d="M164 376 L158 383"/><path class="case" d="M172 376 L166 383"/><path class="case" d="M180 376 L174 383"/><path class="case" d="M188 376 L182 383"/><path class="case" d="M196 376 L190 383"/><path class="case" d="M204 376 L198 383"/><text class="lbl dvn" x="180" y="396" text-anchor="middle">Carrier holding</text><text class="lbl dvn" x="180" y="408" text-anchor="middle">clutch</text><text class="lbl pgs-st" x="180" y="420" text-anchor="middle"></text></g><g class="pgs-p pgs-dv" data-info="locking_clutch" data-name="Locking clutch" data-dv="lock"><rect class="hit" x="248" y="334" width="104" height="92" rx="6"/><g class="dv-a"><rect class="pl" x="289.1" y="342" width="3.4" height="28" rx="1"/><rect class="pl fr" x="293.7" y="342" width="3.4" height="28" rx="1"/><rect class="pl" x="298.3" y="342" width="3.4" height="28" rx="1"/><rect class="pl fr" x="302.9" y="342" width="3.4" height="28" rx="1"/><rect class="pl" x="307.5" y="342" width="3.4" height="28" rx="1"/></g><g class="dv-r"><rect class="pl" x="283.3" y="342" width="3.4" height="28" rx="1"/><rect class="pl fr" x="290.8" y="342" width="3.4" height="28" rx="1"/><rect class="pl" x="298.3" y="342" width="3.4" height="28" rx="1"/><rect class="pl fr" x="305.8" y="342" width="3.4" height="28" rx="1"/><rect class="pl" x="313.3" y="342" width="3.4" height="28" rx="1"/></g><path class="shaft" d="M256 352 L286 352 M314 360 L344 360"/><text class="lbl dvn" x="300" y="396" text-anchor="middle">Locking clutch</text><text class="lbl pgs-st" x="300" y="408" text-anchor="middle"></text></g></g></svg>
+<ul class="pgs-strip" id="pgs-strip" aria-label="Members: role and turns per input turn"><li data-m="S" class="k-S"><span class="pgs-sw" aria-hidden="true"></span><span class="pgs-nm">Sun gear</span><span class="pgs-role"></span><span class="pgs-tr" aria-hidden="true"><span class="pgs-sf"></span></span><span class="pgs-v"></span></li><li data-m="C" class="k-C"><span class="pgs-sw" aria-hidden="true"></span><span class="pgs-nm">Planet carrier</span><span class="pgs-role"></span><span class="pgs-tr" aria-hidden="true"><span class="pgs-sf"></span></span><span class="pgs-v"></span></li><li data-m="R" class="k-R"><span class="pgs-sw" aria-hidden="true"></span><span class="pgs-nm">Ring gear</span><span class="pgs-role"></span><span class="pgs-tr" aria-hidden="true"><span class="pgs-sf"></span></span><span class="pgs-v"></span></li></ul><p class="pgs-note sim-rd-note" id="pgs-note">Computed for this example gearset (sun 30, ring 72, planets 21 teeth), ignoring friction losses. Not a figure for any real transmission.</p>
+</div>
+<div class="sim-side">
+<div class="sim-live" id="sim-live" aria-live="polite"><p id="sim-status"></p><p class="sim-warn" id="sim-warn" hidden></p></div>
+<p class="sim-fail" id="sim-fail" hidden>The simulator could not start in this browser. The drawing, the legend and the text below still work.</p>
+<noscript><p class="sim-fail">The simulator controls need JavaScript. The drawing, the legend and the text below work without it.</p></noscript>
+<div class="sim-dock pgs-dock" id="sim-dock"><div class="pgs-keys" id="pgs-opkeys"><div class="pgs-kr" role="group" aria-label="Input member"><span class="pgs-kl" aria-hidden="true">Input member</span><button type="button" class="sim-tog" data-in="S" aria-pressed="true">Sun</button><button type="button" class="sim-tog" data-in="R" aria-pressed="false">Ring</button><button type="button" class="sim-tog" data-in="C" aria-pressed="false">Carrier</button></div><div class="pgs-kr" role="group" aria-label="Held member"><span class="pgs-kl" aria-hidden="true">Held member</span><button type="button" class="sim-tog" data-hold="none" aria-pressed="false">None</button><button type="button" class="sim-tog" data-hold="S" aria-pressed="false">Sun</button><button type="button" class="sim-tog" data-hold="R" aria-pressed="true">Ring</button><button type="button" class="sim-tog" data-hold="C" aria-pressed="false">Carrier</button></div><div class="pgs-kr" role="group" aria-label="Lock two members"><span class="pgs-kl" aria-hidden="true">Lock two members</span><button type="button" class="sim-tog" data-lock="none" aria-pressed="true">None</button><button type="button" class="sim-tog" data-lock="SR" aria-pressed="false">Sun + ring</button><button type="button" class="sim-tog" data-lock="SC" aria-pressed="false">Sun + carrier</button><button type="button" class="sim-tog" data-lock="RC" aria-pressed="false">Ring + carrier</button></div></div><div class="pgs-keys" id="pgs-dgkeys" hidden><div class="pgs-kr" role="group" aria-label="Range"><span class="pgs-kl" aria-hidden="true">Range</span><button type="button" class="sim-tog" data-range="N" aria-pressed="false">Neutral</button><button type="button" class="sim-tog" data-range="L" aria-pressed="true">Low</button><button type="button" class="sim-tog" data-range="D" aria-pressed="false">Direct</button></div><div class="pgs-kr" role="group" aria-label="Load"><span class="pgs-kl" aria-hidden="true">Load</span><button type="button" class="sim-tog" data-load="light" aria-pressed="true">Light load</button><button type="button" class="sim-tog" data-load="heavy" aria-pressed="false">Heavy load</button></div><div class="pgs-kr" role="group" aria-label="Tests"><span class="pgs-kl" aria-hidden="true">Tests</span><button type="button" class="sim-btn" data-test="speed">Speed check</button><button type="button" class="sim-btn" data-test="band">Band apply port</button><button type="button" class="sim-btn" data-test="clutch">Clutch apply port</button><button type="button" class="sim-btn" data-test="line">Line pressure</button></div></div></div>
+<div class="sim-panel" data-panel="explore" hidden><h2 class="sim-h">Explore the parts</h2><p class="sim-hint">Tap a part of the drawing, or move to it with the Tab key and press Enter, to read what it is.</p><div class="sim-info" id="sim-info" hidden><div id="sim-info-body"></div></div></div><div class="sim-panel" data-panel="operate"><h2 class="sim-h">Drive, hold and lock</h2><p class="sim-hint">Pick the input member, then hold one member or lock two together. The strip under the drawing shows how each member turns.</p><p class="pgs-why" id="pgs-why"></p><div class="pgs-read" id="pgs-read"><p id="pgs-out"></p><p class="pgs-big" id="pgs-ratio"></p><p id="pgs-formula"></p><p id="pgs-torque"></p><p id="pgs-planets"></p><ul class="pgs-extra" id="pgs-extra" hidden></ul></div></div><div class="sim-panel" data-panel="diagnose" hidden><h2 class="sim-h">Fault scenarios</h2><p class="sim-hint">Pick a scenario and read the symptom. Set the range and the load, take the tests, then pick the cause.</p><div class="sim-row" role="group" aria-label="Scenario" id="dg-scen"></div><div id="dg-case" hidden><h3 class="sim-h3">Symptom</h3><p class="sim-symptom" id="dg-symptom"></p><div id="dg-work"><p class="sim-cond" id="dg-cond"></p><h3 class="sim-h3">Readings</h3><ul class="sim-reads" id="dg-reads"></ul></div><h3 class="sim-h3">Pick the cause</h3><div class="sim-col" role="group" aria-label="Cause" id="dg-causes"><button type="button" class="sim-cause" data-fault="f_band_leak" hidden>Band apply piston seal leaking</button><button type="button" class="sim-cause" data-fault="f_band_worn" hidden>Band lining worn</button><button type="button" class="sim-cause" data-fault="f_band_none" hidden>Band not applying (no apply pressure reaches it)</button><button type="button" class="sim-cause" data-fault="f_clutch_worn" hidden>Locking clutch friction worn</button><button type="button" class="sim-cause" data-fault="f_clutch_none" hidden>Locking clutch not applying (no apply pressure reaches it)</button><button type="button" class="sim-cause" data-fault="f_clutch_leak" hidden>Locking clutch piston seal leaking</button><button type="button" class="sim-cause" data-fault="f_supply_low" hidden>Low line pressure from the supply (pump or main regulator)</button></div><div class="sim-result" id="dg-result" hidden><p class="sim-verdict" id="dg-verdict"></p><div id="dg-more"></div><button type="button" class="sim-btn" id="dg-reveal" hidden>Show the cause</button></div><div class="sim-offer pgs-offer" id="sim-offer" hidden><p class="sim-offer-t">Keep practising: transmission questions for your trade</p><ul class="pgs-chips"><li class="pgs-chip"><span class="pgs-chip-t" aria-hidden="true">421A</span><a class="sim-offer-free" href="https://redsealquiz.ca/421a-all-questions.html#t4"><span class="sim-vh">421A </span>Powertrain questions, free</a><a class="sim-offer-buy" data-cta="sim_result" href="https://ko-fi.com/s/bd6ed3d51f" target="_blank" rel="noopener"><span class="sim-vh">421A </span>Printable PDF with every answer explained</a></li><li class="pgs-chip"><span class="pgs-chip-t" aria-hidden="true">310S</span><a class="sim-offer-free" href="https://redsealquiz.ca/310s-all-questions.html#t4"><span class="sim-vh">310S </span>Transmission questions, free</a><a class="sim-offer-buy" data-cta="sim_result" href="https://ko-fi.com/s/1584a81d22" target="_blank" rel="noopener"><span class="sim-vh">310S </span>Printable PDF with every answer explained</a></li></ul></div></div></div>
+</div>
+</div>
+<div class="sim-end" id="sim-end" aria-hidden="true"></div>
+</section>
+
+<p class="sim-discline"><span data-sid="disc.s1">This is a study simulation for trade exams, not a test or repair procedure.</span> <span data-sid="disc.s2">Figures are computed for this example gearset and example unit, ignoring friction losses, and are not figures for any real transmission.</span></p>
+<p class="sim-lead"><span data-sid="meta.description">Drive, hold and lock the members of an example planetary gear set to see its ratio and torque, then find a slipping band or clutch from test readings.</span></p><p class="sim-lead"><span data-sid="intro.s1">This free simulator animates an example simple planetary gear set: a sun gear, three planet gears on a carrier and a ring gear, with a band and three clutches that hold or lock the members.</span> <span data-sid="intro.s2">It fits the transmission topics of the 421A Heavy Duty Equipment Technician and 310S Automotive Service Technician Red Seal exams.</span> <span data-sid="intro.s3">It is a simplified teaching model of ideal gears with no friction losses, so every figure on screen is computed for this example gearset, not taken from any real transmission.</span></p>
+<section class="sim-sec sim-fold" id="how" aria-labelledby="how-h"><details><summary><h2 id="how-h">How a simple planetary gear set works</h2></summary><div class="sim-fold-b"><h3 id="how-members">The three members and what each can do</h3><p><span data-sid="hiw.members.s1">A simple planetary gear set has three members: the sun gear in the centre, the ring gear around the outside with its teeth on the inside, and the planet carrier.</span> <span data-sid="hiw.members.s2">The planet gears turn on pins in the carrier and mesh with the sun gear and the ring gear at the same time.</span> <span data-sid="hiw.members.s3">Drive one member and hold another, and the third is the output; the simulator marks each member as input, held or output.</span> <span data-sid="hiw.members.s4">With nothing held and nothing locked, the set has nothing to push against, so the output is not driven and no torque is transmitted: that is neutral.</span> <span data-sid="hiw.members.s5">Lock any two members together and all three turn as one at input speed, a 1.00:1 direct drive in which the planets do not turn on their pins.</span> <span data-sid="hiw.members.s6">Holding a member while two members are locked together leaves nothing that can turn, so the set cannot move.</span></p><h3 id="how-ratio">Working out the ratio</h3><p><span data-sid="hiw.ratio.s1">The speeds follow one relation: sun teeth times sun speed, plus ring teeth times ring speed, equals the two tooth counts added together times carrier speed, with a turn the opposite way counted as negative.</span> <span data-sid="hiw.ratio.s2">With the ring held and the sun driving, the sun turns 1 + ring teeth ÷ sun teeth times for each carrier turn, which is 1 + 72 ÷ 30 = 3.40 in this example.</span> <span data-sid="hiw.ratio.s3">In a simple set with one member held and none locked, holding the carrier reverses the output, and taking the output from the carrier reduces speed.</span> <span data-sid="hiw.ratio.s4">With one member held and none locked, driving the carrier gives an overdrive, with the output turning faster than the input.</span> <span data-sid="hiw.ratio.s5">The number of planet gears does not appear in the relation, so it does not change the ratio.</span></p><h3 id="how-torque">Torque and the held member</h3><p><span data-sid="hiw.torque.s1">Ignoring friction losses, output torque equals input torque times the ratio, so a 3.40:1 reduction gives 3.40 times the input torque at the output.</span> <span data-sid="hiw.torque.s2">The holding device carries the reaction torque that balances the input and output torques: with the ring held and the sun driving, that is 2.40 times the input torque.</span> <span data-sid="hiw.torque.s3">When the output turns the opposite way, the reaction is the input and output torques added together, so a held carrier takes 3.40 times the input torque with the sun driving.</span> <span data-sid="hiw.torque.s4">That reaction grows with the load, so a weakened band or clutch may still hold a light load and slip under a heavy one.</span> <span data-sid="hiw.torque.s5">In direct drive the locking clutch carries torque between the locked members, so a worn or weakly applied clutch can slip there under a heavy load too.</span></p><h3 id="how-devices">Bands, clutches and line pressure</h3><p><span data-sid="hiw.devices.s1">In automatic transmissions the members are held or locked by bands and multi-disc clutches, applied by hydraulic pressure that the pump supplies.</span> <span data-sid="hiw.devices.s2">The pump and the main regulator make line pressure, which feeds every apply circuit.</span> <span data-sid="hiw.devices.s3">A band wraps the outside of a drum and is tightened by a hydraulic piston called a servo.</span> <span data-sid="hiw.devices.s4">A clutch squeezes a stack of plates together: with one set of plates tied to the case it holds a member, and between two turning parts it drives them or locks them together.</span> <span data-sid="hiw.devices.s5">Each range applies its own set of bands and clutches, called elements, and the apply chart in the service information shows which ones.</span></p><h3 id="how-faults">Finding a slipping element</h3><p><span data-sid="hiw.faults.s1">The example unit in Find the fault drives the sun and takes the output from the carrier: in Low a band holds the ring, and in Direct a locking clutch locks the sun to the ring.</span> <span data-sid="hiw.faults.s2">When an element slips, input speed rises while output speed does not follow, and the speed check compares the two.</span> <span data-sid="hiw.faults.s3">Trouble in some ranges usually points to an element those ranges apply and the working ranges do not, while trouble in every driving range usually points to something they share, such as line pressure.</span> <span data-sid="hiw.faults.s4">Apply pressure low in one circuit, with line pressure normal, usually points to a leak in that circuit.</span> <span data-sid="hiw.faults.s5">Line pressure low in every range usually points to the supply, such as the pump, the main regulator or a clogged filter.</span> <span data-sid="hiw.faults.s6">Line pressure low in one range and normal in the others usually points to a leak in a circuit that range applies.</span> <span data-sid="hiw.faults.s7">Slip under a heavy load with every pressure normal usually points to worn friction material, which lowers the torque the element can hold.</span> <span data-sid="hiw.faults.s8">In this example unit, read each apply port in the range that applies it.</span> <span data-sid="hiw.faults.s9">In the other ranges that element is released, so its port reads no pressure even on a healthy unit.</span></p></div></details></section>
+<section class="sim-sec sim-fold" id="ratios" aria-labelledby="ratios-h"><details><summary><h2 id="ratios-h">The six combinations in this example</h2></summary><div class="sim-fold-b"><p><span data-sid="ratios.before.s1">These are the six ways to drive one member and hold another, computed for this example gearset with a sun of 30 teeth and a ring of 72, ignoring friction losses.</span></p><div class="sim-tbl"><table id="tbl-ratios"><thead><tr><th scope="col">Held</th><th scope="col">Input</th><th scope="col">Output</th><th scope="col">Output turns per input turn</th><th scope="col">Ratio</th><th scope="col">Kind</th></tr></thead><tbody><tr><th scope="row">Ring</th><td>Sun</td><td>Carrier</td><td>0.29, same direction</td><td>3.40:1</td><td>Reduction</td></tr><tr><th scope="row">Ring</th><td>Carrier</td><td>Sun</td><td>3.40, same direction</td><td>0.29:1</td><td>Overdrive</td></tr><tr><th scope="row">Sun</th><td>Ring</td><td>Carrier</td><td>0.71, same direction</td><td>1.42:1</td><td>Reduction</td></tr><tr><th scope="row">Sun</th><td>Carrier</td><td>Ring</td><td>1.42, same direction</td><td>0.71:1</td><td>Overdrive</td></tr><tr><th scope="row">Carrier</th><td>Sun</td><td>Ring</td><td>0.42, opposite direction</td><td>2.40:1</td><td>Reverse reduction</td></tr><tr><th scope="row">Carrier</th><td>Ring</td><td>Sun</td><td>2.40, opposite direction</td><td>0.42:1</td><td>Reverse overdrive</td></tr></tbody></table></div><p><span data-sid="ratios.after.s1">Ratio means input speed divided by output speed; above 1.00:1 is a reduction, and below it is an overdrive.</span></p></div></details></section>
+<section class="sim-sec sim-fold" id="parts" aria-labelledby="parts-h"><details><summary><h2 id="parts-h">Parts of the gear set</h2></summary><div class="sim-fold-b"><div class="sim-parts"><article class="sim-part" id="part-sun_gear" data-part="sun_gear"><h3>Sun gear</h3><p><strong>What it is:</strong> <span data-sid="comp.sun_gear.what.s1">The gear in the centre of the set, with its teeth on the outside.</span></p><p><strong>What it does:</strong> <span data-sid="comp.sun_gear.role.s1">It can be the input, the held member or the output; with the ring held and the sun driving, the set gives its largest reduction.</span></p><p><strong>In this drawing:</strong> <span data-sid="comp.sun_gear.here.s1">In this example gearset it has 30 teeth, and a stripe marks it so its turning can be followed.</span></p></article><article class="sim-part" id="part-planet_gears" data-part="planet_gears"><h3>Planet gears</h3><p><strong>What it is:</strong> <span data-sid="comp.planet_gears.what.s1">Gears that sit between the sun gear and the ring gear and mesh with both at the same time.</span></p><p><strong>What it does:</strong> <span data-sid="comp.planet_gears.role.s1">They pass torque among the sun, the ring and the carrier, and they turn on their pins whenever the members turn at different speeds.</span></p><p><strong>In this drawing:</strong> <span data-sid="comp.planet_gears.here.s1">This example gearset has three, each with 21 teeth; the number of planet gears does not change the ratio.</span></p></article><article class="sim-part" id="part-planet_carrier" data-part="planet_carrier"><h3>Planet carrier</h3><p><strong>What it is:</strong> <span data-sid="comp.planet_carrier.what.s1">The frame that holds the pins the planet gears turn on.</span></p><p><strong>What it does:</strong> <span data-sid="comp.planet_carrier.role.s1">With one member held and none locked, taking the output from it reduces speed, driving it gives an overdrive, and holding it reverses the output.</span></p><p><strong>In this drawing:</strong> <span data-sid="comp.planet_carrier.here.s1">It is drawn as a plate joining the three pins, with an arm that marks its position.</span></p></article><article class="sim-part" id="part-ring_gear" data-part="ring_gear"><h3>Ring gear</h3><p><strong>What it is:</strong> <span data-sid="comp.ring_gear.what.s1">The outer gear, with its teeth cut on the inside.</span></p><p><strong>What it does:</strong> <span data-sid="comp.ring_gear.role.s1">With the sun driving and the output taken from the carrier, holding the ring gives a reduction.</span></p><p><strong>In this drawing:</strong> <span data-sid="comp.ring_gear.here.s1">In this example gearset it has 72 teeth, cut in a drum, and a notch on the drum marks its position.</span></p></article><article class="sim-part" id="part-band" data-part="band"><h3>Band</h3><p><strong>What it is:</strong> <span data-sid="comp.band.what.s1">A strap with a friction lining that wraps the outside of a drum.</span></p><p><strong>What it does:</strong> <span data-sid="comp.band.role.s1">A hydraulic piston called a servo tightens it to hold the drum still; released, it lets the drum turn.</span></p><p><strong>In this drawing:</strong> <span data-sid="comp.band.here.s1">It wraps the ring gear drum; in Operate it is drawn solid and close when applied, dashed and apart when released.</span></p></article><article class="sim-part" id="part-holding_clutch" data-part="holding_clutch"><h3>Holding clutch</h3><p><strong>What it is:</strong> <span data-sid="comp.holding_clutch.what.s1">A multi-disc clutch with one set of plates tied to the case.</span></p><p><strong>What it does:</strong> <span data-sid="comp.holding_clutch.role.s1">Applied by hydraulic pressure, it holds its member still.</span></p><p><strong>In this drawing:</strong> <span data-sid="comp.holding_clutch.here.s1">The drawing has one for the sun gear and one for the carrier; in Operate the plates touch when applied and stand apart when released.</span></p></article><article class="sim-part" id="part-locking_clutch" data-part="locking_clutch"><h3>Locking clutch</h3><p><strong>What it is:</strong> <span data-sid="comp.locking_clutch.what.s1">A multi-disc clutch between two members.</span></p><p><strong>What it does:</strong> <span data-sid="comp.locking_clutch.role.s1">Applied with no member held, it locks the two members together, and the whole set turns as one at 1.00:1.</span></p><p><strong>In this drawing:</strong> <span data-sid="comp.locking_clutch.here.s1">In Find the fault it locks the sun to the ring for Direct; in Operate any two members can be locked.</span></p></article></div></div></details></section>
+<section class="sim-sec sim-fold" id="faults" aria-labelledby="faults-h"><details><summary><h2 id="faults-h">Fault-finding table</h2></summary><div class="sim-fold-b"><div class="sim-tbl"><table id="tbl-faults"><thead><tr><th scope="col">Fault</th><th scope="col">Symptom</th><th scope="col">What to test</th><th scope="col">What you would see</th><th scope="col">Cause</th></tr></thead><tbody><tr data-fault="f_band_worn"><th scope="row">Band lining worn</th><td data-k="symptom"><span data-sid="fault.f_band_worn.symptom.s1">Direct is normal; in Low the unit drives a light load but slips under a heavy load.</span></td><td data-k="test"><span data-sid="fault.f_band_worn.what_to_test.s1">Speed check in Low under a heavy load, then the band apply port in Low and the line pressure.</span></td><td data-k="see"><span data-sid="fault.f_band_worn.what_you_would_see.s1">In this example unit, a slip in Low under a heavy load, with band apply pressure normal and line pressure normal.</span></td><td data-k="cause"><span data-sid="fault.f_band_worn.cause_short">Band lining worn</span></td></tr><tr data-fault="f_band_leak"><th scope="row">Band apply piston seal leaking</th><td data-k="symptom"><span data-sid="fault.f_band_leak.symptom.s1">Direct is normal; in Low the unit drives a light load but slips under a heavy load.</span></td><td data-k="test"><span data-sid="fault.f_band_leak.what_to_test.s1">Band apply port in Low, and the line pressure.</span></td><td data-k="see"><span data-sid="fault.f_band_leak.what_you_would_see.s1">In this example unit, band apply pressure below normal in Low, with line pressure normal.</span></td><td data-k="cause"><span data-sid="fault.f_band_leak.cause_short">Band apply piston seal leaking</span></td></tr><tr data-fault="f_band_none"><th scope="row">Band not applying (no apply pressure reaches it)</th><td data-k="symptom"><span data-sid="fault.f_band_none.symptom.s1">No drive in Low; Direct is normal.</span></td><td data-k="test"><span data-sid="fault.f_band_none.what_to_test.s1">Speed check in Low, then the band apply port in Low.</span></td><td data-k="see"><span data-sid="fault.f_band_none.what_you_would_see.s1">In this example unit, no drive in Low and no band apply pressure in Low; with the output stopped, the ring turns 0.42 times per input turn, opposite direction.</span></td><td data-k="cause"><span data-sid="fault.f_band_none.cause_short">Band not applying (no apply pressure reaches it)</span></td></tr><tr data-fault="f_clutch_worn"><th scope="row">Locking clutch friction worn</th><td data-k="symptom"><span data-sid="fault.f_clutch_worn.symptom.s1">Low is normal; in Direct the unit drives a light load but slips under a heavy load.</span></td><td data-k="test"><span data-sid="fault.f_clutch_worn.what_to_test.s1">Speed check in Direct under a heavy load, then the clutch apply port in Direct and the line pressure.</span></td><td data-k="see"><span data-sid="fault.f_clutch_worn.what_you_would_see.s1">In this example unit, a slip in Direct under a heavy load, with clutch apply pressure normal and line pressure normal.</span></td><td data-k="cause"><span data-sid="fault.f_clutch_worn.cause_short">Locking clutch friction worn</span></td></tr><tr data-fault="f_clutch_leak"><th scope="row">Locking clutch piston seal leaking</th><td data-k="symptom"><span data-sid="fault.f_clutch_leak.symptom.s1">Low is normal; in Direct the unit drives a light load but slips under a heavy load.</span></td><td data-k="test"><span data-sid="fault.f_clutch_leak.what_to_test.s1">Clutch apply port in Direct, and the line pressure.</span></td><td data-k="see"><span data-sid="fault.f_clutch_leak.what_you_would_see.s1">In this example unit, clutch apply pressure below normal in Direct, with line pressure normal.</span></td><td data-k="cause"><span data-sid="fault.f_clutch_leak.cause_short">Locking clutch piston seal leaking</span></td></tr><tr data-fault="f_clutch_none"><th scope="row">Locking clutch not applying (no apply pressure reaches it)</th><td data-k="symptom"><span data-sid="fault.f_clutch_none.symptom.s1">No drive in Direct; Low is normal.</span></td><td data-k="test"><span data-sid="fault.f_clutch_none.what_to_test.s1">Speed check in Direct, then the clutch apply port in Direct.</span></td><td data-k="see"><span data-sid="fault.f_clutch_none.what_you_would_see.s1">In this example unit, no drive in Direct and no clutch apply pressure in Direct; with the output stopped, the ring turns 0.42 times per input turn, opposite direction.</span></td><td data-k="cause"><span data-sid="fault.f_clutch_none.cause_short">Locking clutch not applying (no apply pressure reaches it)</span></td></tr><tr data-fault="f_supply_low"><th scope="row">Low line pressure from the supply (pump or main regulator)</th><td data-k="symptom"><span data-sid="fault.f_supply_low.symptom.s1">Under a heavy load the unit slips in both Low and Direct; with a light load both ranges drive.</span></td><td data-k="test"><span data-sid="fault.f_supply_low.what_to_test.s1">Line pressure, then the band apply port in Low or the clutch apply port in Direct.</span></td><td data-k="see"><span data-sid="fault.f_supply_low.what_you_would_see.s1">In this example unit, line pressure low, with apply pressure below normal at the band in Low and at the clutch in Direct.</span></td><td data-k="cause"><span data-sid="fault.f_supply_low.cause_short">Low line pressure from the supply (pump or main regulator)</span></td></tr></tbody></table></div><div class="sim-why"><details data-fault="f_band_worn"><summary>Band lining worn: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="fault.f_band_worn.why.s1">Worn lining lowers the torque the band can hold, so it holds the smaller reaction of a light load and slips under the larger one, even with normal apply pressure.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="fault.f_band_worn.distinguish_from.s1">A leaking band piston gives the same slip with band apply pressure below normal; a supply fault gives low line pressure and a slip in Direct as well.</span></p></details><details data-fault="f_band_leak"><summary>Band apply piston seal leaking: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="fault.f_band_leak.why.s1">Fluid escaping past the piston seal lowers the pressure that applies the band, so it clamps less firmly and slips under a heavy load.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="fault.f_band_leak.distinguish_from.s1">Worn lining gives the same slip with normal band apply pressure; a supply fault makes the line pressure low as well.</span></p></details><details data-fault="f_band_none"><summary>Band not applying (no apply pressure reaches it): why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="fault.f_band_none.why.s1">With no apply pressure the band never tightens, so nothing holds the ring and the set stays in neutral in Low.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="fault.f_band_none.distinguish_from.s1">A worn or leaking band still drives a light load in Low; this one drives no load at all.</span></p></details><details data-fault="f_clutch_worn"><summary>Locking clutch friction worn: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="fault.f_clutch_worn.why.s1">Worn friction plates lower the torque the clutch can carry, so under a heavy load the sun and ring turn at different speeds.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="fault.f_clutch_worn.distinguish_from.s1">A leaking clutch piston gives the same slip with clutch apply pressure below normal; a supply fault gives low line pressure and a slip in Low as well.</span></p></details><details data-fault="f_clutch_leak"><summary>Locking clutch piston seal leaking: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="fault.f_clutch_leak.why.s1">Fluid escaping past the piston seal lowers the clamping pressure on the plates, so the clutch slips under a heavy load.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="fault.f_clutch_leak.distinguish_from.s1">Worn plates give the same slip with normal clutch apply pressure; a supply fault makes the line pressure low as well.</span></p></details><details data-fault="f_clutch_none"><summary>Locking clutch not applying (no apply pressure reaches it): why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="fault.f_clutch_none.why.s1">With the clutch not applied and the band released, nothing holds or locks a member, so the set is in neutral in Direct.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="fault.f_clutch_none.distinguish_from.s1">A worn or leaking clutch still drives a light load in Direct; this one drives no load at all.</span></p></details><details data-fault="f_supply_low"><summary>Low line pressure from the supply (pump or main regulator): why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="fault.f_supply_low.why.s1">The band and the clutch are fed by the same line pressure, so low pump output, a faulty main regulator or a clogged filter weakens both.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="fault.f_supply_low.distinguish_from.s1">In this example unit, a fault in one element affects the range that applies it and leaves the line pressure normal.</span></p></details></div></div></details></section>
+<section class="sim-sec sim-fold sim-disc" id="about-model" aria-labelledby="about-model-h"><details><summary><h2 id="about-model-h">About this simulator</h2></summary><div class="sim-fold-b"><p><span data-sid="disc.s3">The gear set and the two-range unit are generic and do not copy any real product.</span> <span data-sid="disc.s4">On a real unit, pressure and stall tests follow the service information for that transmission, with the fluid at operating temperature.</span> <span data-sid="disc.s5">Rotating and moving parts are an entanglement hazard: keep clear of them during a running test, and use lockout when work needs the energy controlled.</span></p><p class="sim-src"><span data-sid="disc.sources">Sources: university mechanism-theory course notes and an engineering teaching site on epicyclic gear trains, transmission trade-magazine technical articles, and CCOHS guidance on working around machinery.</span></p></div></details></section>
+<section class="sim-sec sim-embed-sec" id="embed" aria-labelledby="embed-h">
+<h2 id="embed-h">Use this simulator in a class</h2>
+<p>Paste this code into a class page or a course site such as Moodle or D2L to show the simulator there. It is free to use for teaching, with the link back kept.</p>
+<label for="sim-embed-code">Embed code</label>
+<textarea class="sim-embed-code" id="sim-embed-code" readonly rows="4" data-name="Planetary gear set simulator"></textarea>
+<button type="button" class="sim-btn" id="sim-embed-copy">Copy the code</button>
+</section>
+<p class="sim-embed-bar"><a href="https://redsealquiz.ca/planetary-gear-set-simulator.html">Open the full page: how it works and free practice questions</a></p>
+
+<section class="faq-visible sim-sec" id="faq" aria-labelledby="faq-h">
+<!-- Same questions and answers as this page’s FAQPage JSON-LD - change both together. -->
+<h2 id="faq-h">Frequently asked questions</h2><details><summary data-sid="faq.locked.q">What happens when two members of a planetary gear set are locked together?</summary><p><span data-sid="faq.locked.a.s1">With no member held, all three members turn as one at input speed, a 1.00:1 direct drive, and the planet gears do not turn on their pins.</span></p></details><details><summary data-sid="faq.neutral.q">What happens when no member is held and none are locked together?</summary><p><span data-sid="faq.neutral.a.s1">With nothing held and nothing locked, the set has nothing to push against, so the output is not driven and no torque is transmitted: the set is in neutral.</span> <span data-sid="faq.neutral.a.s2">Locking two members together instead gives direct drive.</span></p></details><details><summary data-sid="faq.planets.q">Does the number of planet gears change the ratio?</summary><p><span data-sid="faq.planets.a.s1">No.</span> <span data-sid="faq.planets.a.s2">The speed relation uses the sun and ring tooth counts and has no term for the number of planets.</span></p></details><details><summary data-sid="faq.reverse.q">How does one planetary gear set give reverse?</summary><p><span data-sid="faq.reverse.a.s1">In a simple planetary gear set, hold the carrier and drive the sun or the ring: the planets then turn on fixed pins and the output turns the opposite way.</span> <span data-sid="faq.reverse.a.s2">In this example, the sun driving with the carrier held gives a 2.40:1 reverse reduction.</span></p></details><details><summary data-sid="faq.slip.q">Why can a worn band or clutch hold a light load but slip under a heavy one?</summary><p><span data-sid="faq.slip.a.s1">The torque a band or clutch must carry rises with the load, so a weakened one can still hold the smaller torque of a light load but slips once the torque is more than it can hold.</span></p></details><details><summary data-sid="faq.trades.q">Which trades is this simulator for?</summary><p><span data-sid="faq.trades.a.s1">It fits the transmission topics of the 421A Heavy Duty Equipment Technician and 310S Automotive Service Technician exams.</span> <span data-sid="faq.trades.a.s2">More simulators are listed on the trade simulators page.</span></p></details></section>
+</main>
+
+<footer>
+  <p>Canada Red Seal Exam Prep — Free study resource for Canadian skilled trades apprentices</p>
+  <p style="font-size:.72rem;opacity:.75;margin-top:6px;">Independent, unofficial study resource &mdash; not affiliated with or endorsed by the CCDA, the Red Seal Program, or any provincial/territorial apprenticeship authority. No guarantee of exam results. Paid downloads are final sale except for a corrupted or inaccessible file or a duplicate purchase, reported within 14 days &mdash; <a href="/terms.html#refunds">refund policy</a>. <a href="/disclaimer.html">Details</a></p>
+  <p style="margin-top:8px;"><a href="/">Home</a><a href="/study-guide.html">Study Guide</a><a href="/exam-guide.html">Exam Guide</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Use</a><a href="/disclaimer.html">Disclaimer</a></p>
+</footer>
+
+<script>
+(function(){
+  var nt=document.getElementById('navToggle'),nl=document.getElementById('navLinks');
+  var td=document.getElementById('tradesDrop'),tb=document.getElementById('tradesBtn');
+  if(nt&&nl)nt.addEventListener('click',function(){var o=nl.classList.toggle('open');nt.textContent=o?'✕':'☰';});
+  if(tb&&td){tb.addEventListener('click',function(e){e.stopPropagation();td.classList.toggle('open');});
+  document.addEventListener('click',function(){if(td)td.classList.remove('open');});}
+})();
+</script>
+<script>
+(function(){
+  var b=document.getElementById("sim-embed-copy"),t=document.getElementById("sim-embed-code");
+  if(t){
+    var c=document.querySelector("link[rel=canonical]"),u=c?c.href:location.href.split("?")[0],n=t.getAttribute("data-name");
+    t.value="<iframe src=\""+u+"?embed=1\" title=\""+n+"\" style=\"border:0;width:100%;max-width:960px;aspect-ratio:4/5\" loading=\"lazy\"></iframe>\n"+
+      "<p><a href=\""+u+"\">"+n+"</a> from redsealquiz.ca</p>";
+  }
+  if(b&&t)b.addEventListener("click",function(){
+    var done=function(){b.textContent="Copied";setTimeout(function(){b.textContent="Copy the code";},2000);};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t.value).then(done,function(){t.select();});}
+    else{t.select();try{document.execCommand("copy");done();}catch(e){}}
+  });
+  var a=document.querySelector(".sim-embed-bar a");
+  if(a&&document.documentElement.classList.contains("sim-embedded")){a.target="_blank";a.rel="noopener";}
+})();
+</script>
+</body>
+</html>
