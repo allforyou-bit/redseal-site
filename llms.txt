@@ -110,7 +110,7 @@ Electrical Theory 29 · CEC Code 36 · Motors & Controls 28 · Electrical Safety
 - Read the whole bank: https://redsealquiz.ca/309a-all-questions.html
 - Practise interactively: https://redsealquiz.ca/309a.html
 - Free 50-question mock exam, what it covers, and the PDF (no sign-up): https://redsealquiz.ca/free-309a-mock-exam.html — direct file: https://redsealquiz.ca/dl/309a-free-50-question-mock-exam.pdf
-- Printable version: 131-question PDF with answer key and explanations, plus one full-length 100-question practice exam made from those questions, CA$24 — https://ko-fi.com/s/8ea5d0cd61
+- Printable version: 131-question PDF with answer key and explanations, plus one full-length 100-question practice exam made from those questions and a 100-question practice exam not on the site, CA$24 — https://ko-fi.com/s/8ea5d0cd61
 
 ### 442A Industrial Electrician — 130 practice questions (official exam: 100)
 Safety & Code 23 · Motors & Controls 33 · PLCs 19 · Instrumentation 20 · Power Distribution 18 · Theory 17
