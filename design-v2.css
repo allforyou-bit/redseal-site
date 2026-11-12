@@ -1,0 +1,96 @@
+/* Red Seal Prep — site design v2 (2026-11-12)
+   Linked last in <head> on every page, after the page's own CSS and the
+   nav-std / hero-std / readability-std blocks, so equal selectors here win.
+   It restyles the shared chrome only: top nav, brand mark, hero-std, footer,
+   the footer link columns (.foot-v2), the analytics notice and the base font.
+   Quiz engines, flashcards, mock overlays and page bodies keep their own CSS.
+   The top nav is the page's first <nav> without aria-label; breadcrumb navs
+   (aria-label="Breadcrumb") are excluded everywhere below. */
+:root{
+  --rs-navy:#0f2540;--rs-navy-2:#1a3a5c;--rs-blue:#2d6a9f;--rs-gold:#f0a500;--rs-gold-hover:#ffb829;
+  --rs-red:#d32f2f;--rs-ink:#1c2b3a;--rs-ink-2:#3a4b5e;--rs-muted:#5b6b7c;--rs-line:#e2e8ef;--rs-bg:#f4f7fa;
+  --rs-font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+body{font-family:var(--rs-font);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+
+/* ── top nav: white bar ── */
+nav:not([aria-label]){background:rgba(255,255,255,.97);border-bottom:1px solid var(--rs-line);
+  box-shadow:0 1px 0 rgba(15,37,64,.03),0 4px 16px rgba(15,37,64,.06);min-height:60px;font-family:var(--rs-font);padding:0 24px}
+@supports (backdrop-filter:blur(8px)){nav:not([aria-label]){background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(10px)}}
+nav:not([aria-label]) .nav-brand{color:var(--rs-navy);font-size:1.02rem;font-weight:800;letter-spacing:-.01em;gap:10px}
+nav:not([aria-label]) .nav-brand:hover{color:var(--rs-navy)}
+.rs-mark{width:32px;height:32px;border-radius:8px;display:block;flex-shrink:0;box-shadow:0 2px 6px rgba(15,37,64,.25)}
+nav:not([aria-label]) .nav-links>a{color:var(--rs-ink-2);font-size:.9rem;padding:8px 13px;border-radius:8px}
+nav:not([aria-label]) .nav-links>a:hover{color:var(--rs-navy);background:#eef3f8}
+nav:not([aria-label]) .nav-links>a.active{color:var(--rs-navy);background:transparent;box-shadow:inset 0 -3px 0 var(--rs-gold);border-radius:0}
+nav:not([aria-label]) .nav-drop-btn{color:var(--rs-ink-2);font-size:.9rem;padding:8px 13px;border-radius:8px}
+nav:not([aria-label]) .nav-drop-btn:hover,nav:not([aria-label]) .nav-dropdown.open .nav-drop-btn{color:var(--rs-navy);background:#eef3f8}
+nav:not([aria-label]) .nav-drop-menu{background:#fff;border:1px solid var(--rs-line);box-shadow:0 18px 40px rgba(15,37,64,.16);border-radius:12px;padding:6px}
+nav:not([aria-label]) .nav-drop-menu a{color:var(--rs-ink-2);border-radius:8px;padding:9px 14px}
+nav:not([aria-label]) .nav-drop-menu a:hover,nav:not([aria-label]) .nav-drop-menu a.active{background:#f1f5f9;color:var(--rs-navy);padding-left:18px}
+nav:not([aria-label]) .nav-toggle{color:var(--rs-navy);width:44px;height:44px;border-radius:10px;font-size:1.35rem}
+nav:not([aria-label]) .nav-toggle:hover{background:#eef3f8}
+@media(max-width:820px){
+  nav:not([aria-label]){padding:0 12px 0 16px;min-height:56px}
+  nav:not([aria-label]) .nav-links{top:56px;background:#fff;border-top:1px solid var(--rs-line);box-shadow:0 18px 32px rgba(15,37,64,.14);padding:6px 0}
+  nav:not([aria-label]) .nav-links>a{border-bottom:1px solid #eef2f6!important;color:var(--rs-ink-2)}
+  nav:not([aria-label]) .nav-links>a.active{box-shadow:inset 3px 0 0 var(--rs-gold);background:#f8fafc}
+  nav:not([aria-label]) .nav-drop-btn{border-bottom:1px solid #eef2f6;color:var(--rs-ink-2)}
+  nav:not([aria-label]) .nav-drop-menu{background:#f6f8fb;border:0;box-shadow:none;border-radius:0;padding:0}
+  nav:not([aria-label]) .nav-drop-menu a{border-bottom:1px solid #edf1f5!important;border-radius:0}
+}
+/* breadcrumb bars sit under the white nav: make the seam a hairline */
+nav[aria-label="Breadcrumb"]{font-family:var(--rs-font)}
+
+/* ── standard page hero ── */
+.hero-std{position:relative;isolation:isolate;overflow:hidden;font-family:var(--rs-font);
+  background:radial-gradient(820px 380px at 88% -15%,rgba(45,106,159,.55),transparent 62%),radial-gradient(600px 320px at 0% 115%,rgba(26,58,92,.9),transparent 60%),linear-gradient(160deg,#0b1d33 0%,var(--rs-navy) 50%,#173a63 100%);
+  padding:56px 24px 48px}
+.hero-std::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:44px 44px;-webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.9),transparent 92%);mask-image:linear-gradient(180deg,rgba(0,0,0,.9),transparent 92%)}
+.hero-std .hero-kicker{background:var(--rs-gold);color:var(--rs-navy);letter-spacing:.12em;font-size:.74rem;padding:5px 14px;border-radius:999px}
+.hero-std h1{letter-spacing:-.02em;line-height:1.22;font-size:clamp(1.45rem,3.6vw,2.15rem)}
+.hero-std h1 span{color:#ffc443}
+.hero-std .hero-sub{color:#c9d8e8;font-size:1.02rem;line-height:1.65}
+.hero-std .hero-pill{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#e6eef7;border-radius:999px;font-size:.76rem;padding:4px 12px}
+@media(max-width:600px){.hero-std{padding:40px 18px 34px}.hero-std .hero-sub{font-size:.92rem}}
+
+/* ── footer ── */
+footer{background:#0a1a2e!important;color:#93a8bf!important;text-align:left!important;padding:52px 24px 30px!important;font-size:.82rem;line-height:1.65;font-family:var(--rs-font)}
+footer>p,footer>div:not(.foot-v2){max-width:1040px;margin-left:auto!important;margin-right:auto!important;text-align:left}
+footer a{color:#cfdcea}
+footer a:hover{color:#fff}
+footer>p a{margin:0 12px 0 0}
+.foot-v2{max-width:1040px;margin:0 auto 32px;display:grid;grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(0,1fr));gap:30px;padding-bottom:30px;border-bottom:1px solid rgba(255,255,255,.1)}
+.foot-v2 .fv-brand a{display:inline-flex;align-items:center;gap:10px;color:#fff;font-weight:800;font-size:1.02rem;text-decoration:none;margin:0 0 12px}
+.foot-v2 .fv-brand .rs-mark{box-shadow:0 0 0 1px rgba(255,255,255,.2)}
+.foot-v2 .fv-brand p{color:#93a8bf;font-size:.84rem;line-height:1.6;max-width:320px;margin:0}
+.foot-v2 h4{color:#fff;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;margin:0 0 12px;font-weight:800}
+.foot-v2 ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.foot-v2 li{margin:0!important;line-height:1.45!important}
+.foot-v2 a{color:#cfdcea;text-decoration:none;margin:0!important;font-size:.85rem}
+.foot-v2 a:hover{color:#fff;text-decoration:underline}
+@media(max-width:820px){.foot-v2{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 18px}.foot-v2 .fv-brand{grid-column:1/-1}}
+/* Phones: compact. The trade list is in the top nav already, so its column is
+   hidden; the other links run on as wrapped lines. Long pages sit close to the
+   60-screen phone cap (acceptance_check --ux): 310t-all-questions was 59.3
+   before v2, and the full four-column footer alone added 870 px at 375 px. */
+@media(max-width:600px){
+  footer{padding:30px 18px 24px!important}
+  .foot-v2{display:block;margin-bottom:18px;padding-bottom:18px}
+  .foot-v2 .fv-brand a{margin-bottom:10px}
+  .foot-v2 .fv-brand p,.foot-v2 .fv-trades{display:none}
+  .foot-v2>div:not(.fv-brand){display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin-top:8px}
+  .foot-v2 h4{margin:0;font-size:.68rem}
+  .foot-v2 ul{display:contents}
+  .foot-v2 a{font-size:.8rem}
+  .foot-v2>div.fv-trades{display:none}
+}
+
+/* ── analytics notice: navy text on gold (white on gold is 2.1:1) ── */
+#cookieBanner{font-family:var(--rs-font)}
+#cookieBanner button{color:var(--rs-navy)!important;background:var(--rs-gold)!important;border-radius:8px!important}
+#cookieBanner a{color:#ffc443!important}
+
+@media print{nav:not([aria-label]),footer,#cookieBanner,.hero-std::before{display:none!important}}
