@@ -1,7 +1,7 @@
 # Red Seal Exam Prep (redsealquiz.ca)
 
 > Free practice questions for Canadian skilled-trades certification exams, with a
-> full written explanation on every answer. 1,688 original multiple-choice
+> full written explanation on every answer. 1,732 original multiple-choice
 > questions across 11 trades, all readable as plain HTML, plus a free 50-question
 > mock exam PDF per trade. Independent and unofficial: not affiliated with,
 > endorsed by, or approved by the Canadian Council of Directors of Apprenticeship
@@ -38,7 +38,7 @@ practice bank is how many practice questions this site publishes for that trade.
 |---|---|---|---|
 | 421A Heavy Duty Equipment Technician | 135 | 95 | 406 |
 | 310T Truck & Transport Mechanic | 135 | 95 | 161 |
-| 310S Automotive Service Technician | 125 | 88 | 139 |
+| 310S Automotive Service Technician | 125 | 88 | 183 |
 | 306A Plumber | 125 | 88 | 130 |
 | 313A Refrigeration & Air Conditioning Mechanic | 125 | 88 | 115 |
 | 456A Welder | 125 | 88 | 125 |
@@ -55,7 +55,7 @@ may bring are set by your province or territory, not by Red Seal nationally.
 
 - [421A Heavy Duty Equipment Technician — 406 questions](https://redsealquiz.ca/421a-all-questions.html)
 - [310T Truck & Transport Mechanic — 161 questions](https://redsealquiz.ca/310t-all-questions.html)
-- [310S Automotive Service Technician — 139 questions](https://redsealquiz.ca/310s-all-questions.html)
+- [310S Automotive Service Technician — 183 questions](https://redsealquiz.ca/310s-all-questions.html)
 - [306A Plumber — 130 questions](https://redsealquiz.ca/306a-all-questions.html)
 - [309A Construction Electrician — 131 questions](https://redsealquiz.ca/309a-all-questions.html)
 - [442A Industrial Electrician — 130 questions](https://redsealquiz.ca/442a-all-questions.html)
@@ -88,13 +88,13 @@ Air Brakes 35 · Diesel Engine 33 · Electrical Systems 31 · Drivetrain 33 · R
 - Free 50-question mock exam, what it covers, and the PDF (no sign-up): https://redsealquiz.ca/free-310t-mock-exam.html — direct file: https://redsealquiz.ca/dl/310t-free-50-question-mock-exam.pdf
 - Printable version: 161-question PDF with answer key and explanations, plus one full-length 135-question practice exam made from those questions, CA$24 — https://ko-fi.com/s/823f281042
 
-### 310S Automotive Service Technician — 139 practice questions (official exam: 125)
-Engine 27 · Brakes 28 · Electrical 27 · Suspension 22 · Transmission 25 · HVAC 10
+### 310S Automotive Service Technician — 183 practice questions (official exam: 125)
+Engine 37 · Brakes 32 · Electrical 48 · Suspension 29 · Transmission 26 · HVAC 11
 
 - Read the whole bank: https://redsealquiz.ca/310s-all-questions.html
 - Practise interactively: https://redsealquiz.ca/310s.html
 - Free 50-question mock exam, what it covers, and the PDF (no sign-up): https://redsealquiz.ca/free-310s-mock-exam.html — direct file: https://redsealquiz.ca/dl/310s-free-50-question-mock-exam.pdf
-- Printable version: 139-question PDF with answer key and explanations, plus one full-length 125-question practice exam made from those questions, 43 worked calculations solved step by step and a 125-question practice exam not on the site, CA$24 — https://ko-fi.com/s/1584a81d22
+- Printable version: 183-question PDF with answer key and explanations, plus one full-length 125-question practice exam made from those questions, 43 worked calculations solved step by step and a 125-question practice exam not on the site, CA$24 — https://ko-fi.com/s/1584a81d22
 
 ### 306A Plumber — 130 practice questions (official exam: 125)
 Safety & Tools 16 · DWV Systems 34 · Water Supply 25 · Gas Piping 17 · Fixtures 18 · Code & Inspection 20
