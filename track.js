@@ -38,6 +38,28 @@
    offer_view and offer_visible with placement sim_result. The DC, motor
    starter and planetary cards show no price, so a buy_click from them carries no price_cad.
 
+   Mock result weak-topic line (added 2026-11-13, gate
+   redseal-mock-result-weak-topic-link): showMockResults() on the eleven quiz
+   pages writes one line under the per-topic table naming the lowest-scoring
+   topic of the attempt (only when it is under 70 percent and at least one
+   question was answered), with a free link to that topic on the trade
+   -all-questions page (#tN, sends no event) and a
+   data-cta="mock_weak_topic" link to the same Ko-fi product as the
+   mock_result card. Its clicks and impressions come from this file as
+   buy_click, offer_view and offer_visible with placement mock_weak_topic,
+   price_cad from its text. The data-cta is what keeps it apart: without it
+   the #mockBody walk in placement() would count it as mock_result. The
+   mock_result card above the table is unchanged. Readout: buy_click users
+   (placement mock_weak_topic) / mock_finished users. Read its impressions
+   from offer_visible, not offer_view: the line sits just above the New Exam
+   button, and on 308A, 309A, 310S, 310T, 313A and 421A that button opens a
+   length picker drawn over the result screen, so offer_view can count the
+   link while it is covered; offer_visible does not. From 2026-11-13 the
+   mock_result / mock_finished series is not like-for-like with the weeks
+   before: the card now shares its screen and its denominator with a second
+   link to the same product, so compare mock_result + mock_weak_topic from
+   that date with mock_result alone before it.
+
    Parameters worth reporting on (register as GA4 event-scoped custom
    dimensions - GA4 only keeps them from the day they are registered):
      placement, trade, link_type, source_page, price_cad
@@ -294,7 +316,9 @@
      in front. "Once per placement" is deliberate: the eleven-row product list
      on home is one placement, and counting it eleven times would make its
      click-through rate incomparable with a single button's. When one
-     placement links several trades, trade is "multi" and no price is sent. */
+     placement links several trades, trade is "multi" and no price is sent.
+     Since 2026-11-13 #mockBody holds a fourth Ko-fi link under the topic table,
+     the weak-topic line (data-cta mock_weak_topic, its own placement). */
   var DWELL_MS = 1000;
   var viewed = {};    /* placement -> true once offer_view has fired */
   var tradesAt = {};  /* placement -> { trade: true } over the anchors seen */

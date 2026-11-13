@@ -1429,6 +1429,44 @@ function answerMockQ(chosen) {
 }
 
 const PRODUCT_URL_309A = 'https://ko-fi.com/s/8ea5d0cd61';
+/* MOCK-WEAK-TOPIC 2026-11-13 (gate redseal-mock-result-weak-topic-link): one line under the per-topic table that names
+   the lowest-scoring topic of this attempt and links its part of the bank, shown only when that topic is under 70 percent
+   (the table colours 70 and over green) and at least one question was answered (a timeout with no answer names nothing).
+   Lowest rounded percent, as the table prints it; a tie goes to the topic with more questions in the bank, then to the
+   topic that comes first in the bank, and the line then says the lowest score is tied. Free link: that topic on the
+   -all-questions page. Its #tN anchors are positional, in the order tools/rebuild_all_questions.py writes the TOC: first
+   appearance of topicLabel (or topic, or General) in the questions array of this page, so the index is computed here and
+   never typed. Paid link: the same Ko-fi product as the result card above, data-cta mock_weak_topic (a track.js
+   placement), price read from the top_offer button of this page when that button links the same product (query and
+   trailing slash ignored) and shows exactly one CA$ figure, so no figure is typed here either; otherwise no paid link.
+   Both links are 44px touch targets, like every other buy link on the page, stacked and as wide as their text. */
+function mockWeakTopicLine(rows, allq, url, answered) {
+  const order = [], bank = Object.create(null);
+  questions.forEach(q => { const l = q.topicLabel || q.topic || "General"; if (!(l in bank)) { bank[l] = 0; order.push(l); } bank[l]++; });
+  if (answered === 0) return "";
+  let w = null;
+  const ps = [];
+  rows.forEach(r => {
+    const i = order.indexOf(r.topicLabel);
+    if (!r.t || i < 0) return;
+    const p = Math.round(r.c / r.t * 100), n = bank[r.topicLabel];
+    ps.push(p);
+    if (!w || p < w.p || (p === w.p && (n > w.n || (n === w.n && i < w.i)))) w = {name: r.name, p: p, n: n, i: i};
+  });
+  if (!w || w.p >= 70) return "";
+  const tied = ps.filter(p => p === w.p).length > 1;
+  const esc = s => String(s).replace(/&(?![a-z][a-z0-9]*;|#\d+;|#x[0-9a-f]+;)/gi, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const bare = h => String(h || "").split(/[?#]/)[0].replace(/\/+$/, "");
+  const top = document.querySelector("a[data-cta=top_offer]");
+  const figs = url && top && bare(top.getAttribute("href")) === bare(url) ? (top.textContent || "").match(/CA\$\s*\d+(?:\.\d\d)?/g) || [] : [];
+  const price = figs.length === 1 ? figs[0].replace(/\s+/g, "") : "";
+  const name = esc(w.name), tap = "display:flex;align-items:center;min-height:44px;font-weight:700";
+  return `<div data-weak-topic style="display:flex;flex-direction:column;align-items:flex-start;margin:2px 0 12px;padding:8px 12px;background:#fdf3f2;border-left:4px solid #e74c3c;border-radius:0 8px 8px 0;font-size:.85rem;line-height:1.35;color:#1a3a5c;text-align:left">`
+    + `<div>${tied ? "Tied for lowest score" : "Weakest topic"}: <strong>${name}</strong> (${w.p}%)</div>`
+    + `<a href="${allq}#t${w.i}" target="_blank" rel="noopener" style="${tap};color:#1a3a5c">All ${w.n} questions on ${name}, free &rarr;</a>`
+    + (price ? `<a data-cta="mock_weak_topic" href="${url}" target="_blank" rel="noopener" style="${tap};color:#b91c1c">Whole bank as a printable PDF, grouped by topic &mdash; ${price} &rarr;</a>` : "")
+    + `</div>`;
+}
 function showMockResults() {
   document.getElementById('mockOverlay').scrollTop=0;
   /* MOCK-TIMER-STOP 2026-10-14: the timer kept counting on the result screen and, when it ran out, drew the result again (back to the top, the review folded) and saved the same mock to the history a second time. Stop it here, as 306A, 420B, 442A, 456A and Gasfitter do. */
@@ -1450,6 +1488,7 @@ function showMockResults() {
     const p = Math.round(s.c/s.t*100), col = p>=70?'#27ae60':p>=50?'#f0a500':'#e74c3c';
     return `<tr><td style="padding:8px 12px;border-bottom:1px solid #f0f4f9">${label}</td><td style="padding:8px 12px;text-align:center;border-bottom:1px solid #f0f4f9">${s.c}/${s.t}</td><td style="padding:8px 12px;text-align:center;font-weight:700;color:${col};border-bottom:1px solid #f0f4f9">${p}%</td></tr>`;
   }).join('');
+  const mockWeakHTML = mockWeakTopicLine(Object.entries(ts).map(([l, s]) => ({name: l, topicLabel: l, c: s.c, t: s.t})), "/309a-all-questions.html", PRODUCT_URL_309A, Object.keys(mockAns).length);
   const wrongHTML = wrong.length ? `<details style="margin-top:16px"><summary style="cursor:pointer;padding:12px;background:#fdecea;border-radius:8px;font-weight:700;color:#922b21;list-style:none">▼ Review ${wrong.length} Wrong Answer(s)</summary>${wrong.map(q=>{const gi=mockQs.indexOf(q);return`<div style="border-left:3px solid #e74c3c;padding:12px 14px;margin:8px 0;background:#fafafa;border-radius:0 8px 8px 0;font-size:.87rem"><div style="font-weight:600;color:#1a3a5c;margin-bottom:6px">${q.text}</div><div style="color:#27ae60;margin-bottom:2px">✓ ${q.options[q.answer]}</div><div style="color:#e12e1c;margin-bottom:6px">✗ You chose: ${q.options[mockAns[gi]]}</div>${q.keyConcept?'<div style="color:#646f70">'+q.keyConcept+'</div>':''}</div>`;}).join('')}</details>` : `<div style="color:#27ae60;text-align:center;padding:14px;font-weight:700;background:#e8f9ef;border-radius:8px;margin-top:12px">🏆 All answers correct!</div>`;
   document.getElementById('mockBody').innerHTML = `
     <div style="text-align:center;padding:24px 16px 16px">
@@ -1465,6 +1504,7 @@ function showMockResults() {
         <tr style="background:#f4f7fb"><th style="padding:8px 12px;text-align:left">Topic</th><th style="padding:8px 12px">Score</th><th style="padding:8px 12px">%</th></tr>
         ${topicRows}
       </table>
+      ${mockWeakHTML}
       ${wrongHTML}
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px;padding-bottom:8px">
         <button onclick="startMockExam(${mockQs.length})" style="background:#f0a500;color:#fff;border:none;padding:13px;border-radius:8px;font-weight:700;cursor:pointer;font-size:.9rem">Try Again</button>
