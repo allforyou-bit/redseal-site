@@ -227,6 +227,36 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
 
 <div class="container">
 
+  <!-- PQ-PICK (2026-11-16): this is the site's most-visited landing page from Bing, but on a phone its first
+       "Start quiz" button sat 4.4 screens down, below the streak, countdown and About boxes, and the average
+       visit lasted 53 seconds. One row of trade buttons now sits right under the hero. Clicks send quiz_cta,
+       placement pq_pick (track.js). -->
+  <style>
+  .pq-pick{margin:18px 0 22px}
+  .pq-pick h2{font-size:1.1rem;margin:0 0 10px;color:#1a3a5c}
+  .pq-pick-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px}
+  .pq-pick-row a{display:flex;flex-direction:column;justify-content:center;min-height:52px;padding:6px 10px;background:#eaf0f9;border-left:4px solid #f0a500;border-radius:8px;text-decoration:none;color:#1a3a5c;font-weight:800;font-size:.95rem;line-height:1.2}
+  .pq-pick-row a span{font-weight:500;font-size:.74rem;color:#46525e}
+  .pq-pick p{margin:10px 0 0;font-size:.85rem;color:#46525e}
+  </style>
+  <div class="pq-pick">
+    <h2>Pick your trade and start</h2>
+    <div class="pq-pick-row">
+      <a href="/421a.html" data-cta="pq_pick">421A<span>Heavy Duty Equipment</span></a>
+      <a href="/310t.html" data-cta="pq_pick">310T<span>Truck &amp; Transport</span></a>
+      <a href="/309a.html" data-cta="pq_pick">309A<span>Construction Electrician</span></a>
+      <a href="/310s.html" data-cta="pq_pick">310S<span>Automotive Service</span></a>
+      <a href="/313a.html" data-cta="pq_pick">313A<span>Refrigeration &amp; A/C</span></a>
+      <a href="/456a.html" data-cta="pq_pick">456A<span>Welder</span></a>
+      <a href="/306a.html" data-cta="pq_pick">306A<span>Plumber</span></a>
+      <a href="/442a.html" data-cta="pq_pick">442A<span>Industrial Electrician</span></a>
+      <a href="/420b.html" data-cta="pq_pick">420B<span>Ironworker</span></a>
+      <a href="/gasfitter-class-a.html" data-cta="pq_pick">Gasfitter<span>Class A</span></a>
+      <a href="/308a.html" data-cta="pq_pick">308A<span>Sheet Metal Worker</span></a>
+    </div>
+    <p>Each quiz page also has a timed mock exam mode (70% to pass).</p>
+  </div>
+
   <!-- STREAK WIDGET -->
   <div class="streak-bar" id="streakBar">
     <div class="streak-icon">🔥</div>

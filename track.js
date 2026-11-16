@@ -11,7 +11,8 @@
      quiz_engaged       visitor answered 5 questions in the on-page quiz
      quiz_resumed       a returning visitor landed on a quiz with saved progress
      quiz_cta           hero "start practising" button, the hero's mock-exam
-                        link, salary/career quiz links
+                        link, salary/career quiz links, the practice-quizzes
+                        trade buttons (placement pq_pick, 2026-11-16)
      offer_view         a priced offer was at least half on screen for 1 second
                         (once per placement per page view)
      offer_visible      the same, and nothing was painted over it: for 1 second
@@ -255,8 +256,12 @@
        not a PDF - so no branch here ever sent them and both counted zero. The
        page's own name does not start with the trade code, so the trade comes
        from the quiz page the link points at. */
+    /* pq_pick (2026-11-16): the row of trade buttons right under the
+       practice-quizzes hero. Before it, a phone visitor's first quiz button sat
+       4.4 screens down. The trade comes from the quiz page the link points at,
+       as with career_bridge. */
     var cta = a.getAttribute("data-cta") || "";
-    if (cta === "career_bridge" || cta === "career_quiz") {
+    if (cta === "career_bridge" || cta === "career_quiz" || cta === "pq_pick") {
       send("quiz_cta", { trade: tradeFromPath(href), placement: cta, source_page: page });
       return;
     }
