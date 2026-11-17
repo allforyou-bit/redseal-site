@@ -97,3 +97,12 @@ footer>p a{margin:0 12px 0 0}
 #cookieBanner a{color:#ffc443!important}
 
 @media print{nav:not([aria-label]),footer,#cookieBanner,.hero-std::before{display:none!important}}
+/* 2026-11-17 quiz pages: the long 'About the exam' intro is folded so the quiz starts near the top on a phone */
+details.intro-fold>summary{list-style:none;cursor:pointer;display:block;position:relative;padding-right:72px;min-height:44px}
+details.intro-fold>summary::-webkit-details-marker{display:none}
+details.intro-fold>summary h2{margin:0 0 4px}
+details.intro-fold>summary .if-more{display:block;font-size:.85rem;line-height:1.45;color:var(--rs-ink-2)}
+details.intro-fold>summary::after{content:"Show \25BE";position:absolute;right:0;top:2px;font-size:.82rem;font-weight:700;color:var(--rs-navy);background:#eef3f8;border-radius:999px;padding:4px 10px}
+details.intro-fold[open]>summary::after{content:"Hide \25B4"}
+details.intro-fold[open]>summary{margin-bottom:12px}
+.intro-lead{margin:0 0 16px}
