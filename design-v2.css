@@ -26,8 +26,11 @@ nav:not([aria-label]) .nav-links>a.active{color:var(--rs-navy);background:transp
 nav:not([aria-label]) .nav-drop-btn{color:var(--rs-ink-2);font-size:.9rem;padding:8px 13px;border-radius:8px}
 nav:not([aria-label]) .nav-drop-btn:hover,nav:not([aria-label]) .nav-dropdown.open .nav-drop-btn{color:var(--rs-navy);background:#eef3f8}
 nav:not([aria-label]) .nav-drop-menu{background:#fff;border:1px solid var(--rs-line);box-shadow:0 18px 40px rgba(15,37,64,.16);border-radius:12px;padding:6px}
-nav:not([aria-label]) .nav-drop-menu a{color:var(--rs-ink-2);border-radius:8px;padding:9px 14px}
-nav:not([aria-label]) .nav-drop-menu a:hover,nav:not([aria-label]) .nav-drop-menu a.active{background:#f1f5f9;color:var(--rs-navy);padding-left:18px}
+/* !important: the old /styles.css (82 pages) forces .nav-drop-menu a to white with !important,
+   which made the trade list white on this white menu (found 2026-11-17 on a phone). */
+nav:not([aria-label]) .nav-drop-menu a{color:var(--rs-ink-2)!important;border-radius:8px;padding:9px 14px}
+nav:not([aria-label]) .nav-drop-menu a:hover,nav:not([aria-label]) .nav-drop-menu a.active{background:#f1f5f9!important;color:var(--rs-navy)!important;padding-left:18px}
+nav:not([aria-label]) .nav-drop-menu a.active{font-weight:700;box-shadow:inset 3px 0 0 var(--rs-gold)}
 nav:not([aria-label]) .nav-toggle{color:var(--rs-navy);width:44px;height:44px;border-radius:10px;font-size:1.35rem}
 nav:not([aria-label]) .nav-toggle:hover{background:#eef3f8}
 @media(max-width:820px){
