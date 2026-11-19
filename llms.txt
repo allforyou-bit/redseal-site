@@ -1,7 +1,7 @@
 # Red Seal Exam Prep (redsealquiz.ca)
 
 > Free practice questions for Canadian skilled-trades certification exams, with a
-> full written explanation on every answer. 1,732 original multiple-choice
+> full written explanation on every answer. 1,782 original multiple-choice
 > questions across 11 trades, all readable as plain HTML, plus a free 50-question
 > mock exam PDF per trade. Independent and unofficial: not affiliated with,
 > endorsed by, or approved by the Canadian Council of Directors of Apprenticeship
@@ -44,7 +44,7 @@ practice bank is how many practice questions this site publishes for that trade.
 | 456A Welder | 125 | 88 | 125 |
 | 308A Sheet Metal Worker | 120 | 84 | 120 |
 | 420B Ironworker (Generalist) | 120 | 84 | 121 |
-| 309A Construction Electrician | 100 | 70 | 131 |
+| 309A Construction Electrician | 100 | 70 | 181 |
 | 442A Industrial Electrician | 100 | 70 | 130 |
 | Gasfitter Class A | 100 | 70 | 110 |
 
@@ -57,7 +57,7 @@ may bring are set by your province or territory, not by Red Seal nationally.
 - [310T Truck & Transport Mechanic — 161 questions](https://redsealquiz.ca/310t-all-questions.html)
 - [310S Automotive Service Technician — 183 questions](https://redsealquiz.ca/310s-all-questions.html)
 - [306A Plumber — 130 questions](https://redsealquiz.ca/306a-all-questions.html)
-- [309A Construction Electrician — 131 questions](https://redsealquiz.ca/309a-all-questions.html)
+- [309A Construction Electrician — 181 questions](https://redsealquiz.ca/309a-all-questions.html)
 - [442A Industrial Electrician — 130 questions](https://redsealquiz.ca/442a-all-questions.html)
 - [313A Refrigeration & Air Conditioning Mechanic — 115 questions](https://redsealquiz.ca/313a-all-questions.html)
 - [420B Ironworker (Generalist) — 121 questions](https://redsealquiz.ca/420b-all-questions.html)
@@ -104,13 +104,13 @@ Safety & Tools 16 · DWV Systems 34 · Water Supply 25 · Gas Piping 17 · Fixtu
 - Free 50-question mock exam, what it covers, and the PDF (no sign-up): https://redsealquiz.ca/free-306a-mock-exam.html — direct file: https://redsealquiz.ca/dl/306a-free-50-question-mock-exam.pdf
 - Printable version: 130-question PDF with answer key and explanations, plus one full-length 125-question practice exam made from those questions, CA$24 — https://ko-fi.com/s/e1fa90dc7a
 
-### 309A Construction Electrician — 131 practice questions (official exam: 100)
-Electrical Theory 29 · CEC Code 36 · Motors & Controls 28 · Electrical Safety 16 · Wiring Methods 22
+### 309A Construction Electrician — 181 practice questions (official exam: 100)
+Electrical Theory 37 · CEC Code 65 · Motors & Controls 35 · Electrical Safety 18 · Wiring Methods 26
 
 - Read the whole bank: https://redsealquiz.ca/309a-all-questions.html
 - Practise interactively: https://redsealquiz.ca/309a.html
 - Free 50-question mock exam, what it covers, and the PDF (no sign-up): https://redsealquiz.ca/free-309a-mock-exam.html — direct file: https://redsealquiz.ca/dl/309a-free-50-question-mock-exam.pdf
-- Printable version: 131-question PDF with answer key and explanations, plus one full-length 100-question practice exam made from those questions and a 100-question practice exam not on the site, CA$24 — https://ko-fi.com/s/8ea5d0cd61
+- Printable version: 181-question PDF with answer key and explanations, plus one full-length 100-question practice exam made from those questions and a 100-question practice exam not on the site, CA$24 — https://ko-fi.com/s/8ea5d0cd61
 
 ### 442A Industrial Electrician — 130 practice questions (official exam: 100)
 Safety & Code 23 · Motors & Controls 33 · PLCs 19 · Instrumentation 20 · Power Distribution 18 · Theory 17
