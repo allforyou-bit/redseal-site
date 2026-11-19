@@ -1,0 +1,118 @@
+/* Multimeter practice simulator, v1: the drawing, the meter face, the dock, the drills and the category
+   exercise of multimeter-practice-simulator.html, on top of the shared simulator sheet (sim-std.css, inlined
+   in the page). Page classes: section.sim-app.mm-app, svg.sim-svg.mm-svg.
+   - No state is shown by colour alone: line states differ in width, outline and dash as well as colour; the
+     lamp shows its level by the number of rays; a removed fuse leaves an empty dashed holder; the switch
+     blade moves; a parted connector opens a gap; a disconnected battery leaves a gap at its negative post;
+     each lead marker carries a sign; the dial position is a pointer and a pressed key.
+   - Targets: test points and parts are 50-unit circles and boxes; buttons are 44 px or more.
+   - Motion: the current arrows and the dashed lead bridge move only through sim-std.css keyframes and the
+     .mv class, so Pause, off-screen and reduced motion work as on the other simulator pages. */
+
+/* ---------- drawing (line states copied from dc-std.css) ---------- */
+.mm-svg .lbl{font-style:normal;fill:#2c3e50}
+.mm-svg .mm-st{font-size:10px;font-weight:700;fill:#1a3a5c}
+.mm-svg .chassis{fill:#2c3e50}
+.mm-svg .sw-blade{stroke-width:2.6}
+.mm-svg .sw-o{display:none}
+.mm-svg .sw-open .sw-o{display:inline}
+.mm-svg .sw-open .sw-c{display:none}
+.mm-svg .ln .lm{stroke:#6b7280;stroke-width:2.5px}
+.mm-app .ln.st-pos .lo{stroke:#1f1f1f;stroke-width:6.5px}
+.mm-app .ln.st-pos .lm{stroke:#D55E00;stroke-width:4px;stroke-dasharray:none}
+.mm-app .ln.st-mid .lo{stroke:#1f1f1f;stroke-width:6.5px;stroke-dasharray:9 5}
+.mm-app .ln.st-mid .lm{stroke:#E69F00;stroke-width:4px;stroke-dasharray:9 5}
+.mm-app .ln.st-gnd .lm{stroke:#0072B2;stroke-width:2.5px;stroke-dasharray:none}
+.mm-app .ln.st-pos .fa{stroke:#D55E00}
+.mm-app .ln.st-mid .fa{stroke:#9e6d00}
+.mm-app .ln.st-gnd .fa{stroke:#0072B2}
+.mm-app .ln.mv.st-pos:not(.rev) .faf,.mm-app .ln.mv.st-pos.rev .far,
+.mm-app .ln.mv.st-mid:not(.rev) .faf,.mm-app .ln.mv.st-mid.rev .far,
+.mm-app .ln.mv.st-gnd:not(.rev) .faf,.mm-app .ln.mv.st-gnd.rev .far,
+.mm-app .key-mv .faf{display:inline}
+
+/* the lamp: none, 2 or 6 rays, and the fill as a second cue */
+.mm-svg .ray{display:none;stroke:#9e6d00;stroke-width:2.2px;stroke-linecap:round}
+.mm-svg .lv-dim .ray.r2,.mm-svg .lv-bright .ray{display:inline}
+.mm-svg .lv-dim .bulb{fill:#fbe7a6}
+.mm-svg .lv-bright .bulb{fill:#f2b705}
+/* the fuse holder: in place or empty (a blown fuse is drawn only in Measure, as a broken link) */
+.mm-svg .fz-brk{display:none}
+.mm-svg .fz-blown .fz-ok,.mm-svg .fz-removed .fz-ok{display:none}
+.mm-svg .fz-blown .fz-brk{display:inline;stroke:#b45f14;stroke-width:2.2px}
+.mm-svg .fz-removed .fz-body{stroke-dasharray:3 3;fill:#f4f7fb}
+/* a parted connector opens a gap; a disconnected battery lets the negative cable leave its post */
+.mm-svg .cut .cn-lo{transform:translateY(9px)}
+.mm-svg .cut .mm-tail{visibility:hidden}
+
+/* test points, the lead markers and the dashed bridge between them */
+.mm-svg .tp .tpl{fill:#fff;stroke:#1a3a5c;stroke-width:2px}
+.mm-svg .tp.has-red .tpl{stroke:#b71c1c;stroke-width:3.5px}
+.mm-svg .tp.has-black .tpl{stroke:#1f1f1f;stroke-width:3.5px}
+.mm-svg .lead circle{stroke:#fff;stroke-width:2px}
+.mm-svg .lead-red circle{fill:#b71c1c}
+.mm-svg .lead-black circle{fill:#1f1f1f}
+.mm-svg .lead text{fill:#fff;font-size:15px;font-weight:700;font-style:normal}
+.mm-svg #mm-bridge{stroke:#4a5568;stroke-width:2px;stroke-dasharray:6 6;fill:none;pointer-events:none}
+.mm-svg #mm-bridge.mv{stroke:#1a3a5c;stroke-width:3px;animation:mmflow .8s linear infinite}
+@keyframes mmflow{to{stroke-dashoffset:-12}}
+.mm-app[data-mode="explore"] .mm-svg .tp{pointer-events:none;opacity:.45}
+.mm-app:not([data-mode="explore"]) .mm-svg [data-info]{pointer-events:none}
+
+/* ---------- the meter face: grey body, the site blue as accent, no warning colours ---------- */
+.mm-svg .mm-body{fill:#e5e7eb;stroke:#4a5568;stroke-width:1.6}
+.mm-svg .mm-screen{fill:#f4f7fb;stroke:#1a3a5c;stroke-width:1.4}
+.mm-svg #mm-face-val{font:700 18px Segoe UI,Arial,sans-serif;fill:#1a3a5c;font-variant-numeric:tabular-nums}
+.mm-svg #mm-pointer{transition:transform .15s ease}
+.mm-svg #mm-pointer .ptr{stroke:#1a3a5c;stroke-width:3;stroke-linecap:round}
+.mm-svg .jk{fill:#fff;stroke:#4a5568;stroke-width:1.6}
+.mm-svg [data-jack-mark].on .jk{fill:#1a3a5c}
+.mm-svg #mm-face-fuse{font-size:10px;font-weight:700;fill:#8b2a12}
+
+/* ---------- the dock: display, dial, jacks and leads ---------- */
+.mm-dock{margin:0 0 12px}
+.mm-read{margin:0 0 6px;padding:6px 10px;border-left:4px solid var(--primary);border-radius:6px;background:var(--light);line-height:1.3}
+.mm-read p{margin:0}
+.mm-disp{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 10px}
+.mm-val{min-height:1.2em;color:var(--primary);font-size:1.35rem;font-weight:800;line-height:1.2;font-variant-numeric:tabular-nums}
+.mm-beep{padding:0 8px;border:2px solid var(--primary);border-radius:12px;font-size:.8rem;font-weight:800}
+.mm-leads{color:#4a5568;font-size:.8rem;line-height:1.3}
+.mm-read .mm-note{font-size:.72rem;line-height:1.3}
+/* a card in place of a reading: smaller type, no value label */
+.mm-msg .mm-val{font-size:.95rem;font-weight:700;line-height:1.35}
+.mm-dial,.mm-jacks{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px;margin:0 0 4px}
+.mm-jacks{grid-template-columns:1.3fr repeat(4,minmax(0,1fr))}
+.mm-dock .sim-tog{min-width:0;padding:6px 2px;font-size:.84rem}
+.mm-com{align-self:center;font-size:.76rem;font-weight:700;line-height:1.2;color:#1f1f1f}
+.mm-dock .mm-red{border-color:#b71c1c;color:#b71c1c}
+.mm-dock .mm-black{border-color:#1f1f1f;color:#1f1f1f}
+.mm-dock .mm-red[aria-pressed="true"]{background:#b71c1c;color:#fff}
+.mm-dock .mm-black[aria-pressed="true"]{background:#1f1f1f;color:#fff}
+.mm-dock .sim-tog[aria-pressed="true"]::before{content:none}
+.mm-range{margin-top:6px}
+/* narrow screens: the dock is fixed to the bottom edge in Measure and Drills while the simulator is on
+   screen (.sim-dockon from sim-shell.v1.js), above the cookie notice (--dock-b); at most 200 px tall */
+@media(max-width:899px){
+.mm-app.sim-dockable:not([data-mode="explore"]) .sim-side>.mm-dock{position:fixed;left:0;right:0;bottom:var(--dock-b,0px);z-index:150;max-height:200px;margin:0;padding:4px 8px calc(6px + env(safe-area-inset-bottom,0px));background:#fff;border-top:2px solid var(--primary);box-shadow:0 -2px 10px rgba(0,0,0,.18);transform:translateY(calc(100% + var(--dock-b,0px) + 12px));visibility:hidden;transition:transform .16s ease,visibility .16s}
+.mm-app.sim-dockable.sim-dockon:not([data-mode="explore"]) .sim-side>.mm-dock{transform:none;visibility:visible}
+.mm-app.sim-dockable:not([data-mode="explore"]) .sim-side{padding-bottom:210px}
+.mm-app .sim-bar .sim-pause{position:static;width:auto;margin-left:auto;padding:6px 12px;font-size:.84rem}
+.mm-app.sim-dockable.sim-dockon:not([data-mode="explore"]) .sim-warn{position:fixed;left:8px;right:8px;bottom:calc(var(--dock-b,0px) + 206px + env(safe-area-inset-bottom,0px));z-index:150;margin:0!important;padding:6px 10px;border-radius:6px;background:#fff3e6;box-shadow:0 1px 6px rgba(0,0,0,.25);font-size:.84rem;line-height:1.35;pointer-events:none}
+}
+
+/* ---------- drills: the controls of a drill and the readings log ---------- */
+.mm-dctl .sim-row{margin:0 0 6px}
+.sim-reads .sim-rd-v{font-weight:800;color:var(--primary)}
+
+/* ---------- category exercise: 44 px buttons, feedback shown after a pick ---------- */
+#cat-drill .sim-tog,#cat-drill button{min-height:44px;min-width:44px}
+#cat-drill [data-ok]{margin:0 0 10px}
+
+/* ---------- offer card: three trades, free questions first, then the printable PDF (as dc-std.css) ---------- */
+.mm-chips{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.mm-chip{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:8px;border-radius:8px;background:rgba(255,255,255,.08)}
+.mm-chip-t{flex:0 0 3.4em;font-weight:800;letter-spacing:.5px}
+.mm-offer .mm-chip a{flex:1 1 200px;min-height:44px;padding:8px 12px;line-height:1.3}
+
+/* ---------- motion ---------- */
+@media (prefers-reduced-motion: reduce){.mm-dock,.mm-svg #mm-pointer{transition:none!important}}
