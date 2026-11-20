@@ -96,6 +96,9 @@
 .mm-app.sim-dockable:not([data-mode="explore"]) .sim-side>.mm-dock{position:fixed;left:0;right:0;bottom:var(--dock-b,0px);z-index:150;max-height:200px;margin:0;padding:4px 8px calc(6px + env(safe-area-inset-bottom,0px));background:#fff;border-top:2px solid var(--primary);box-shadow:0 -2px 10px rgba(0,0,0,.18);transform:translateY(calc(100% + var(--dock-b,0px) + 12px));visibility:hidden;transition:transform .16s ease,visibility .16s}
 .mm-app.sim-dockable.sim-dockon:not([data-mode="explore"]) .sim-side>.mm-dock{transform:none;visibility:visible}
 .mm-app.sim-dockable:not([data-mode="explore"]) .sim-side{padding-bottom:210px}
+/* the reading block scrolls inside the dock, so a long card or a two-line leads line never pushes the key rows
+   below the screen (random-click test 2026-11-20: up to 13 px past the bottom edge) */
+.mm-app.sim-dockable:not([data-mode="explore"]) .sim-side>.mm-dock .mm-read{max-height:84px;overflow-y:auto;overscroll-behavior:contain}
 .mm-app .sim-bar .sim-pause{position:static;width:auto;margin-left:auto;padding:6px 12px;font-size:.84rem}
 .mm-app.sim-dockable.sim-dockon:not([data-mode="explore"]) .sim-warn{position:fixed;left:8px;right:8px;bottom:calc(var(--dock-b,0px) + 206px + env(safe-area-inset-bottom,0px));z-index:150;margin:0!important;padding:6px 10px;border-radius:6px;background:#fff3e6;box-shadow:0 1px 6px rgba(0,0,0,.25);font-size:.84rem;line-height:1.35;pointer-events:none}
 }

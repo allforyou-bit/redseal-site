@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FSSHZMWVLW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FSSHZMWVLW');
+</script>
+<script src="/track.js" defer></script>
+<meta name="google-site-verification" content="AySEYGsNWhilNyl3EpVTQu6a3p0l6E1ZCe7P0EUN8O8" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>if(/[?&]embed=1(&|$)/.test(location.search))document.documentElement.classList.add("sim-embedded");</script>
+<title data-sid="meta.title">Multimeter Practice Simulator: Measure Volts, Amps and Ohms</title>
+<meta name="description" data-sid="meta.description" content="Practise with an example digital multimeter on a 12 V lamp circuit: set the dial and jacks, measure volts, amps and ohms, and see what each mistake does.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://redsealquiz.ca/multimeter-practice-simulator.html">
+<meta property="og:title" content="Multimeter Practice Simulator: Measure Volts, Amps and Ohms">
+<meta property="og:description" content="Practise with an example digital multimeter on a 12 V lamp circuit: set the dial and jacks, measure volts, amps and ohms, and see what each mistake does.">
+<meta property="og:url" content="https://redsealquiz.ca/multimeter-practice-simulator.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://redsealquiz.ca/og-card-v2.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does OL mean on a multimeter?","acceptedAnswer":{"@type":"Answer","text":"OL means the value is beyond what the meter can show; on resistance, more resistance than the meter can measure, as with an open circuit."}},{"@type":"Question","name":"Why does a multimeter fuse blow?","acceptedAnswer":{"@type":"Answer","text":"A current-input fuse opens when more current flows through that input than its rating, as when leads left in a current jack touch across a voltage. Replace the fuse with the type and rating the meter maker specifies."}},{"@type":"Question","name":"How is current measured with a multimeter?","acceptedAnswer":{"@type":"Answer","text":"On a 12 V circuit like this example board, not building wiring, turn the power off, open the circuit and put the meter in series so all the current flows through it. Use a current jack rated for the expected current and the amps setting, and bridge the opening with the leads before the power comes back on."}},{"@type":"Question","name":"How is a fuse checked with a multimeter?","acceptedAnswer":{"@type":"Answer","text":"With the power off, pull the fuse and read across it on resistance or continuity. An opened fuse reads OL and an intact one reads low; in this example circuit that is 0.2 Ω, the same as the lead check."}},{"@type":"Question","name":"What does CAT III mean on a multimeter?","acceptedAnswer":{"@type":"Answer","text":"CAT III marks a meter built to withstand the transients of circuits in the distribution part of a building, such as panels and feeders; the category and the voltage beside it together set that withstand. Choose the category first and the voltage rating second, and use leads and probes rated for at least the same category and voltage."}},{"@type":"Question","name":"Why is resistance measured with the power off?","acceptedAnswer":{"@type":"Answer","text":"On resistance the meter sends its own small current through the part, so any voltage from the circuit upsets the reading and can damage the meter or the circuit. Continuity is a power-off test too, since it is a resistance test, and nearby circuits may still be live, so keep the probes off energized parts."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Multimeter Practice Simulator: Measure Volts, Amps and Ohms","description":"Practise with an example digital multimeter on a 12 V lamp circuit: set the dial and jacks, measure volts, amps and ohms, and see what each mistake does.","url":"https://redsealquiz.ca/multimeter-practice-simulator.html","applicationCategory":"EducationalApplication","operatingSystem":"Any","inLanguage":"en-CA","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"CAD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://redsealquiz.ca/"},{"@type":"ListItem","position":2,"name":"Multimeter Practice Simulator","item":"https://redsealquiz.ca/multimeter-practice-simulator.html"}]}</script>
+<link rel="stylesheet" href="/styles.css">
+<style id="nav-std">
+nav{background:#1a3a5c;padding:0 24px;display:flex;align-items:center;position:sticky;top:0;z-index:200;box-shadow:0 2px 8px rgba(0,0,0,.2);min-height:52px;font-family:'Segoe UI',Arial,sans-serif;line-height:1.7;width:100%}
+.nav-brand{color:white;text-decoration:none;font-weight:800;font-size:.92rem;white-space:nowrap;margin-right:auto;display:flex;align-items:center;gap:6px}
+.nav-links{display:flex;align-items:center;gap:4px;margin-left:auto}
+.nav-links>a{color:rgba(255,255,255,.85);text-decoration:none;font-weight:600;font-size:.85rem;padding:8px 12px;border-radius:6px;transition:all .2s;white-space:nowrap}
+.nav-links>a:hover,.nav-links>a.active{color:#f0a500;background:rgba(255,255,255,.08)}
+.nav-dropdown{position:relative}
+.nav-drop-btn{background:none;border:none;color:rgba(255,255,255,.85);font-weight:600;font-size:.85rem;cursor:pointer;font-family:inherit;padding:8px 12px;border-radius:6px;display:inline-flex;align-items:center;gap:4px;transition:all .2s;white-space:nowrap}
+.nav-drop-btn:hover{color:#f0a500;background:rgba(255,255,255,.08)}
+.nav-drop-menu{display:none;position:absolute;top:calc(100% + 6px);left:0;background:#1a3a5c;border-radius:10px;box-shadow:0 10px 32px rgba(0,0,0,.35);min-width:230px;z-index:300;border:1px solid rgba(255,255,255,.12);padding:6px 0}
+.nav-dropdown.open .nav-drop-menu{display:block}
+.nav-drop-menu a{display:block;padding:9px 18px;color:rgba(255,255,255,.85);text-decoration:none;font-size:.84rem;font-weight:600;transition:all .15s}
+.nav-drop-menu a:hover{background:rgba(255,255,255,.1);color:#f0a500;padding-left:22px}
+.nav-toggle{display:none;background:none;border:none;color:white;font-size:1.4rem;cursor:pointer;padding:8px;margin-left:12px;flex-shrink:0}
+@media(max-width:820px){
+  .nav-toggle{display:flex;align-items:center;justify-content:center}
+  .nav-links{display:none;position:absolute;top:52px;left:0;right:0;background:#1a3a5c;flex-direction:column;align-items:stretch;z-index:201;box-shadow:0 8px 24px rgba(0,0,0,.35);border-top:1px solid rgba(255,255,255,.1);max-height:80vh;overflow-y:auto;padding:6px 0}
+  .nav-links.open{display:flex}
+  .nav-links>a{padding:12px 20px!important;border-bottom:1px solid rgba(255,255,255,.07)!important;border-radius:0!important;font-size:.9rem!important}
+  .nav-dropdown{width:100%}
+  .nav-drop-btn{width:100%;padding:12px 20px!important;border-bottom:1px solid rgba(255,255,255,.07);border-radius:0;font-size:.9rem!important;justify-content:space-between}
+  .nav-drop-menu{position:static;background:#0d2440;box-shadow:none;border-radius:0;border:none;border-top:none;padding:0}
+  .nav-drop-menu a{padding:10px 20px 10px 34px!important;border-bottom:1px solid rgba(255,255,255,.04)!important;font-size:.86rem!important}
+}
+</style>
+<style id="hero-std">
+.hero-std{background:linear-gradient(135deg,#0f2540 0%,#1a3a5c 45%,#2d6a9f 100%);color:#fff;padding:48px 24px 42px;text-align:center;font-family:'Segoe UI',Arial,sans-serif;line-height:1.6}
+.hero-std .hero-kicker{display:inline-block;background:#f0a500;color:#fff;font-size:.78rem;font-weight:800;letter-spacing:2px;padding:4px 14px;border-radius:14px;margin-bottom:14px;text-transform:uppercase}
+.hero-std h1{font-size:1.85rem;font-weight:800;color:#fff;margin:0 auto 10px;max-width:760px;line-height:1.3}
+.hero-std h1 span{color:#f0a500}
+.hero-std .hero-sub{font-size:.98rem;color:rgba(255,255,255,.88);max-width:620px;margin:0 auto 18px}
+.hero-std .hero-meta{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.hero-std .hero-pill{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);color:#fff;font-size:.74rem;font-weight:600;padding:4px 12px;border-radius:14px}
+@media(max-width:600px){.hero-std h1{font-size:1.4rem}.hero-std .hero-sub{font-size:.88rem}}
+</style>
+<style id="tbl-responsive">
+/* 표가 좁은 화면을 넘칠 때 페이지 전체가 아니라 표만 가로 스크롤되게 한다.
+   (2026-07-29: .concept-table 이 375px 화면에서 427px 라 문서가 86px 밀려 있었다) */
+@media(max-width:640px){
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+}
+</style>
+<style id="readability-std">
+/* 본문 가독성 기준 (2026-07-29 실측 후 신설)
+   목록에 스타일이 없어 브라우저 기본값(줄간격 1.2 / 항목간격 0)이 적용됐다.
+   같은 상자의 문단은 1.7 인데 목록만 방치돼 소제목과 설명이 한 덩어리로 보였다.
+   개선 전후 실측(456a, 375x812): 줄간격 1.20→1.70, 항목간격 0→12px, 소제목 inline→block */
+.intro-box ul,.intro-box ol,.card ul,.card ol,.fit-section ul,.fit-section ol,
+.container>ul,.container>ol,.sg-card ul,.sg-card ol{margin:12px 0 16px;padding-left:22px}
+.intro-box li,.card li,.fit-section li,.container>ul>li,.container>ol>li,.sg-card li{
+  line-height:1.7;margin-bottom:12px}
+.intro-box li:last-child,.card li:last-child,.fit-section li:last-child{margin-bottom:0}
+.intro-box li>strong:first-child,.card li>strong:first-child,
+.fit-section li>strong:first-child{display:block;margin-bottom:2px}
+/* 내비게이션·푸터 목록은 본문 규칙에서 제외 */
+nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;margin-bottom:0!important}
+@media(max-width:640px){
+  .intro-box p,.intro-box li,.card p,.card li,.fit-section p,.fit-section li{
+    font-size:1rem;line-height:1.7}
+}
+</style>
+<style id="faq-visible-css">.faq-visible{margin:32px 0 8px}.faq-visible details{margin:0 0 10px;background:var(--card,#fff);border-radius:8px;border-left:4px solid var(--accent,#f0a500);box-shadow:0 1px 5px rgba(0,0,0,.07)}.faq-visible summary{display:flex;justify-content:space-between;align-items:center;gap:12px;box-sizing:border-box;min-height:48px;padding:12px 16px;cursor:pointer;list-style:none;color:var(--primary,#1a3a5c);font-weight:700;font-size:.95rem;line-height:1.45;overflow-wrap:anywhere}.faq-visible summary::-webkit-details-marker{display:none}.faq-visible summary::after{content:"\25BC";flex:none;font-size:.75rem;opacity:.6;transition:transform .2s}.faq-visible details[open]>summary::after{transform:rotate(180deg)}.faq-visible summary:focus-visible{outline:3px solid var(--accent,#f0a500);outline-offset:2px}.faq-visible details>p{margin:0;padding:0 16px 14px;line-height:1.7;overflow-wrap:anywhere}</style>
+<style id="sim-std">
+:root{--primary:#1a3a5c;--accent:#f0a500;--green:#27ae60;--red:#e74c3c;--light:#f4f7fb;--card:#ffffff;--text:#2c3e50;--border:#dce3ec}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--light);color:var(--text);font-family:'Segoe UI',Arial,sans-serif}
+[hidden]{display:none!important}
+[id]{scroll-margin-top:64px}
+.hero-std{padding:14px 16px 12px}
+.hero-std h1{font-size:1.5rem;margin:0 auto 6px;line-height:1.25}
+.hero-std .hero-kicker{margin:0;padding:3px 10px;font-size:.72rem;letter-spacing:1px;line-height:1.5}
+.hero-std .hero-pill{padding:3px 10px;line-height:1.5}
+.hero-std .hero-meta{align-items:center}
+@media(max-width:600px){.hero-std{padding:10px 8px 10px}.hero-std h1{font-size:1.2rem}.hero-std .hero-meta{gap:6px}.hero-std .hero-pill{padding:3px 8px;font-size:.7rem;white-space:nowrap}}
+.sim-page{max-width:1120px;margin:0 auto;padding:12px 16px 8px;line-height:1.7}
+.sim-lead{max-width:780px;margin:0 0 10px;font-size:1rem}
+.sim-discline{max-width:780px;margin:0 0 14px;padding:8px 12px;border-left:4px solid #b45f14;border-radius:6px;background:#fdf6ec;font-size:.86rem;line-height:1.5}
+.sim-app{position:relative;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.07);padding:12px;margin:0 0 14px}
+.sim-end{height:1px}
+.sim-vh{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;padding:0}
+.sim-bar{position:relative;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin:0 0 10px}
+.sim-rm{flex:1 1 100%;margin:0;color:#4a5568;font-size:.84rem;line-height:1.4}
+.sim-modes{display:flex;flex-wrap:wrap;gap:6px}
+.sim-mode,.sim-tog,.sim-btn,.sim-cause{min-height:44px;min-width:44px;padding:8px 14px;border:2px solid var(--primary);border-radius:8px;background:#fff;color:var(--primary);font:inherit;font-size:.92rem;font-weight:700;line-height:1.3;cursor:pointer}
+.sim-mode[aria-pressed="true"],.sim-tog[aria-pressed="true"]{background:var(--primary);color:#fff}
+.sim-mode[aria-pressed="true"]{box-shadow:inset 0 -4px 0 var(--accent)}
+.sim-tog[aria-pressed="true"]::before{content:"\2713\00a0"}
+.sim-btn[disabled],.sim-cause[disabled]{cursor:default;opacity:.6}
+.sim-app button:focus-visible,.sim-app a:focus-visible,.sim-app input:focus-visible,.sim-sec summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.sim-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.sim-fig{min-width:0}
+.sim-fig .sim-svg{display:block;width:100%;height:auto;max-width:520px;margin:0 auto;touch-action:manipulation}
+.sim-side{min-width:0}
+@media(min-width:900px){.sim-grid{grid-template-columns:minmax(0,430px) minmax(0,1fr)}.sim-fig{position:sticky;top:60px;align-self:start}}
+@media(max-width:520px){.sim-page{padding:8px 8px 8px}.sim-app{padding:4px;border-radius:10px}.sim-bar,.sim-side{padding:4px 4px}.sim-bar{margin:0 0 4px}}
+/* schematic symbols */
+.sim-svg text{font-family:'Segoe UI',Arial,sans-serif}
+.sim-svg .sym{fill:none;stroke:#2c3e50;stroke-width:1.4;stroke-linejoin:round;stroke-linecap:round}
+.sim-svg .sym.body{fill:#fff}
+.sim-svg .sym.thin{stroke-width:1}
+.sim-svg .sym.dash{stroke-width:1;stroke-dasharray:3 2}
+.sim-svg .sym.link{stroke-width:1.1}
+.sim-svg .sym.rod{stroke-width:2.4}
+.sim-svg .sym.pis{stroke-width:3}
+.sim-svg .symf{fill:#2c3e50;stroke:none}
+.sim-svg .encl{fill:none;stroke:#5b6b7c;stroke-width:1;stroke-dasharray:8 3 2 3}
+.sim-svg .dot{fill:#2c3e50}
+.sim-svg .lbl{font-size:11px;fill:#4a5568;font-style:italic}
+.sim-svg .lbl.sm{font-size:10px}
+.sim-svg .lbl-c{fill:#7a4e00;font-weight:700;font-style:normal}
+.sim-svg .pill rect{fill:var(--primary)}
+.sim-svg .pill text{fill:#fff;font-size:10.5px;font-weight:700;text-anchor:middle}
+.sim-svg .tpl,.sim-svg .tpb{fill:none;stroke:var(--primary);stroke-width:1.6}
+.sim-svg .hit{fill:rgba(0,0,0,0);stroke:none}
+.sim-svg [role="button"]{cursor:pointer}
+.sim-svg [role="button"]:focus{outline:none}
+.sim-svg [role="button"]:focus-visible .hit{stroke:var(--accent);stroke-width:3px;vector-effect:non-scaling-stroke}
+.sim-svg .sel .hit{fill:rgba(240,165,0,.14);stroke:#9e6d00;stroke-width:2px;stroke-dasharray:5 3;vector-effect:non-scaling-stroke}
+@media(hover:hover){.sim-svg [role="button"]:hover .hit{fill:rgba(26,58,92,.07)}}
+.sim-svg .rot{fill:none;stroke:none}
+.sim-svg .sw-bar{fill:none;stroke:none}
+.sim-svg .cp.stk .sw-bar{stroke:#6d97c0;stroke-width:7px;stroke-linecap:round}
+/* line states: colour + width + pattern (legend in the page text) */
+.ln path{fill:none;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.ln .lo{stroke:none}
+.ln .fa{display:none;fill:#fff;stroke-width:2px}
+.ln .lm{stroke:#2c3e50;stroke-width:2px}
+.ln.k-pilot .lm{stroke-width:1.5px;stroke-dasharray:7 4}
+.ln.k-drain .lm{stroke-width:1.5px;stroke-dasharray:2 3}
+.ln.st-idle .lm{stroke:#8a8a8a;stroke-width:1.5px}
+.ln.st-high .lm{stroke:#D55E00;stroke-width:6px;stroke-dasharray:none}
+.ln.st-low .lm{stroke:#0072B2;stroke-width:3.5px;stroke-dasharray:none}
+.ln.st-charge .lo{stroke:#1f1f1f;stroke-width:5px}
+.ln.st-charge .lm{stroke:#E69F00;stroke-width:3px;stroke-dasharray:none}
+.ln.st-pilot .lo{stroke:#1f1f1f;stroke-width:4px;stroke-dasharray:7 4}
+.ln.st-pilot .lm{stroke:#CC79A7;stroke-width:2px;stroke-dasharray:7 4}
+.ln.st-drain .lo{stroke:#1f1f1f;stroke-width:3.5px;stroke-dasharray:2 3}
+.ln.st-drain .lm{stroke:#56B4E9;stroke-width:1.5px;stroke-dasharray:2 3}
+.ln.st-suction .lm{stroke:#000;stroke-width:2px;stroke-dasharray:none}
+.ln.st-high .fa{stroke:#D55E00}
+.ln.st-low .fa{stroke:#0072B2}
+.ln.mv.st-high:not(.rev) .faf,.ln.mv.st-high.rev .far,.ln.mv.st-low:not(.rev) .faf,.ln.mv.st-low.rev .far,.lg-sw .faf{display:inline}
+.ln.mv .fa{animation:simfl-r var(--fl,1.2s) linear infinite}
+.ln.mv.st-low .fa{animation-duration:calc(var(--fl,1.2s)*1.7)}
+.ln.mv .fx-l{animation-name:simfl-l}
+.ln.mv .fx-d{animation-name:simfl-d}
+.ln.mv .fx-u{animation-name:simfl-u}
+.ln.mv.rev .fa{animation-direction:reverse}
+.ln.st-pilot.pr .lm{animation:simpulse 1.4s ease-in-out infinite}
+/* the arrows move by exactly one spacing (FLOW_STEP in the generator) */
+@keyframes simfl-r{to{transform:translateX(54px)}}
+@keyframes simfl-l{to{transform:translateX(-54px)}}
+@keyframes simfl-d{to{transform:translateY(54px)}}
+@keyframes simfl-u{to{transform:translateY(-54px)}}
+@keyframes simpulse{50%{stroke-opacity:.35}}
+@keyframes simspin{to{transform:rotate(360deg)}}
+/* component states */
+.sim-svg [data-comp].on .solbox{fill:#CC79A7}
+.sim-svg .mf-chk.open .ball{fill:#E69F00}
+.sim-svg .mf-rv.open .rv-arr{transform:translateY(-6px)}
+.sim-svg .mf-rv.open .rv-arr .sym{stroke:#D55E00;stroke-width:2.2}
+.sim-svg .mf-rv.open .rv-arr .symf{fill:#D55E00}
+.sim-svg .cp.open .rv-arr{transform:translateX(-6px)}
+.sim-svg .cp.open .rv-arr .sym{stroke:#0072B2;stroke-width:2.2}
+.sim-svg .cp.open .rv-arr .symf{fill:#0072B2}
+.sim-svg .cp.turn .rot{stroke:#6d97c0;stroke-width:7;stroke-dasharray:30 6 8 6 8 6 8 6 8 14;transform-box:fill-box;transform-origin:center;animation:simspin var(--spin,1.2s) linear infinite}
+.sim-svg .cp.turn.rev .rot{animation-direction:reverse}
+.sim-svg .cp.dmin .spd rect+rect{fill:#1a3a5c}
+.sim-svg .cp.rel .bk-pis{transform:translateX(-8px)}
+.sim-svg [data-comp="flushValve"].on .body{fill:#d8ecf8}
+/* test ports in fault scenarios */
+.sim-svg .tp.dim{opacity:.3}
+.sim-svg .tp.pick .hit{stroke:#9e6d00;stroke-width:2px;stroke-dasharray:4 3;vector-effect:non-scaling-stroke}
+.sim-svg .tp.got .hit{stroke:#1d8147;stroke-width:2.5px;stroke-dasharray:none;vector-effect:non-scaling-stroke}
+.sim-svg .tp.got .pill rect{fill:#1d8147}
+/* line colours, short form */
+.sim-key{display:flex;flex-wrap:wrap;gap:2px 12px;list-style:none;margin:6px 0 0;padding:0 4px;color:#4a5568;font-size:.76rem;line-height:1.5}
+.sim-key li{display:flex;align-items:center;gap:5px}
+.key-sw{flex:none;width:26px;height:10px;overflow:visible}
+.sim-app[data-mode="diagnose"] .sim-key{display:none}
+/* side panel */
+.sim-live{min-height:44px;margin:0 0 12px;padding:8px 12px;border-left:4px solid var(--primary);border-radius:6px;background:var(--light);font-size:.92rem}
+.sim-live p{margin:0}
+.sim-warn{margin-top:6px!important;color:#8b2a12;font-weight:700}
+.sim-warn::before{content:"\26A0\FE0E\00a0"}
+.sim-fail{padding:8px 12px;border-left:4px solid #b45f14;background:#fdf6ec;border-radius:6px}
+.sim-h{margin:0 0 6px;color:var(--primary);font-size:1.1rem}
+.sim-h3{margin:16px 0 6px;color:var(--primary);font-size:.98rem}
+.sim-hint{margin:0 0 10px;color:#4a5568;font-size:.88rem}
+.sim-dgnote{margin:0 0 10px;font-size:.88rem;color:#4a5568}
+.sim-row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
+.sim-col{display:flex;flex-direction:column;gap:8px}
+.sim-cause{text-align:left}
+.sim-cause.tried{border-style:dashed;color:#6b4a00}
+.sim-cause.tried::after{content:"\00a0\2014 not this one"}
+.sim-info h3{margin:0 0 6px;color:var(--primary);font-size:1rem}
+.sim-info p{margin:0 0 8px;font-size:.92rem}
+.sim-info .sim-part{margin:0 0 10px}
+.sim-dock{margin:4px 0 12px}
+.sim-lever{margin:0}
+.sim-presets{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.sim-presets button{min-width:0;padding:8px 2px}
+.sim-lever label{display:inline-block;font-weight:700;font-size:.92rem}
+.sim-lever output{margin-left:8px;font-weight:700;color:#1a3a5c}
+.sim-ends{display:flex;justify-content:space-between;font-size:.82rem;color:#4a5568}
+.sim-lever input[type="range"]{display:block;width:100%;height:44px;margin:0 0 6px;background:transparent;-webkit-appearance:none;appearance:none;cursor:pointer;touch-action:pan-y}
+.sim-lever input[type="range"]::-webkit-slider-runnable-track{height:8px;border-radius:4px;background:#c7d2de}
+.sim-lever input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:44px;height:44px;margin-top:-18px;border-radius:50%;border:4px solid #fff;background:var(--primary);box-shadow:0 0 0 2px var(--primary)}
+.sim-lever input[type="range"]::-moz-range-track{height:8px;border-radius:4px;background:#c7d2de}
+.sim-lever input[type="range"]::-moz-range-thumb{width:36px;height:36px;border-radius:50%;border:4px solid #fff;background:var(--primary);box-shadow:0 0 0 2px var(--primary)}
+.sim-symptom{margin:0 0 8px;padding:8px 12px;border-left:4px solid var(--accent);background:#fffaf0;border-radius:6px;font-weight:600}
+.sim-step{margin:0 0 6px;font-size:.9rem}
+.sim-cond{margin:0 0 6px;font-size:.88rem;color:#4a5568}
+.sim-reads{list-style:none;margin:0 0 8px;padding:0}
+.sim-rd{margin:0 0 8px;padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:#fff}
+.sim-rd p{margin:0}
+.sim-rd-h{font-size:.9rem}
+.sim-gauge{position:relative;height:14px;margin:8px 0 6px;border-radius:7px;background:#e3e9f0}
+.sim-gauge-f{position:absolute;left:0;top:0;bottom:0;border-radius:7px;background:var(--primary)}
+.sim-gauge-n{position:absolute;top:-4px;bottom:-4px;width:4px;margin-left:-2px;border-radius:2px;background:#b45f14}
+.sim-rd-v{font-size:.88rem;font-weight:700}
+.sim-rd-note{margin-top:2px!important;font-size:.78rem;color:#4a5568}
+.sim-result{margin:12px 0;padding:10px 12px;border-left:4px solid var(--primary);border-radius:6px;background:var(--light)}
+.sim-result.ok{border-left-color:#1d8147;background:#eef8f1}
+.sim-result.no{border-left-color:#b45f14;background:#fdf6ec}
+.sim-result h4{margin:10px 0 4px;color:var(--primary);font-size:.92rem}
+.sim-result p{margin:0 0 8px;font-size:.92rem}
+.sim-verdict{font-weight:700}
+.sim-offer{margin:14px 0 4px;padding:14px;border-radius:10px;background:var(--primary);color:#fff}
+.sim-offer-t{margin:0 0 10px;font-weight:700}
+.sim-offer-links{display:flex;flex-wrap:wrap;gap:10px}
+.sim-offer a{display:inline-flex;align-items:center;min-height:44px;padding:10px 16px;border-radius:8px;font-weight:800;text-decoration:none}
+.sim-offer-buy{background:var(--accent);color:var(--primary)}
+.sim-offer-free{border:2px solid rgba(255,255,255,.7);color:#fff}
+/* page text */
+.sim-sec{margin:0 0 20px;padding:20px;border-radius:12px;background:var(--card);box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.sim-sec h2{margin:0 0 12px;padding-bottom:8px;border-bottom:3px solid var(--accent);color:var(--primary);font-size:1.2rem}
+.sim-fold{margin:0 0 10px;padding:0}
+.sim-fold>details>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px;padding:8px 16px;cursor:pointer;list-style:none}
+.sim-fold>details>summary::-webkit-details-marker{display:none}
+.sim-fold>details>summary::after{content:"+";flex:none;color:var(--primary);font-size:1.5rem;font-weight:700;line-height:1}
+.sim-fold>details[open]>summary::after{content:"\2212"}
+.sim-fold h2{margin:0;padding:0;border:0;font-size:1.05rem;line-height:1.35}
+.sim-fold-b{padding:2px 16px 14px}
+.sim-sec h3{margin:16px 0 6px;color:var(--primary);font-size:1.02rem}
+.sim-sec p{margin:0 0 10px}
+.sim-legend{list-style:none;margin:0 0 10px;padding:0}
+.sim-legend li{display:flex;gap:12px;align-items:flex-start;margin:0 0 10px}
+.sim-legend p{margin:0}
+.lg-sw{flex:none;width:64px;height:18px;margin-top:5px;overflow:visible}
+.lg-sw .lbl{font-size:7px;font-family:'Segoe UI',Arial,sans-serif;text-anchor:middle}
+.sim-parts{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.sim-part{padding:12px 14px;border:1px solid var(--border);border-radius:10px}
+.sim-sec .sim-part h3{margin:0 0 6px}
+.sim-part p{font-size:.92rem}
+.sim-tbl table{width:100%;border-collapse:collapse;font-size:.88rem;line-height:1.55}
+.sim-tbl th,.sim-tbl td{padding:8px;border:1px solid var(--border);vertical-align:top;text-align:left}
+.sim-tbl thead th{background:var(--primary);color:#fff}
+.sim-tbl tbody th{background:var(--light)}
+@media(max-width:640px){.sim-tbl th,.sim-tbl td{min-width:12em}}
+.sim-why{margin-top:14px}
+.sim-why details{margin:0 0 10px;border-left:4px solid var(--accent);border-radius:8px;background:#fff;box-shadow:0 1px 5px rgba(0,0,0,.07)}
+.sim-why summary{display:flex;align-items:center;min-height:48px;padding:10px 16px;cursor:pointer;color:var(--primary);font-weight:700;line-height:1.45}
+.sim-why h4{margin:4px 16px;color:var(--primary);font-size:.92rem}
+.sim-why p{margin:0 16px 12px}
+.sim-disc{border-left:4px solid #b45f14}
+.sim-fold.sim-disc{margin-bottom:20px}
+.sim-src{color:#4a5568;font-size:.86rem}
+.faq-visible.sim-sec{margin:0 0 20px}
+footer{margin-top:40px;padding:24px;background:#1a3a5c;color:rgba(255,255,255,.75);text-align:center;font-size:.8rem}
+footer a{margin:0 4px;color:#f0a500;text-decoration:none}
+footer p:last-child a{display:inline-block;padding:12px 4px}
+/* narrow screens: the controls stay with the drawing. The dock is fixed in Drive only, and slides away
+   once the end of the simulator comes on screen (.sim-dockon, set by an IntersectionObserver), so it only
+   ever sits over the simulator itself. Without that observer it stays in the page flow. */
+@media(max-width:899px){
+.sim-bar{min-height:44px}
+.sim-modes{flex:1 1 100%;flex-wrap:nowrap}
+.sim-mode{flex:1 1 auto;min-width:0;padding:8px 6px}
+.sim-pause{position:absolute;top:calc(100% + 4px);right:0;z-index:2;width:84px;min-height:44px;padding:2px 4px;border-width:1px;font-size:.76rem;line-height:1.2}
+.sim-app.sim-rmon .sim-pause{position:static;width:auto;flex:none;padding:8px 14px;border-width:2px;font-size:.92rem}
+.sim-app.sim-rmon .sim-rm{flex:1 1 150px}
+.sim-app.sim-rmon.sim-still .sim-pause{background:var(--primary);color:#fff}
+.sim-dockable .sim-panel[data-panel="operate"] .sim-dock{position:fixed;left:0;right:0;bottom:var(--dock-b,0px);z-index:150;margin:0;padding:4px 8px calc(6px + env(safe-area-inset-bottom,0px));background:#fff;border-top:2px solid var(--primary);box-shadow:0 -2px 10px rgba(0,0,0,.18);transform:translateY(calc(100% + var(--dock-b,0px) + 12px));visibility:hidden;transition:transform .16s ease,visibility .16s}
+.sim-dockable.sim-dockon .sim-panel[data-panel="operate"] .sim-dock{transform:none;visibility:visible}
+.sim-dockable .sim-lever{display:grid;grid-template-columns:62px minmax(0,1fr);align-items:center;gap:6px}
+.sim-dockable .sim-lever label{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.sim-dockable .sim-lever output{margin:0;font-size:.84rem;line-height:1.2}
+.sim-dockable .sim-ends{display:none}
+.sim-dockable .sim-lever input[type="range"]{margin:0}
+.sim-app[data-mode="operate"] .sim-svg{max-height:calc(100vh - 176px);max-height:calc(100svh - 176px)}
+.sim-app[data-mode="operate"].sim-dockable.sim-dockon .sim-warn{position:fixed;left:8px;right:8px;bottom:calc(var(--dock-b,0px) + 110px + env(safe-area-inset-bottom,0px));z-index:150;margin:0!important;padding:6px 10px;border-radius:6px;background:#fff3e6;box-shadow:0 1px 6px rgba(0,0,0,.25);font-size:.84rem;line-height:1.35;pointer-events:none}
+}
+/* motion: paused with the button, stopped while the simulator is off screen, and off for reduced motion
+   until the visitor presses Play (.sim-play) */
+.sim-app.sim-still *,.sim-app.sim-away *{animation-play-state:paused!important}
+@media (prefers-reduced-motion: reduce){.sim-app:not(.sim-play) *,.sim-app:not(.sim-play) *::before,.sim-app:not(.sim-play) *::after,.sim-sec *{animation:none!important;transition:none!important}.sim-dock{transition:none!important}}
+/* embed mode (?embed=1 sets html.sim-embedded before the page draws): the simulator, its safety note and a
+   link back to the full page; the site menus, the explanation, the offer card and the footer are left out */
+.sim-embed-bar{display:none}
+html.sim-embedded nav,html.sim-embedded .hero-std,html.sim-embedded footer,html.sim-embedded .sim-page>.sim-sec:not(.sim-disc),html.sim-embedded .sim-offer{display:none!important}
+html.sim-embedded .sim-embed-bar{display:block;margin:12px 0;text-align:center}
+html.sim-embedded .sim-embed-bar a{display:inline-flex;align-items:center;min-height:44px;padding:0 8px}
+.sim-embed-code{display:block;width:100%;min-height:7em;margin:6px 0;padding:8px;border:1px solid #c9d3df;border-radius:6px;font:.8rem/1.4 ui-monospace,Consolas,monospace}
+</style>
+<link rel="stylesheet" href="sim/mm-std.css?v=1">
+<script src="sim/dc-engine.v1.js?v=2" defer></script>
+<script src="sim/mm-engine.v1.js?v=1" defer></script>
+<script src="sim/circuits/mm-12v.v1.js?v=1" defer></script>
+<script src="sim/sim-shell.v1.js?v=2" defer></script>
+<script src="sim/mm-drills.v1.js?v=1" defer></script>
+<script src="sim/mm-render.v1.js?v=1" defer></script>
+<link rel="stylesheet" href="design-v2.css">
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-brand" aria-label="Red Seal Prep home"><svg class="rs-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="8" fill="#0f2540"/><circle cx="16" cy="16" r="10.5" fill="#d32f2f"/><path d="M11 16.4l3.4 3.4 6.6-7.2" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Red Seal Prep</span></a>
+  <button class="nav-toggle" aria-label="Menu" id="navToggle">☰</button>
+  <div class="nav-links" id="navLinks">
+    <a href="/">Home</a>
+    <div class="nav-dropdown" id="tradesDrop">
+                  <button class="nav-drop-btn" id="tradesBtn" aria-haspopup="true">Trades ▾</button>
+      <div class="nav-drop-menu">
+        <a href="/456a.html">456A Welder</a>
+        <a href="/308a.html">308A Sheet Metal Worker</a>
+        <a href="/313a.html">313A HVAC/Refrigeration</a>
+        <a href="/309a.html">309A Construction Electrician</a>
+        <a href="/310s.html">310S Automotive Service Tech</a>
+        <a href="/310t.html">310T Truck &amp; Transport Mechanic</a>
+        <a href="/442a.html">442A Industrial Electrician</a>
+        <a href="/gasfitter-class-a.html">Gasfitter (Class A)</a>
+        <a href="/421a.html">421A Heavy Duty Equipment Tech</a>
+        <a href="/420b.html">420B Ironworker</a>
+        <a href="/306a.html">306A Plumber</a>
+      </div>
+    </div>
+    <a href="/practice-quizzes.html">Quizzes</a>
+    <a href="/red-seal-trades.html">Guides</a>
+    <a href="/about.html">About</a>
+  </div>
+</nav>
+
+<section class="hero-std">
+  <h1>Multimeter Practice <span>Simulator</span></h1>
+  <div class="hero-meta">
+    <span class="hero-kicker">12 V example board</span>
+    <span class="hero-pill">Updated November 2026</span>
+    <span class="hero-pill">Free, no sign-up</span>
+  </div>
+</section>
+
+<main class="sim-page" id="main">
+<section class="sim-app mm-app" id="sim-app" aria-labelledby="sim-app-h" data-mode="meter" data-circuit="mm-12v" data-trade="multi">
+<h2 class="sim-vh" id="sim-app-h">Simulator</h2>
+<div class="sim-bar">
+<div class="sim-modes" role="group" aria-label="Simulator mode">
+<button type="button" class="sim-mode" data-mode="explore" aria-pressed="false">Explore</button>
+<button type="button" class="sim-mode" data-mode="meter" aria-pressed="true">Measure</button>
+<button type="button" class="sim-mode" data-mode="diagnose" aria-pressed="false">Drills</button>
+</div>
+<button type="button" class="sim-btn sim-pause" id="sim-pause">Pause animation</button>
+<p class="sim-rm" id="sim-rm" hidden>This device asks for reduced motion, so the animation waits for Play.</p>
+</div>
+<div class="sim-grid">
+<div class="sim-fig">
+<svg class="sim-svg mm-svg" viewBox="0 0 360 500" role="group" aria-labelledby="mm-svg-t" xmlns="http://www.w3.org/2000/svg"><title id="mm-svg-t">Example 12 V lamp circuit and example meter</title><defs><clipPath id="fc-CPOS-0"><rect x="31" y="44" width="18" height="52"/></clipPath><clipPath id="fc-CPOS-1"><rect x="40" y="35" width="60" height="18"/></clipPath><clipPath id="fc-W1-0"><rect x="292" y="35" width="38" height="18"/></clipPath><clipPath id="fc-W1-1"><rect x="321" y="44" width="18" height="76"/></clipPath><clipPath id="fc-WG-0"><rect x="321" y="275" width="18" height="22"/></clipPath><clipPath id="fc-CNEG-0"><rect x="31" y="252" width="18" height="45"/></clipPath></defs><g class="cp" data-info="chassis" data-name="Chassis ground"><rect class="hit" x="90" y="280" width="60" height="50" rx="6"/><rect class="chassis" x="34" y="297" width="302" height="6"/><path class="sym thin" d="M46 303 L40 311 M60 303 L54 311 M74 303 L68 311 M88 303 L82 311 M102 303 L96 311 M116 303 L110 311 M130 303 L124 311 M144 303 L138 311 M158 303 L152 311 M172 303 L166 311 M186 303 L180 311 M200 303 L194 311 M214 303 L208 311 M228 303 L222 311 M242 303 L236 311 M256 303 L250 311 M270 303 L264 311 M284 303 L278 311 M298 303 L292 311 M312 303 L306 311 M326 303 L320 311 M340 303 L334 311"/><text class="lbl" x="120" y="325" text-anchor="middle">Chassis ground</text></g><g class="ln k-source" data-el="BAT" data-info="battery" data-name="Battery"><rect class="hit" x="15" y="136" width="50" height="50" rx="6"/><path class="sym blead" d="M40 100 L40 150 M40 176 L40 232"/><path class="sym plate" d="M26 150 L54 150 M33 156 L47 156 M26 164 L54 164 M33 170 L47 170"/><text class="lbl pol" x="18" y="148" text-anchor="middle">+</text><text class="lbl pol" x="18" y="182" text-anchor="middle">&#8722;</text><rect class="sym body post" x="32" y="92.5" width="16" height="7" rx="1"/><rect class="sym body post" x="32" y="232.5" width="16" height="7" rx="1"/><text class="lbl" x="60" y="160">Battery</text><text class="lbl" x="60" y="172">12 V</text><text class="lbl mm-st" x="60" y="184"></text></g><g class="ln k-wire" data-el="CPOS" data-info="battery" data-name="Battery positive cable"><rect class="hit" x="15" y="30" width="50" height="50" rx="6"/><path class="lo" d="M40 96 L40 44 L100 44"/><path class="lm" d="M40 96 L40 44 L100 44"/><g clip-path="url(#fc-CPOS-0)"><path class="fa faf fx-u" d="M40.0 143.0 L46.0 157.0 L34.0 157.0 Z M40.0 89.0 L46.0 103.0 L34.0 103.0 Z M40.0 35.0 L46.0 49.0 L34.0 49.0 Z"/><path class="fa far fx-u" d="M40.0 157.0 L34.0 143.0 L46.0 143.0 Z M40.0 103.0 L34.0 89.0 L46.0 89.0 Z M40.0 49.0 L34.0 35.0 L46.0 35.0 Z"/></g><g clip-path="url(#fc-CPOS-1)"><path class="fa faf fx-r" d="M-7.0 44.0 L-21.0 50.0 L-21.0 38.0 Z M47.0 44.0 L33.0 50.0 L33.0 38.0 Z M101.0 44.0 L87.0 50.0 L87.0 38.0 Z M155.0 44.0 L141.0 50.0 L141.0 38.0 Z"/><path class="fa far fx-r" d="M-21.0 44.0 L-7.0 38.0 L-7.0 50.0 Z M33.0 44.0 L47.0 38.0 L47.0 50.0 Z M87.0 44.0 L101.0 38.0 L101.0 50.0 Z M141.0 44.0 L155.0 38.0 L155.0 50.0 Z"/></g></g><g class="ln k-wire" data-el="W1" data-info="wires" data-name="Feed wire"><rect class="hit" x="305" y="52" width="50" height="50" rx="6"/><path class="lo" d="M292 44 L330 44 L330 120"/><path class="lm" d="M292 44 L330 44 L330 120"/><g clip-path="url(#fc-W1-0)"><path class="fa faf fx-r" d="M245.0 44.0 L231.0 50.0 L231.0 38.0 Z M299.0 44.0 L285.0 50.0 L285.0 38.0 Z M353.0 44.0 L339.0 50.0 L339.0 38.0 Z"/><path class="fa far fx-r" d="M231.0 44.0 L245.0 38.0 L245.0 50.0 Z M285.0 44.0 L299.0 38.0 L299.0 50.0 Z M339.0 44.0 L353.0 38.0 L353.0 50.0 Z"/></g><g clip-path="url(#fc-W1-1)"><path class="fa faf fx-d" d="M330.0 -3.0 L324.0 -17.0 L336.0 -17.0 Z M330.0 51.0 L324.0 37.0 L336.0 37.0 Z M330.0 105.0 L324.0 91.0 L336.0 91.0 Z M330.0 159.0 L324.0 145.0 L336.0 145.0 Z"/><path class="fa far fx-d" d="M330.0 -17.0 L336.0 -3.0 L324.0 -3.0 Z M330.0 37.0 L336.0 51.0 L324.0 51.0 Z M330.0 91.0 L336.0 105.0 L324.0 105.0 Z M330.0 145.0 L336.0 159.0 L324.0 159.0 Z"/></g></g><g class="ln k-wire" data-el="WG" data-info="wires" data-name="Lamp ground wire"><rect class="hit" x="305" y="278" width="50" height="50" rx="6"/><path class="lo" d="M330 275 L330 297"/><path class="lm" d="M330 275 L330 297"/><g clip-path="url(#fc-WG-0)"><path class="fa faf fx-d" d="M330.0 228.0 L324.0 214.0 L336.0 214.0 Z M330.0 282.0 L324.0 268.0 L336.0 268.0 Z M330.0 336.0 L324.0 322.0 L336.0 322.0 Z"/><path class="fa far fx-d" d="M330.0 214.0 L336.0 228.0 L324.0 228.0 Z M330.0 268.0 L336.0 282.0 L324.0 282.0 Z M330.0 322.0 L336.0 336.0 L324.0 336.0 Z"/></g></g><g class="ln k-wire" data-el="CNEG" data-info="battery" data-name="Battery negative cable"><rect class="hit" x="15" y="250" width="50" height="50" rx="6"/><path class="lo mm-tail" d="M40 240 L40 252"/><path class="lm mm-tail" d="M40 240 L40 252"/><path class="lo" d="M40 252 L40 297"/><path class="lm" d="M40 252 L40 297"/><g clip-path="url(#fc-CNEG-0)"><path class="fa faf fx-d" d="M40.0 205.0 L34.0 191.0 L46.0 191.0 Z M40.0 259.0 L34.0 245.0 L46.0 245.0 Z M40.0 313.0 L34.0 299.0 L46.0 299.0 Z"/><path class="fa far fx-d" d="M40.0 191.0 L46.0 205.0 L34.0 205.0 Z M40.0 245.0 L46.0 259.0 L34.0 259.0 Z M40.0 299.0 L46.0 313.0 L34.0 313.0 Z"/></g></g><g class="ln k-fuse" data-el="F1" data-info="fuse" data-name="Fuse in its holder"><rect class="hit" x="123" y="19" width="50" height="50" rx="6"/><path class="lo" d="M100 44 L134 44 M162 44 L196 44"/><path class="lm" d="M100 44 L134 44 M162 44 L196 44"/><rect class="sym body fz-body" x="134" y="38" width="28" height="12" rx="2"/><path class="sym fz-ok" d="M137 44 L159 44"/><path class="sym fz-brk" d="M137 44 L145 44 L147 47 M159 44 L151 44 L149 41"/><text class="lbl" x="148" y="30" text-anchor="middle">Fuse</text><text class="lbl mm-st" x="148" y="66" text-anchor="middle"></text></g><g class="ln k-fuse" data-el="FB" data-info="fuse" data-name="Fuse out of its holder" data-bench="fuseOut" display="none"><rect class="hit" x="125" y="87" width="50" height="50" rx="6"/><path class="lo" d="M120 112 L136 112 M164 112 L180 112"/><path class="lm" d="M120 112 L136 112 M164 112 L180 112"/><rect class="sym body fz-body" x="136" y="106" width="28" height="12" rx="2"/><path class="sym fz-ok" d="M139 112 L161 112"/><path class="sym fz-brk" d="M139 112 L147 112 L149 115 M161 112 L153 112 L151 109"/><text class="lbl" x="150" y="98" text-anchor="middle">Removed fuse</text><text class="lbl mm-st" x="150" y="134" text-anchor="middle"></text></g><g class="ln k-switch" data-el="S1" data-info="switch" data-name="Switch"><rect class="hit" x="219" y="19" width="50" height="50" rx="6"/><path class="lo" d="M196 44 L232 44 M256 44 L292 44"/><path class="lm" d="M196 44 L232 44 M256 44 L292 44"/><path class="sym sw-blade sw-c" d="M232 44 L255 41"/><path class="sym sw-blade sw-o" d="M232 44 L251 28"/><circle class="sym body term" cx="232" cy="44" r="2.6"/><circle class="sym body term" cx="256" cy="44" r="2.6"/><text class="lbl" x="244" y="24" text-anchor="middle">Switch</text><text class="lbl mm-st" x="244" y="66" text-anchor="middle"></text></g><g class="ln k-connector" data-el="CN" data-info="connector" data-name="Connector"><rect class="hit" x="305" y="135" width="50" height="50" rx="6"/><path class="lo" d="M330 120 L330 145 M330 167 L330 200"/><path class="lm" d="M330 120 L330 145 M330 167 L330 200"/><rect class="sym body" x="322" y="145" width="16" height="9" rx="1.5"/><path class="sym pin" d="M330 154 L330 160"/><g class="cn-lo"><rect class="sym body" x="322" y="158" width="16" height="9" rx="1.5"/></g><text class="lbl" x="316" y="158" text-anchor="end">Connector</text><text class="lbl mm-st" x="316" y="170" text-anchor="end"></text></g><g class="ln k-lamp" data-el="L1" data-info="lamp" data-name="Lamp"><rect class="hit" x="305" y="225" width="50" height="50" rx="6"/><path class="lo" d="M330 200 L330 238 M330 262 L330 275"/><path class="lm" d="M330 200 L330 238 M330 262 L330 275"/><path class="ray r2" d="M346.0 250.0 L352.0 250.0"/><path class="ray r2" d="M314.0 250.0 L308.0 250.0"/><path class="ray" d="M343.6 241.5 L348.7 238.3"/><path class="ray" d="M343.6 258.5 L348.7 261.7"/><path class="ray" d="M316.4 258.5 L311.3 261.7"/><path class="ray" d="M316.4 241.5 L311.3 238.3"/><circle class="sym body bulb" cx="330" cy="250" r="12"/><path class="sym" d="M321.5 241.5 L338.5 258.5 M338.5 241.5 L321.5 258.5"/><text class="lbl" x="302" y="248" text-anchor="end">Lamp</text><text class="lbl mm-st" x="302" y="260" text-anchor="end"></text></g><g class="tps"><g class="tp" data-tp="TP_BP" data-cx="40" data-cy="96" data-name="Test point: Battery positive post"><circle class="hit" cx="40" cy="96" r="25"/><circle class="tpl" cx="40" cy="96" r="5.5"/></g><g class="tp" data-tp="TP_BN" data-cx="40" data-cy="236" data-name="Test point: Battery negative post"><circle class="hit" cx="40" cy="236" r="25"/><circle class="tpl" cx="40" cy="236" r="5.5"/></g><g class="tp" data-tp="TP_FI" data-cx="100" data-cy="44" data-name="Test point: Fuse holder input"><circle class="hit" cx="100" cy="44" r="25"/><circle class="tpl" cx="100" cy="44" r="5.5"/></g><g class="tp" data-tp="TP_FO" data-cx="196" data-cy="44" data-name="Test point: Fuse holder output (switch input)"><circle class="hit" cx="196" cy="44" r="25"/><circle class="tpl" cx="196" cy="44" r="5.5"/></g><g class="tp" data-tp="TP_SO" data-cx="292" data-cy="44" data-name="Test point: Switch output"><circle class="hit" cx="292" cy="44" r="25"/><circle class="tpl" cx="292" cy="44" r="5.5"/></g><g class="tp" data-tp="TP_CW" data-cx="330" data-cy="120" data-name="Test point: Connector, wire side"><circle class="hit" cx="330" cy="120" r="25"/><circle class="tpl" cx="330" cy="120" r="5.5"/></g><g class="tp" data-tp="TP_LP" data-cx="330" data-cy="200" data-name="Test point: Lamp positive terminal"><circle class="hit" cx="330" cy="200" r="25"/><circle class="tpl" cx="330" cy="200" r="5.5"/></g><g class="tp" data-tp="TP_CH" data-cx="200" data-cy="300" data-name="Test point: Chassis ground"><circle class="hit" cx="200" cy="300" r="25"/><circle class="tpl" cx="200" cy="300" r="5.5"/></g><g class="tp" data-tp="TP_FA" data-cx="120" data-cy="112" data-name="Test point: Removed fuse, left end" data-bench="fuseOut" display="none"><circle class="hit" cx="120" cy="112" r="25"/><circle class="tpl" cx="120" cy="112" r="5.5"/></g><g class="tp" data-tp="TP_FB" data-cx="180" data-cy="112" data-name="Test point: Removed fuse, right end" data-bench="fuseOut" display="none"><circle class="hit" cx="180" cy="112" r="25"/><circle class="tpl" cx="180" cy="112" r="5.5"/></g></g><g id="mm-face"><rect class="mm-body" x="20" y="332" width="320" height="164" rx="14"/><g class="cp" data-info="m_display" data-name="Display"><rect class="hit" x="32" y="338" width="180" height="50" rx="6"/><rect class="mm-screen" x="40" y="342" width="164" height="40" rx="4"/><text id="mm-face-val" x="122" y="369" text-anchor="middle" aria-hidden="true"></text></g><g class="cp" data-info="m_leads" data-name="Test leads"><rect class="hit" x="222" y="338" width="52" height="50" rx="6"/><path class="sym" d="M240 346 L240 380 M256 346 L256 380"/><circle class="lead-red-tip" cx="240" cy="345" r="3"/><circle class="lead-black-tip" cx="256" cy="345" r="3"/><text class="lbl sm" x="248" y="386" text-anchor="middle" aria-hidden="true">Leads</text></g><g class="cp" data-info="m_dial" data-name="Dial"><rect class="hit" x="60" y="392" width="104" height="100" rx="6"/><circle class="sym body" cx="112" cy="446" r="30"/><text class="lbl sm" x="63.7037" y="436.059" text-anchor="middle" aria-hidden="true">OFF</text><text class="lbl sm" x="76.6447" y="413.645" text-anchor="middle" aria-hidden="true">DC V</text><text class="lbl sm" x="99.059" y="400.704" text-anchor="middle" aria-hidden="true">AC V</text><text class="lbl sm" x="124.941" y="400.704" text-anchor="middle" aria-hidden="true">&#937;</text><text class="lbl sm" x="147.355" y="413.645" text-anchor="middle" aria-hidden="true">Cont</text><text class="lbl sm" x="160.296" y="436.059" text-anchor="middle" aria-hidden="true">DC A</text><g id="mm-pointer" data-cx="112" data-cy="446" transform="rotate(-45 112 446)"><path class="ptr" d="M112 446 L112 422"/><circle class="sym body" cx="112" cy="446" r="5"/></g></g><g class="cp" data-info="m_fuse" data-name="Meter fuse"><rect class="hit" x="280" y="388" width="50" height="50" rx="6"/><rect class="sym body" x="295" y="400" width="20" height="9" rx="2"/><path class="sym thin" d="M298 404.5 L312 404.5"/><text class="lbl sm" x="305" y="396" text-anchor="middle" aria-hidden="true">fuse inside</text><text id="mm-face-fuse" class="lbl" x="305" y="428" text-anchor="middle" display="none" aria-hidden="true">fuse open</text></g><g class="cp" data-info="m_com" data-name="COM jack"><rect class="hit" x="180" y="440" width="50" height="50" rx="6"/><circle class="jk jk-com" cx="205" cy="462" r="9"/><text class="lbl sm" x="205" y="486" text-anchor="middle" aria-hidden="true">COM</text></g><g class="cp" data-info="m_vo" data-name="V&#937; jack"><rect class="hit" x="230" y="440" width="50" height="50" rx="6"/><g data-jack-mark="vo"><circle class="jk" cx="255" cy="462" r="9"/></g><text class="lbl sm" x="255" y="486" text-anchor="middle" aria-hidden="true">V&#937;</text></g><g class="cp" data-info="m_a" data-name="A jack"><rect class="hit" x="280" y="440" width="50" height="50" rx="6"/><g data-jack-mark="a"><circle class="jk" cx="305" cy="462" r="9"/></g><text class="lbl sm" x="305" y="486" text-anchor="middle" aria-hidden="true">A</text></g></g><line id="mm-bridge" x1="0" y1="0" x2="0" y2="0" display="none"/><g id="mm-park" data-cx="248" data-cy="412"></g><g id="lead-red" class="lead lead-red" pointer-events="none" aria-hidden="true" display="none"><circle r="11"/><text y="5" text-anchor="middle">+</text></g><g id="lead-black" class="lead lead-black" pointer-events="none" aria-hidden="true" display="none"><circle r="11"/><text y="5" text-anchor="middle">&#8722;</text></g></svg>
+<ul class="sim-key" aria-label="Line colours"><li><svg class="key-sw" viewBox="0 0 26 10" aria-hidden="true" focusable="false"><g class="ln k-wire st-pos"><path class="lo" d="M1 5 L25 5"/><path class="lm" d="M1 5 L25 5"/></g></svg>Near the supply voltage</li><li><svg class="key-sw" viewBox="0 0 26 10" aria-hidden="true" focusable="false"><g class="ln k-wire st-mid"><path class="lo" d="M1 5 L25 5"/><path class="lm" d="M1 5 L25 5"/></g></svg>Voltage partly lost</li><li><svg class="key-sw" viewBox="0 0 26 10" aria-hidden="true" focusable="false"><g class="ln k-wire st-gnd"><path class="lo" d="M1 5 L25 5"/><path class="lm" d="M1 5 L25 5"/></g></svg>Near ground</li><li><svg class="key-sw" viewBox="0 0 26 10" aria-hidden="true" focusable="false"><g class="ln k-wire st-pos key-mv"><path class="lo" d="M1 5 L25 5"/><path class="lm" d="M1 5 L25 5"/><path class="fa faf" d="M18.5 5.0 L9.5 8.8 L9.5 1.2 Z"/></g></svg>Current flowing</li></ul>
+</div>
+<div class="sim-side">
+<div class="sim-live" id="sim-live" aria-live="polite"><p id="sim-status"></p><p class="sim-warn" id="sim-warn" hidden></p></div>
+<p class="sim-fail" id="sim-fail" hidden>The simulator could not start in this browser. The drawing, the legend and the text below still work.</p>
+<noscript><p class="sim-fail">The simulator controls need JavaScript. The drawing, the legend and the text below work without it.</p></noscript>
+<div class="sim-panel" data-panel="explore" hidden><h2 class="sim-h">Explore the parts</h2><p class="sim-hint">Tap a part of the drawing or of the meter, or move to it with the Tab key and press Enter, to read what it is.</p><div class="sim-info" id="sim-info" hidden><div id="sim-info-body"></div></div></div><div class="sim-panel" data-panel="meter"><h2 class="sim-h">Measure the board</h2><p class="sim-hint">Set the dial and the jack for the red lead, then tap two test points to place the leads. The display reads as soon as both leads are on.</p></div><div class="sim-panel" data-panel="diagnose" hidden><h2 class="sim-h">Drills</h2><p class="sim-hint">Pick a drill. Each one starts with something set up wrongly: put it right, take the reading the task asks for, then pick what went wrong.</p><div class="sim-row" role="group" aria-label="Drill" id="dg-scen"></div><div id="dg-case" hidden><h3 class="sim-h3">What happened</h3><p class="sim-symptom" id="dg-symptom"></p><div id="dg-work"><div class="mm-dctl" id="dg-ctl"></div><h3 class="sim-h3">Readings</h3><ul class="sim-reads" id="dg-reads"></ul></div><h3 class="sim-h3">Pick what went wrong</h3><div class="sim-col" role="group" aria-label="What went wrong" id="dg-causes"></div><div class="sim-result" id="dg-result" hidden><p class="sim-verdict" id="dg-verdict"></p><div id="dg-more"></div><button type="button" class="sim-btn" id="dg-reveal" hidden>Show what went wrong</button></div><div class="sim-offer mm-offer" id="sim-offer" hidden><p class="sim-offer-t">Keep practising: electrical questions for your trade</p><ul class="mm-chips"><li class="mm-chip"><span class="mm-chip-t" aria-hidden="true">421A</span><a class="sim-offer-free" href="https://redsealquiz.ca/421a-all-questions.html#t2"><span class="sim-vh">421A </span>Electrical Systems questions, free</a><a class="sim-offer-buy" data-cta="sim_result" href="https://ko-fi.com/s/bd6ed3d51f" target="_blank" rel="noopener"><span class="sim-vh">421A </span>Printable PDF with every answer explained</a></li><li class="mm-chip"><span class="mm-chip-t" aria-hidden="true">309A</span><a class="sim-offer-free" href="https://redsealquiz.ca/309a-all-questions.html#t4"><span class="sim-vh">309A </span>Electrical Safety questions, free</a><a class="sim-offer-buy" data-cta="sim_result" href="https://ko-fi.com/s/8ea5d0cd61" target="_blank" rel="noopener"><span class="sim-vh">309A </span>Printable PDF with every answer explained</a></li><li class="mm-chip"><span class="mm-chip-t" aria-hidden="true">442A</span><a class="sim-offer-free" href="https://redsealquiz.ca/442a-all-questions.html#t0"><span class="sim-vh">442A </span>Safety &amp; Code questions, free</a><a class="sim-offer-buy" data-cta="sim_result" href="https://ko-fi.com/s/53b9fe7161" target="_blank" rel="noopener"><span class="sim-vh">442A </span>Printable PDF with every answer explained</a></li></ul></div></div></div>
+</div>
+</div>
+<div class="sim-end" id="sim-end" aria-hidden="true"></div>
+</section>
+
+<p class="sim-discline"><span data-sid="disc.framing">Study simulation for trade exams. Not a test or repair procedure.</span> <span data-sid="disc.values">Readings are computed values for this example circuit and this example meter, not service limits.</span></p>
+<p class="sim-lead"><span data-sid="meta.description">Practise with an example digital multimeter on a 12 V lamp circuit: set the dial and jacks, measure volts, amps and ohms, and see what each mistake does.</span></p><p class="sim-lead"><span data-sid="intro.s1">This free simulator puts an example digital multimeter on a 12 V circuit: battery, fuse holder, switch, connector and one lamp.</span> <span data-sid="intro.s2">In Measure, set the dial and jacks and place the leads; in Drills, put a wrong setup right and pick what went wrong.</span> <span data-sid="intro.s3">The Red Seal standards for the 421A, 309A and 442A trades list multimeters among their tools and test equipment.</span></p>
+<section class="sim-sec sim-fold" id="dial-jacks" aria-labelledby="dial-jacks-h"><details><summary><h2 id="dial-jacks-h">Dial and jacks</h2></summary><div class="sim-fold-b"><p><span data-sid="dial.s1">A digital multimeter combines a voltmeter, an ammeter and an ohmmeter, and its dial picks the function.</span> <span data-sid="dial.s2">The black lead goes in COM for every function; for volts the red lead goes in the V jack, which on some meters also serves resistance and continuity.</span> <span data-sid="dial.s3">For current the red lead goes to the jack the meter assigns to current, which may differ from the volts jack; the manual of the meter in hand decides.</span></p><p><span data-sid="dial.s4">Set the function and range and plug in the leads before touching the circuit, keep the settings while testing, and take the red lead off the circuit first.</span></p></div></details></section>
+<section class="sim-sec sim-fold" id="voltage" aria-labelledby="voltage-h"><details><summary><h2 id="voltage-h">Voltage: across a part</h2></summary><div class="sim-fold-b"><p><span data-sid="volts.s1">Voltage is measured across a part, one lead on each side, and a minus sign on DC volts means the leads are reversed.</span> <span data-sid="volts.s2">Most digital multimeters have a voltage input resistance far higher than the parts they read, so placed across a circuit they barely load it.</span></p><p><span data-sid="volts.s3">With the lamp on, this example meter reads 12.52 V across the battery posts and 0.02 V across the fitted fuse, the closed switch or a battery cable.</span> <span data-sid="volts.s4">Across an opening, such as the empty fuse holder, an open switch or a parted connector, this example meter reads 12.60 V with the lamp off.</span></p></div></details></section>
+<section class="sim-sec sim-fold" id="current" aria-labelledby="current-h"><details><summary><h2 id="current-h">Current: in series</h2></summary><div class="sim-fold-b"><p><span data-sid="amps.s1">Current is measured in series: open the circuit and insert the meter so all of the current flows through it.</span> <span data-sid="amps.s2">With the power off, open the circuit, put the red lead in a current jack rated for the expected current, set DC amps and bridge the opening, then power up and read.</span> <span data-sid="amps.s3">Afterwards turn the power off, remove the meter and restore the circuit.</span></p><p><span data-sid="amps.s4">Across the empty fuse holder this example meter reads 3.86 A and the lamp lights; with the leads swapped it reads &#8722;3.86 A.</span> <span data-sid="amps.s5">An ammeter connected across a part, in parallel with it, is a short circuit and can damage the meter and the circuit.</span> <span data-sid="amps.s6">Across the closed switch this example meter reads 0.08 A and the lamp stays bright, because most of the current still takes the switch.</span></p></div></details></section>
+<section class="sim-sec sim-fold" id="fused-input" aria-labelledby="fused-input-h"><details><summary><h2 id="fused-input-h">The fused current input</h2></summary><div class="sim-fold-b"><p><span data-sid="fused.s1">With a lead left in a current jack, touching the leads across a voltage shorts the source through the meter, and high current flows.</span> <span data-sid="fused.s2">Many meters fuse or otherwise protect their current inputs against such a fault, but not every meter does; its manual says which inputs are fused.</span> <span data-sid="fused.s3">Never measure voltage with a lead in a current jack, and move the red lead back to the volts jack after current work.</span></p><p><span data-sid="fused.s4">Replace a meter fuse with the type and rating the meter maker specifies, and check the fuses before measuring current.</span> <span data-sid="fused.s5">A meter whose current input is not fused should be kept off high-energy circuits.</span></p><p><span data-sid="fused.s6">In this example meter the fused A jack is so low in resistance that leads across the battery open the meter fuse whatever the dial says; across the lit lamp, the circuit fuse opens instead.</span></p></div></details></section>
+<section class="sim-sec sim-fold" id="resistance" aria-labelledby="resistance-h"><details><summary><h2 id="resistance-h">Resistance and continuity</h2></summary><div class="sim-fold-b"><p><span data-sid="ohms.s1">On resistance the meter drives its own small current from an internal battery, so measure with the power off and the part removed or isolated.</span> <span data-sid="ohms.s2">Measuring resistance on a powered circuit can damage the meter or the circuit; this example meter shows a card instead.</span></p><p><span data-sid="ohms.s3">Continuity is a go or no-go test: a beep means a low-resistance path, which may run through a load, and no tone a broken path or too much resistance.</span> <span data-sid="ohms.s4">The resistance that sets off the beep varies from model to model.</span></p><p><span data-sid="ohms.s5">Touching the probe tips together checks the leads: in this example that reads 0.2 &#937;, and the lead resistance is part of every resistance reading.</span> <span data-sid="ohms.s6">A cold lamp filament has far lower resistance than a lit one, so continuity can beep through a lamp: in this example, with the battery off, lamp positive terminal to chassis reads 0.6 &#937; and beeps.</span></p></div></details></section>
+<section class="sim-sec sim-fold" id="display" aria-labelledby="display-h"><details><summary><h2 id="display-h">Reading the display</h2></summary><div class="sim-fold-b"><p><span data-sid="display.s1">Some meters need the range set by hand and others pick it automatically; OL means the value is beyond what the meter can show.</span> <span data-sid="display.s2">On resistance and continuity, OL means more resistance than the meter can measure, as with open leads or an open circuit.</span> <span data-sid="display.s3">On the 6 V range of this example meter the battery shows OL, and the 60 V range or Auto reads it.</span></p><p><span data-sid="display.s4">When setting a voltage range by hand, start at a high range.</span> <span data-sid="display.s5">Resolution depends on the range: across the closed switch this example meter shows 0.016 V on its 6 V range and 0.02 V on its 60 V range.</span></p></div></details></section>
+<section class="sim-sec sim-fold" id="proving" aria-labelledby="proving-h"><details><summary><h2 id="proving-h">Proving the meter</h2></summary><div class="sim-fold-b"><p><span data-sid="prove.s1">In lockout on building power, which this page does not cover, qualified workers treat a circuit as live until tested dead, checking the tester on a known source before and after.</span> <span data-sid="prove.s2">Testing the known source again confirms that the meter was still working when it read the circuit.</span></p><p><span data-sid="prove.s3">In the Red Seal standards for 309A and 442A, lockout includes testing for zero potential or a zero energy state with testing equipment, which includes voltmeters.</span></p></div></details></section>
+<section class="sim-sec sim-fold" id="categories" aria-labelledby="categories-h"><details><summary><h2 id="categories-h">Measurement categories</h2></summary><div class="sim-fold-b"><p><span data-sid="cat.s1">Categories rate meters for building power circuits, which this page does not measure; see the scope note under About this simulator.</span></p><p><span data-sid="cat.s2">A measurement category, defined for test equipment in the IEC 61010 series, classifies a meter&#8217;s measuring circuits by the type of building supply they connect to.</span> <span data-sid="cat.s3">CAT IV covers the source of the installation, such as the service entrance; CAT III the distribution part of a building, such as panels; CAT II equipment that plugs into the building wiring.</span> <span data-sid="cat.s4">Sources place ordinary wall receptacles differently, so this page does not give them a category.</span></p><p><span data-sid="cat.s5">Choose the category first and the voltage second: a higher voltage rating does not make up for a lower category.</span> <span data-sid="cat.s6">The meter, leads and probes must be rated for the category and voltage present, and provincial regulators name the standards they accept, such as CAN/CSA-C22.2 No. 61010-1.</span> <span data-sid="cat.s7">The example 12 V board is not on building power, so no building location above describes it; a meter later used on building power must be rated for that location.</span></p><div id="cat-drill" hidden><p><span data-sid="cat.intro">Pick the category for each place.</span></p><div class="mm-cat" data-ok="II"><p><span data-sid="cat.q1">A portable power tool that plugs into the building wiring.</span></p><div class="sim-row"><button type="button" class="sim-tog" data-v="II" aria-pressed="false">CAT II</button><button type="button" class="sim-tog" data-v="III" aria-pressed="false">CAT III</button><button type="button" class="sim-tog" data-v="IV" aria-pressed="false">CAT IV</button></div><p data-fb="ok" hidden><span data-sid="cat.ok">Right: the category follows where the meter is connected, and the voltage rating comes second.</span></p><p data-fb="no" hidden><span data-sid="cat.no">Not this one: the category follows where the meter is connected, and a higher voltage rating does not make up for a lower category.</span></p></div><div class="mm-cat" data-ok="III"><p><span data-sid="cat.q2">A distribution panel inside the building, away from the service entrance.</span></p><div class="sim-row"><button type="button" class="sim-tog" data-v="II" aria-pressed="false">CAT II</button><button type="button" class="sim-tog" data-v="III" aria-pressed="false">CAT III</button><button type="button" class="sim-tog" data-v="IV" aria-pressed="false">CAT IV</button></div><p data-fb="ok" hidden><span data-sid="cat.ok">Right: the category follows where the meter is connected, and the voltage rating comes second.</span></p><p data-fb="no" hidden><span data-sid="cat.no">Not this one: the category follows where the meter is connected, and a higher voltage rating does not make up for a lower category.</span></p></div><div class="mm-cat" data-ok="IV"><p><span data-sid="cat.q3">The service entrance, where the supply comes into the building.</span></p><div class="sim-row"><button type="button" class="sim-tog" data-v="II" aria-pressed="false">CAT II</button><button type="button" class="sim-tog" data-v="III" aria-pressed="false">CAT III</button><button type="button" class="sim-tog" data-v="IV" aria-pressed="false">CAT IV</button></div><p data-fb="ok" hidden><span data-sid="cat.ok">Right: the category follows where the meter is connected, and the voltage rating comes second.</span></p><p data-fb="no" hidden><span data-sid="cat.no">Not this one: the category follows where the meter is connected, and a higher voltage rating does not make up for a lower category.</span></p></div><div class="mm-cat" data-ok="a"><p><span data-sid="cat.q4">For a distribution panel, which meter?</span></p><div class="sim-row"><button type="button" class="sim-tog" data-v="a" aria-pressed="false"><span data-sid="cat.q4a">A meter of the panel&#8217;s category, with a voltage rating at least that of the circuit</span></button><button type="button" class="sim-tog" data-v="b" aria-pressed="false"><span data-sid="cat.q4b">A higher voltage rating with a lower category</span></button></div><p data-fb="ok" hidden><span data-sid="cat.ok">Right: the category follows where the meter is connected, and the voltage rating comes second.</span></p><p data-fb="no" hidden><span data-sid="cat.no">Not this one: the category follows where the meter is connected, and a higher voltage rating does not make up for a lower category.</span></p></div></div></div></details></section>
+<section class="sim-sec sim-fold" id="clamp" aria-labelledby="clamp-h"><details><summary><h2 id="clamp-h">Clamp meters and true RMS</h2></summary><div class="sim-fold-b"><p><span data-sid="clamp.s1">A clamp-on ammeter reads current from the magnetic field around a conductor, without opening the circuit.</span> <span data-sid="clamp.s2">A true-rms meter reads distorted AC accurately up to its specified crest factor; an average-responding meter is accurate on a pure sine wave and can read much lower on distorted waveforms.</span></p></div></details></section>
+<section class="sim-sec sim-fold" id="battery-safety" aria-labelledby="battery-safety-h"><details><summary><h2 id="battery-safety-h">Battery safety</h2></summary><div class="sim-fold-b"><p><span data-sid="battery.s1">Where the chassis is grounded to the battery negative, as in this example circuit, disconnect the negative cable to the chassis first and reconnect it last.</span> <span data-sid="battery.s2">While the negative cable is connected, a metal object touching the positive side and the chassis at the same time closes a circuit and sparks, and with enough hydrogen from the battery, a spark can cause an explosion.</span> <span data-sid="battery.s3">In this simulator, disconnecting the battery opens the negative cable alone.</span></p></div></details></section>
+<section class="sim-sec sim-fold" id="parts" aria-labelledby="parts-h"><details><summary><h2 id="parts-h">Parts of the board and the meter</h2></summary><div class="sim-fold-b"><div class="sim-parts"><article class="sim-part" id="part-battery" data-part="battery"><h3>Battery and cables</h3><p><span data-sid="part.battery.s1">The 12 V battery supplies the board: its positive cable runs to the fuse holder and its negative cable to chassis.</span> <span data-sid="part.battery.s2">The Battery connected control opens or closes the negative cable.</span></p></article><article class="sim-part" id="part-fuse" data-part="fuse"><h3>Fuse and holder</h3><p><span data-sid="part.fuse.s1">The fuse protects the lamp feed and can be pulled from its holder to be checked on its own.</span> <span data-sid="part.fuse.s2">A fuse opens when the current through it is too high for its rating.</span></p></article><article class="sim-part" id="part-switch" data-part="switch"><h3>Switch</h3><p><span data-sid="part.switch.s1">The switch opens and closes the lamp feed.</span></p></article><article class="sim-part" id="part-connector" data-part="connector"><h3>Connector</h3><p><span data-sid="part.connector.s1">The connector joins the feed wire to the lamp and can be parted, which opens the circuit without cutting a wire.</span></p></article><article class="sim-part" id="part-lamp" data-part="lamp"><h3>Lamp</h3><p><span data-sid="part.lamp.s1">The lamp is the load, and how brightly it lights shows how much current flows through it.</span></p></article><article class="sim-part" id="part-wires" data-part="wires"><h3>Feed and ground wires</h3><p><span data-sid="part.wires.s1">The feed wire runs from the switch to the connector, and the ground wire from the lamp to chassis.</span></p></article><article class="sim-part" id="part-chassis" data-part="chassis"><h3>Chassis ground</h3><p><span data-sid="part.chassis.s1">Chassis ground is the return path to the battery negative cable.</span></p></article><article class="sim-part" id="part-m_display" data-part="m_display"><h3>Display</h3><p><span data-sid="part.m_display.s1">The display shows the reading, OL, or a card that explains why there is no reading.</span></p></article><article class="sim-part" id="part-m_dial" data-part="m_dial"><h3>Dial</h3><p><span data-sid="part.m_dial.s1">The dial of this example meter selects OFF, DC volts, AC volts, resistance, continuity or DC amps.</span></p></article><article class="sim-part" id="part-m_com" data-part="m_com"><h3>COM jack</h3><p><span data-sid="part.m_com.s1">COM takes the black lead for every function.</span></p></article><article class="sim-part" id="part-m_vo" data-part="m_vo"><h3>V&#937; jack</h3><p><span data-sid="part.m_vo.s1">On this example meter the V&#937; jack takes the red lead for volts, resistance and continuity.</span></p></article><article class="sim-part" id="part-m_a" data-part="m_a"><h3>A jack</h3><p><span data-sid="part.m_a.s1">The A jack takes the red lead for current, and on this example meter its path runs through the meter fuse.</span></p></article><article class="sim-part" id="part-m_leads" data-part="m_leads"><h3>Test leads</h3><p><span data-sid="part.m_leads.s1">The test leads connect the meter to the circuit; check them by touching the probe tips together on resistance.</span></p></article><article class="sim-part" id="part-m_fuse" data-part="m_fuse"><h3>Meter fuse</h3><p><span data-sid="part.m_fuse.s1">The meter fuse sits inside this example meter, in the path of the A jack, and opens when that path carries too much current.</span></p></article></div></div></details></section>
+<section class="sim-sec sim-fold" id="mistakes" aria-labelledby="mistakes-h"><details><summary><h2 id="mistakes-h">Common meter mistakes</h2></summary><div class="sim-fold-b"><div class="sim-tbl"><table id="tbl-faults"><thead><tr><th scope="col">What happened</th><th scope="col">What to check</th><th scope="col">What this example meter shows</th><th scope="col">What went wrong</th></tr></thead><tbody><tr data-fault="ac_on_dc"><td data-k="happened"><span data-sid="mk.ac_on_dc.happened">The dial was on AC volts for a DC battery.</span></td><td data-k="check"><span data-sid="mk.ac_on_dc.check">Look at the dial before the leads go on.</span></td><td data-k="see"><span data-sid="mk.ac_on_dc.see">A card saying that there is no AC source on this board.</span></td><td data-k="cause">Dial on AC volts for a DC battery</td></tr><tr data-fault="leads_reversed"><td data-k="happened"><span data-sid="mk.leads_reversed.happened">The red and black leads were on the wrong sides.</span></td><td data-k="check"><span data-sid="mk.leads_reversed.check">Look for a minus sign in front of the reading.</span></td><td data-k="see"><span data-sid="mk.leads_reversed.see">A minus sign in front of the reading: &#8722;12.52 V across the battery in this example circuit.</span></td><td data-k="cause">Test leads reversed</td></tr><tr data-fault="a_jack_volts"><td data-k="happened"><span data-sid="mk.a_jack_volts.happened">The red lead was left in the A jack for a voltage reading.</span></td><td data-k="check"><span data-sid="mk.a_jack_volts.check">Look at which jack the red lead is in before the leads touch the circuit.</span></td><td data-k="see"><span data-sid="mk.a_jack_volts.see">A card saying the red lead is in the A jack, and across the battery the meter fuse of this example meter opens.</span></td><td data-k="cause">Red lead left in the A jack for a voltage reading</td></tr><tr data-fault="battery_flat"><td data-k="happened"><span data-sid="mk.battery_flat.happened">The battery could not hold its voltage under load.</span></td><td data-k="check"><span data-sid="mk.battery_flat.check">Read the battery voltage with the lamp on.</span></td><td data-k="see"><span data-sid="mk.battery_flat.see">A lower voltage across the posts with the lamp on: 11.47 V in this example circuit, against 12.52 V without that fault.</span></td><td data-k="cause">Battery cannot hold its voltage under load</td></tr><tr data-fault="switch_closed"><td data-k="happened"><span data-sid="mk.switch_closed.happened">The meter on DC amps was put across a closed switch.</span></td><td data-k="check"><span data-sid="mk.switch_closed.check">Open the switch, the fuse holder or the connector before the meter goes across it.</span></td><td data-k="see"><span data-sid="mk.switch_closed.see">A small current, 0.08 A in this example circuit, with the lamp still bright.</span></td><td data-k="cause">Meter on DC amps across a closed switch</td></tr><tr data-fault="vo_jack_amps"><td data-k="happened"><span data-sid="mk.vo_jack_amps.happened">The red lead was in the V&#937; jack for a current reading.</span></td><td data-k="check"><span data-sid="mk.vo_jack_amps.check">Move the red lead to the A jack for current.</span></td><td data-k="see"><span data-sid="mk.vo_jack_amps.see">A card saying this example meter reads current through the A jack.</span></td><td data-k="cause">Red lead in the V&#937; jack for a current reading</td></tr><tr data-fault="meter_fuse_open"><td data-k="happened"><span data-sid="mk.meter_fuse_open.happened">The meter fuse had already opened.</span></td><td data-k="check"><span data-sid="mk.meter_fuse_open.check">Check the meter fuse before measuring current; in this example, an open meter fuse leaves the A jack with no current reading.</span></td><td data-k="see"><span data-sid="mk.meter_fuse_open.see">A card saying the meter fuse has opened, and no current reading.</span></td><td data-k="cause">Meter fuse already open</td></tr><tr data-fault="volts_in_series"><td data-k="happened"><span data-sid="mk.volts_in_series.happened">The meter on DC volts was connected in series.</span></td><td data-k="check"><span data-sid="mk.volts_in_series.check">For current, set the dial to DC amps and the red lead to the A jack.</span></td><td data-k="see"><span data-sid="mk.volts_in_series.see">Nearly the battery voltage, 12.60 V in this example circuit, and the lamp stays off.</span></td><td data-k="cause">Meter on DC volts connected in series</td></tr><tr data-fault="lamp_failed"><td data-k="happened"><span data-sid="mk.lamp_failed.happened">The lamp had burned out.</span></td><td data-k="check"><span data-sid="mk.lamp_failed.check">Check the lamp on resistance with the power off.</span></td><td data-k="see"><span data-sid="mk.lamp_failed.see">No current, 0.00 A in this example circuit, and the lamp stays off.</span></td><td data-k="cause">Lamp burned out</td></tr><tr data-fault="fuse_open"><td data-k="happened"><span data-sid="mk.fuse_open.happened">The circuit fuse had opened.</span></td><td data-k="check"><span data-sid="mk.fuse_open.check">Pull the fuse and check it on resistance or continuity with the power off.</span></td><td data-k="see"><span data-sid="mk.fuse_open.see">OL across the removed fuse on resistance or continuity.</span></td><td data-k="cause">Circuit fuse open</td></tr><tr data-fault="lead_broken"><td data-k="happened"><span data-sid="mk.lead_broken.happened">A test lead was broken.</span></td><td data-k="check"><span data-sid="mk.lead_broken.check">Touch the probe tips together on resistance before trusting a zero.</span></td><td data-k="see"><span data-sid="mk.lead_broken.see">OL with the probe tips touching on resistance, and 0.00 V across the battery in this example circuit.</span></td><td data-k="cause">Broken test lead</td></tr><tr data-fault="ohms_powered"><td data-k="happened"><span data-sid="mk.ohms_powered.happened">Resistance was measured with the circuit powered.</span></td><td data-k="check"><span data-sid="mk.ohms_powered.check">Disconnect the battery before reading resistance.</span></td><td data-k="see"><span data-sid="mk.ohms_powered.see">A card saying the circuit is powered, not a resistance.</span></td><td data-k="cause">Resistance measured with the circuit powered</td></tr><tr data-fault="cont_not_ohms"><td data-k="happened"><span data-sid="mk.cont_not_ohms.happened">Continuity was used where a resistance value was needed.</span></td><td data-k="check"><span data-sid="mk.cont_not_ohms.check">Use the resistance setting when the value matters.</span></td><td data-k="see"><span data-sid="mk.cont_not_ohms.see">A beep and a low value, 0.6 &#937; in this example circuit, where the resistance itself was the question.</span></td><td data-k="cause">Continuity used where a resistance value was needed</td></tr><tr data-fault="path_through_lamp"><td data-k="happened"><span data-sid="mk.path_through_lamp.happened">The continuity path ran through the lamp to chassis.</span></td><td data-k="check"><span data-sid="mk.path_through_lamp.check">Part the connector so the lamp is out of the path.</span></td><td data-k="see"><span data-sid="mk.path_through_lamp.see">OL from the wire side of the connector to chassis once the connector is parted.</span></td><td data-k="cause">Continuity path through the lamp to chassis</td></tr><tr data-fault="short_to_chassis"><td data-k="happened"><span data-sid="mk.short_to_chassis.happened">The feed wire was shorted to chassis.</span></td><td data-k="check"><span data-sid="mk.short_to_chassis.check">Part the connector and check the feed wire to chassis again.</span></td><td data-k="see"><span data-sid="mk.short_to_chassis.see">A beep and near zero, 0.2 &#937; in this example circuit, even with the connector parted.</span></td><td data-k="cause">Feed wire shorted to chassis</td></tr><tr data-fault="range_low"><td data-k="happened"><span data-sid="mk.range_low.happened">A manual range was set below the voltage.</span></td><td data-k="check"><span data-sid="mk.range_low.check">Start on a high range, or use Auto.</span></td><td data-k="see"><span data-sid="mk.range_low.see">OL on the 6 V range of this example meter across the battery.</span></td><td data-k="cause">Manual range set below the voltage</td></tr></tbody></table></div><div class="sim-why"><details data-fault="ac_on_dc"><summary>Dial on AC volts for a DC battery: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="mk.ac_on_dc.why">A battery is a DC source, so the AC setting has nothing to read here.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="mk.ac_on_dc.apart">With the dial on DC volts the same leads read the battery.</span></p></details><details data-fault="leads_reversed"><summary>Test leads reversed: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="mk.leads_reversed.why">The meter shows the red lead against the black lead, so swapping them flips the sign.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="mk.leads_reversed.apart">The size of the reading stays the same and the sign changes.</span></p></details><details data-fault="a_jack_volts"><summary>Red lead left in the A jack for a voltage reading: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="mk.a_jack_volts.why">Through the A jack the meter is a very low resistance, so across a voltage it is a short.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="mk.a_jack_volts.apart">In the V&#937; jack the same leads read the voltage and no fuse opens.</span></p></details><details data-fault="battery_flat"><summary>Battery cannot hold its voltage under load: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="mk.battery_flat.why">A weak battery loses more of its voltage inside itself as current flows.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="mk.battery_flat.apart">In this example circuit a weak battery reads 11.47 V with the lamp on and 12.60 V with the switch off, since its voltage falls as the current it delivers rises.</span></p></details><details data-fault="switch_closed"><summary>Meter on DC amps across a closed switch: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="mk.switch_closed.why">Most of the current takes the closed switch, so little of it goes through the meter.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="mk.switch_closed.apart">With the switch open the meter carries the whole lamp current.</span></p></details><details data-fault="vo_jack_amps"><summary>Red lead in the V&#937; jack for a current reading: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="mk.vo_jack_amps.why">Current goes through the A jack path of this example meter, not through the V&#937; jack.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="mk.vo_jack_amps.apart">With the red lead in the A jack the same setup reads the current.</span></p></details><details data-fault="meter_fuse_open"><summary>Meter fuse already open: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="mk.meter_fuse_open.why">With the meter fuse open the A jack path carries no current.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="mk.meter_fuse_open.apart">A new meter fuse brings the current reading back.</span></p></details><details data-fault="volts_in_series"><summary>Meter on DC volts connected in series: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="mk.volts_in_series.why">This example meter on DC volts lets very little current through, so in series it reads nearly the supply and the lamp goes out.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="mk.volts_in_series.apart">On DC amps through the A jack the lamp lights and the meter reads its current.</span></p></details><details data-fault="lamp_failed"><summary>Lamp burned out: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="mk.lamp_failed.why">An open lamp stops the current in the whole loop.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="mk.lamp_failed.apart">A setup mistake leaves the lamp lit once it is put right, while a failed lamp stays dark.</span></p></details><details data-fault="fuse_open"><summary>Circuit fuse open: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="mk.fuse_open.why">An opened fuse is an open path, so the meter shows OL across it.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="mk.fuse_open.apart">In this example circuit an intact fuse reads 0.2 &#937;, close to the lead check.</span></p></details><details data-fault="lead_broken"><summary>Broken test lead: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="mk.lead_broken.why">A broken lead is an open path in the meter leads.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="mk.lead_broken.apart">With new leads the tips read the lead check and the battery reads again.</span></p></details><details data-fault="ohms_powered"><summary>Resistance measured with the circuit powered: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="mk.ohms_powered.why">On resistance the meter drives its own current, which a powered circuit upsets, and measuring this way can damage the meter or the circuit.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="mk.ohms_powered.apart">With the battery disconnected the same leads read a resistance.</span></p></details><details data-fault="cont_not_ohms"><summary>Continuity used where a resistance value was needed: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="mk.cont_not_ohms.why">Continuity is a go or no-go check: the beep says the path is complete, and the resistance setting is the one for reading how much resistance a part has.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="mk.cont_not_ohms.apart">On resistance the same path reads a value with no beep.</span></p></details><details data-fault="path_through_lamp"><summary>Continuity path through the lamp to chassis: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="mk.path_through_lamp.why">A cold lamp reads low, so continuity beeps through it.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="mk.path_through_lamp.apart">A real short to chassis still beeps with the connector parted.</span></p></details><details data-fault="short_to_chassis"><summary>Feed wire shorted to chassis: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="mk.short_to_chassis.why">A short gives a path to chassis that does not go through the lamp.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="mk.short_to_chassis.apart">Without a short the parted connector leaves OL.</span></p></details><details data-fault="range_low"><summary>Manual range set below the voltage: why, and how to tell it apart</summary><h4>Why</h4><p data-k="why"><span data-sid="mk.range_low.why">On this example meter a range shows readings up to its top, and above it the display shows OL.</span></p><h4>How to tell it apart</h4><p data-k="distinguish"><span data-sid="mk.range_low.apart">On the 60 V range or Auto the same leads read the battery.</span></p></details></div></div></details></section>
+<section class="sim-sec sim-fold sim-disc" id="about-model" aria-labelledby="about-model-h"><details><summary><h2 id="about-model-h">About this simulator</h2></summary><div class="sim-fold-b"><p><span data-sid="disc.model">The example meter and circuit are generic, not any product; the board has no AC source, and the meter no clamp or milliamp input.</span> <span data-sid="disc.real">Values to compare a real meter or circuit against come from its manual and service information.</span> <span data-sid="disc.lamp">In this model a lit lamp is a fixed resistor with a lower cold value, while a real filament changes resistance as it heats.</span> <span data-sid="disc.fuse">A fuse here opens as soon as its steady current is above its rating, while a real fuse opens faster the larger the overcurrent.</span> <span data-sid="disc.qualified">On a real circuit, make electrical measurements only with specific instructions from a qualified person, and disconnect the battery before replacing components.</span> <span data-sid="disc.scope">120 V AC power circuits are not covered here; where lockout is not practicable, live measurement on them is work for authorized, qualified workers following written procedures, with protective equipment chosen for the hazard, for example using CSA Z462.</span></p><p class="sim-src"><span data-sid="disc.sources">Sources: open trade-training and physics textbooks, meter, fuse and equipment manufacturer documents, provincial electrical safety regulators, the Red Seal Occupational Standards, UK HSE, US OSHA, and public IEC standard pages.</span> <span data-sid="disc.checked">Checked November 2026.</span></p></div></details></section>
+<section class="sim-sec sim-embed-sec" id="embed" aria-labelledby="embed-h">
+<h2 id="embed-h">Use this simulator in a class</h2>
+<p>Paste this code into a class page or a course site such as Moodle or D2L to show the simulator there. It is free to use for teaching, with the link back kept.</p>
+<label for="sim-embed-code">Embed code</label>
+<textarea class="sim-embed-code" id="sim-embed-code" readonly rows="4" data-name="Multimeter practice simulator"></textarea>
+<button type="button" class="sim-btn" id="sim-embed-copy">Copy the code</button>
+</section>
+<p class="sim-embed-bar"><a href="https://redsealquiz.ca/multimeter-practice-simulator.html">Open the full page: how it works and free practice questions</a></p>
+
+<section class="faq-visible sim-sec" id="faq" aria-labelledby="faq-h">
+<!-- Same questions and answers as this page&#8217;s FAQPage JSON-LD - change both together. -->
+<h2 id="faq-h">Frequently asked questions</h2><details><summary data-sid="faq.ol.q">What does OL mean on a multimeter?</summary><p><span data-sid="faq.ol.a1">OL means the value is beyond what the meter can show; on resistance, more resistance than the meter can measure, as with an open circuit.</span></p></details><details><summary data-sid="faq.fuse.q">Why does a multimeter fuse blow?</summary><p><span data-sid="faq.fuse.a1">A current-input fuse opens when more current flows through that input than its rating, as when leads left in a current jack touch across a voltage.</span> <span data-sid="faq.fuse.a2">Replace the fuse with the type and rating the meter maker specifies.</span></p></details><details><summary data-sid="faq.current.q">How is current measured with a multimeter?</summary><p><span data-sid="faq.current.a1">On a 12 V circuit like this example board, not building wiring, turn the power off, open the circuit and put the meter in series so all the current flows through it.</span> <span data-sid="faq.current.a2">Use a current jack rated for the expected current and the amps setting, and bridge the opening with the leads before the power comes back on.</span></p></details><details><summary data-sid="faq.checkfuse.q">How is a fuse checked with a multimeter?</summary><p><span data-sid="faq.checkfuse.a1">With the power off, pull the fuse and read across it on resistance or continuity.</span> <span data-sid="faq.checkfuse.a2">An opened fuse reads OL and an intact one reads low; in this example circuit that is 0.2 &#937;, the same as the lead check.</span></p></details><details><summary data-sid="faq.cat3.q">What does CAT III mean on a multimeter?</summary><p><span data-sid="faq.cat3.a1">CAT III marks a meter built to withstand the transients of circuits in the distribution part of a building, such as panels and feeders; the category and the voltage beside it together set that withstand.</span> <span data-sid="faq.cat3.a2">Choose the category first and the voltage rating second, and use leads and probes rated for at least the same category and voltage.</span></p></details><details><summary data-sid="faq.ohmsoff.q">Why is resistance measured with the power off?</summary><p><span data-sid="faq.ohmsoff.a1">On resistance the meter sends its own small current through the part, so any voltage from the circuit upsets the reading and can damage the meter or the circuit.</span> <span data-sid="faq.ohmsoff.a2">Continuity is a power-off test too, since it is a resistance test, and nearby circuits may still be live, so keep the probes off energized parts.</span></p></details></section>
+</main>
+
+<footer>
+<!-- foot-v2 --><div class="foot-v2"><div class="fv-brand"><a href="/"><svg class="rs-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="8" fill="#0f2540"/><circle cx="16" cy="16" r="10.5" fill="#d32f2f"/><path d="M11 16.4l3.4 3.4 6.6-7.2" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Red Seal Prep</span></a><p>Free practice questions, mock exams and study guides for Canadian Red Seal trade exams.</p></div><div class="fv-trades"><h4>Trades</h4><ul><li><a href="/306a.html">306A Plumber</a></li><li><a href="/308a.html">308A Sheet Metal Worker</a></li><li><a href="/309a.html">309A Construction Electrician</a></li><li><a href="/310s.html">310S Automotive Service Tech</a></li><li><a href="/310t.html">310T Truck &amp; Transport Mechanic</a></li><li><a href="/313a.html">313A Refrigeration &amp; A/C Mechanic</a></li><li><a href="/420b.html">420B Ironworker</a></li><li><a href="/421a.html">421A Heavy Duty Equipment Tech</a></li><li><a href="/442a.html">442A Industrial Electrician</a></li><li><a href="/456a.html">456A Welder</a></li><li><a href="/gasfitter-class-a.html">Gasfitter (Class A)</a></li></ul></div><div><h4>Study</h4><ul><li><a href="/practice-quizzes.html">Practice quizzes</a></li><li><a href="/study-guide.html">Study guide</a></li><li><a href="/study-planner.html">Study planner</a></li><li><a href="/red-seal-exam-format-guide.html">Exam format guide</a></li><li><a href="/red-seal-trade-simulators.html">Trade simulators</a></li><li><a href="/red-seal-trades.html">Career &amp; salary guides</a></li><li><a href="/question-bank-updates.html">Question bank updates</a></li></ul></div><div><h4>Site</h4><ul><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li><li><a href="/privacy.html">Privacy policy</a></li><li><a href="/terms.html">Terms of use</a></li><li><a href="/disclaimer.html">Disclaimer</a></li><li><a href="/llms.txt">For AI assistants</a></li></ul></div></div><!-- /foot-v2 -->
+
+  <p>Canada Red Seal Exam Prep — Free study resource for Canadian skilled trades apprentices</p>
+  <p style="font-size:.72rem;opacity:.75;margin-top:6px;">Independent, unofficial study resource &mdash; not affiliated with or endorsed by the CCDA, the Red Seal Program, or any provincial/territorial apprenticeship authority. No guarantee of exam results. Paid downloads come with a 7-day money-back guarantee &mdash; <a href="/terms.html#refunds">refund policy</a>. <a href="/disclaimer.html">Details</a></p>
+  <p style="margin-top:8px;"><a href="/">Home</a><a href="/study-guide.html">Study Guide</a><a href="/exam-guide.html">Exam Guide</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Use</a><a href="/disclaimer.html">Disclaimer</a></p>
+</footer>
+
+<script>
+(function(){
+  var nt=document.getElementById('navToggle'),nl=document.getElementById('navLinks');
+  var td=document.getElementById('tradesDrop'),tb=document.getElementById('tradesBtn');
+  if(nt&&nl)nt.addEventListener('click',function(){var o=nl.classList.toggle('open');nt.textContent=o?'✕':'☰';});
+  if(tb&&td){tb.addEventListener('click',function(e){e.stopPropagation();td.classList.toggle('open');});
+  document.addEventListener('click',function(){if(td)td.classList.remove('open');});}
+})();
+</script>
+<script>
+(function(){
+  var b=document.getElementById("sim-embed-copy"),t=document.getElementById("sim-embed-code");
+  if(t){
+    var c=document.querySelector("link[rel=canonical]"),u=c?c.href:location.href.split("?")[0],n=t.getAttribute("data-name");
+    t.value="<iframe src=\""+u+"?embed=1\" title=\""+n+"\" style=\"border:0;width:100%;max-width:960px;aspect-ratio:4/5\" loading=\"lazy\"></iframe>\n"+
+      "<p><a href=\""+u+"\">"+n+"</a> from redsealquiz.ca</p>";
+  }
+  if(b&&t)b.addEventListener("click",function(){
+    var done=function(){b.textContent="Copied";setTimeout(function(){b.textContent="Copy the code";},2000);};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t.value).then(done,function(){t.select();});}
+    else{t.select();try{document.execCommand("copy");done();}catch(e){}}
+  });
+  var a=document.querySelector(".sim-embed-bar a");
+  if(a&&document.documentElement.classList.contains("sim-embedded")){a.target="_blank";a.rel="noopener";}
+})();
+</script>
+</body>
+</html>
