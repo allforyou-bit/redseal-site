@@ -147,15 +147,15 @@
         lamp: "Lamp", bright: "bright", dim: "dim", off: "off"
       },
       drills: {
-        d1: "Read the battery voltage. On AC volts this example meter shows that there is no AC source on this board.",
-        d2: "Read the lamp current. On DC amps across the switch, with the switch on, the meter shows a small current and the lamp stays bright.",
-        d3: "The meter was set to DC volts and put across the battery. Now this example meter\u2019s fuse has opened.",
+        d1: "Read the battery voltage; the display shows a card, not a voltage.",
+        d2: "Read the lamp current; the lamp is bright, but the meter shows only a small current.",
+        d3: "Read the battery voltage with this example meter.",
         d4: "Read the lamp current. With the fuse pulled and the meter across the empty holder, the lamp stays off and the meter shows nearly the battery voltage.",
         d5: "The lamp does not light. Check the fuse with the meter.",
-        d6: "Check the lamp. On resistance across the lamp with the switch on, this example meter shows a card, not a resistance.",
+        d6: "Read the lamp resistance; this example meter shows a card, not a resistance.",
         d7: "Across the battery the meter shows 0.00 V, but the lamp is lit.",
         d8: "Checking the feed wire for a short to chassis: continuity from the connector\u2019s wire side to chassis beeps.",
-        d9: "On a manual range this example meter shows OL across the battery."
+        d9: "Read the battery voltage; this example meter shows OL across it."
       },
       /* the 16 drill causes; neutral ids, so the GA placement sim_<id> names no drill */
       causes: {
