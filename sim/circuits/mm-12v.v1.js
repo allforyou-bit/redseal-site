@@ -153,7 +153,7 @@
         d2: "Read the lamp current.",
         d3: "Read the battery voltage.",
         d4: "Read the lamp current.",
-        d5: "Check the fuse on resistance or continuity.",
+        d5: "Check the circuit fuse on resistance or continuity.",
         d6: "Read the lamp resistance.",
         d7: "Find out why the meter shows 0.00 V, then read the battery voltage.",
         d8: "Find out which path makes the meter beep.",
@@ -162,7 +162,7 @@
       see: {
         d1: "The display shows a message, not a voltage.",
         d2: "The lamp is bright, but the meter shows only a small current.",
-        d3: "The display shows a message, not a voltage, and the meter fuse is open.",
+        d3: "The display shows a message, not a voltage.",
         d4: "The fuse is out of its holder and the meter is across the empty holder: the lamp stays off and the meter shows nearly the battery voltage.",
         d5: "The lamp does not light.",
         d6: "The display shows a message, not a resistance.",

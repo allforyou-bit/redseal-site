@@ -19,8 +19,8 @@
     notIt: "Not what went wrong in this drill.", ifIt: "%s: if that were it, this example meter would show:",
     reveal: "Show what went wrong", revealed: "What went wrong in this drill:", pick: "Pick a drill to start." };
   var L = { reads: "Readings", jack: "red lead in the %s jack", range: "range", beep: "beeping", see: "What you see:",
-    todo: "Not counted yet: put the setup right, then take the reading the task asks for.",
-    part: "%s of %t task readings counted: put the setup right for the next one.",
+    dial: "Not counted yet: this task reading is taken on %s.", dialOk: "Not counted yet: the dial is right; check the jack, the leads and the board buttons.",
+    part: "%s of %t task readings counted.", or: " or ",
     done: "\u2713 Task reading counted. Now pick what went wrong below.", ok: "\u2713 Counted for the task", badge: "\u2713 Task done" };
 
   function sl(x) { return Array.prototype.slice.call(x); }
@@ -80,11 +80,20 @@
       }
       status(s);
     }
-    /* how far the task is: a line under the task and, once it is counted, a mark in the dock */
+    /* how far the task is: a line under the task and, once it is counted, a mark in the dock. Until then the
+       line names the dial the next task reading is taken on, or says the dial is right (second cold read,
+       2026-11-20: a beginner could not tell what was still wrong); it never names the drill cause */
+    function lc(w) { return /^[A-Z][a-z]/.test(w) ? w.charAt(0).toLowerCase() + w.slice(1) : w; }
+    function hint(s, k) {
+      var ds = [];
+      s.d.need[k].forEach(function (e) { e.dial.forEach(function (v) { if (ds.indexOf(v) < 0) ds.push(v); }); });
+      if (ds.indexOf(s.meter.dial) >= 0) return L.dialOk;
+      return L.dial.replace("%s", ds.map(function (v) { return lc(T.dialNames[v]); }).join(L.or));
+    }
     function status(s) {
       var n = s.d ? s.d.need.length : 0, k = Math.min(s.step || 0, n), done = n > 0 && k >= n;
       if (ui.step) {
-        ui.step.textContent = !n ? "" : done ? L.done : n > 1 ? L.part.replace("%s", k).replace("%t", n) : L.todo;
+        ui.step.textContent = !n ? "" : done ? L.done : (n > 1 ? L.part.replace("%s", k).replace("%t", n) + " " : "") + hint(s, k);
         ui.step.className = "sim-step" + (done ? " ok" : "");
       }
       if (ui.done) ui.done.hidden = !done;
