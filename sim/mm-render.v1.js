@@ -12,7 +12,8 @@
    text; [data-tp] groups with data-cx and data-cy (or a circle.hit); [data-bench] on items shown only while
    that input is true (the pulled fuse and its ends); g#lead-red and g#lead-black (built when missing);
    optional #mm-bridge (a line between the leads), #mm-park (data-cx, data-cy: where touching probe tips
-   rest) and the face: #mm-face-val, #mm-pointer (data-cx, data-cy), #mm-face-fuse, [data-jack-mark].
+   rest) and the face: #mm-face-val, #mm-pointer (data-cx, data-cy), #mm-face-fuse, #mm-face-beep (a speaker with
+   sound waves beside the screen while the meter beeps; the dock shows the word with a speaker mark), [data-jack-mark].
    The dock and the Measure rows are built when the page lacks them. */
 (function (root) {
   "use strict";
@@ -47,7 +48,7 @@
     leadOn: "lead on", next: "Next, place the %s lead.", nextTap: "The next tap places the %s lead.",
     red: "Red", black: "Black", none: "not placed", tog: "Red and black: probe tips touching each other",
     dial: "Dial", jacks: "Jacks and leads", com: "COM: black lead", inJack: "Red lead in the %s jack", lead: "lead",
-    beep: "Beep", ctl: "Board controls", fresh: "New circuit fuse in place.", meterFresh: "New meter fuse in place.",
+    beep: "Beeping", ctl: "Board controls", fresh: "New circuit fuse in place.", meterFresh: "New meter fuse in place.",
     leadsFresh: "New test leads in place.", again: "The circuit fuse opened again as soon as it went in.",
     closed: "closed", open: "open", conn: "connected", disc: "disconnected", inPlace: "in place", blown: "blown",
     removed: "out of the holder", joined: "joined", parted: "parted", range: "range", pick: "Pick a drill to start."
@@ -180,6 +181,7 @@
       if (face.ptr.getAttribute("transform") !== tr) face.ptr.setAttribute("transform", tr);
     }
     if (face.fuse) show(face.fuse, s.meterBlown);
+    if (face.beep) show(face.beep, !!(r && r.beep));
     all(svg, "[data-jack-mark]").forEach(function (j) { flag(j, "on", j.getAttribute("data-jack-mark") === s.meter.jack); });
   }
 
@@ -309,7 +311,7 @@
       x = x.split(":"); ui[x[0]] = byId(x[1]);
       if (!ui[x[0]]) throw new Error("missing #" + x[1]);
     });
-    face.val = byId("mm-face-val"); face.ptr = byId("mm-pointer"); face.fuse = byId("mm-face-fuse");
+    face.val = byId("mm-face-val"); face.ptr = byId("mm-pointer"); face.fuse = byId("mm-face-fuse"); face.beep = byId("mm-face-beep");
     byId("sim-app").addEventListener("click", function (ev) {
       var b = closest(ev.target, "[data-dial],[data-jack],[data-range],[data-lead],[data-ctl],[data-act]");
       if (b && !b.disabled) act(b);

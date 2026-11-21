@@ -146,16 +146,29 @@
         circuitFuseOpened: "The circuit fuse opened: with the red lead in the A jack the meter was a low-resistance path around the lamp.",
         lamp: "Lamp", bright: "bright", dim: "dim", off: "off"
       },
+      /* drills: the task (shown under "Your task") and what the visitor sees at the start (text.see); split
+         after the owner phone check and a cold-read test, 2026-11-20. Neither names the drill cause. */
       drills: {
-        d1: "Read the battery voltage; the display shows a card, not a voltage.",
-        d2: "Read the lamp current; the lamp is bright, but the meter shows only a small current.",
-        d3: "Read the battery voltage with this example meter.",
-        d4: "Read the lamp current. With the fuse pulled and the meter across the empty holder, the lamp stays off and the meter shows nearly the battery voltage.",
-        d5: "The lamp does not light. Check the fuse with the meter.",
-        d6: "Read the lamp resistance; this example meter shows a card, not a resistance.",
+        d1: "Read the battery voltage.",
+        d2: "Read the lamp current.",
+        d3: "Read the battery voltage.",
+        d4: "Read the lamp current.",
+        d5: "Check the fuse on resistance or continuity.",
+        d6: "Read the lamp resistance.",
+        d7: "Find out why the meter shows 0.00 V, then read the battery voltage.",
+        d8: "Find out which path makes the meter beep.",
+        d9: "Read the battery voltage."
+      },
+      see: {
+        d1: "The display shows a message, not a voltage.",
+        d2: "The lamp is bright, but the meter shows only a small current.",
+        d3: "The display shows a message, not a voltage, and the meter fuse is open.",
+        d4: "The fuse is out of its holder and the meter is across the empty holder: the lamp stays off and the meter shows nearly the battery voltage.",
+        d5: "The lamp does not light.",
+        d6: "The display shows a message, not a resistance.",
         d7: "Across the battery the meter shows 0.00 V, but the lamp is lit.",
-        d8: "Checking the feed wire for a short to chassis: continuity from the connector\u2019s wire side to chassis beeps.",
-        d9: "Read the battery voltage; this example meter shows OL across it."
+        d8: "You are checking the feed wire for a short to chassis. With the battery off, continuity from the connector\u2019s wire side to chassis beeps.",
+        d9: "The meter shows OL across the battery."
       },
       /* the 16 drill causes; neutral ids, so the GA placement sim_<id> names no drill */
       causes: {

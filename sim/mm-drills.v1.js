@@ -5,16 +5,23 @@
    after the other (MmEngine.fits). Each reading taken goes in a log with its setup, the board controls and
    the example-value label. A fuse the visitor opens in a drill can be replaced there, so a drill never
    locks; where a step of the need is the lead check, the new test leads appear only after it.
+   Owner phone check and a cold-read test (2026-11-20): the drill text is split into the task (#dg-symptom,
+   board text.drills) and what the visitor sees (#dg-see, text.see); a status line (#dg-step) and a dock mark
+   (#mm-done) say when the task reading is counted, and the log marks the reading that counted. On a phone the
+   pick result scrolls to the middle of the screen, since it sits below the cause buttons and the dock.
    Also the category exercise (#cat-drill, page markup that stays hidden without this file): items with
    data-ok, buttons with data-v, and page feedback paragraphs [data-fb="ok"] and [data-fb="no"]. */
 (function (root) {
   "use strict";
 
-  var UI = { scenario: "Drill", report: "What happened", causeHead: "Pick what went wrong", cause: "What went wrong",
-    more: "Finish the task on the meter first, then pick what went wrong.", solved: "Right:",
+  var UI = { scenario: "Drill", report: "Your task", causeHead: "Pick what went wrong", cause: "What went wrong",
+    more: "The task reading is not counted yet: put the setup right and take it, then pick what went wrong.", solved: "Right:",
     notIt: "Not what went wrong in this drill.", ifIt: "%s: if that were it, this example meter would show:",
     reveal: "Show what went wrong", revealed: "What went wrong in this drill:", pick: "Pick a drill to start." };
-  var L = { reads: "Readings", jack: "red lead in the %s jack", range: "range" };
+  var L = { reads: "Readings", jack: "red lead in the %s jack", range: "range", beep: "beeping", see: "What you see:",
+    todo: "Not counted yet: put the setup right, then take the reading the task asks for.",
+    part: "%s of %t task readings counted: put the setup right for the next one.",
+    done: "\u2713 Task reading counted. Now pick what went wrong below.", ok: "\u2713 Counted for the task", badge: "\u2713 Task done" };
 
   function sl(x) { return Array.prototype.slice.call(x); }
   function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
@@ -46,7 +53,7 @@
       return a.length ? cap(a.join(", ")) + "." : "";
     }
     /* one log line per setup and board state; the same test again updates its line and moves it up */
-    function record(s, r) {
+    function record(s, r, ok) {
       var h = setupText(s), c = condText(s), key = h + "|" + c, it = s.items[key];
       if (!it) {
         it = s.items[key] = { li: x.mk("li", "sim-rd") };
@@ -56,14 +63,31 @@
       }
       it.h.textContent = h;
       it.c.textContent = c;
-      it.v.textContent = x.shown(r, s);
+      it.v.textContent = x.shown(r, s) + (r.beep ? ", " + L.beep : "");
       it.n.textContent = x.noteOf(r, s);
+      if (ok && !it.k) {
+        it.k = x.mk("p", "sim-rd-k", L.ok);
+        it.li.insertBefore(it.k, it.li.firstChild);
+        it.li.className += " sim-rd-ok";
+      }
       if (ui.reads.firstChild !== it.li) ui.reads.insertBefore(it.li, ui.reads.firstChild);
     }
     function seen(s, r) {
-      if (r.cls === "idle" || r.cls === "off") return;
-      if (s.step < s.d.need.length && E.fits(x.ID, s.d.id, s.step, { inputs: x.inputs(s), meter: s.meter, probe: x.probeOf(s) }, r)) s.step++;
-      record(s, r);
+      var ok = false;
+      if (r.cls !== "idle" && r.cls !== "off") {
+        if (s.step < s.d.need.length && E.fits(x.ID, s.d.id, s.step, { inputs: x.inputs(s), meter: s.meter, probe: x.probeOf(s) }, r)) { s.step++; ok = true; }
+        record(s, r, ok);
+      }
+      status(s);
+    }
+    /* how far the task is: a line under the task and, once it is counted, a mark in the dock */
+    function status(s) {
+      var n = s.d ? s.d.need.length : 0, k = Math.min(s.step || 0, n), done = n > 0 && k >= n;
+      if (ui.step) {
+        ui.step.textContent = !n ? "" : done ? L.done : n > 1 ? L.part.replace("%s", k).replace("%t", n) : L.todo;
+        ui.step.className = "sim-step" + (done ? " ok" : "");
+      }
+      if (ui.done) ui.done.hidden = !done;
     }
 
     hooks.scenario = function (sc) {
@@ -73,7 +97,14 @@
       ui.ctl.textContent = "";
       x.ctlRow(ui.ctl, keys, null);
       ui.reads.textContent = "";
+      if (ui.see) {
+        var sv = T.see && T.see[d.id];
+        ui.see.textContent = "";
+        if (sv) { x.mk("strong", null, L.see, null, ui.see); ui.see.appendChild(root.document.createTextNode(" " + sv)); }
+        ui.see.hidden = !sv;
+      }
       x.after("");
+      status(s);
     };
     hooks.ready = function () { var s = x.state(); return !!s.d && s.step >= s.d.need.length; };
 
@@ -85,6 +116,21 @@
         x.mk("ul", "sim-reads", null, null, wk, "dg-reads");
       }
       ui.reads = doc.getElementById("dg-reads");
+      var sym = doc.getElementById("dg-symptom"), disp = doc.querySelector("#mm-read .mm-disp"), cz = doc.getElementById("dg-causes");
+      if (sym && !doc.getElementById("dg-see")) {
+        sym.parentNode.insertBefore(x.mk("p", "sim-step", null, { "aria-live": "polite" }, null, "dg-step"), sym.nextSibling);
+        sym.parentNode.insertBefore(x.mk("p", "sim-see", null, { hidden: "" }, null, "dg-see"), sym.nextSibling);
+      }
+      ui.see = doc.getElementById("dg-see");
+      ui.step = doc.getElementById("dg-step");
+      if (disp && !doc.getElementById("mm-done")) x.mk("p", "mm-done", L.badge, { hidden: "" }, disp, "mm-done");
+      ui.done = doc.getElementById("mm-done");
+      /* the pick result sits below the cause buttons: bring it into view; on a narrow screen (the width at which
+         mm-std.css can fix the dock to the bottom edge) to the middle, so the dock never covers it */
+      if (cz) cz.addEventListener("click", function () {
+        var r = doc.getElementById("dg-result"), mq = root.matchMedia && root.matchMedia("(max-width: 899px)");
+        if (r && !r.hidden && r.scrollIntoView) r.scrollIntoView({ block: mq && mq.matches ? "center" : "nearest" });
+      });
       cat(doc);
     }
     return { scenarios: scens, ui: UI, seen: seen, leadsOk: leadsOk, bind: bind };
@@ -108,5 +154,5 @@
     });
   }
 
-  root.MmDrills = { version: 1, attach: attach, leadStep: leadStep, ui: UI };
+  root.MmDrills = { version: 1, attach: attach, leadStep: leadStep, ui: UI, words: L };
 })(typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : this);
