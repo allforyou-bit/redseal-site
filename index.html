@@ -91,6 +91,7 @@ nav{background:#1a3a5c;padding:0 24px;display:flex;align-items:center;position:s
 .section-title::before{content:'';width:4px;height:1.1em;border-radius:2px;background:#f0a500;flex-shrink:0}
 
 /* ── TRADE GRID ── */
+.trade-groups{display:grid;gap:22px;margin-bottom:46px}.trade-group .trades-compact{margin-bottom:0}.trade-group-h{font:700 1.15rem/1.2 "Barlow Condensed","Arial Narrow",Arial,sans-serif;color:#16222C;margin:0 0 10px}
 .trades-compact{display:grid;grid-template-columns:repeat(auto-fill,minmax(186px,1fr));gap:12px;margin-bottom:46px}
 @media(max-width:500px){.trades-compact{grid-template-columns:repeat(2,1fr);gap:10px}}
 .trade-mini{background:#fff;border:1px solid #e2e8ef;border-radius:12px;padding:16px 16px 14px;text-align:left;text-decoration:none;color:#1c2b3a;box-shadow:0 1px 2px rgba(15,37,64,.05);transition:transform .15s,box-shadow .15s,border-color .15s;display:flex;flex-direction:column;position:relative}
@@ -281,6 +282,15 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
   </div>
 </nav>
 
+<div id="hv3-resume" hidden style="background:#16222C;color:#EEF0EC;padding:12px max(16px,env(safe-area-inset-left,0px));font-family:Barlow,Segoe UI,Arial,sans-serif;text-align:center;font-size:1rem"><span id="hv3-resume-t"></span> <a id="hv3-resume-a" href="#" data-cta="home_resume_review" style="color:#FBF0B8;font-weight:700;display:inline-flex;align-items:center;min-height:44px">Review them now</a></div>
+<script>
+(function(){
+ var OLD={"447a":"306a","306a":"308a","308a":"313a","442a":"420b","313a":"442a","276a":"456a","403a":"gasfitter-class-a","309a":"309a","310s":"310s","310t":"310t","421a":"421a"};
+ var best=null,n=0;
+ try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);var m=/^wrongBank_(.+)$/.exec(k||"");if(!m||!OLD[m[1]])continue;var c=JSON.parse(localStorage.getItem(k)||"[]").length;if(c>n){n=c;best=OLD[m[1]];}}}catch(e){}
+ if(best&&n){var code=best==="gasfitter-class-a"?"Gasfitter":best.toUpperCase();document.getElementById("hv3-resume-t").textContent="Welcome back. You have "+n+" missed "+code+" question"+(n>1?"s":"")+" waiting.";document.getElementById("hv3-resume-a").href="/"+best+".html?review=1";document.getElementById("hv3-resume").hidden=false;}
+})();
+</script>
 <!-- HOME HERO v3 (2026-11-24, owner-approved): a live work-order question replaces the stats hero (old hero is in git before this commit) -->
 <section class="hv3" aria-label="Try a question">
  <div class="hv3-in">
@@ -340,6 +350,23 @@ show('421a');
 
   <!-- TRADE GRID -->
   <div class="section-title" id="trades">Choose Your Trade</div>
+  <div class="trade-groups">
+  <div class="trade-group"><h3 class="trade-group-h">Electrical</h3>
+  <div class="trades-compact">
+    <a href="/309a.html" class="trade-mini" style="--tc:#9b59b6">
+      <span class="trade-mini-icon"></span>
+      <div class="trade-mini-code">309A</div>
+      <div class="trade-mini-name">Construction Electrician</div>
+      <span class="trade-mini-qs">181 Questions</span>
+    </a>
+    <a href="/442a.html" class="trade-mini" style="--tc:#6c3483">
+      <span class="trade-mini-icon"></span>
+      <div class="trade-mini-code">442A</div>
+      <div class="trade-mini-name">Industrial Electrician</div>
+      <span class="trade-mini-qs">130 Questions</span>
+    </a>
+  </div></div>
+  <div class="trade-group"><h3 class="trade-group-h">Heavy equipment, truck and automotive</h3>
   <div class="trades-compact">
     <a href="/421a.html" class="trade-mini" style="--tc:#2d6a9f">
       <span class="trade-mini-icon"></span>
@@ -353,17 +380,20 @@ show('421a');
       <div class="trade-mini-name">Truck &amp; Transport Mechanic</div>
       <span class="trade-mini-qs">161 Questions</span>
     </a>
-    <a href="/309a.html" class="trade-mini" style="--tc:#9b59b6">
-      <span class="trade-mini-icon"></span>
-      <div class="trade-mini-code">309A</div>
-      <div class="trade-mini-name">Construction Electrician</div>
-      <span class="trade-mini-qs">181 Questions</span>
-    </a>
     <a href="/310s.html" class="trade-mini" style="--tc:#27ae60">
       <span class="trade-mini-icon"></span>
       <div class="trade-mini-code">310S</div>
       <div class="trade-mini-name">Automotive Service Tech</div>
       <span class="trade-mini-qs">183 Questions</span>
+    </a>
+  </div></div>
+  <div class="trade-group"><h3 class="trade-group-h">Piping, gas and refrigeration</h3>
+  <div class="trades-compact">
+    <a href="/306a.html" class="trade-mini" style="--tc:#2471a3">
+      <span class="trade-mini-icon"></span>
+      <div class="trade-mini-code">306A</div>
+      <div class="trade-mini-name">Plumber</div>
+      <span class="trade-mini-qs">130 Questions</span>
     </a>
     <a href="/313a.html" class="trade-mini" style="--tc:#17a589">
       <span class="trade-mini-icon"></span>
@@ -371,35 +401,20 @@ show('421a');
       <div class="trade-mini-name">HVAC/Refrigeration Mechanic</div>
       <span class="trade-mini-qs">115 Questions</span>
     </a>
-    <a href="/456a.html" class="trade-mini" style="--tc:#d35400">
-      <span class="trade-mini-icon"></span>
-      <div class="trade-mini-code">456A</div>
-      <div class="trade-mini-name">Welder</div>
-      <span class="trade-mini-qs">125 Questions</span>
-    </a>
-    <a href="/306a.html" class="trade-mini" style="--tc:#2471a3">
-      <span class="trade-mini-icon"></span>
-      <div class="trade-mini-code">306A</div>
-      <div class="trade-mini-name">Plumber</div>
-      <span class="trade-mini-qs">130 Questions</span>
-    </a>
-    <a href="/442a.html" class="trade-mini" style="--tc:#6c3483">
-      <span class="trade-mini-icon"></span>
-      <div class="trade-mini-code">442A</div>
-      <div class="trade-mini-name">Industrial Electrician</div>
-      <span class="trade-mini-qs">130 Questions</span>
-    </a>
-    <a href="/420b.html" class="trade-mini" style="--tc:#5d6d7e">
-      <span class="trade-mini-icon"></span>
-      <div class="trade-mini-code">420B</div>
-      <div class="trade-mini-name">Ironworker</div>
-      <span class="trade-mini-qs">121 Questions</span>
-    </a>
     <a href="/gasfitter-class-a.html" class="trade-mini" style="--tc:#c0392b">
       <span class="trade-mini-icon"></span>
       <div class="trade-mini-code">Gasfitter Class A</div>
       <div class="trade-mini-name">Gas Fitter (Class A)</div>
       <span class="trade-mini-qs">110 Questions</span>
+    </a>
+  </div></div>
+  <div class="trade-group"><h3 class="trade-group-h">Metal and structural</h3>
+  <div class="trades-compact">
+    <a href="/456a.html" class="trade-mini" style="--tc:#d35400">
+      <span class="trade-mini-icon"></span>
+      <div class="trade-mini-code">456A</div>
+      <div class="trade-mini-name">Welder</div>
+      <span class="trade-mini-qs">125 Questions</span>
     </a>
     <a href="/308a.html" class="trade-mini" style="--tc:#7d3c98">
       <span class="trade-mini-icon"></span>
@@ -407,6 +422,13 @@ show('421a');
       <div class="trade-mini-name">Sheet Metal Worker</div>
       <span class="trade-mini-qs">120 Questions</span>
     </a>
+    <a href="/420b.html" class="trade-mini" style="--tc:#5d6d7e">
+      <span class="trade-mini-icon"></span>
+      <div class="trade-mini-code">420B</div>
+      <div class="trade-mini-name">Ironworker</div>
+      <span class="trade-mini-qs">121 Questions</span>
+    </a>
+  </div></div>
   </div>
 
   <!-- HOW WE CHECK (2026-11-25, owner-approved after competitor check): our review is stricter than the paid sites' but was invisible -->
