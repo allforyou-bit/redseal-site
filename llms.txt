@@ -1,7 +1,7 @@
 # Red Seal Exam Prep (redsealquiz.ca)
 
 > Free practice questions for Canadian skilled-trades certification exams, with a
-> full written explanation on every answer. 1,782 original multiple-choice
+> full written explanation on every answer. 1,846 original multiple-choice
 > questions across 11 trades, all readable as plain HTML, plus a free 50-question
 > mock exam PDF per trade. Independent and unofficial: not affiliated with,
 > endorsed by, or approved by the Canadian Council of Directors of Apprenticeship
@@ -37,7 +37,7 @@ practice bank is how many practice questions this site publishes for that trade.
 | Trade | Official exam questions | Minimum to pass (70%) | Free practice bank here |
 |---|---|---|---|
 | 421A Heavy Duty Equipment Technician | 135 | 95 | 406 |
-| 310T Truck & Transport Mechanic | 135 | 95 | 161 |
+| 310T Truck & Transport Mechanic | 135 | 95 | 225 |
 | 310S Automotive Service Technician | 125 | 88 | 183 |
 | 306A Plumber | 125 | 88 | 130 |
 | 313A Refrigeration & Air Conditioning Mechanic | 125 | 88 | 115 |
@@ -54,7 +54,7 @@ may bring are set by your province or territory, not by Red Seal nationally.
 ## Full question banks (static HTML, complete)
 
 - [421A Heavy Duty Equipment Technician — 406 questions](https://redsealquiz.ca/421a-all-questions.html)
-- [310T Truck & Transport Mechanic — 161 questions](https://redsealquiz.ca/310t-all-questions.html)
+- [310T Truck & Transport Mechanic — 225 questions](https://redsealquiz.ca/310t-all-questions.html)
 - [310S Automotive Service Technician — 183 questions](https://redsealquiz.ca/310s-all-questions.html)
 - [306A Plumber — 130 questions](https://redsealquiz.ca/306a-all-questions.html)
 - [309A Construction Electrician — 181 questions](https://redsealquiz.ca/309a-all-questions.html)
@@ -80,13 +80,13 @@ Safety & Tools 25 · Diesel Engine 62 · Electrical Systems 60 · Hydraulic Syst
 - Free 50-question mock exam, what it covers, and the PDF (no sign-up): https://redsealquiz.ca/free-421a-mock-exam.html — direct file: https://redsealquiz.ca/dl/421a-free-50-question-mock-exam.pdf
 - Printable version: 406-question PDF with answer key and explanations, plus two full-length 135-question practice exams made from those questions, CA$29 — https://ko-fi.com/s/bd6ed3d51f
 
-### 310T Truck & Transport Mechanic — 161 practice questions (official exam: 135)
-Air Brakes 35 · Diesel Engine 33 · Electrical Systems 31 · Drivetrain 33 · Regulations & Inspections 29
+### 310T Truck & Transport Mechanic — 225 practice questions (official exam: 135)
+Air Brakes 47 · Diesel Engine 33 · Electrical Systems 33 · Drivetrain 33 · Regulations & Inspections 40
 
 - Read the whole bank: https://redsealquiz.ca/310t-all-questions.html
 - Practise interactively: https://redsealquiz.ca/310t.html
 - Free 50-question mock exam, what it covers, and the PDF (no sign-up): https://redsealquiz.ca/free-310t-mock-exam.html — direct file: https://redsealquiz.ca/dl/310t-free-50-question-mock-exam.pdf
-- Printable version: 161-question PDF with answer key and explanations, plus one full-length 135-question practice exam made from those questions, CA$24 — https://ko-fi.com/s/823f281042
+- Printable version: 225-question PDF with answer key and explanations, plus one full-length 135-question practice exam made from those questions, CA$24 — https://ko-fi.com/s/823f281042
 
 ### 310S Automotive Service Technician — 183 practice questions (official exam: 125)
 Engine 37 · Brakes 32 · Electrical 48 · Suspension 29 · Transmission 26 · HVAC 11
