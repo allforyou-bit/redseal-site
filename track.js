@@ -107,7 +107,7 @@
 
   /* Ko-fi product id -> trade. The link itself says which bank the visitor
      wanted, wherever it sits - on home, on a guide page, in the sticky bar.
-     Same eleven ids as PRODUCT in tools/rebuild_all_questions.py;
+     The eleven ids of PRODUCT in tools/rebuild_all_questions.py;
      scripts/acceptance_check.py fails if the site links a product id that is
      missing here or mapped to a different trade, so a new listing cannot
      silently fall back to "unknown". */
@@ -115,7 +115,9 @@
     "e1fa90dc7a": "306a", "1320877d42": "308a", "8ea5d0cd61": "309a",
     "1584a81d22": "310s", "823f281042": "310t", "bd62e0f1ae": "313a",
     "a87e57e4db": "420b", "bd6ed3d51f": "421a", "53b9fe7161": "442a",
-    "e8e2006b00": "456a", "6bdf8876ff": "gasfitter-class-a"
+    "e8e2006b00": "456a", "6bdf8876ff": "gasfitter-class-a",
+    /* single-exam tickets (2026-11-25): the unseen practice exam sold on its own */
+    "ae07496b9c": "309a", "dbb25557d4": "310s"
   };
 
   function tradeFromProduct(href) {
