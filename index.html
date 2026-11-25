@@ -203,6 +203,53 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
 .quiz-code[style*="e67e22"]{background:#b45f14!important}  /* 2.85 → 4.56 */
 </style>
 <link rel="stylesheet" href="design-v2.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Barlow:wght@400;500;600&family=Courier+Prime:wght@700&display=swap">
+<style id="home-v3">
+/* 2026-11-24 home hero v3 (owner-approved design proposal): the hero is a live carbon-copy work order with a real bank question. Scoped to .hv3. */
+.hv3{--paper:#EEF0EC;--ink:#16222C;--steel:#55626B;--rule:#C8CFD2;--canary:#FBF0B8;--canary-ink:#3B3416;--seal:#B5122A;--ok:#1D7448;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;--body:"Barlow","Segoe UI",Arial,sans-serif;--typed:"Courier Prime","Courier New",monospace;
+  background:var(--paper);color:var(--ink);font-family:var(--body);border-bottom:1px solid var(--rule)}
+.hv3-in{max-width:1120px;margin:0 auto;padding:40px max(16px,env(safe-area-inset-left,0px)) 48px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:44px;align-items:start}
+.hv3 h1{font:700 clamp(2.3rem,5.2vw,3.9rem)/1 var(--display);margin:0 0 16px;color:var(--ink);text-wrap:balance;text-align:left}
+.hv3-lede{font-size:1.12rem;line-height:1.5;color:var(--steel);max-width:36ch;margin:0 0 22px}
+.hv3-facts{display:flex;gap:26px;flex-wrap:wrap;margin:0 0 24px;padding:0;list-style:none}
+.hv3-facts li{font-size:.93rem;color:var(--steel)}
+.hv3-facts b{display:block;font:700 1.85rem/1 var(--display);color:var(--ink);font-variant-numeric:tabular-nums}
+.hv3-cta{display:flex;gap:10px 20px;flex-wrap:wrap;align-items:center;margin:0 0 22px}
+.hv3-cta .go{background:var(--seal);color:#fff;text-decoration:none;font:700 1.2rem/1 var(--display);padding:15px 24px;border-radius:4px;min-height:48px;display:inline-flex;align-items:center}
+.hv3-cta a.sec{color:var(--ink);font-weight:600;text-decoration:underline;text-decoration-color:var(--seal);text-underline-offset:5px;min-height:44px;display:inline-flex;align-items:center}
+.hv3-pick{font-weight:600;font-size:.93rem;margin:0 0 8px}
+.hv3-chips{display:flex;flex-wrap:wrap;gap:8px}
+.hv3-chips button{font:600 .93rem/1 var(--body);border:1.5px solid var(--rule);background:#fff;color:var(--ink);border-radius:999px;padding:10px 14px;min-height:44px;cursor:pointer}
+.hv3-chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.hv3-t{position:relative;background:var(--canary);color:var(--canary-ink);padding:22px 24px 20px 28px;box-shadow:0 18px 40px -24px rgba(22,34,44,.55)}
+.hv3-t::before{content:"";position:absolute;left:0;top:0;bottom:0;width:8px;background:radial-gradient(circle 4px at 0 50%,var(--paper) 3.5px,transparent 4px) 0 0/8px 18px repeat-y}
+.hv3-th{display:grid;grid-template-columns:1fr auto;gap:4px 14px;border-bottom:1.5px solid currentColor;padding-bottom:10px;margin-bottom:14px}
+.hv3-tt{font:700 1.25rem/1 var(--display)}
+.hv3-no{font:700 1rem/1 var(--typed);text-align:right}
+.hv3-meta{grid-column:1/-1;display:flex;gap:16px;flex-wrap:wrap;font-size:.86rem}
+.hv3-meta b{font-family:var(--typed)}
+.hv3-q{font:600 1.15rem/1.4 var(--body);margin:0 0 12px}
+.hv3-o{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.hv3-o button{width:100%;display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;text-align:left;font:500 1rem/1.4 var(--body);color:inherit;background:transparent;border:0;border-bottom:1px dashed rgba(59,52,22,.35);padding:10px 2px;min-height:44px;cursor:pointer}
+.hv3-o .bx{width:20px;height:20px;border:2px solid currentColor;margin-top:1px;display:grid;place-items:center;font:700 .95rem/1 var(--typed)}
+.hv3-o button:disabled{cursor:default}
+.hv3-o .r .bx{background:var(--ok);border-color:var(--ok);color:#fff}
+.hv3-o .w .bx{background:var(--seal);border-color:var(--seal);color:#fff}
+.hv3-o .w{text-decoration:line-through;text-decoration-color:var(--seal)}
+.hv3-n{margin-top:12px;border-top:1.5px solid currentColor;padding-top:10px;font-size:.97rem}
+.hv3-n b{font:700 1rem/1 var(--display);display:block;margin-bottom:4px}
+.hv3-f{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:14px;font-size:.92rem}
+.hv3-f a{font-weight:700;color:inherit;min-height:44px;display:inline-flex;align-items:center}
+.hv3-st{position:absolute;right:18px;top:60px;font:700 1.5rem/1 var(--display);padding:6px 12px;border:3px solid currentColor;border-radius:6px;transform:rotate(-9deg);opacity:0;pointer-events:none}
+.hv3-st.ok{color:var(--ok)}.hv3-st.no{color:var(--seal)}
+.hv3-st.show{animation:hv3s .32s cubic-bezier(.2,1.6,.4,1) forwards}
+@keyframes hv3s{0%{opacity:0;transform:rotate(-9deg) scale(1.8)}100%{opacity:.92;transform:rotate(-9deg) scale(1)}}
+@media (prefers-reduced-motion:reduce){.hv3-st.show{animation:none;opacity:.92}}
+.hv3 :focus-visible{outline:3px solid var(--seal);outline-offset:2px}
+@media (max-width:860px){.hv3-in{grid-template-columns:minmax(0,1fr);gap:24px;padding-top:24px;padding-bottom:32px}.hv3-facts{gap:20px;margin-bottom:18px}}
+</style>
+
 </head>
 <body>
 
@@ -234,23 +281,58 @@ nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;ma
   </div>
 </nav>
 
-<section class="hero-std">
-  <h1>Pass Your <span>Red Seal Exam</span><br>with Free Practice Questions</h1>
-  <p class="hero-sub">Canada's free exam prep for skilled trades apprentices — 1,782 practice questions, Mock Exam mode, and full explanations. No signup needed.</p>
-  <div class="hero-meta" style="margin-bottom:24px">
-    <span class="hero-pill">Updated November 2026</span>
+<!-- HOME HERO v3 (2026-11-24, owner-approved): a live work-order question replaces the stats hero (old hero is in git before this commit) -->
+<section class="hv3" aria-label="Try a question">
+ <div class="hv3-in">
+  <div>
+    <h1>Practise the Red Seal exam on real questions, explained the way a journeyperson would</h1>
+    <p class="hv3-lede">Canada's free exam prep for 11 trades, with full explanations and a Mock Exam mode. No sign-up. Try one now: it takes ten seconds.</p>
+    <ul class="hv3-facts">
+      <li><b>1,782</b>practice questions</li>
+      <li><b>11</b>trades covered</li>
+      <li><b>70%</b>pass mark on the real exam</li>
+    </ul>
+    <div class="hv3-cta">
+      <a href="/practice-quizzes.html" class="go" data-cta="home_hero_start">Take a free quiz</a>
+      <a href="/red-seal-trade-simulators.html" class="sec" data-cta="home_hero_sims">Try a trade simulator</a>
+      <a href="/red-seal-trades.html" class="sec">Career guides</a>
+    </div>
+    <p class="hv3-pick" id="hv3-pick">Your trade</p>
+    <div class="hv3-chips" role="group" aria-labelledby="hv3-pick" id="hv3-chips"></div>
   </div>
-  <div class="hero-btns">
-    <a href="/practice-quizzes.html" class="btn-primary">Take a Free Quiz →</a>
-    <a href="/red-seal-trades.html" class="btn-secondary">Browse Career Guides</a>
-    <a href="/red-seal-trade-simulators.html" class="btn-secondary" data-cta="home_hero_sims">Try a Trade Simulator</a>
-  </div>
-  <div class="hero-stats">
-    <div class="hero-stat"><div class="n">1,782</div><div class="l">Practice Questions</div></div>
-    <div class="hero-stat"><div class="n">11</div><div class="l">Trades Covered</div></div>
-    <div class="hero-stat"><div class="n">50+</div><div class="l">Free Guides</div></div>
-  </div>
+  <article class="hv3-t" aria-live="polite">
+    <div class="hv3-st" id="hv3-st"></div>
+    <div class="hv3-th"><div class="hv3-tt">Work order</div><div class="hv3-no" id="hv3-no"></div>
+      <div class="hv3-meta"><span>Trade <b id="hv3-tr"></b></span><span>Topic <b id="hv3-tp"></b></span></div></div>
+    <p class="hv3-q" id="hv3-q"></p>
+    <ul class="hv3-o" id="hv3-o"></ul>
+    <div class="hv3-n" id="hv3-n" hidden><b>Tech notes</b><span id="hv3-x"></span></div>
+    <div class="hv3-f"><span id="hv3-h">Tick one box.</span><a id="hv3-m" href="/421a.html" data-cta="home_ticket_more"></a></div>
+  </article>
+ </div>
 </section>
+<script>
+(function(){
+var Q={"421a":{"id":3,"topic":"Safety & Tools","text":"A technician notices a hydraulic hose with a small pinhole leak. What is the SAFEST way to check for the leak?","options":["Run a bare hand along the hose to feel for moisture","Use a rag to wipe the hose while the system is running","Increase system pressure to confirm location","Use a piece of cardboard or wood to detect the spray"],"answer":3,"explanation":"Use cardboard or wood only. High-pressure hydraulic fluid injection through skin (hydraulic injection injury) is a medical emergency. Never use bare hands. Pressure >100 PSI can inject fluid through skin without visible puncture.","n":406},"309a":{"id":8,"topic":"Motors & Controls","text":"A three-phase motor runs in the wrong direction. What is the SIMPLEST correction?","options":["Add a starting capacitor to the circuit","Replace the motor starter contactor","Swap any two of the supply phase conductors","Rewind the motor stator windings"],"answer":2,"explanation":"Reverse any two phases = reverse rotation. Three-phase motor direction is determined by phase sequence. Swapping any two of the three power conductors at the motor terminals (or disconnect) reverses the rotating magnetic field and thus the motor direction.","n":181},"310t":{"id":7,"topic":"Diesel Engine","text":"A truck diesel engine has low oil pressure at idle but normal pressure at high RPM. The MOST likely cause is:","options":["Faulty oil pressure sending unit","Blocked oil filter","Oil viscosity too high","Worn main or rod bearings"],"answer":3,"explanation":"Pressure low at idle, OK at RPM = worn bearings. Worn main or rod bearings with excessive clearance allow oil to escape faster than the pump supplies at low RPM; at high RPM, pump output overcomes the leakage. Compare oil pressure to spec: typically 10 PSI per 1000 RPM minimum.","n":161},"310s":{"id":5,"topic":"Brakes","text":"During a brake job, a technician finds the inner brake pad significantly more worn than the outer pad. What does this indicate?","options":["Seized or corroded caliper slide pins","A restricted brake hose on that wheel","Uneven wear across the rotor surface","A normal wear pattern for disc brake pads"],"answer":0,"explanation":"Inner pad more worn = caliper not releasing. When caliper slide pins are seized or corroded, the caliper cannot slide freely or retract fully. The piston side (inner pad) maintains contact while the outer pad rides free. Clean, inspect, and lubricate caliper slide pins with appropriate grease.","n":183},"313a":{"id":4,"topic":"Refrigerants","text":"A technician needs a cylinder to recover refrigerant from a system in Canada. Which cylinder is acceptable?","options":["The disposable cylinder the new refrigerant charge was supplied in","A cylinder marked to a Transport Canada specification and in date","A shop-built vessel fitted with a relief valve and a pressure gauge","Any cylinder rated above the refrigerant's saturation pressure"],"answer":1,"explanation":"A cylinder that will hold recovered refrigerant is a pressure receptacle for the transport of dangerous goods, so it has to carry a specification Transport Canada authorizes and it has to be within its requalification date. Transport Canada's own container pages describe the permanent TC markings a specification cylinder carries under CSA B339, and the requalifier's registered mark and date stamped on the cylinder each time it is requalified; CSA B340 governs the selection and use of those containers. Cylinders sold here are frequently dual-marked, because Transport Canada also lists DOT cylinders manufactured to the American rules among the authorized container types — so 'DOT-rated' on its own is US shorthand, and what actually matters is a specification Transport Canada accepts, plus a current requalification date.A single-use disposable cylinder is out on both counts: it was never built to be refilled, it has no overfill protection, and refilling it is prohibited. A shop-built vessel carries no specification marking at all, whatever fittings are hung on it. And a pressure rating is not a specification: a cylinder can be strong enough for the gas and still be unmarked, unauthorized or long out of date. Fill by weight against the cylinder's tare and rated capacity so a vapour space is left, and keep a separate, clearly labelled cylinder for a burnout or for mixed refrigerant.","n":115},"456a":{"id":3,"topic":"Safety & Tools","text":"What does WHMIS stand for?","options":["Workshop Handling & Machinery Inspection Safety","Workplace Hazardous Materials Information System","Workplace Hazard Management and Inspection Sheet","Welding Health and Material Inspection Standards"],"answer":1,"explanation":"WHMIS (Workplace Hazardous Materials Information System) is Canada's national hazard communication standard for hazardous products.","n":125},"306a":{"id":3,"topic":"Safety & Tools","text":"When using a pipe threading machine, the correct lubricant to use is:","options":["Motor oil","Water","Threading (cutting) oil","No lubricant needed for power threading"],"answer":2,"explanation":"Threading oil (cutting oil) lubricates and cools the die head, flushes the chips out of it, and lets the dies form a clean, full thread - which is what makes a tight, leak-free joint and what keeps the dies sharp. Wrong answers: motor oil is a hydrodynamic lubricant with no extreme-pressure sulfur or chlorine additives, so it will not stop the die teeth from welding and galling to the pipe, and it does not carry chips out of the die head - the threads come out torn. Water flash-rusts both the pipe and the dies and provides no boundary lubrication at all. Running a power threader dry is not an option either: the dies overheat within a few threads, the thread form is destroyed and the die set is ruined. Dark or black threading oil is the general-purpose product; clear or 'white' threading oil is used on stainless steel and on galvanized or potable-water work.","n":130},"442a":{"id":3,"topic":"Safety & Code","text":"Under the 2024 edition of CSA Z462, when may energized work go ahead instead of first putting the equipment into an electrically safe work condition?","options":["Only where doing so is not practicable","Only where it is rated at 600 V or lower","Only where arc-rated clothing is being worn","Only where a qualified person is watching"],"answer":0,"explanation":"Only where establishing that condition is not practicable. CSA Group's overview of the 2024 edition says the exception to the requirement to establish an electrically safe work condition (Clause 4.1.6.3) was revised to a single exception - when it is 'not practicable' to do so - to align with Canadian occupational health and safety regulations, and that the requirements for the condition were reorganized into Clauses 4.1.6.1 to 4.1.6.3. A voltage rating, a set of arc-rated clothing or a qualified person watching is not that exception: arc-rated clothing is protection for work that is still treated as energized, not a reason to skip the safe condition. Where energized work does go ahead, the 2024 edition still calls for an energized electrical work permit unless the activity is on its list of exemptions (Clause 4.3.2.3).","n":130}};
+var N={"306a":"Plumber","309a":"Construction Electrician","310s":"Automotive Service Technician","310t":"Truck and Transport Mechanic","313a":"Refrigeration and A/C Mechanic","421a":"Heavy Duty Equipment Technician","442a":"Industrial Electrician","456a":"Welder"};
+function g(i){return document.getElementById(i)}
+var chips=g('hv3-chips');
+Object.keys(Q).forEach(function(c){var b=document.createElement('button');b.type='button';b.id='hv3-c-'+c;b.textContent=c.toUpperCase();b.title=N[c];b.onclick=function(){show(c)};chips.appendChild(b)});
+function show(c){var d=Q[c];
+ chips.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',b.id==='hv3-c-'+c)});
+ g('hv3-no').textContent=c.toUpperCase()+'-'+('00'+d.id).slice(-3);g('hv3-tr').textContent=N[c];g('hv3-tp').textContent=d.topic;g('hv3-q').textContent=d.text;
+ var st=g('hv3-st');st.className='hv3-st';st.textContent='';g('hv3-n').hidden=true;g('hv3-h').textContent='Tick one box.';
+ var m=g('hv3-m');m.href='/'+c+'.html';m.textContent=(d.n-1)+' more '+c.toUpperCase()+' questions';
+ var ul=g('hv3-o');ul.innerHTML='';
+ d.options.forEach(function(o,i){var li=document.createElement('li'),b=document.createElement('button');b.type='button';b.innerHTML='<span class="bx"></span><span></span>';b.lastChild.textContent=o;b.onclick=function(){ans(c,i)};li.appendChild(b);ul.appendChild(li)});}
+function ans(c,i){var d=Q[c],ok=i===d.answer;
+ [].slice.call(document.querySelectorAll('#hv3-o button')).forEach(function(b,k){b.disabled=true;if(k===d.answer){b.classList.add('r');b.firstChild.textContent='\u2713'}else if(k===i){b.classList.add('w');b.firstChild.textContent='\u2717'}});
+ var st=g('hv3-st');st.textContent=ok?'Passed':'Review';st.className='hv3-st '+(ok?'ok':'no');void st.offsetWidth;st.classList.add('show');
+ g('hv3-x').textContent=d.explanation;g('hv3-n').hidden=false;g('hv3-h').textContent=ok?'Right. Keep going:':'Not this time. Read the notes, then:';
+ try{if(window.gtag)gtag('event','hero_ticket_answer',{trade:c,correct:ok})}catch(e){}}
+show('421a');
+})();
+</script>
 
 <div class="container">
 
