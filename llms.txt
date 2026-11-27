@@ -169,6 +169,7 @@ Appliances & Equipment 24 · Gas Supply Systems 19 · Piping Systems 16 · Venti
 - [Motor starter control circuit simulator for 309A and 442A: operate an example 24 V DC start/stop circuit with a seal-in contact, meter each part, then find the open or stuck part](https://redsealquiz.ca/motor-starter-control-circuit-simulator.html)
 - [Planetary gear set simulator for 421A and 310S: drive, hold and lock the members of an example planetary gear set, see the ratio and torque, then find a slipping band or clutch](https://redsealquiz.ca/planetary-gear-set-simulator.html)
 - [Multimeter practice simulator for 421A, 309A and 442A: set the dial and jacks of an example meter on a 12 V lamp circuit, measure volts, amps and ohms, and see what each mistake does](https://redsealquiz.ca/multimeter-practice-simulator.html)
+- [Refrigeration cycle simulator for 313A: change the charge and entering air temperatures on an example system with a fixed orifice or a TXV, read superheat and subcooling, then find the fault](https://redsealquiz.ca/refrigeration-cycle-simulator.html)
 
 ## The printable version, for completeness
 

@@ -28,7 +28,9 @@
    2026-11-04, trade = multi, meter for operate; the planetary gear set
    simulator by sim/sim-shell.v1.js, public 2026-11-06, trade = multi; the
    multimeter practice simulator by sim/sim-shell.v1.js, public 2026-11-20,
-   trade = multi, fault_solved placement = sim_<drill cause>).
+   trade = multi, fault_solved placement = sim_<drill cause>; the refrigeration
+   cycle simulator by sim/sim-shell.v1.js and sim/rfc-render.v1.js, public
+   2026-11-27, trade = multi, fault_solved placement = sim_<scene id>).
    Registered parameters only:
      sim_start          first use of the simulator in a page view (click, input
                         or key); placement = the mode in use, trade = 421a
@@ -39,8 +41,8 @@
    The offer card shown after a solve is a static data-cta="sim_result" link,
    so its clicks and impressions come from this file as buy_click,
    offer_view and offer_visible with placement sim_result. The DC, motor
-   starter, planetary and multimeter cards show no price, so a buy_click from them carries no
-   price_cad.
+   starter, planetary, multimeter and refrigeration cards show no price, so a buy_click
+   from them carries no price_cad.
 
    Mock result weak-topic line (added 2026-11-13, gate
    redseal-mock-result-weak-topic-link): showMockResults() on the eleven quiz
