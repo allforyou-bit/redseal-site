@@ -1,7 +1,7 @@
 # Red Seal Exam Prep (redsealquiz.ca)
 
 > Free practice questions for Canadian skilled-trades certification exams, with a
-> full written explanation on every answer. 1,846 original multiple-choice
+> full written explanation on every answer. 1,881 original multiple-choice
 > questions across 11 trades, all readable as plain HTML, plus a free 50-question
 > mock exam PDF per trade. Independent and unofficial: not affiliated with,
 > endorsed by, or approved by the Canadian Council of Directors of Apprenticeship
@@ -41,7 +41,7 @@ practice bank is how many practice questions this site publishes for that trade.
 | 310S Automotive Service Technician | 125 | 88 | 183 |
 | 306A Plumber | 125 | 88 | 130 |
 | 313A Refrigeration & Air Conditioning Mechanic | 125 | 88 | 115 |
-| 456A Welder | 125 | 88 | 125 |
+| 456A Welder | 125 | 88 | 160 |
 | 308A Sheet Metal Worker | 120 | 84 | 120 |
 | 420B Ironworker (Generalist) | 120 | 84 | 121 |
 | 309A Construction Electrician | 100 | 70 | 181 |
@@ -61,7 +61,7 @@ may bring are set by your province or territory, not by Red Seal nationally.
 - [442A Industrial Electrician — 130 questions](https://redsealquiz.ca/442a-all-questions.html)
 - [313A Refrigeration & Air Conditioning Mechanic — 115 questions](https://redsealquiz.ca/313a-all-questions.html)
 - [420B Ironworker (Generalist) — 121 questions](https://redsealquiz.ca/420b-all-questions.html)
-- [456A Welder — 125 questions](https://redsealquiz.ca/456a-all-questions.html)
+- [456A Welder — 160 questions](https://redsealquiz.ca/456a-all-questions.html)
 - [308A Sheet Metal Worker — 120 questions](https://redsealquiz.ca/308a-all-questions.html)
 - [Gasfitter Class A — 110 questions](https://redsealquiz.ca/gasfitter-class-a-all-questions.html)
 
@@ -136,13 +136,13 @@ Structural Steel Erection 24 · Rigging & Hoisting 23 · Welding & Cutting 18 ·
 - Free 50-question mock exam, what it covers, and the PDF (no sign-up): https://redsealquiz.ca/free-420b-mock-exam.html — direct file: https://redsealquiz.ca/dl/420b-free-50-question-mock-exam.pdf
 - Printable version: 121-question PDF with answer key and explanations, plus one full-length 120-question practice exam made from those questions, CA$19 — https://ko-fi.com/s/a87e57e4db
 
-### 456A Welder — 125 practice questions (official exam: 125)
-Safety & Tools 17 · OFC 13 · SMAW 24 · GMAW 25 · GTAW 20 · FCAW 12 · Theory 14
+### 456A Welder — 160 practice questions (official exam: 125)
+Safety & Tools 21 · OFC 14 · SMAW 24 · GMAW 25 · GTAW 21 · FCAW 12 · Theory 15 · Drawings & Layout 6 · Fit-up & Fabrication 8 · Cutting & Gouging 9 · SAW 5
 
 - Read the whole bank: https://redsealquiz.ca/456a-all-questions.html
 - Practise interactively: https://redsealquiz.ca/456a.html
 - Free 50-question mock exam, what it covers, and the PDF (no sign-up): https://redsealquiz.ca/free-456a-mock-exam.html — direct file: https://redsealquiz.ca/dl/456a-free-50-question-mock-exam.pdf
-- Printable version: 125-question PDF with answer key and explanations, plus one full-length 125-question practice exam made from those questions, CA$19 — https://ko-fi.com/s/e8e2006b00
+- Printable version: 160-question PDF with answer key and explanations, plus one full-length 125-question practice exam made from those questions, CA$24 — https://ko-fi.com/s/e8e2006b00
 
 ### 308A Sheet Metal Worker — 120 practice questions (official exam: 120)
 Layout & Pattern Dev 20 · Sheet Metal Fabrication 24 · Welding & Joining 20 · HVAC Systems 27 · Safety & Code 15 · Tools & Equipment 14
@@ -203,7 +203,7 @@ source; exam pages link red-seal.ca.
 - [8 Common Mistakes on the Red Seal 421A Exam (And How to Avoid Them)](https://redsealquiz.ca/common-mistakes-421a-exam.html): Eight mistakes to avoid on the Red Seal 421A Heavy Duty Equipment Technician exam. Each mistake comes with a specific fix.
 - [How to Become a Heavy Duty Equipment Technician in Canada | 421A](https://redsealquiz.ca/how-to-become-heavy-equipment-technician-canada.html): How to become a Red Seal 421A HET in Canada. Apprenticeship path and Job Bank wages ($25.00–$56.00/hr, 2024-2025 data). Provincial programs, certification steps, and exam requirements. 2026.
 - [421A Heavy Duty Equipment Tech Salary Canada 2026 | Job Bank Wage Data](https://redsealquiz.ca/heavy-equipment-technician-salary-canada.html): 421A wages: Job Bank lists heavy-duty equipment mechanics at $25.00–$56.00/hr (low–high) across Canada, median $40.00, with a high of $62.50/hr in Alberta (2024-2025 data, updated November 18, 2026). Compare all provinces.
-- [310T Truck Mechanic Exam Tips 2026 | Exam Strategy Guide](https://redsealquiz.ca/how-to-pass-red-seal-310t-exam.html): 8 tips to pass the Red Seal 310T Truck Mechanic exam. Air brakes, regulations, drivetrain — how the exam is weighted and how to walk in ready. 161 practice Qs.
+- [310T Truck Mechanic Exam Tips 2026 | Exam Strategy Guide](https://redsealquiz.ca/how-to-pass-red-seal-310t-exam.html): 8 tips to pass the Red Seal 310T Truck Mechanic exam. Air brakes, regulations, drivetrain — how the exam is weighted and how to walk in ready. 225 practice Qs.
 - [8 Common Mistakes on the Red Seal 310T Exam (And How to Avoid Them)](https://redsealquiz.ca/common-mistakes-310t-exam.html): Eight mistakes to avoid on the Red Seal 310T Truck and Transport Mechanic exam. Practical strategies for exam day
 - [How to Become a Truck & Transport Mechanic in Canada | 310T](https://redsealquiz.ca/how-to-become-truck-transport-mechanic-canada.html): 310T apprenticeship hours by province (Ontario 6,720 hrs), Job Bank wages $20.00–$45.00/hr (2024-2025 data, updated Nov 18, 2026). Provincial programs, exam requirements, Red Seal certification path. 2026.
 - [Truck & Transport Mechanic Salary Canada 2026 | 310T](https://redsealquiz.ca/truck-transport-mechanic-310t-salary-canada.html): 310T wages: Job Bank puts the NOC 72410 group, which includes truck and transport mechanics, at $20.00–$45.00/hr (low–high) across Canada, median $30.77 (2024-2025 data, updated November 18, 2026). Compare BC, AB, ON, MB rates.
@@ -231,7 +231,7 @@ source; exam pages link red-seal.ca.
 - [Common Mistakes on the 420B Ironworker Red Seal Exam | How to Avoid Them](https://redsealquiz.ca/common-mistakes-420b-exam.html): Eight mistakes to avoid on the Red Seal 420B Ironworker exam — rigging math, bolt specs, rebar and blueprint reading — and how to fix each one.
 - [420B Ironworker Career Guide Canada 2026 | How to Become a Red Seal Ironworker](https://redsealquiz.ca/420b-ironworker-career-canada.html): Complete guide to becoming a 420B Ironworker in Canada — apprenticeship requirements, Red Seal certification, provinces, career outlook, and pay. Updated 2026.
 - [420B Ironworker Salary Canada 2026 | Wages by Province & Experience](https://redsealquiz.ca/420b-ironworker-salary-canada.html): 420B Ironworker salary in Canada 2026 — hourly wages by province, apprentice vs journeyperson pay, union rates, Red Seal premium, and top-paying regions.
-- [456A Welder Exam Tips 2026 | Exam Strategy Guide](https://redsealquiz.ca/how-to-pass-red-seal-456a-exam.html): 8 tips for the Red Seal 456A Welder exam. SMAW, GMAW, GTAW, FCAW processes, weld defects, metallurgy, and how Red Seal splits the 125 questions. 125 practice Qs.
+- [456A Welder Exam Tips 2026 | Exam Strategy Guide](https://redsealquiz.ca/how-to-pass-red-seal-456a-exam.html): 8 tips for the Red Seal 456A Welder exam. SMAW, GMAW, GTAW, FCAW processes, weld defects, metallurgy, and how Red Seal splits the 125 questions. 160 practice Qs.
 - [8 Common Mistakes on the Red Seal 456A Exam (And How to Avoid Them)](https://redsealquiz.ca/common-mistakes-456a-exam.html): Eight mistakes to avoid on the Red Seal 456A Welder exam. Practical strategies for exam day.
 - [How to Become a Red Seal Welder in Canada | 456A 2026](https://redsealquiz.ca/welder-456a-career-canada.html): 456A: 3-year apprenticeship; UA–PLCAC mainline pipeline welder journeyman rate (Western Canada) $79.49/hr from May 1, 2025, 2026 rate TBD in the agreement. Provincial programs, CWB certification, and Red Seal exam requirements. Canada 2026.
 - [Red Seal Welder Salary Canada 2026 | 456A — $22–$48/hr](https://redsealquiz.ca/welder-456a-salary-canada.html): 456A welder wages: $22–$48/hr across Canada (Job Bank, 2024–25); the UA–PLCAC mainline pipeline welder journeyman rate (Western Canada) was $79.49/hr from May 1, 2025 (May 1, 2026 rate TBD in the agreement). Province-by-province breakdown for 2026.
