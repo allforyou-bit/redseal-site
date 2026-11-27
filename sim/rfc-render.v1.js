@@ -1,15 +1,12 @@
-/* Refrigeration cycle simulator renderer, v1 (refrigeration-design-v1-20261107.md sections 1, 3 to 6, as
-   changed by design v2 and v2.1), on sim-shell.v1.js, RfcEngine and RfcDraw (rfc-draw.v1.js, loaded first).
-   - Operate: system and three knob rows in the dock; the readouts list, the zone shares along both coils,
-     the outlet marks, the gauge needles and the temperature tags all come from RfcEngine.operate.
-   - Find the fault: shuffled scenes, one symptom, six tests (dock keys or the clamps, gauges and fans on the
-     drawing), a readings log with the same test at set-up, seven shuffled causes. The drawing stays at
-     set-up there (zones off, flow at the set-up rate) and shows only the tags of the tests taken.
-   - Every text is a sid of the content file (RfcContent): t() looks it up; a missing sid shows as [sid] and
-     is listed in RfcRender.missing. Templates take {slot} marks; a slot the text lacks follows it.
-   - No state is colour alone: vapour solid, mixture hollow, liquid medium; marks for flash gas and a wet
-     outlet; words beside every reading; aria-pressed on keys. Motion: dash phase and fan turns only, after
-     Play under reduced motion, paused off screen. */
+/* Refrigeration cycle simulator renderer, v1 (design v1 sections 1, 3-6, with v2 and v2.1), on sim-shell.v1.js,
+   RfcEngine and RfcDraw (loaded first).
+   - Operate: system and knob rows in the dock; readouts, coil zones, outlet marks, needles and tags all come
+     from RfcEngine.operate. Find the fault: shuffled scenes, one symptom, six tests (dock keys, or the clamps,
+     gauges and fans), a log with the same test at set-up, seven shuffled causes; the drawing stays at set-up
+     and shows only the tags of the tests taken.
+   - Every text is a content sid (RfcContent): a missing one shows as [sid] and is listed in RfcRender.missing.
+   - No state by colour alone; aria-pressed on keys. Motion: dash phase and fan turns, after Play under reduced
+     motion, paused off screen. */
 (function (root) {
   "use strict";
 
@@ -21,7 +18,7 @@
     "note.example", "note.model", "note.band", "note.setup_ref", "note.same_test", "note.example_input", "note.relative",
     "fault.scenes", "fault.scene", "fault.system", "fault.symptom_head", "fault.tests_head", "fault.reads_head",
     "fault.causes_head", "fault.causes_group", "fault.not_every", "fault.pick", "fault.reveal", "fault.why_head",
-    "fault.out_mark", "fault.open_mark"];
+    "fault.out_mark", "fault.open_mark", "fault.drawing"];
   var R = root.RfcRender = { version: 1, sids: function () { return USED.slice().sort(); }, missing: [] };
 
   var doc = root.document;
@@ -126,10 +123,13 @@
       r.bar.n.style.left = (Math.min(1, it.barSetup) * 100).toFixed(1) + "%";
     }
   }
+  /* the live region, and its copy at the top of the dock (aria-hidden, shown on phones only) */
+  function say(s, w, m) { S.say(s, w); text(ui.mt, m == null ? s : m); text(ui.mw, w.join(" ")); ui.mw.hidden = !w.length; }
+  /* the dock copy leaves out the state line, which the pressed keys under it already show */
   function sayStatus(list, msg) {
-    var main = [], warn = [];
-    list.forEach(function (x) { (x.warn ? warn : main).push(ft(x.sid, x.slots)); });
-    S.say((msg ? msg + " " : "") + main.join(" "), warn);
+    var main = [], warn = [], short = [];
+    list.forEach(function (x) { var s = ft(x.sid, x.slots); (x.warn ? warn : main).push(s); if (!x.warn && x.sid !== "status.op") short.push(s); });
+    say((msg ? msg + " " : "") + main.join(" "), warn, short.join(" "));
   }
   function paintOp(quiet) {
     var v = E.operate(op, prevOp);
@@ -159,11 +159,10 @@
     rd.items.forEach(function (it) {
       var q = mk("p", "sim-rd-v", null, null, li);
       q.appendChild(doc.createTextNode(t(it.name) + (it.bar != null ? "" : ": " + valText(it))));
-      if (it.wordSid) mk("span", "rfc-w w" + (it.word === "+" ? "p" : it.word === "-" ? "m" : "0"), t(it.wordSid), null, q);
+      if (it.wordSid || it.input) mk("span", "rfc-w" + (it.wordSid ? " w" + (it.word === "+" ? "p" : it.word === "-" ? "m" : "0") : ""), t(it.wordSid || "note.example_input"), null, q);
       if (it.bar != null) bar(it, li);
       else mk("p", "sim-rd-r", t("note.same_test") + " " + setText(it), null, li);
     });
-    mk("p", "sim-rd-note", t("note.example"), null, li);
     if (ui.reads.firstChild !== li) ui.reads.insertBefore(li, ui.reads.firstChild);
     return t(rd.name) + ": " + rd.items.map(function (it) { return t(it.name) + (it.bar != null ? "" : " " + valText(it)) + (it.wordSid ? ", " + t(it.wordSid) : ""); }).join("; ");
   }
@@ -173,17 +172,18 @@
     fs = r.fs;
     var s = logReading(r.reading), w = r.reading.warn.map(function (x) { return t(x.sid); });
     w.forEach(function (x) { mk("p", "sim-warn", x, null, byId("rfc-log-" + k)); });
+    if (ui.need && E.canPick(fs)) { ui.result.hidden = ui.reveal.hidden = true; ui.need = false; }
     paintFault();
-    S.say(s, w);
+    say(s, w);
   }
   function result(kind, verdict, reply, why) {
+    ui.need = false;
     ui.result.className = "sim-result" + (kind ? " " + kind : "");
     text(ui.verdict, verdict);
     ui.more.textContent = "";
     if (why && reply.length) mk("h4", null, t("fault.why_head"), null, ui.more);
     reply.forEach(function (x) { mk("p", null, ft(x.sid, x.slots), null, ui.more); });
     ui.result.hidden = false;
-    if (ui.result.scrollIntoView) ui.result.scrollIntoView({ block: "nearest" });
   }
   function mark(b, cls, sid) {
     flag(b, cls, true);
@@ -195,7 +195,7 @@
     var r = E.pick(fs, c), v = r.verdict ? ft(r.verdict.sid, r.verdict.slots) : "";
     fs = r.fs;
     if (r.kind === "done") return;
-    if (r.kind === "need") { result("", v, [], false); ui.reveal.hidden = false; S.say(v, []); return; }
+    if (r.kind === "need") { result("", v, [], false); ui.reveal.hidden = false; ui.need = true; say(v, []); keep(); return; }
     if (r.kind === "solve") {
       lockCauses();
       result("ok", v, r.reply, true);
@@ -211,7 +211,15 @@
       result("no", v, r.reply, false);
       ui.reveal.hidden = false;
     }
-    S.say(v + " " + r.reply.map(function (x) { return ft(x.sid, x.slots); }).join(" "), []);
+    say(v, []);
+    keep();
+  }
+  /* after say() (the status above resizes; WebKit has no scroll anchoring): a pick that disables the focused
+     button or hides Show the cause moves focus to the result; then the result, its verdict below the site menu */
+  function keep() {
+    var a = doc.activeElement;
+    if (!a || a === doc.body || a.disabled || a.hidden) ui.result.focus({ preventScroll: true });
+    if (ui.result.scrollIntoView) { ui.result.scrollIntoView({ block: "nearest" }); var q = ui.verdict.getBoundingClientRect(); if (q.top < 64) root.scrollBy(0, q.top - 64); }
   }
   function reveal() {
     if (!fs) return;
@@ -222,7 +230,8 @@
     var v = ft(r.verdict.sid, r.verdict.slots);
     result("", v, r.reply, true);
     ui.reveal.hidden = true;
-    S.say(v, []);
+    say(v, []);
+    keep();
   }
   function pickScene(id, btn) {
     fs = E.start(id);
@@ -241,7 +250,7 @@
     ui.caseBox.hidden = false;
     paintFault();
     S.setRoles();
-    S.say(t("fault.scene") + " " + num[id] + ". " + t("fault.symptom_head") + ": " + t(fs.symptom), []);
+    say(t("fault.scene") + " " + num[id] + ". " + t("fault.symptom_head") + ": " + t(fs.symptom), []);
   }
 
   /* ---------- keys and panels ---------- */
@@ -250,6 +259,7 @@
     all(ui.dock, "[data-md]").forEach(function (b) { press(b, b.getAttribute("data-md") === op.md); });
     all(ui.dock, "[data-knob]").forEach(function (b) { press(b, +b.getAttribute("data-v") === op[b.getAttribute("data-knob")]); });
     all(ui.dock, "[data-test]").forEach(function (b) { press(b, !!fs && fs.taken.indexOf(b.getAttribute("data-test")) >= 0); b.disabled = !fs; });
+    flag(ui.dock, "rfc-nofs", !fs);
     ui.opk.hidden = m !== "operate";
     ui.fxk.hidden = m !== FX;
   }
@@ -260,10 +270,12 @@
     if (!ui.caseBox) {
       ui.caseBox = mk("div", null, null, { hidden: "" }, pf, "dg-case");
       mk("p", "sim-dgnote", t("fault.system"), null, ui.caseBox);
+      mk("p", "sim-dgnote", t("fault.drawing"), null, ui.caseBox);
       mk("h3", "sim-h3", t("fault.symptom_head"), null, ui.caseBox);
       mk("p", "sim-symptom", null, null, ui.caseBox, "dg-symptom");
       mk("h3", "sim-h3", t("fault.reads_head"), null, ui.caseBox);
       mk("ul", "sim-reads", null, null, ui.caseBox, "dg-reads");
+      mk("p", "sim-rd-note", t("note.example"), null, ui.caseBox);
       mk("h3", "sim-h3", t("fault.causes_head"), null, ui.caseBox);
       mk("p", "sim-dgnote", t("fault.not_every"), null, ui.caseBox);
       var cz = grp(t("fault.causes_group"), ui.caseBox, "sim-col", "dg-causes");
@@ -276,6 +288,7 @@
       x = x.split(":"); ui[x[0]] = byId(x[1]);
       if (!ui[x[0]]) throw new Error("missing #" + x[1]);
     });
+    ui.result.setAttribute("tabindex", "-1");
     ui.offer = byId("sim-offer");
     if (ui.offer && ui.offer.parentNode !== ui.caseBox) ui.caseBox.appendChild(ui.offer);
     Sh.order(E.scenes().length, seed).forEach(function (j, i) {
@@ -286,8 +299,20 @@
   }
   function build() {
     var side = S.el.side, P = S.el.panels;
-    ui.dock = byId("sim-dock") || mk("div", "sim-dock rfc-dock", null, null, null, "sim-dock");
+    /* no sim-dock class: the shared sheet fixes a .sim-dock inside an Operate panel (another page) */
+    ui.dock = byId("sim-dock") || mk("div", "rfc-dock", null, null, null, "sim-dock");
     if (!ui.dock.parentNode) { var fp = side.querySelector("[data-panel]"); side.insertBefore(ui.dock, fp && fp.parentNode === side ? fp : null); }
+    var mir = mk("div", "rfc-mirror", null, { "aria-hidden": "true" });
+    ui.dock.insertBefore(mir, ui.dock.firstChild);
+    ui.mt = mk("p", null, null, null, mir); ui.mw = mk("p", "sim-warn", null, { hidden: "" }, mir);
+    /* --rfc-dh: the tallest the dock has been, for the space kept for it on phones (rfc-std.css); rfc-tall: a dock
+       over 45 % of the screen (large text) stays in the page. Both only grow, so the dock never moves itself */
+    var dh = 0;
+    if (root.ResizeObserver) new root.ResizeObserver(function () {
+      var h = ui.dock.offsetHeight;
+      if (h > dh) doc.documentElement.style.setProperty("--rfc-dh", (dh = h) + "px");
+      if (h > root.innerHeight * 0.45) flag(app, "rfc-tall", true);
+    }).observe(ui.dock);
     ui.opk = byId("rfc-opkeys") || grp(t("panel.operate"), ui.dock, "rfc-keys", "rfc-opkeys");
     if (!ui.opk.firstChild) {
       var g = grp(t("ctl.md"), ui.opk, "rfc-krow");
@@ -353,9 +378,11 @@
 
   /* ---------- shell hooks ---------- */
   function onMode(m) {
+    var at = m === FX ? ui.scen : S.el.panels[m].querySelector(".sim-hint");
     ui.dock.hidden = m === "explore";
-    if (m === FX) { paintFault(); S.say(fs ? "" : t("fault.pick"), []); }
-    else { paintOp(m === "explore"); if (m === "explore") S.say("", []); }
+    if (at && at.nextSibling !== ui.dock) at.parentNode.insertBefore(ui.dock, at.nextSibling);
+    if (m === FX) { paintFault(); say(fs ? "" : t("fault.pick"), []); }
+    else { paintOp(m === "explore"); if (m === "explore") say("", []); }
   }
   function roleLabel(g, m) { var k = g.getAttribute("data-test"); return k && m === FX && fs ? t("test." + k) : null; }
   function activate(g, m) { var k = g.getAttribute("data-test"); if (k && m === FX) runTest(k); }

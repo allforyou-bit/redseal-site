@@ -5,9 +5,15 @@
      solid (thick on the high side, thin on the low side), liquid a medium solid line, a liquid and vapour
      mixture a hollow line. Flash gas adds bubbles to the liquid line, a wet outlet adds drops to the suction
      line; every reading carries a word and an arrow mark; keys carry aria-pressed.
-   - Targets: parts, gauges, clamps and fans are 32-unit or larger hit areas; keys are 44 px or more.
+   - Find the fault holds the drawing at set-up, so there it shows no state at all: grey lines, no zones,
+     marks, dots or line key; the readings carry the scene.
+   - Targets: every drawing target has an invisible tap area (.tap, rfc-draw.v1.js) of 54 units or more a
+     side, 44 px or more on a 360 px screen; only the tap areas of the targets of the mode take pointer
+     events, so a part with no job in the mode never swallows a tap. Keys are 44 px or more.
    - Motion: the refrigerant dots move by the --ph variable and the fan blades by their transform, both set
-     by rfc-render.v1.js only while the shell lets the drawing move. */
+     by rfc-render.v1.js only while the shell lets the drawing move.
+   - Narrow screens: no layout in the page flow depends on the dock being on or off (.sim-dockon), so the
+     observer that sets it can never switch it back and forth (fresh-eye review A1). */
 
 /* ---------- drawing ---------- */
 .rfc-svg .lbl{font-style:normal;fill:#2c3e50;font-size:10.5px}
@@ -18,7 +24,12 @@
 .rfc-svg:not(.zoned) .rfc-zone{display:none}
 .rfc-ln path{fill:none;stroke-linejoin:round}
 .rfc-ln .lo{stroke:none}
-.rfc-svg .hit-ln{fill:none;stroke:rgba(0,0,0,0);stroke-width:20px;pointer-events:stroke}
+.rfc-svg .hit-ln{fill:none;stroke:rgba(0,0,0,0);stroke-width:20px}
+/* pointer events: the tap areas (and the line bands) of the targets the mode gives a job, nothing else */
+.rfc-svg *{pointer-events:none}
+.rfc-svg .tap{fill:#000;fill-opacity:0;stroke:none}
+.rfc-svg [role="button"]>.tap{pointer-events:visibleFill}
+.rfc-svg [role="button"]>.hit-ln{pointer-events:visibleStroke}
 /* line states, and the coil zones in the same patterns */
 .rfc-ln.k-hv .lm,.rfc-svg .z-v{stroke:#D55E00;stroke-width:6px}
 .rfc-ln.k-hl .lm,.rfc-svg .z-l{stroke:#D55E00;stroke-width:3.5px}
@@ -27,9 +38,9 @@
 .rfc-svg .zi{stroke:#fff!important;stroke-width:2.4px!important}
 .rfc-ln.k-lv .lm,.rfc-svg .z-lv{stroke:#0072B2;stroke-width:2.2px}
 /* refrigerant dots along the loop; the phase is set by the renderer */
-.rfc-svg .rfc-dots{fill:none;stroke:#1f2933;stroke-width:3px;stroke-linecap:round;stroke-dasharray:.1 13.9;stroke-dashoffset:calc(var(--ph,0) * 1px);pointer-events:none}
+.rfc-svg .rfc-dots{fill:none;stroke:#1f2933;stroke-width:3px;stroke-linecap:round;stroke-dasharray:.1 13.9;stroke-dashoffset:calc(var(--ph,0) * 1px)}
 /* outlet marks: flash gas in the liquid line, a wet evaporator outlet */
-.rfc-svg .rfc-flash,.rfc-svg .rfc-wet{display:none;pointer-events:none}
+.rfc-svg .rfc-flash,.rfc-svg .rfc-wet{display:none}
 .rfc-svg.flash .rfc-flash,.rfc-svg.wet .rfc-wet{display:inline}
 .rfc-svg .rfc-flash circle{fill:#fff;stroke:#D55E00;stroke-width:1.4px}
 .rfc-svg .rfc-wet .drop{fill:#0072B2;stroke:#fff;stroke-width:.8px}
@@ -47,13 +58,21 @@
 .rfc-svg .lead{stroke:#4a5568;stroke-width:1.5px}
 /* fans and air arrows */
 .rfc-svg .blade{stroke:#1a3a5c;stroke-width:3px;stroke-linecap:round}
-.rfc-svg .rfc-air{pointer-events:none}
 .rfc-svg .rfc-air .air{fill:none;stroke:#7b8794;stroke-width:1.3px;stroke-dasharray:4 3}
-.rfc-svg .rfc-tag{font:700 10.5px 'Segoe UI',Arial,sans-serif;fill:#1a3a5c;font-variant-numeric:tabular-nums;pointer-events:none}
-/* targets */
+.rfc-svg .rfc-tag{font:700 10.5px 'Segoe UI',Arial,sans-serif;fill:#1a3a5c;font-variant-numeric:tabular-nums}
+/* targets: a picked part, and the focus ring (navy on the tap area, 3:1 or more on white; the shared amber
+   ring on the hit shape is only about 2:1, so it is turned off here) */
 .rfc-svg .sel .hit-ln{stroke:rgba(240,165,0,.28)}
 .rfc-svg [role="button"]:focus-visible .hit-ln{stroke:rgba(240,165,0,.45)}
+.rfc-svg.sim-svg [role="button"]:focus-visible .hit{stroke:none}
+.rfc-svg.sim-svg [role="button"]:focus-visible .rfc-box{stroke:#9aa7b5;stroke-width:1px}
+.rfc-svg [role="button"]:focus-visible>.tap{fill:#f0a500;fill-opacity:.14;stroke:#1a3a5c;stroke-width:2.5px;vector-effect:non-scaling-stroke}
 .rfc-app[data-mode="fault"] .rfc-svg [data-test][role="button"] .clamp,.rfc-app[data-mode="fault"] .rfc-svg [data-test][role="button"] .arc{stroke:#9e6d00}
+/* Find the fault: the drawing stays at set-up, so it shows no line state, flow or key that a reading could
+   contradict (fresh-eye A5; the shared rule hides the key for a mode called diagnose, this page calls it fault) */
+.rfc-app[data-mode="fault"] .rfc-svg .rfc-ln .lm{stroke:#7b8794;stroke-width:3px}
+.rfc-app[data-mode="fault"] .rfc-svg .zi,.rfc-app[data-mode="fault"] .rfc-svg .rfc-dots,.rfc-app[data-mode="fault"] .rfc-key{display:none}
+.rfc-svg.neutral .rfc-tube{stroke:#7b8794}
 
 /* ---------- line legend under the drawing ---------- */
 .rfc-key .rfc-sw{flex:none;display:inline-block;width:26px;border-radius:2px}
@@ -65,8 +84,10 @@
 .rfc-sw.mk-flash{width:10px;height:10px;border:1.5px solid #D55E00;border-radius:50%;background:#fff}
 .rfc-sw.mk-wet{width:8px;height:11px;border-radius:50% 50% 50% 50%/65% 65% 35% 35%;background:#0072B2}
 
-/* ---------- the dock: system and knob rows (Operate), test keys (Find the fault) ---------- */
+/* ---------- the dock: system and knob rows (Operate), test keys (Find the fault); it follows the panel hint
+   (Operate) or the scene keys (Find the fault). .rfc-mirror is an aria-hidden copy of the status for phones ---------- */
 .rfc-dock{margin:0 0 12px}
+.rfc-mirror{display:none}
 .rfc-keys{display:grid;gap:4px;margin:0}
 .rfc-krow{display:grid;grid-template-columns:6.2em repeat(3,minmax(0,1fr));gap:4px;align-items:center;margin:0}
 .rfc-kl{font-size:.76rem;font-weight:700;line-height:1.15;color:#1f2933}
@@ -74,6 +95,25 @@
 .rfc-app .sim-mode{overflow-wrap:anywhere}
 .rfc-krow .sim-tog[aria-pressed="true"]::before{content:none}
 .rfc-tests{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+/* the shared sheet makes the warning fixed while the dock is on in a mode called operate (a rule for another
+   page); here it stays in the status in the page flow, or #sim-end would move with the dock (fresh-eye A1) */
+.rfc-app.sim-dockable.sim-dockon[data-mode] .sim-warn{position:static;margin:6px 0 0!important;padding:0;border-radius:0;background:none;box-shadow:none;font-size:inherit;line-height:inherit;pointer-events:auto}
+.rfc-app.sim-dockable.sim-dockon[data-mode] .rfc-mirror .sim-warn{margin:2px 0 0!important}
+
+/* ---------- keys that do nothing yet look it (fresh-eye A2), and stay readable (4.5:1 or more) ---------- */
+.rfc-app .sim-tog[disabled]{cursor:default;border-style:dashed;border-color:#9aa7b5;background:#f4f7fb;color:#4a5568}
+.rfc-app .sim-cause[disabled],.rfc-app .sim-btn[disabled]{cursor:default;opacity:1;border-color:#9aa7b5;color:#4a5568}
+/* focus: navy (11:1 on white) instead of the shared amber ring (about 2:1); the offer card keeps amber on navy */
+.rfc-app button:focus-visible{outline-color:#1a3a5c}
+.rfc-app .sim-result:focus{outline:none}
+.rfc-app .sim-result:focus-visible{outline:3px solid #1a3a5c;outline-offset:2px}
+/* the sticky site menu never hides what takes focus or is scrolled to: scroll padding (not margin, which a
+   browser ignores for a control already on screen behind the menu) moves into view what lies under it; anchors
+   keep their 64 px through it alone */
+html{scroll-padding-top:64px}
+[id]{scroll-margin-top:0}
+html.sim-embedded{scroll-padding-top:0}
 
 /* ---------- Operate readouts ---------- */
 .rfc-reads{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;margin:0 0 8px;padding:0;list-style:none}
@@ -93,6 +133,8 @@
 /* ---------- Find the fault ---------- */
 .rfc-app .sim-reads .sim-rd-v{font-weight:800;color:var(--primary);font-variant-numeric:tabular-nums}
 .rfc-app .sim-rd-r{margin-top:1px!important;color:#4a5568;font-size:.78rem}
+/* note.example once, under the log (content v3 P8); not while the log is empty */
+.rfc-app .sim-reads:empty+.sim-rd-note{display:none}
 .rfc-app .sim-cause.rfc-out{border-style:dashed;color:#6b4a00}
 .rfc-app .sim-cause.rfc-open{border-style:dotted}
 .rfc-mk{font-weight:600}
@@ -103,15 +145,54 @@
 .rfc-chip-t{flex:0 0 3.4em;font-weight:800;letter-spacing:.5px}
 .rfc-offer .rfc-chip a{flex:1 1 200px;min-height:44px;padding:8px 12px;line-height:1.3}
 
-/* ---------- narrow screens: the dock is fixed to the bottom edge in Operate and Find the fault while the
-   simulator is on screen (.sim-dockon from sim-shell.v1.js), above the cookie notice (--dock-b) ---------- */
+/* ---------- the fault table: a scroll cue when its columns run past the right edge (fresh-eye c17); the table
+   itself scrolls (display:block from the shared responsive table style) ---------- */
+.sim-tbl table{background:linear-gradient(90deg,#fff 30%,rgba(255,255,255,0)) 0 0/24px 100% no-repeat local,linear-gradient(270deg,#fff 30%,rgba(255,255,255,0)) 100% 0/24px 100% no-repeat local,radial-gradient(farthest-side at 0 50%,rgba(0,0,0,.2),rgba(0,0,0,0)) 0 0/10px 100% no-repeat scroll,radial-gradient(farthest-side at 100% 50%,rgba(0,0,0,.2),rgba(0,0,0,0)) 100% 0/10px 100% no-repeat scroll}
+
+/* ---------- narrow screens ---------- */
 @media(max-width:899px){
-.rfc-app.sim-dockable:not([data-mode="explore"]) .sim-side>.rfc-dock{position:fixed;left:0;right:0;bottom:var(--dock-b,0px);z-index:150;max-height:220px;margin:0;padding:4px 8px calc(6px + env(safe-area-inset-bottom,0px));overflow-y:auto;background:#fff;border-top:2px solid var(--primary);box-shadow:0 -2px 10px rgba(0,0,0,.18);transform:translateY(calc(100% + var(--dock-b,0px) + 12px));visibility:hidden;transition:transform .16s ease,visibility .16s}
-.rfc-app.sim-dockable.sim-dockon:not([data-mode="explore"]) .sim-side>.rfc-dock{transform:none;visibility:visible}
-.rfc-app.sim-dockable:not([data-mode="explore"]) .sim-side{padding-bottom:226px}
 .rfc-app .sim-bar .sim-pause{position:static;width:auto;margin-left:auto;padding:6px 12px;font-size:.84rem}
-.rfc-app.sim-dockable.sim-dockon:not([data-mode="explore"]) .sim-warn{position:fixed;left:8px;right:8px;bottom:calc(var(--dock-b,0px) + 226px + env(safe-area-inset-bottom,0px));z-index:150;margin:0!important;padding:6px 10px;border-radius:6px;background:#fff3e6;box-shadow:0 1px 6px rgba(0,0,0,.25);font-size:.84rem;line-height:1.35;pointer-events:none}
 .rfc-reads{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* phones upright (37.5em of height, 600 px at the default text size, or more): in Operate and Find the fault the dock is fixed to the bottom edge
+   while the simulator is on screen (.sim-dockon, sim-shell.v1.js), above the cookie notice (--dock-b). It holds
+   the status copy, then the keys: two knob groups a row in Operate, so the whole drawing, the status and the
+   keys fit on one screen. When the end of the simulator comes on screen the dock settles into the space kept
+   for it at the bottom of the card and scrolls away with the page, from the same place on screen, so nothing
+   jumps and no empty band is left. --rfc-dh is the dock height (rfc-render.v1.js): the kept space, the scroll
+   padding that keeps a focused or scrolled-to control clear of the dock, and the drawing height all use it.
+   .rfc-tall (a dock over 45 % of the screen, with large text) keeps the dock in the page flow instead. */
+@media(max-width:899px) and (min-height:37.5em){
+.rfc-app.sim-dockable:not([data-mode="explore"]):not(.rfc-tall) .rfc-dock{position:absolute;left:-17px;right:-17px;bottom:13px;z-index:150;margin:0;padding:4px 8px calc(6px + env(safe-area-inset-bottom,0px));background:#fff;border-top:2px solid var(--primary);box-shadow:0 -2px 10px rgba(0,0,0,.18)}
+.rfc-app.sim-dockable.sim-dockon:not([data-mode="explore"]):not(.rfc-tall) .rfc-dock{position:fixed;left:0;right:0;bottom:var(--dock-b,0px)}
+.rfc-app.sim-dockable:not([data-mode="explore"]):not(.rfc-tall) .sim-side{padding-bottom:calc(var(--rfc-dh,226px) + 2px)}
+html:has(.rfc-app.sim-dockable:not([data-mode="explore"]):not(.rfc-tall)){scroll-padding-bottom:calc(var(--rfc-dh,226px) + 8px)}
+.rfc-app.sim-dockable:not([data-mode="explore"]):not(.rfc-tall) .rfc-svg.sim-svg{max-height:max(330px,calc(100vh - 64px - var(--rfc-dh,226px)));max-height:max(330px,calc(100svh - 64px - var(--rfc-dh,226px)))}
+.rfc-app.sim-dockable:not([data-mode="explore"]):not(.rfc-tall) .rfc-mirror{display:block;min-height:5.5em;max-height:8.2em;margin:0 0 4px;padding:3px 8px;overflow-y:auto;overscroll-behavior:contain;border-left:4px solid var(--primary);border-radius:6px;background:var(--light);font-size:.8rem;line-height:1.35}
+.rfc-mirror p{margin:0}
+.rfc-mirror .sim-warn{margin-top:2px!important}
+.rfc-app.sim-dockable:not([data-mode="explore"]):not(.rfc-tall) #rfc-opkeys{grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 8px;align-items:end}
+.rfc-app.sim-dockable:not([data-mode="explore"]):not(.rfc-tall) #rfc-opkeys .rfc-krow{grid-template-columns:repeat(3,minmax(0,1fr));gap:1px 3px}
+.rfc-app.sim-dockable:not([data-mode="explore"]):not(.rfc-tall) #rfc-opkeys .rfc-krow:first-child{grid-template-columns:repeat(2,minmax(0,1fr))}
+.rfc-app.sim-dockable:not([data-mode="explore"]):not(.rfc-tall) #rfc-opkeys .rfc-kl{grid-column:1/-1;font-size:.72rem}
+.rfc-app.sim-dockable:not([data-mode="explore"]):not(.rfc-tall) .rfc-dock .sim-tog{padding:3px 2px;font-size:.8rem;line-height:1.15}
+/* no scene yet: the test keys would do nothing, so the dock shows only the status ("Pick a scene to start.") */
+.rfc-app.sim-dockable:not([data-mode="explore"]):not(.rfc-tall) .rfc-dock.rfc-nofs .rfc-tests{display:none}
+.rfc-app.sim-dockable:not([data-mode="explore"]):not(.rfc-tall) .rfc-dock.rfc-nofs .rfc-mirror{min-height:0}
+}
+@media(max-width:520px) and (min-height:37.5em){
+.rfc-app.sim-dockable:not([data-mode="explore"]):not(.rfc-tall) .rfc-dock{left:-9px;right:-9px;bottom:5px}
+}
+/* short screens (a phone on its side, a frame in a class page): the dock stays in the page flow, beside the
+   drawing when there is room for two columns; the drawing is no taller than the screen below the site menu, and
+   no shorter than 330 px, where the tap areas are still 44 px */
+@media(max-height:37.49em){
+.rfc-app.sim-app .rfc-svg.sim-svg{max-height:max(330px,calc(100vh - 70px));max-height:max(330px,calc(100svh - 70px))}
+}
+@media(max-height:37.49em) and (min-width:600px) and (max-width:899px){
+.rfc-app .sim-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.rfc-app .sim-fig{position:sticky;top:60px;align-self:start}
+html.sim-embedded .rfc-app .sim-fig{top:4px}
 }
 
 /* ---------- motion ---------- */
