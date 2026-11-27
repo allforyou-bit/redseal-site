@@ -1,0 +1,118 @@
+/* Refrigeration cycle simulator, v1: the cycle drawing, the dock, the readouts and Find the fault of the
+   refrigeration simulator page, on top of the shared simulator sheet (sim-std.css, inlined in the page).
+   Page classes: section.sim-app.rfc-app, svg.sim-svg.rfc-svg (rfc-draw.v1.js).
+   - No state is shown by colour alone. Lines and coil zones: high side vermillion, low side blue; vapour is
+     solid (thick on the high side, thin on the low side), liquid a medium solid line, a liquid and vapour
+     mixture a hollow line. Flash gas adds bubbles to the liquid line, a wet outlet adds drops to the suction
+     line; every reading carries a word and an arrow mark; keys carry aria-pressed.
+   - Targets: parts, gauges, clamps and fans are 32-unit or larger hit areas; keys are 44 px or more.
+   - Motion: the refrigerant dots move by the --ph variable and the fan blades by their transform, both set
+     by rfc-render.v1.js only while the shell lets the drawing move. */
+
+/* ---------- drawing ---------- */
+.rfc-svg .lbl{font-style:normal;fill:#2c3e50;font-size:10.5px}
+.rfc-svg .lbl.sm{font-size:9.5px}
+.rfc-svg .rfc-box{fill:#f4f7fb;stroke:#9aa7b5;stroke-width:1}
+.rfc-svg .rfc-tube{fill:none;stroke:#9aa7b5;stroke-width:5px;stroke-linejoin:round}
+.rfc-svg .rfc-zone{fill:none;stroke-linecap:butt;stroke-linejoin:round}
+.rfc-svg:not(.zoned) .rfc-zone{display:none}
+.rfc-ln path{fill:none;stroke-linejoin:round}
+.rfc-ln .lo{stroke:none}
+.rfc-svg .hit-ln{fill:none;stroke:rgba(0,0,0,0);stroke-width:20px;pointer-events:stroke}
+/* line states, and the coil zones in the same patterns */
+.rfc-ln.k-hv .lm,.rfc-svg .z-v{stroke:#D55E00;stroke-width:6px}
+.rfc-ln.k-hl .lm,.rfc-svg .z-l{stroke:#D55E00;stroke-width:3.5px}
+.rfc-svg .z-mh{stroke:#D55E00;stroke-width:6px}
+.rfc-ln.k-ml .lm,.rfc-svg .z-ml{stroke:#0072B2;stroke-width:6px}
+.rfc-svg .zi{stroke:#fff!important;stroke-width:2.4px!important}
+.rfc-ln.k-lv .lm,.rfc-svg .z-lv{stroke:#0072B2;stroke-width:2.2px}
+/* refrigerant dots along the loop; the phase is set by the renderer */
+.rfc-svg .rfc-dots{fill:none;stroke:#1f2933;stroke-width:3px;stroke-linecap:round;stroke-dasharray:.1 13.9;stroke-dashoffset:calc(var(--ph,0) * 1px);pointer-events:none}
+/* outlet marks: flash gas in the liquid line, a wet evaporator outlet */
+.rfc-svg .rfc-flash,.rfc-svg .rfc-wet{display:none;pointer-events:none}
+.rfc-svg.flash .rfc-flash,.rfc-svg.wet .rfc-wet{display:inline}
+.rfc-svg .rfc-flash circle{fill:#fff;stroke:#D55E00;stroke-width:1.4px}
+.rfc-svg .rfc-wet .drop{fill:#0072B2;stroke:#fff;stroke-width:.8px}
+/* one metering device at a time */
+.rfc-svg.md-TX .rfc-fx,.rfc-svg.md-FX .rfc-tx{display:none}
+.rfc-svg .capil{fill:none;stroke:#4a5568;stroke-width:1.2px;stroke-dasharray:3 2}
+/* gauges: an unlabelled arc, the set-up tick and a needle; no needle until a reading exists */
+.rfc-svg .hose{fill:none;stroke:#4a5568;stroke-width:1.6px}
+.rfc-svg .rfc-gauge .arc{fill:none;stroke:#4a5568;stroke-width:2.5px}
+.rfc-svg .rfc-gauge .tick{stroke:#b45f14;stroke-width:3px}
+.rfc-svg .needle .nd{stroke:#1a3a5c;stroke-width:2.2px;stroke-linecap:round}
+.rfc-svg .needle .hub{fill:#1a3a5c}
+.rfc-svg .needle.unk{display:none}
+.rfc-svg .clamp{fill:#fff;stroke:#1a3a5c;stroke-width:1.6px}
+.rfc-svg .lead{stroke:#4a5568;stroke-width:1.5px}
+/* fans and air arrows */
+.rfc-svg .blade{stroke:#1a3a5c;stroke-width:3px;stroke-linecap:round}
+.rfc-svg .rfc-air{pointer-events:none}
+.rfc-svg .rfc-air .air{fill:none;stroke:#7b8794;stroke-width:1.3px;stroke-dasharray:4 3}
+.rfc-svg .rfc-tag{font:700 10.5px 'Segoe UI',Arial,sans-serif;fill:#1a3a5c;font-variant-numeric:tabular-nums;pointer-events:none}
+/* targets */
+.rfc-svg .sel .hit-ln{stroke:rgba(240,165,0,.28)}
+.rfc-svg [role="button"]:focus-visible .hit-ln{stroke:rgba(240,165,0,.45)}
+.rfc-app[data-mode="fault"] .rfc-svg [data-test][role="button"] .clamp,.rfc-app[data-mode="fault"] .rfc-svg [data-test][role="button"] .arc{stroke:#9e6d00}
+
+/* ---------- line legend under the drawing ---------- */
+.rfc-key .rfc-sw{flex:none;display:inline-block;width:26px;border-radius:2px}
+.rfc-sw.k-hv{height:6px;background:#D55E00}
+.rfc-sw.k-hl{height:4px;background:#D55E00}
+.rfc-sw.k-mh{height:8px;border:2.5px solid #D55E00;background:#fff}
+.rfc-sw.k-ml{height:8px;border:2.5px solid #0072B2;background:#fff}
+.rfc-sw.k-lv{height:2px;background:#0072B2}
+.rfc-sw.mk-flash{width:10px;height:10px;border:1.5px solid #D55E00;border-radius:50%;background:#fff}
+.rfc-sw.mk-wet{width:8px;height:11px;border-radius:50% 50% 50% 50%/65% 65% 35% 35%;background:#0072B2}
+
+/* ---------- the dock: system and knob rows (Operate), test keys (Find the fault) ---------- */
+.rfc-dock{margin:0 0 12px}
+.rfc-keys{display:grid;gap:4px;margin:0}
+.rfc-krow{display:grid;grid-template-columns:6.2em repeat(3,minmax(0,1fr));gap:4px;align-items:center;margin:0}
+.rfc-kl{font-size:.76rem;font-weight:700;line-height:1.15;color:#1f2933}
+.rfc-dock .sim-tog{min-width:0;padding:6px 3px;font-size:.84rem;line-height:1.2;overflow-wrap:anywhere}
+.rfc-app .sim-mode{overflow-wrap:anywhere}
+.rfc-krow .sim-tog[aria-pressed="true"]::before{content:none}
+.rfc-tests{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+/* ---------- Operate readouts ---------- */
+.rfc-reads{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;margin:0 0 8px;padding:0;list-style:none}
+.rfc-rd{padding:6px 8px;border:1px solid var(--border);border-radius:8px;background:#fff;line-height:1.3}
+.rfc-rd p{margin:0}
+.rfc-rd-n{color:#4a5568;font-size:.78rem}
+.rfc-rd-v{color:var(--primary);font-size:.95rem;font-weight:800;font-variant-numeric:tabular-nums}
+.rfc-rd-s{color:#4a5568;font-size:.74rem}
+.rfc-rd .sim-gauge,.rfc-app .sim-reads .sim-gauge{margin:6px 0 4px}
+.rfc-rd-s:empty{display:none}
+.rfc-w{display:inline-block;margin-left:6px;padding:0 6px;border-radius:9px;background:#e3e9f0;color:#1f2933;font-size:.74rem;font-weight:700;line-height:1.5}
+.rfc-w:empty{display:none}
+.rfc-w.wp::before{content:"\25B2\00a0"}
+.rfc-w.wm::before{content:"\25BC\00a0"}
+.rfc-w.w0::before{content:"=\00a0"}
+
+/* ---------- Find the fault ---------- */
+.rfc-app .sim-reads .sim-rd-v{font-weight:800;color:var(--primary);font-variant-numeric:tabular-nums}
+.rfc-app .sim-rd-r{margin-top:1px!important;color:#4a5568;font-size:.78rem}
+.rfc-app .sim-cause.rfc-out{border-style:dashed;color:#6b4a00}
+.rfc-app .sim-cause.rfc-open{border-style:dotted}
+.rfc-mk{font-weight:600}
+
+/* ---------- offer card after a solve: the 313A chip, free questions first, then the printable PDF (as pgs-std.css) ---------- */
+.rfc-chips{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.rfc-chip{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:8px;border-radius:8px;background:rgba(255,255,255,.08)}
+.rfc-chip-t{flex:0 0 3.4em;font-weight:800;letter-spacing:.5px}
+.rfc-offer .rfc-chip a{flex:1 1 200px;min-height:44px;padding:8px 12px;line-height:1.3}
+
+/* ---------- narrow screens: the dock is fixed to the bottom edge in Operate and Find the fault while the
+   simulator is on screen (.sim-dockon from sim-shell.v1.js), above the cookie notice (--dock-b) ---------- */
+@media(max-width:899px){
+.rfc-app.sim-dockable:not([data-mode="explore"]) .sim-side>.rfc-dock{position:fixed;left:0;right:0;bottom:var(--dock-b,0px);z-index:150;max-height:220px;margin:0;padding:4px 8px calc(6px + env(safe-area-inset-bottom,0px));overflow-y:auto;background:#fff;border-top:2px solid var(--primary);box-shadow:0 -2px 10px rgba(0,0,0,.18);transform:translateY(calc(100% + var(--dock-b,0px) + 12px));visibility:hidden;transition:transform .16s ease,visibility .16s}
+.rfc-app.sim-dockable.sim-dockon:not([data-mode="explore"]) .sim-side>.rfc-dock{transform:none;visibility:visible}
+.rfc-app.sim-dockable:not([data-mode="explore"]) .sim-side{padding-bottom:226px}
+.rfc-app .sim-bar .sim-pause{position:static;width:auto;margin-left:auto;padding:6px 12px;font-size:.84rem}
+.rfc-app.sim-dockable.sim-dockon:not([data-mode="explore"]) .sim-warn{position:fixed;left:8px;right:8px;bottom:calc(var(--dock-b,0px) + 226px + env(safe-area-inset-bottom,0px));z-index:150;margin:0!important;padding:6px 10px;border-radius:6px;background:#fff3e6;box-shadow:0 1px 6px rgba(0,0,0,.25);font-size:.84rem;line-height:1.35;pointer-events:none}
+.rfc-reads{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+/* ---------- motion ---------- */
+@media (prefers-reduced-motion: reduce){.rfc-dock{transition:none!important}}

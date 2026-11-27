@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FSSHZMWVLW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FSSHZMWVLW');
+</script>
+<script src="/track.js" defer></script>
+<meta name="google-site-verification" content="AySEYGsNWhilNyl3EpVTQu6a3p0l6E1ZCe7P0EUN8O8" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>if(/[?&]embed=1(&|$)/.test(location.search))document.documentElement.classList.add("sim-embedded");</script>
+<title data-sid="meta.title">Refrigeration Cycle Simulator: Superheat, Subcooling and Faults</title>
+<meta name="description" data-sid="meta.description" content="Practise on example refrigeration systems: change the charge and entering air temperatures, read superheat and subcooling, and find the fault.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://redsealquiz.ca/refrigeration-cycle-simulator.html">
+<meta property="og:title" content="Refrigeration Cycle Simulator: Superheat, Subcooling and Faults">
+<meta property="og:description" content="Practise on example refrigeration systems: change the charge and entering air temperatures, read superheat and subcooling, and find the fault.">
+<meta property="og:url" content="https://redsealquiz.ca/refrigeration-cycle-simulator.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://redsealquiz.ca/og-card-v2.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is superheat?","acceptedAnswer":{"@type":"Answer","text":"Superheat is the suction line temperature at the evaporator outlet minus the evaporating temperature read from the suction gauge. Superheat and subcooling on a real system are judged against the equipment maker’s figure."}},{"@type":"Question","name":"What is subcooling?","acceptedAnswer":{"@type":"Answer","text":"Subcooling is the condensing temperature read from the head gauge minus the liquid line temperature at the condenser outlet. Zero subcooling: the liquid line can carry flash gas."}},{"@type":"Question","name":"Why does a charge fault show in subcooling on this TXV example?","acceptedAnswer":{"@type":"Answer","text":"This example has no receiver; its valve opens or closes to hold superheat, so the charge shows mainly in subcooling. Makers’ tables agree that subcooling falls with an undercharge and rises with an overcharge; they differ on superheat for an overcharge."}},{"@type":"Question","name":"How is an overcharge told from low airflow across the condenser?","acceptedAnswer":{"@type":"Answer","text":"Both raise head pressure. Subcooling rises with an overcharge; with low condenser airflow, makers’ tables give it about the same or lower."}},{"@type":"Question","name":"Why does a valve that has lost its bulb charge lower both pressures in this example?","acceptedAnswer":{"@type":"Answer","text":"It lets too little refrigerant through, so suction pressure falls with the starved evaporator; in this example head pressure falls too. Makers’ tables give both lower for a lost bulb charge but differ on head pressure for a restricted liquid line."}},{"@type":"Question","name":"Can this simulator’s readings tell air in the condenser from an overcharge or low airflow across the condenser?","acceptedAnswer":{"@type":"Answer","text":"Not in this simulator. Air in the condenser also raises head pressure. Nothing in this simulator separates them."}},{"@type":"Question","name":"Can this simulator’s readings tell a blocked filter drier from a valve that has lost its bulb charge?","acceptedAnswer":{"@type":"Answer","text":"Not in this simulator. An instrument maker’s table gives both the same readings; another maker’s table gives head pressure higher for a blocked drier. Nothing in this simulator separates the two."}},{"@type":"Question","name":"Which trade is this simulator for?","acceptedAnswer":{"@type":"Answer","text":"It is built for the 313A refrigeration and air conditioning mechanic exam; the other trades have their own practice pages on this site."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Refrigeration Cycle Simulator: Superheat, Subcooling and Faults","description":"Practise on example refrigeration systems: change the charge and entering air temperatures, read superheat and subcooling, and find the fault.","url":"https://redsealquiz.ca/refrigeration-cycle-simulator.html","applicationCategory":"EducationalApplication","operatingSystem":"Any","inLanguage":"en-CA","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"CAD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://redsealquiz.ca/"},{"@type":"ListItem","position":2,"name":"Refrigeration Cycle Simulator","item":"https://redsealquiz.ca/refrigeration-cycle-simulator.html"}]}</script>
+<link rel="stylesheet" href="/styles.css">
+<style id="nav-std">
+nav{background:#1a3a5c;padding:0 24px;display:flex;align-items:center;position:sticky;top:0;z-index:200;box-shadow:0 2px 8px rgba(0,0,0,.2);min-height:52px;font-family:'Segoe UI',Arial,sans-serif;line-height:1.7;width:100%}
+.nav-brand{color:white;text-decoration:none;font-weight:800;font-size:.92rem;white-space:nowrap;margin-right:auto;display:flex;align-items:center;gap:6px}
+.nav-links{display:flex;align-items:center;gap:4px;margin-left:auto}
+.nav-links>a{color:rgba(255,255,255,.85);text-decoration:none;font-weight:600;font-size:.85rem;padding:8px 12px;border-radius:6px;transition:all .2s;white-space:nowrap}
+.nav-links>a:hover,.nav-links>a.active{color:#f0a500;background:rgba(255,255,255,.08)}
+.nav-dropdown{position:relative}
+.nav-drop-btn{background:none;border:none;color:rgba(255,255,255,.85);font-weight:600;font-size:.85rem;cursor:pointer;font-family:inherit;padding:8px 12px;border-radius:6px;display:inline-flex;align-items:center;gap:4px;transition:all .2s;white-space:nowrap}
+.nav-drop-btn:hover{color:#f0a500;background:rgba(255,255,255,.08)}
+.nav-drop-menu{display:none;position:absolute;top:calc(100% + 6px);left:0;background:#1a3a5c;border-radius:10px;box-shadow:0 10px 32px rgba(0,0,0,.35);min-width:230px;z-index:300;border:1px solid rgba(255,255,255,.12);padding:6px 0}
+.nav-dropdown.open .nav-drop-menu{display:block}
+.nav-drop-menu a{display:block;padding:9px 18px;color:rgba(255,255,255,.85);text-decoration:none;font-size:.84rem;font-weight:600;transition:all .15s}
+.nav-drop-menu a:hover{background:rgba(255,255,255,.1);color:#f0a500;padding-left:22px}
+.nav-toggle{display:none;background:none;border:none;color:white;font-size:1.4rem;cursor:pointer;padding:8px;margin-left:12px;flex-shrink:0}
+@media(max-width:820px){
+  .nav-toggle{display:flex;align-items:center;justify-content:center}
+  .nav-links{display:none;position:absolute;top:52px;left:0;right:0;background:#1a3a5c;flex-direction:column;align-items:stretch;z-index:201;box-shadow:0 8px 24px rgba(0,0,0,.35);border-top:1px solid rgba(255,255,255,.1);max-height:80vh;overflow-y:auto;padding:6px 0}
+  .nav-links.open{display:flex}
+  .nav-links>a{padding:12px 20px!important;border-bottom:1px solid rgba(255,255,255,.07)!important;border-radius:0!important;font-size:.9rem!important}
+  .nav-dropdown{width:100%}
+  .nav-drop-btn{width:100%;padding:12px 20px!important;border-bottom:1px solid rgba(255,255,255,.07);border-radius:0;font-size:.9rem!important;justify-content:space-between}
+  .nav-drop-menu{position:static;background:#0d2440;box-shadow:none;border-radius:0;border:none;border-top:none;padding:0}
+  .nav-drop-menu a{padding:10px 20px 10px 34px!important;border-bottom:1px solid rgba(255,255,255,.04)!important;font-size:.86rem!important}
+}
+</style>
+<style id="hero-std">
+.hero-std{background:linear-gradient(135deg,#0f2540 0%,#1a3a5c 45%,#2d6a9f 100%);color:#fff;padding:48px 24px 42px;text-align:center;font-family:'Segoe UI',Arial,sans-serif;line-height:1.6}
+.hero-std .hero-kicker{display:inline-block;background:#f0a500;color:#fff;font-size:.78rem;font-weight:800;letter-spacing:2px;padding:4px 14px;border-radius:14px;margin-bottom:14px;text-transform:uppercase}
+.hero-std h1{font-size:1.85rem;font-weight:800;color:#fff;margin:0 auto 10px;max-width:760px;line-height:1.3}
+.hero-std h1 span{color:#f0a500}
+.hero-std .hero-sub{font-size:.98rem;color:rgba(255,255,255,.88);max-width:620px;margin:0 auto 18px}
+.hero-std .hero-meta{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.hero-std .hero-pill{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);color:#fff;font-size:.74rem;font-weight:600;padding:4px 12px;border-radius:14px}
+@media(max-width:600px){.hero-std h1{font-size:1.4rem}.hero-std .hero-sub{font-size:.88rem}}
+</style>
+<style id="tbl-responsive">
+/* 표가 좁은 화면을 넘칠 때 페이지 전체가 아니라 표만 가로 스크롤되게 한다.
+   (2026-07-29: .concept-table 이 375px 화면에서 427px 라 문서가 86px 밀려 있었다) */
+@media(max-width:640px){
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+}
+</style>
+<style id="readability-std">
+/* 본문 가독성 기준 (2026-07-29 실측 후 신설)
+   목록에 스타일이 없어 브라우저 기본값(줄간격 1.2 / 항목간격 0)이 적용됐다.
+   같은 상자의 문단은 1.7 인데 목록만 방치돼 소제목과 설명이 한 덩어리로 보였다.
+   개선 전후 실측(456a, 375x812): 줄간격 1.20→1.70, 항목간격 0→12px, 소제목 inline→block */
+.intro-box ul,.intro-box ol,.card ul,.card ol,.fit-section ul,.fit-section ol,
+.container>ul,.container>ol,.sg-card ul,.sg-card ol{margin:12px 0 16px;padding-left:22px}
+.intro-box li,.card li,.fit-section li,.container>ul>li,.container>ol>li,.sg-card li{
+  line-height:1.7;margin-bottom:12px}
+.intro-box li:last-child,.card li:last-child,.fit-section li:last-child{margin-bottom:0}
+.intro-box li>strong:first-child,.card li>strong:first-child,
+.fit-section li>strong:first-child{display:block;margin-bottom:2px}
+/* 내비게이션·푸터 목록은 본문 규칙에서 제외 */
+nav li,footer li,.nav-links li,.nav-drop-menu li{line-height:normal!important;margin-bottom:0!important}
+@media(max-width:640px){
+  .intro-box p,.intro-box li,.card p,.card li,.fit-section p,.fit-section li{
+    font-size:1rem;line-height:1.7}
+}
+</style>
+<style id="faq-visible-css">.faq-visible{margin:32px 0 8px}.faq-visible details{margin:0 0 10px;background:var(--card,#fff);border-radius:8px;border-left:4px solid var(--accent,#f0a500);box-shadow:0 1px 5px rgba(0,0,0,.07)}.faq-visible summary{display:flex;justify-content:space-between;align-items:center;gap:12px;box-sizing:border-box;min-height:48px;padding:12px 16px;cursor:pointer;list-style:none;color:var(--primary,#1a3a5c);font-weight:700;font-size:.95rem;line-height:1.45;overflow-wrap:anywhere}.faq-visible summary::-webkit-details-marker{display:none}.faq-visible summary::after{content:"\25BC";flex:none;font-size:.75rem;opacity:.6;transition:transform .2s}.faq-visible details[open]>summary::after{transform:rotate(180deg)}.faq-visible summary:focus-visible{outline:3px solid var(--accent,#f0a500);outline-offset:2px}.faq-visible details>p{margin:0;padding:0 16px 14px;line-height:1.7;overflow-wrap:anywhere}</style>
+<style id="sim-std">
+:root{--primary:#1a3a5c;--accent:#f0a500;--green:#27ae60;--red:#e74c3c;--light:#f4f7fb;--card:#ffffff;--text:#2c3e50;--border:#dce3ec}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--light);color:var(--text);font-family:'Segoe UI',Arial,sans-serif}
+[hidden]{display:none!important}
+[id]{scroll-margin-top:64px}
+.hero-std{padding:14px 16px 12px}
+.hero-std h1{font-size:1.5rem;margin:0 auto 6px;line-height:1.25}
+.hero-std .hero-kicker{margin:0;padding:3px 10px;font-size:.72rem;letter-spacing:1px;line-height:1.5}
+.hero-std .hero-pill{padding:3px 10px;line-height:1.5}
+.hero-std .hero-meta{align-items:center}
+@media(max-width:600px){.hero-std{padding:10px 8px 10px}.hero-std h1{font-size:1.2rem}.hero-std .hero-meta{gap:6px}.hero-std .hero-pill{padding:3px 8px;font-size:.7rem;white-space:nowrap}}
+.sim-page{max-width:1120px;margin:0 auto;padding:12px 16px 8px;line-height:1.7}
+.sim-lead{max-width:780px;margin:0 0 10px;font-size:1rem}
+.sim-discline{max-width:780px;margin:0 0 14px;padding:8px 12px;border-left:4px solid #b45f14;border-radius:6px;background:#fdf6ec;font-size:.86rem;line-height:1.5}
+.sim-app{position:relative;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.07);padding:12px;margin:0 0 14px}
+.sim-end{height:1px}
+.sim-vh{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;padding:0}
+.sim-bar{position:relative;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin:0 0 10px}
+.sim-rm{flex:1 1 100%;margin:0;color:#4a5568;font-size:.84rem;line-height:1.4}
+.sim-modes{display:flex;flex-wrap:wrap;gap:6px}
+.sim-mode,.sim-tog,.sim-btn,.sim-cause{min-height:44px;min-width:44px;padding:8px 14px;border:2px solid var(--primary);border-radius:8px;background:#fff;color:var(--primary);font:inherit;font-size:.92rem;font-weight:700;line-height:1.3;cursor:pointer}
+.sim-mode[aria-pressed="true"],.sim-tog[aria-pressed="true"]{background:var(--primary);color:#fff}
+.sim-mode[aria-pressed="true"]{box-shadow:inset 0 -4px 0 var(--accent)}
+.sim-tog[aria-pressed="true"]::before{content:"\2713\00a0"}
+.sim-btn[disabled],.sim-cause[disabled]{cursor:default;opacity:.6}
+.sim-app button:focus-visible,.sim-app a:focus-visible,.sim-app input:focus-visible,.sim-sec summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.sim-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.sim-fig{min-width:0}
+.sim-fig .sim-svg{display:block;width:100%;height:auto;max-width:520px;margin:0 auto;touch-action:manipulation}
+.sim-side{min-width:0}
+@media(min-width:900px){.sim-grid{grid-template-columns:minmax(0,430px) minmax(0,1fr)}.sim-fig{position:sticky;top:60px;align-self:start}}
+@media(max-width:520px){.sim-page{padding:8px 8px 8px}.sim-app{padding:4px;border-radius:10px}.sim-bar,.sim-side{padding:4px 4px}.sim-bar{margin:0 0 4px}}
+/* schematic symbols */
+.sim-svg text{font-family:'Segoe UI',Arial,sans-serif}
+.sim-svg .sym{fill:none;stroke:#2c3e50;stroke-width:1.4;stroke-linejoin:round;stroke-linecap:round}
+.sim-svg .sym.body{fill:#fff}
+.sim-svg .sym.thin{stroke-width:1}
+.sim-svg .sym.dash{stroke-width:1;stroke-dasharray:3 2}
+.sim-svg .sym.link{stroke-width:1.1}
+.sim-svg .sym.rod{stroke-width:2.4}
+.sim-svg .sym.pis{stroke-width:3}
+.sim-svg .symf{fill:#2c3e50;stroke:none}
+.sim-svg .encl{fill:none;stroke:#5b6b7c;stroke-width:1;stroke-dasharray:8 3 2 3}
+.sim-svg .dot{fill:#2c3e50}
+.sim-svg .lbl{font-size:11px;fill:#4a5568;font-style:italic}
+.sim-svg .lbl.sm{font-size:10px}
+.sim-svg .lbl-c{fill:#7a4e00;font-weight:700;font-style:normal}
+.sim-svg .pill rect{fill:var(--primary)}
+.sim-svg .pill text{fill:#fff;font-size:10.5px;font-weight:700;text-anchor:middle}
+.sim-svg .tpl,.sim-svg .tpb{fill:none;stroke:var(--primary);stroke-width:1.6}
+.sim-svg .hit{fill:rgba(0,0,0,0);stroke:none}
+.sim-svg [role="button"]{cursor:pointer}
+.sim-svg [role="button"]:focus{outline:none}
+.sim-svg [role="button"]:focus-visible .hit{stroke:var(--accent);stroke-width:3px;vector-effect:non-scaling-stroke}
+.sim-svg .sel .hit{fill:rgba(240,165,0,.14);stroke:#9e6d00;stroke-width:2px;stroke-dasharray:5 3;vector-effect:non-scaling-stroke}
+@media(hover:hover){.sim-svg [role="button"]:hover .hit{fill:rgba(26,58,92,.07)}}
+.sim-svg .rot{fill:none;stroke:none}
+.sim-svg .sw-bar{fill:none;stroke:none}
+.sim-svg .cp.stk .sw-bar{stroke:#6d97c0;stroke-width:7px;stroke-linecap:round}
+/* line states: colour + width + pattern (legend in the page text) */
+.ln path{fill:none;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.ln .lo{stroke:none}
+.ln .fa{display:none;fill:#fff;stroke-width:2px}
+.ln .lm{stroke:#2c3e50;stroke-width:2px}
+.ln.k-pilot .lm{stroke-width:1.5px;stroke-dasharray:7 4}
+.ln.k-drain .lm{stroke-width:1.5px;stroke-dasharray:2 3}
+.ln.st-idle .lm{stroke:#8a8a8a;stroke-width:1.5px}
+.ln.st-high .lm{stroke:#D55E00;stroke-width:6px;stroke-dasharray:none}
+.ln.st-low .lm{stroke:#0072B2;stroke-width:3.5px;stroke-dasharray:none}
+.ln.st-charge .lo{stroke:#1f1f1f;stroke-width:5px}
+.ln.st-charge .lm{stroke:#E69F00;stroke-width:3px;stroke-dasharray:none}
+.ln.st-pilot .lo{stroke:#1f1f1f;stroke-width:4px;stroke-dasharray:7 4}
+.ln.st-pilot .lm{stroke:#CC79A7;stroke-width:2px;stroke-dasharray:7 4}
+.ln.st-drain .lo{stroke:#1f1f1f;stroke-width:3.5px;stroke-dasharray:2 3}
+.ln.st-drain .lm{stroke:#56B4E9;stroke-width:1.5px;stroke-dasharray:2 3}
+.ln.st-suction .lm{stroke:#000;stroke-width:2px;stroke-dasharray:none}
+.ln.st-high .fa{stroke:#D55E00}
+.ln.st-low .fa{stroke:#0072B2}
+.ln.mv.st-high:not(.rev) .faf,.ln.mv.st-high.rev .far,.ln.mv.st-low:not(.rev) .faf,.ln.mv.st-low.rev .far,.lg-sw .faf{display:inline}
+.ln.mv .fa{animation:simfl-r var(--fl,1.2s) linear infinite}
+.ln.mv.st-low .fa{animation-duration:calc(var(--fl,1.2s)*1.7)}
+.ln.mv .fx-l{animation-name:simfl-l}
+.ln.mv .fx-d{animation-name:simfl-d}
+.ln.mv .fx-u{animation-name:simfl-u}
+.ln.mv.rev .fa{animation-direction:reverse}
+.ln.st-pilot.pr .lm{animation:simpulse 1.4s ease-in-out infinite}
+/* the arrows move by exactly one spacing (FLOW_STEP in the generator) */
+@keyframes simfl-r{to{transform:translateX(54px)}}
+@keyframes simfl-l{to{transform:translateX(-54px)}}
+@keyframes simfl-d{to{transform:translateY(54px)}}
+@keyframes simfl-u{to{transform:translateY(-54px)}}
+@keyframes simpulse{50%{stroke-opacity:.35}}
+@keyframes simspin{to{transform:rotate(360deg)}}
+/* component states */
+.sim-svg [data-comp].on .solbox{fill:#CC79A7}
+.sim-svg .mf-chk.open .ball{fill:#E69F00}
+.sim-svg .mf-rv.open .rv-arr{transform:translateY(-6px)}
+.sim-svg .mf-rv.open .rv-arr .sym{stroke:#D55E00;stroke-width:2.2}
+.sim-svg .mf-rv.open .rv-arr .symf{fill:#D55E00}
+.sim-svg .cp.open .rv-arr{transform:translateX(-6px)}
+.sim-svg .cp.open .rv-arr .sym{stroke:#0072B2;stroke-width:2.2}
+.sim-svg .cp.open .rv-arr .symf{fill:#0072B2}
+.sim-svg .cp.turn .rot{stroke:#6d97c0;stroke-width:7;stroke-dasharray:30 6 8 6 8 6 8 6 8 14;transform-box:fill-box;transform-origin:center;animation:simspin var(--spin,1.2s) linear infinite}
+.sim-svg .cp.turn.rev .rot{animation-direction:reverse}
+.sim-svg .cp.dmin .spd rect+rect{fill:#1a3a5c}
+.sim-svg .cp.rel .bk-pis{transform:translateX(-8px)}
+.sim-svg [data-comp="flushValve"].on .body{fill:#d8ecf8}
+/* test ports in fault scenarios */
+.sim-svg .tp.dim{opacity:.3}
+.sim-svg .tp.pick .hit{stroke:#9e6d00;stroke-width:2px;stroke-dasharray:4 3;vector-effect:non-scaling-stroke}
+.sim-svg .tp.got .hit{stroke:#1d8147;stroke-width:2.5px;stroke-dasharray:none;vector-effect:non-scaling-stroke}
+.sim-svg .tp.got .pill rect{fill:#1d8147}
+/* line colours, short form */
+.sim-key{display:flex;flex-wrap:wrap;gap:2px 12px;list-style:none;margin:6px 0 0;padding:0 4px;color:#4a5568;font-size:.76rem;line-height:1.5}
+.sim-key li{display:flex;align-items:center;gap:5px}
+.key-sw{flex:none;width:26px;height:10px;overflow:visible}
+.sim-app[data-mode="diagnose"] .sim-key{display:none}
+/* side panel */
+.sim-live{min-height:44px;margin:0 0 12px;padding:8px 12px;border-left:4px solid var(--primary);border-radius:6px;background:var(--light);font-size:.92rem}
+.sim-live p{margin:0}
+.sim-warn{margin-top:6px!important;color:#8b2a12;font-weight:700}
+.sim-warn::before{content:"\26A0\FE0E\00a0"}
+.sim-fail{padding:8px 12px;border-left:4px solid #b45f14;background:#fdf6ec;border-radius:6px}
+.sim-h{margin:0 0 6px;color:var(--primary);font-size:1.1rem}
+.sim-h3{margin:16px 0 6px;color:var(--primary);font-size:.98rem}
+.sim-hint{margin:0 0 10px;color:#4a5568;font-size:.88rem}
+.sim-dgnote{margin:0 0 10px;font-size:.88rem;color:#4a5568}
+.sim-row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
+.sim-col{display:flex;flex-direction:column;gap:8px}
+.sim-cause{text-align:left}
+.sim-cause.tried{border-style:dashed;color:#6b4a00}
+.sim-cause.tried::after{content:"\00a0\2014 not this one"}
+.sim-info h3{margin:0 0 6px;color:var(--primary);font-size:1rem}
+.sim-info p{margin:0 0 8px;font-size:.92rem}
+.sim-info .sim-part{margin:0 0 10px}
+.sim-dock{margin:4px 0 12px}
+.sim-lever{margin:0}
+.sim-presets{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.sim-presets button{min-width:0;padding:8px 2px}
+.sim-lever label{display:inline-block;font-weight:700;font-size:.92rem}
+.sim-lever output{margin-left:8px;font-weight:700;color:#1a3a5c}
+.sim-ends{display:flex;justify-content:space-between;font-size:.82rem;color:#4a5568}
+.sim-lever input[type="range"]{display:block;width:100%;height:44px;margin:0 0 6px;background:transparent;-webkit-appearance:none;appearance:none;cursor:pointer;touch-action:pan-y}
+.sim-lever input[type="range"]::-webkit-slider-runnable-track{height:8px;border-radius:4px;background:#c7d2de}
+.sim-lever input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:44px;height:44px;margin-top:-18px;border-radius:50%;border:4px solid #fff;background:var(--primary);box-shadow:0 0 0 2px var(--primary)}
+.sim-lever input[type="range"]::-moz-range-track{height:8px;border-radius:4px;background:#c7d2de}
+.sim-lever input[type="range"]::-moz-range-thumb{width:36px;height:36px;border-radius:50%;border:4px solid #fff;background:var(--primary);box-shadow:0 0 0 2px var(--primary)}
+.sim-symptom{margin:0 0 8px;padding:8px 12px;border-left:4px solid var(--accent);background:#fffaf0;border-radius:6px;font-weight:600}
+.sim-step{margin:0 0 6px;font-size:.9rem}
+.sim-cond{margin:0 0 6px;font-size:.88rem;color:#4a5568}
+.sim-reads{list-style:none;margin:0 0 8px;padding:0}
+.sim-rd{margin:0 0 8px;padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:#fff}
+.sim-rd p{margin:0}
+.sim-rd-h{font-size:.9rem}
+.sim-gauge{position:relative;height:14px;margin:8px 0 6px;border-radius:7px;background:#e3e9f0}
+.sim-gauge-f{position:absolute;left:0;top:0;bottom:0;border-radius:7px;background:var(--primary)}
+.sim-gauge-n{position:absolute;top:-4px;bottom:-4px;width:4px;margin-left:-2px;border-radius:2px;background:#b45f14}
+.sim-rd-v{font-size:.88rem;font-weight:700}
+.sim-rd-note{margin-top:2px!important;font-size:.78rem;color:#4a5568}
+.sim-result{margin:12px 0;padding:10px 12px;border-left:4px solid var(--primary);border-radius:6px;background:var(--light)}
+.sim-result.ok{border-left-color:#1d8147;background:#eef8f1}
+.sim-result.no{border-left-color:#b45f14;background:#fdf6ec}
+.sim-result h4{margin:10px 0 4px;color:var(--primary);font-size:.92rem}
+.sim-result p{margin:0 0 8px;font-size:.92rem}
+.sim-verdict{font-weight:700}
+.sim-offer{margin:14px 0 4px;padding:14px;border-radius:10px;background:var(--primary);color:#fff}
+.sim-offer-t{margin:0 0 10px;font-weight:700}
+.sim-offer-links{display:flex;flex-wrap:wrap;gap:10px}
+.sim-offer a{display:inline-flex;align-items:center;min-height:44px;padding:10px 16px;border-radius:8px;font-weight:800;text-decoration:none}
+.sim-offer-buy{background:var(--accent);color:var(--primary)}
+.sim-offer-free{border:2px solid rgba(255,255,255,.7);color:#fff}
+/* page text */
+.sim-sec{margin:0 0 20px;padding:20px;border-radius:12px;background:var(--card);box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.sim-sec h2{margin:0 0 12px;padding-bottom:8px;border-bottom:3px solid var(--accent);color:var(--primary);font-size:1.2rem}
+.sim-fold{margin:0 0 10px;padding:0}
+.sim-fold>details>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px;padding:8px 16px;cursor:pointer;list-style:none}
+.sim-fold>details>summary::-webkit-details-marker{display:none}
+.sim-fold>details>summary::after{content:"+";flex:none;color:var(--primary);font-size:1.5rem;font-weight:700;line-height:1}
+.sim-fold>details[open]>summary::after{content:"\2212"}
+.sim-fold h2{margin:0;padding:0;border:0;font-size:1.05rem;line-height:1.35}
+.sim-fold-b{padding:2px 16px 14px}
+.sim-sec h3{margin:16px 0 6px;color:var(--primary);font-size:1.02rem}
+.sim-sec p{margin:0 0 10px}
+.sim-legend{list-style:none;margin:0 0 10px;padding:0}
+.sim-legend li{display:flex;gap:12px;align-items:flex-start;margin:0 0 10px}
+.sim-legend p{margin:0}
+.lg-sw{flex:none;width:64px;height:18px;margin-top:5px;overflow:visible}
+.lg-sw .lbl{font-size:7px;font-family:'Segoe UI',Arial,sans-serif;text-anchor:middle}
+.sim-parts{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.sim-part{padding:12px 14px;border:1px solid var(--border);border-radius:10px}
+.sim-sec .sim-part h3{margin:0 0 6px}
+.sim-part p{font-size:.92rem}
+.sim-tbl table{width:100%;border-collapse:collapse;font-size:.88rem;line-height:1.55}
+.sim-tbl th,.sim-tbl td{padding:8px;border:1px solid var(--border);vertical-align:top;text-align:left}
+.sim-tbl thead th{background:var(--primary);color:#fff}
+.sim-tbl tbody th{background:var(--light)}
+@media(max-width:640px){.sim-tbl th,.sim-tbl td{min-width:12em}}
+.sim-why{margin-top:14px}
+.sim-why details{margin:0 0 10px;border-left:4px solid var(--accent);border-radius:8px;background:#fff;box-shadow:0 1px 5px rgba(0,0,0,.07)}
+.sim-why summary{display:flex;align-items:center;min-height:48px;padding:10px 16px;cursor:pointer;color:var(--primary);font-weight:700;line-height:1.45}
+.sim-why h4{margin:4px 16px;color:var(--primary);font-size:.92rem}
+.sim-why p{margin:0 16px 12px}
+.sim-disc{border-left:4px solid #b45f14}
+.sim-fold.sim-disc{margin-bottom:20px}
+.sim-src{color:#4a5568;font-size:.86rem}
+.faq-visible.sim-sec{margin:0 0 20px}
+footer{margin-top:40px;padding:24px;background:#1a3a5c;color:rgba(255,255,255,.75);text-align:center;font-size:.8rem}
+footer a{margin:0 4px;color:#f0a500;text-decoration:none}
+footer p:last-child a{display:inline-block;padding:12px 4px}
+/* narrow screens: the controls stay with the drawing. The dock is fixed in Drive only, and slides away
+   once the end of the simulator comes on screen (.sim-dockon, set by an IntersectionObserver), so it only
+   ever sits over the simulator itself. Without that observer it stays in the page flow. */
+@media(max-width:899px){
+.sim-bar{min-height:44px}
+.sim-modes{flex:1 1 100%;flex-wrap:nowrap}
+.sim-mode{flex:1 1 auto;min-width:0;padding:8px 6px}
+.sim-pause{position:absolute;top:calc(100% + 4px);right:0;z-index:2;width:84px;min-height:44px;padding:2px 4px;border-width:1px;font-size:.76rem;line-height:1.2}
+.sim-app.sim-rmon .sim-pause{position:static;width:auto;flex:none;padding:8px 14px;border-width:2px;font-size:.92rem}
+.sim-app.sim-rmon .sim-rm{flex:1 1 150px}
+.sim-app.sim-rmon.sim-still .sim-pause{background:var(--primary);color:#fff}
+.sim-dockable .sim-panel[data-panel="operate"] .sim-dock{position:fixed;left:0;right:0;bottom:var(--dock-b,0px);z-index:150;margin:0;padding:4px 8px calc(6px + env(safe-area-inset-bottom,0px));background:#fff;border-top:2px solid var(--primary);box-shadow:0 -2px 10px rgba(0,0,0,.18);transform:translateY(calc(100% + var(--dock-b,0px) + 12px));visibility:hidden;transition:transform .16s ease,visibility .16s}
+.sim-dockable.sim-dockon .sim-panel[data-panel="operate"] .sim-dock{transform:none;visibility:visible}
+.sim-dockable .sim-lever{display:grid;grid-template-columns:62px minmax(0,1fr);align-items:center;gap:6px}
+.sim-dockable .sim-lever label{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.sim-dockable .sim-lever output{margin:0;font-size:.84rem;line-height:1.2}
+.sim-dockable .sim-ends{display:none}
+.sim-dockable .sim-lever input[type="range"]{margin:0}
+.sim-app[data-mode="operate"] .sim-svg{max-height:calc(100vh - 176px);max-height:calc(100svh - 176px)}
+.sim-app[data-mode="operate"].sim-dockable.sim-dockon .sim-warn{position:fixed;left:8px;right:8px;bottom:calc(var(--dock-b,0px) + 110px + env(safe-area-inset-bottom,0px));z-index:150;margin:0!important;padding:6px 10px;border-radius:6px;background:#fff3e6;box-shadow:0 1px 6px rgba(0,0,0,.25);font-size:.84rem;line-height:1.35;pointer-events:none}
+}
+/* motion: paused with the button, stopped while the simulator is off screen, and off for reduced motion
+   until the visitor presses Play (.sim-play) */
+.sim-app.sim-still *,.sim-app.sim-away *{animation-play-state:paused!important}
+@media (prefers-reduced-motion: reduce){.sim-app:not(.sim-play) *,.sim-app:not(.sim-play) *::before,.sim-app:not(.sim-play) *::after,.sim-sec *{animation:none!important;transition:none!important}.sim-dock{transition:none!important}}
+/* embed mode (?embed=1 sets html.sim-embedded before the page draws): the simulator, its safety note and a
+   link back to the full page; the site menus, the explanation, the offer card and the footer are left out */
+.sim-embed-bar{display:none}
+html.sim-embedded nav,html.sim-embedded .hero-std,html.sim-embedded footer,html.sim-embedded .sim-page>.sim-sec:not(.sim-disc),html.sim-embedded .sim-offer{display:none!important}
+html.sim-embedded .sim-embed-bar{display:block;margin:12px 0;text-align:center}
+html.sim-embedded .sim-embed-bar a{display:inline-flex;align-items:center;min-height:44px;padding:0 8px}
+.sim-embed-code{display:block;width:100%;min-height:7em;margin:6px 0;padding:8px;border:1px solid #c9d3df;border-radius:6px;font:.8rem/1.4 ui-monospace,Consolas,monospace}
+</style>
+<link rel="stylesheet" href="sim/rfc-std.css?v=1">
+<script src="sim/rfc-engine.v1.js?v=1" defer></script>
+<script src="sim/circuits/rfc-cycle.v1.js?v=1" defer></script>
+<script src="sim/rfc-text.v1.js?v=1" defer></script>
+<script src="sim/sim-shell.v1.js?v=2" defer></script>
+<script src="sim/rfc-draw.v1.js?v=1" defer></script>
+<script src="sim/rfc-render.v1.js?v=1" defer></script>
+<link rel="stylesheet" href="design-v2.css">
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-brand" aria-label="Red Seal Prep home"><svg class="rs-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="8" fill="#0f2540"/><circle cx="16" cy="16" r="10.5" fill="#d32f2f"/><path d="M11 16.4l3.4 3.4 6.6-7.2" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Red Seal Prep</span></a>
+  <button class="nav-toggle" aria-label="Menu" id="navToggle">☰</button>
+  <div class="nav-links" id="navLinks">
+    <a href="/">Home</a>
+    <div class="nav-dropdown" id="tradesDrop">
+                  <button class="nav-drop-btn" id="tradesBtn" aria-haspopup="true">Trades ▾</button>
+      <div class="nav-drop-menu">
+        <a href="/456a.html">456A Welder</a>
+        <a href="/308a.html">308A Sheet Metal Worker</a>
+        <a href="/313a.html">313A HVAC/Refrigeration</a>
+        <a href="/309a.html">309A Construction Electrician</a>
+        <a href="/310s.html">310S Automotive Service Tech</a>
+        <a href="/310t.html">310T Truck &amp; Transport Mechanic</a>
+        <a href="/442a.html">442A Industrial Electrician</a>
+        <a href="/gasfitter-class-a.html">Gasfitter (Class A)</a>
+        <a href="/421a.html">421A Heavy Duty Equipment Tech</a>
+        <a href="/420b.html">420B Ironworker</a>
+        <a href="/306a.html">306A Plumber</a>
+      </div>
+    </div>
+    <a href="/practice-quizzes.html">Quizzes</a>
+    <a href="/red-seal-trades.html">Guides</a>
+    <a href="/about.html">About</a>
+  </div>
+</nav>
+
+<section class="hero-std">
+  <h1>Refrigeration Cycle <span>Simulator</span></h1>
+  <div class="hero-meta">
+    <span class="hero-kicker">TXV and fixed-orifice examples</span>
+    <span class="hero-pill">Updated November 2026</span>
+    <span class="hero-pill">Free, no sign-up</span>
+  </div>
+</section>
+
+<main class="sim-page" id="main">
+<section class="sim-app rfc-app" id="sim-app" aria-labelledby="sim-app-h" data-mode="operate" data-trade="multi">
+<h2 class="sim-vh" id="sim-app-h">Simulator</h2>
+<div class="sim-bar">
+<div class="sim-modes" role="group" aria-label="Simulator mode">
+<button type="button" class="sim-mode" data-mode="explore" aria-pressed="false">Explore</button>
+<button type="button" class="sim-mode" data-mode="operate" aria-pressed="true">Operate</button>
+<button type="button" class="sim-mode" data-mode="fault" aria-pressed="false">Find the fault</button>
+</div>
+<button type="button" class="sim-btn sim-pause" id="sim-pause">Pause animation</button>
+<p class="sim-rm" id="sim-rm" hidden>This device asks for reduced motion, so the animation waits for Play.</p>
+</div>
+<div class="sim-grid">
+<div class="sim-fig">
+<svg class="sim-svg rfc-svg md-TX" viewBox="0 0 380 400" aria-labelledby="rfc-svg-t rfc-svg-d"><title id="rfc-svg-t">Example refrigeration system</title><desc id="rfc-svg-d">One refrigerant loop: compressor, discharge line, condenser with its fan, liquid line, metering device, evaporator with its fan and suction line, with a suction gauge and a head gauge.</desc><g class="rfc-part rfc-coil" data-info="cond" data-name="Condenser"><path d="M78 44 H282 V100 H78 Z" class="hit rfc-box"/><path d="M270 56 H90 A8 8 0 0 0 90 72 H270 A8 8 0 0 1 270 88 H90" class="rfc-tube"/><path d="M270 56 H90 A8 8 0 0 0 90 72 H270 A8 8 0 0 1 270 88 H90" class="rfc-zone z-v" data-z="cond_desuperheat" pathLength="100"/><path d="M270 56 H90 A8 8 0 0 0 90 72 H270 A8 8 0 0 1 270 88 H90" class="rfc-zone z-mh" data-z="cond_condensing" pathLength="100"/><path d="M270 56 H90 A8 8 0 0 0 90 72 H270 A8 8 0 0 1 270 88 H90" class="rfc-zone zi z-mh" data-z="cond_condensing" pathLength="100"/><path d="M270 56 H90 A8 8 0 0 0 90 72 H270 A8 8 0 0 1 270 88 H90" class="rfc-zone z-l" data-z="cond_subcooling" pathLength="100"/><text x="84" y="110" class="lbl">Condenser</text></g><g class="rfc-part rfc-coil" data-info="evap" data-name="Evaporator"><path d="M78 276 H282 V332 H78 Z" class="hit rfc-box"/><path d="M90 288 H270 A8 8 0 0 1 270 304 H90 A8 8 0 0 0 90 320 H270" class="rfc-tube"/><path d="M90 288 H270 A8 8 0 0 1 270 304 H90 A8 8 0 0 0 90 320 H270" class="rfc-zone z-ml" data-z="evap_two_phase" pathLength="100"/><path d="M90 288 H270 A8 8 0 0 1 270 304 H90 A8 8 0 0 0 90 320 H270" class="rfc-zone zi z-ml" data-z="evap_two_phase" pathLength="100"/><path d="M90 288 H270 A8 8 0 0 1 270 304 H90 A8 8 0 0 0 90 320 H270" class="rfc-zone z-lv" data-z="evap_superheat" pathLength="100"/><text x="84" y="344" class="lbl">Evaporator</text></g><g class="rfc-part rfc-ln k-hv" data-info="dl" data-name="Discharge line"><path d="M300 180 V56 H270" class="hit-ln"/><path d="M300 180 V56 H270" class="lo"/><path d="M300 180 V56 H270" class="lm"/></g><g class="rfc-part rfc-ln k-hl" data-info="ll" data-name="Liquid line"><path d="M90 88 H60 V200" class="hit-ln"/><path d="M90 88 H60 V200" class="lo"/><path d="M90 88 H60 V200" class="lm"/></g><g class="rfc-ln k-ml" aria-hidden="true"><path d="M60 228 V288 H90" class="lo"/><path d="M60 228 V288 H90" class="lm"/><path d="M60 228 V288 H90" class="lm zi"/></g><g class="rfc-part rfc-ln k-lv" data-info="sl" data-name="Suction line"><path d="M270 320 H300 V224" class="hit-ln"/><path d="M270 320 H300 V224" class="lo"/><path d="M270 320 H300 V224" class="lm"/></g><g class="rfc-flash" aria-hidden="true"><circle cx="60" cy="140" r="2.6"/><circle cx="60" cy="158" r="2.6"/><circle cx="60" cy="176" r="2.6"/></g><g class="rfc-wet" aria-hidden="true"><path d="M292 257 Q288 262 292 265 Q296 262 292 257 Z" class="drop"/><path d="M292 275 Q288 280 292 283 Q296 280 292 275 Z" class="drop"/></g><path d="M300 180 V56 H270 H90 A8 8 0 0 0 90 72 H270 A8 8 0 0 1 270 88 H90 H60 V288 H90 H270 A8 8 0 0 1 270 304 H90 A8 8 0 0 0 90 320 H270 H300 V224" class="rfc-dots" aria-hidden="true"/><text x="292" y="140" class="lbl sm" text-anchor="end">Discharge</text><text x="68" y="168" class="lbl sm">Liquid</text><text x="292" y="238" class="lbl sm" text-anchor="end">Suction</text><g class="rfc-part" data-info="comp" data-name="Compressor"><path d="M272 174 H328 V230 H272 Z" class="hit"/><circle class="sym body" cx="300" cy="202" r="22"/><path d="M284 190 L318 196 M284 214 L318 208" class="sym"/><text x="272" y="206" class="lbl" text-anchor="end">Compressor</text></g><g class="rfc-part rfc-fx" data-info="md" data-name="Fixed orifice"><path d="M44 198 H76 V230 H44 Z" class="hit"/><path d="M52 200 L58 214 L52 228 M68 200 L62 214 L68 228" class="sym"/><text x="78" y="218" class="lbl">Fixed orifice</text></g><g class="rfc-part rfc-tx" data-info="txv" data-name="Thermostatic expansion valve (TXV)"><path d="M30 198 H76 V230 H30 Z" class="hit"/><path d="M50 202 H70 L60 214 Z M50 226 H70 L60 214 Z" class="sym body"/><path d="M60 214 H46 M46 207 A7 7 0 0 0 46 221 Z" class="sym body"/><text x="78" y="218" class="lbl">TXV</text></g><g class="rfc-part rfc-tx" data-info="bulb" data-name="Sensing bulb"><path d="M38 214 V350 H286 V332" class="hit-ln"/><path d="M38 214 V350 H286 V332" class="capil"/><path d="M278 323 H294 V333 H278 Z" class="sym body"/><text x="298" y="344" class="lbl sm">Bulb</text></g><g class="rfc-clamp" data-test="liquid_line" data-name="Liquid line"><circle class="hit" cx="60" cy="122" r="16"/><path d="M53 118 H67 V126 H53 Z" class="clamp"/></g><text id="rfc-tag-T3" class="rfc-tag" x="70" y="126" text-anchor="start"></text><g class="rfc-clamp" data-test="suction_line" data-name="Suction line"><circle class="hit" cx="300" cy="306" r="16"/><path d="M293 302 H307 V310 H293 Z" class="clamp"/></g><text id="rfc-tag-T1" class="rfc-tag" x="310" y="318" text-anchor="start"></text><g class="rfc-clamp" data-test="amps" data-name="Amps"><circle class="hit" cx="358" cy="202" r="16"/><path d="M351 198 H365 V206 H351 Z" class="clamp"/></g><path d="M322 202 H374" class="lead"/><path d="M300 118 H326" class="hose"/><g class="rfc-part rfc-gauge" data-info="gH" data-name="Head gauge" data-test="gauges"><circle class="hit" cx="344" cy="118" r="24"/><circle class="sym body" cx="344" cy="118" r="18"/><path d="M331.8 122.4 A13 13 0 1 1 356.2 122.4" class="arc"/><path d="M344 102 V108" class="tick"/><g id="rfc-n-Pd" class="needle"><path d="M344 121 V105" class="nd"/><circle cx="344" cy="118" r="2.2" class="hub"/></g><text x="378" y="94" class="lbl sm" text-anchor="end">Head</text></g><text id="rfc-tag-Tc" class="rfc-tag" x="344" y="152" text-anchor="middle"></text><path d="M300 252 H326" class="hose"/><g class="rfc-part rfc-gauge" data-info="gS" data-name="Suction gauge" data-test="gauges"><circle class="hit" cx="344" cy="252" r="24"/><circle class="sym body" cx="344" cy="252" r="18"/><path d="M331.8 256.4 A13 13 0 1 1 356.2 256.4" class="arc"/><path d="M344 236 V242" class="tick"/><g id="rfc-n-Ps" class="needle"><path d="M344 255 V239" class="nd"/><circle cx="344" cy="252" r="2.2" class="hub"/></g><text x="378" y="228" class="lbl sm" text-anchor="end">Suction</text></g><text id="rfc-tag-Te" class="rfc-tag" x="344" y="286" text-anchor="middle"></text><g class="rfc-part rfc-fan" data-info="fanC" data-name="Condenser fan" data-test="cond_air"><circle class="hit" cx="46" cy="40" r="22"/><circle class="sym body" cx="46" cy="40" r="16"/><g id="rfc-b-fanC"><path d="M46 40 L46.0 27.0" class="blade"/><path d="M46 40 L57.3 46.5" class="blade"/><path d="M46 40 L34.7 46.5" class="blade"/></g></g><g class="rfc-air" aria-hidden="true"><path d="M116 112 V34 M112 40 L116 32 L120 40" class="air"/><path d="M156 112 V34 M152 40 L156 32 L160 40" class="air"/><path d="M196 112 V34 M192 40 L196 32 L200 40" class="air"/><path d="M236 112 V34 M232 40 L236 32 L240 40" class="air"/></g><text x="176" y="126" class="lbl sm" text-anchor="end">Air in</text><text id="rfc-tag-amb" class="rfc-tag" x="180" y="126" text-anchor="start"></text><text x="176" y="22" class="lbl sm" text-anchor="end">Air out</text><text id="rfc-tag-aco" class="rfc-tag" x="180" y="22" text-anchor="start"></text><g class="rfc-part rfc-fan" data-info="fanE" data-name="Evaporator fan" data-test="evap_air"><circle class="hit" cx="350" cy="372" r="22"/><circle class="sym body" cx="350" cy="372" r="16"/><g id="rfc-b-fanE"><path d="M350 372 L350.0 359.0" class="blade"/><path d="M350 372 L361.3 378.5" class="blade"/><path d="M350 372 L338.7 378.5" class="blade"/></g></g><g class="rfc-air" aria-hidden="true"><path d="M130 368 V268 M126 274 L130 266 L134 274" class="air"/><path d="M190 368 V268 M186 274 L190 266 L194 274" class="air"/><path d="M250 368 V268 M246 274 L250 266 L254 274" class="air"/></g><text x="186" y="386" class="lbl sm" text-anchor="end">Air in</text><text id="rfc-tag-ai" class="rfc-tag" x="190" y="386" text-anchor="start"></text><text x="186" y="262" class="lbl sm" text-anchor="end">Air out</text><text id="rfc-tag-aeo" class="rfc-tag" x="190" y="262" text-anchor="start"></text></svg>
+<ul class="sim-key rfc-key" aria-label="Line key"><li><span class="rfc-sw k-hv" aria-hidden="true"></span>High-side vapour</li><li><span class="rfc-sw k-hl" aria-hidden="true"></span>High-side liquid</li><li><span class="rfc-sw k-mh" aria-hidden="true"></span>High-side liquid and vapour</li><li><span class="rfc-sw k-ml" aria-hidden="true"></span>Low-side liquid and vapour</li><li><span class="rfc-sw k-lv" aria-hidden="true"></span>Low-side vapour</li><li><span class="rfc-sw mk-flash" aria-hidden="true"></span>Flash gas in the liquid line</li><li><span class="rfc-sw mk-wet" aria-hidden="true"></span>Wet evaporator outlet</li></ul>
+</div>
+<div class="sim-side">
+<div class="sim-live" id="sim-live" aria-live="polite"><p id="sim-status"></p><p class="sim-warn" id="sim-warn" hidden></p></div>
+<p class="sim-fail" id="sim-fail" hidden>The simulator could not start in this browser. The text below still works.</p>
+<noscript><p class="sim-fail">The simulator controls need JavaScript. The drawing, the legend and the text below work without it.</p></noscript>
+<div class="sim-panel" data-panel="explore" hidden><h2 class="sim-h">Explore the parts</h2><p class="sim-hint">Tap a part of the drawing, or move to it with the Tab key and press Enter, to read what it does.</p><div class="sim-info" id="sim-info" hidden><div id="sim-info-body"></div></div></div><div class="sim-panel" data-panel="operate"><h2 class="sim-h">Operate the system</h2><p class="sim-hint">Pick a metering device, then change one row at a time; each reading shows its set-up value beside it.</p></div><div class="sim-panel" data-panel="fault" hidden><h2 class="sim-h">Find the fault</h2><p class="sim-hint">Pick a scene, take readings and compare each with set-up, then choose a cause.</p><div class="sim-offer rfc-offer" id="sim-offer" hidden><p class="sim-offer-t">Keep practising: refrigeration questions for your trade</p><ul class="rfc-chips"><li class="rfc-chip"><span class="rfc-chip-t" aria-hidden="true">313A</span><a class="sim-offer-free" href="https://redsealquiz.ca/313a-all-questions.html#t0"><span class="sim-vh">313A </span>Refrigeration cycle questions, free</a><a class="sim-offer-buy" data-cta="sim_result" href="https://ko-fi.com/s/bd62e0f1ae" target="_blank" rel="noopener"><span class="sim-vh">313A </span>Printable PDF with every answer explained</a></li></ul></div></div>
+</div>
+</div>
+<div class="sim-end" id="sim-end" aria-hidden="true"></div>
+</section>
+
+<p class="sim-discline"><span data-sid="disc.framing">Study simulation for trade exams. Not a test or repair procedure.</span> <span data-sid="disc.values">Every reading is a computed value or an example input for these example systems, not a service limit.</span></p>
+<p class="sim-lead"><span data-sid="meta.description">Practise on example refrigeration systems: change the charge and entering air temperatures, read superheat and subcooling, and find the fault.</span></p><p class="sim-lead"><span data-sid="intro.s1">This free simulator runs an example refrigeration system with a fixed orifice or a thermostatic expansion valve (TXV), two gauges and two line thermometers.</span> <span data-sid="intro.s2">In Operate, change the charge and the temperature of the air entering each coil, and read superheat and subcooling; in Find the fault, take readings and choose the cause.</span> <span data-sid="intro.s3">It is practice for the refrigeration cycle and troubleshooting questions of this site&#8217;s 313A refrigeration and air conditioning mechanic practice exam.</span></p>
+<section class="sim-sec sim-fold" id="cycle" aria-labelledby="cycle-h"><details><summary><h2 id="cycle-h">How the cycle works</h2></summary><div class="sim-fold-b"><p><span data-sid="cyc.s1">The cycle has four main parts on two pressure levels: the compressor and the metering device change the pressure, and the condenser and the evaporator move heat.</span> <span data-sid="cyc.s2">Refrigerant takes in heat in the evaporator at low pressure and gives it off in the condenser at high pressure.</span> <span data-sid="cyc.s3">In the basic cycle, the condenser gives off the heat taken in by the evaporator plus the work of the compressor.</span></p><p><span data-sid="cyc.s4">Explore names each part of the drawing and what it does.</span></p></div></details></section>
+<section class="sim-sec sim-fold" id="pressure-temperature" aria-labelledby="pressure-temperature-h"><details><summary><h2 id="pressure-temperature-h">Pressure and temperature</h2></summary><div class="sim-fold-b"><p><span data-sid="pt.s1">For a refrigerant with no glide, where liquid and vapour are both present, the pressure sets the temperature: each saturation pressure goes with one saturation temperature.</span> <span data-sid="pt.s2">So the suction gauge gives the evaporating temperature and the head gauge the condensing temperature.</span> <span data-sid="pt.s3">A vapour or a liquid away from saturation can sit at many temperatures at one pressure, which is why superheat and subcooling need a line temperature too.</span></p><p><span data-sid="pt.glide">For a blend with high temperature glide, superheat uses the dew point and subcooling the bubble point; this example refrigerant has no glide.</span></p></div></details></section>
+<section class="sim-sec sim-fold" id="superheat-subcooling" aria-labelledby="superheat-subcooling-h"><details><summary><h2 id="superheat-subcooling-h">Superheat and subcooling</h2></summary><div class="sim-fold-b"><p><span data-sid="shsc.sh_def">Superheat is the suction line temperature at the evaporator outlet minus the evaporating temperature read from the suction gauge.</span> <span data-sid="shsc.sc_def">Subcooling is the condensing temperature read from the head gauge minus the liquid line temperature at the condenser outlet.</span></p><p><span data-sid="status.sh_zero">Zero superheat: the evaporator outlet is wet and liquid can reach the compressor.</span> <span data-sid="status.sc_zero">Zero subcooling: the liquid line can carry flash gas.</span></p><p><span data-sid="shsc.maker">Superheat and subcooling on a real system are judged against the equipment maker&#8217;s figure.</span> <span data-sid="shsc.live">In the simulator each superheat and subcooling readout shows its subtraction, with the set-up value beside it.</span></p></div></details></section>
+<section class="sim-sec sim-fold" id="fixed-txv" aria-labelledby="fixed-txv-h"><details><summary><h2 id="fixed-txv-h">Fixed orifice and TXV</h2></summary><div class="sim-fold-b"><p><span data-sid="ftx.charge_fx">On the fixed-orifice example, less charge raises superheat and lowers subcooling, and more charge does the reverse.</span> <span data-sid="ftx.charge_tx">On the TXV example, superheat moves little as the charge changes, while subcooling follows the charge.</span></p><p><span data-sid="ftx.load">More load on the evaporator raises superheat on the fixed-orifice example; on the TXV example the valve opens further and superheat moves little.</span> <span data-sid="ftx.cond_air">Warmer air entering the condenser raises the condensing temperature and the head pressure on both examples.</span></p><p><span data-sid="ftx.try">Try each row in Operate on one metering device, then on the other; warmer air entering the evaporator adds load.</span></p></div></details></section>
+<section class="sim-sec sim-fold" id="find-fault" aria-labelledby="find-fault-h"><details><summary><h2 id="find-fault-h">Finding the fault</h2></summary><div class="sim-fold-b"><p><span data-sid="ff.s1">Find the fault uses the TXV example: each scene puts one fault into it, and every scene starts from the same symptom.</span> <span data-sid="fault.symptom">The system is running. Take readings and compare them with set-up.</span></p><p><span data-sid="ff.s2">Gauges, Suction line and Liquid line come before a cause can be chosen; Amps, Evaporator air and Condenser air add readings for comparison.</span> <span data-sid="ff.s3">A wrong pick gets the reading that rules it out; a cause these readings cannot rule out is marked not ruled out, and the scene goes on.</span></p><p><span data-sid="fault.not_every">Not every cause on this list has a scene in this version.</span> <span data-sid="ff.compressor">A compressor that pumps poorly is not among the faults in this version.</span></p></div></details></section>
+<section class="sim-sec sim-fold" id="reading-faults" aria-labelledby="reading-faults-h"><details><summary><h2 id="reading-faults-h">Reading the faults</h2></summary><div class="sim-fold-b"><p><span data-sid="rf.s1">Each row gives a cause, how it shows against set-up, and what tells it from a look-alike in this example TXV system, which has no receiver.</span></p><div class="sim-tbl"><table id="tbl-reading-faults"><thead><tr><th scope="col">Cause</th><th scope="col">How it shows</th><th scope="col">Look-alike</th><th scope="col">What tells them apart</th></tr></thead><tbody><tr><th scope="row"><span data-sid="cause.f_under">Undercharge (too little refrigerant)</span></th><td><span data-sid="tell.f_under">An undercharge shows as subcooling lower than at set-up, with head pressure lower.</span></td><td><span data-sid="cause.f_txv">Expansion valve underfeeding (sensing bulb has lost its charge)</span></td><td><span data-sid="explain.under_vs_valve">An undercharge and a valve that has lost its bulb charge both starve the evaporator and can both raise superheat. Subcooling separates them: lower with an undercharge, not lower with the valve.</span></td></tr><tr><th scope="row"><span data-sid="cause.f_over">Overcharge (too much refrigerant)</span></th><td><span data-sid="tell.f_over">An overcharge shows as subcooling and head pressure higher than at set-up.</span></td><td><span data-sid="cause.f_cond">Low airflow across the condenser (dirty coil)</span></td><td><span data-sid="explain.over_vs_cond">Low airflow across the condenser also raises head pressure, but makers&#8217; tables give it subcooling about the same or lower; an overcharge raises subcooling.</span></td></tr><tr><th scope="row"><span data-sid="cause.f_txv">Expansion valve underfeeding (sensing bulb has lost its charge)</span></th><td><span data-sid="tell.f_txv">An expansion valve that has lost its bulb charge underfeeds: superheat reads higher and suction and head pressure lower than at set-up, with subcooling not lower.</span></td><td><span data-sid="cause.f_evap">Low airflow across the evaporator</span></td><td><span data-sid="explain.valve_vs_evap">A valve that has lost its bulb charge raises superheat; low airflow across the evaporator does not.</span></td></tr><tr><th scope="row"><span data-sid="cause.f_cond">Low airflow across the condenser (dirty coil)</span></th><td><span data-sid="tell.f_cond">Low airflow across the condenser shows as head pressure higher than at set-up, with subcooling not higher.</span></td><td><span data-sid="cause.f_over">Overcharge (too much refrigerant)</span></td><td><span data-sid="explain.over_vs_cond">Low airflow across the condenser also raises head pressure, but makers&#8217; tables give it subcooling about the same or lower; an overcharge raises subcooling.</span></td></tr><tr><th scope="row"><span data-sid="cause.f_evap">Low airflow across the evaporator</span></th><td><span data-sid="tell.f_evap">Low airflow across the evaporator shows as suction pressure and head pressure lower than at set-up, with superheat not higher.</span></td><td><span data-sid="cause.f_txv">Expansion valve underfeeding (sensing bulb has lost its charge)</span></td><td><span data-sid="explain.valve_vs_evap">A valve that has lost its bulb charge raises superheat; low airflow across the evaporator does not.</span></td></tr><tr><th scope="row"><span data-sid="cause.f_drier">Restricted liquid line (blocked filter drier)</span></th><td><span data-sid="tell.f_drier">A restricted liquid line, such as a blocked filter drier, shows as suction pressure lower and superheat higher than at set-up; makers&#8217; tables differ on head pressure and subcooling.</span></td><td><span data-sid="cause.f_txv">Expansion valve underfeeding (sensing bulb has lost its charge)</span></td><td><span data-sid="faq.drier.a1">Not in this simulator. An instrument maker&#8217;s table gives both the same readings; another maker&#8217;s table gives head pressure higher for a blocked drier. Nothing in this simulator separates the two.</span></td></tr><tr><th scope="row"><span data-sid="cause.f_air">Air in the condenser (non-condensable gas)</span></th><td><span data-sid="tell.f_air">Air in the condenser shows as head pressure higher than at set-up, with suction pressure not lower.</span></td><td><span data-sid="cause.f_over">Overcharge (too much refrigerant)</span></td><td><span data-sid="faq.air.a1">Not in this simulator. Air in the condenser also raises head pressure. Nothing in this simulator separates them.</span></td></tr></tbody></table></div></div></details></section>
+<section class="sim-sec sim-fold" id="parts" aria-labelledby="parts-h"><details><summary><h2 id="parts-h">Parts of the example system</h2></summary><div class="sim-fold-b"><div class="sim-parts"><article class="sim-part" id="part-comp" data-part="comp"><h3><span data-sid="part.comp.name">Compressor</span></h3><p><strong>What it does:</strong> <span data-sid="part.comp.does">Draws vapour from the suction line and pumps it to the condenser at high pressure.</span></p><p><strong>When it goes wrong:</strong> <span data-sid="part.comp.fails">A compressor that pumps poorly is not among the faults in this version.</span></p></article><article class="sim-part" id="part-cond" data-part="cond"><h3><span data-sid="part.cond.name">Condenser</span></h3><p><strong>What it does:</strong> <span data-sid="part.cond.does">Gives off heat to the air flowing over it, so the vapour condenses to liquid; the last part of the coil cools that liquid below its condensing temperature.</span></p><p><strong>When it goes wrong:</strong> <span data-sid="part.cond.fails">Low airflow across it, as from a dirty coil, is one of the causes in Find the fault.</span></p></article><article class="sim-part" id="part-fanC" data-part="fanC"><h3><span data-sid="part.fanC.name">Condenser fan</span></h3><p><strong>What it does:</strong> <span data-sid="part.fanC.does">Moves air across the condenser; the Operate row for the condenser changes how warm the entering air is, not how much air the fan moves.</span></p><p><strong>When it goes wrong:</strong> <span data-sid="part.fanC.fails">A fan that moves too little air gives low airflow across the condenser.</span></p></article><article class="sim-part" id="part-md" data-part="md"><h3><span data-sid="part.md.name">Fixed orifice</span></h3><p><strong>What it does:</strong> <span data-sid="part.md.does">A fixed restriction at the evaporator inlet that drops the refrigerant to the low-side pressure.</span></p><p><strong>When it goes wrong:</strong> <span data-sid="part.md.fails">Find the fault uses the TXV example, so this version has no fixed-orifice fault.</span></p></article><article class="sim-part" id="part-txv" data-part="txv"><h3><span data-sid="part.txv.name">Thermostatic expansion valve (TXV)</span></h3><p><strong>What it does:</strong> <span data-sid="part.txv.does">Meters refrigerant into the evaporator, opening or closing with the superheat at the evaporator outlet, where its sensing bulb is clamped.</span></p><p><strong>When it goes wrong:</strong> <span data-sid="part.txv.fails">A valve whose sensing bulb has lost its charge underfeeds the evaporator; that is one of the causes in Find the fault.</span></p></article><article class="sim-part" id="part-bulb" data-part="bulb"><h3><span data-sid="part.bulb.name">Sensing bulb</span></h3><p><strong>What it does:</strong> <span data-sid="part.bulb.does">Clamped to the suction line at the evaporator outlet, it senses the temperature there and works the valve through its capillary.</span></p><p><strong>When it goes wrong:</strong> <span data-sid="part.bulb.fails">A bulb that has lost its charge leaves the valve underfeeding.</span></p></article><article class="sim-part" id="part-evap" data-part="evap"><h3><span data-sid="part.evap.name">Evaporator</span></h3><p><strong>What it does:</strong> <span data-sid="part.evap.does">Takes heat from the air flowing over it as the refrigerant boils; at set-up the refrigerant is all vapour by the outlet, and the warming past the boiling point is the superheat.</span></p><p><strong>When it goes wrong:</strong> <span data-sid="part.evap.fails">Low airflow across it is one of the causes in Find the fault.</span></p></article><article class="sim-part" id="part-fanE" data-part="fanE"><h3><span data-sid="part.fanE.name">Evaporator fan</span></h3><p><strong>What it does:</strong> <span data-sid="part.fanE.does">Moves air across the evaporator; the Operate row for the evaporator changes how warm the entering air is, not how much air the fan moves.</span></p><p><strong>When it goes wrong:</strong> <span data-sid="part.fanE.fails">A fan that moves too little air gives low airflow across the evaporator.</span></p></article><article class="sim-part" id="part-dl" data-part="dl"><h3><span data-sid="part.dl.name">Discharge line</span></h3><p><strong>What it does:</strong> <span data-sid="part.dl.does">Carries high-pressure vapour from the compressor to the condenser.</span></p><p><strong>When it goes wrong:</strong> <span data-sid="part.dl.fails">No discharge line fault is modelled, and this version shows no discharge line temperature.</span></p></article><article class="sim-part" id="part-ll" data-part="ll"><h3><span data-sid="part.ll.name">Liquid line</span></h3><p><strong>What it does:</strong> <span data-sid="part.ll.does">Carries liquid from the condenser to the metering device; its temperature at the condenser outlet gives the subcooling.</span></p><p><strong>When it goes wrong:</strong> <span data-sid="part.ll.fails">A blocked filter drier restricts the liquid line; it is one of the causes in Find the fault.</span></p></article><article class="sim-part" id="part-sl" data-part="sl"><h3><span data-sid="part.sl.name">Suction line</span></h3><p><strong>What it does:</strong> <span data-sid="part.sl.does">Carries vapour from the evaporator to the compressor; its temperature at the evaporator outlet gives the superheat.</span></p><p><strong>When it goes wrong:</strong> <span data-sid="part.sl.fails">No suction line fault is modelled in this version.</span></p></article><article class="sim-part" id="part-gS" data-part="gS"><h3><span data-sid="part.gS.name">Suction gauge</span></h3><p><strong>What it does:</strong> <span data-sid="part.gS.does">Reads the low-side pressure, called suction pressure, shown here as the evaporating temperature.</span></p><p><strong>When it goes wrong:</strong> <span data-sid="part.gS.fails">This version has no gauge faults.</span></p></article><article class="sim-part" id="part-gH" data-part="gH"><h3><span data-sid="part.gH.name">Head gauge</span></h3><p><strong>What it does:</strong> <span data-sid="part.gH.does">Reads the high-side pressure, called head pressure, shown here as the condensing temperature.</span></p><p><strong>When it goes wrong:</strong> <span data-sid="part.gH.fails">This version has no gauge faults.</span></p></article></div></div></details></section>
+<section class="sim-sec sim-fold sim-disc" id="about-model" aria-labelledby="about-model-h"><details><summary><h2 id="about-model-h">About this model</h2></summary><div class="sim-fold-b"><p><span data-sid="note.model">Example refrigerant and example systems, made up for this simulator.</span> <span data-sid="about.parts">The example systems have no receiver or accumulator, the model leaves out moisture on the coils, and every reading is for steady running.</span></p><p><span data-sid="about.amps">Compressor amps in this model are worked out from the compressor power and shown against a set-up mark, not in amperes.</span> <span data-sid="note.relative">Gauge needles, amps and cooling are shown against a set-up mark, not as pressures or amperes.</span> <span data-sid="note.band">A change inside a small band either side of the set-up value reads about the same.</span></p><p><span data-sid="disc.real">Diagnosis and charging on a real system follow the equipment maker&#8217;s service information.</span></p></div></details></section>
+<section class="sim-sec sim-fold sim-disc" id="safety" aria-labelledby="safety-h"><details><summary><h2 id="safety-h">Safety and handling</h2></summary><div class="sim-fold-b"><p><span data-sid="safety.s1">Work on a real system follows the equipment maker&#8217;s service information and the safety rules where the work is done.</span> <span data-sid="safety.s2">Who may handle halocarbon refrigerants is set by the regulations where the work is done.</span> <span data-sid="safety.s3">Releasing halocarbon refrigerants is regulated, and the rules where the work is done apply.</span></p></div></details></section>
+<section class="sim-sec sim-fold sim-disc" id="about-sim" aria-labelledby="about-sim-h"><details><summary><h2 id="about-sim-h">About this simulator</h2></summary><div class="sim-fold-b"><p><span data-sid="disc.model">The refrigerant and both example systems are made up for this simulator.</span></p><p class="sim-src"><span data-sid="disc.sources">Sources: an open thermodynamics textbook, an instrument maker&#8217;s fixed-orifice and TXV tables, an instrument maker&#8217;s application note, makers&#8217; troubleshooting tables, expansion valve maker literature and refrigerant handling regulations.</span> <span data-sid="disc.checked">Checked November 2026.</span></p></div></details></section>
+<section class="sim-sec sim-embed-sec" id="embed" aria-labelledby="embed-h">
+<h2 id="embed-h">Use this simulator in a class</h2>
+<p>Paste this code into a class page or a course site such as Moodle or D2L to show the simulator there. It is free to use for teaching, with the link back kept.</p>
+<label for="sim-embed-code">Embed code</label>
+<textarea class="sim-embed-code" id="sim-embed-code" readonly rows="4" data-name="Refrigeration cycle simulator"></textarea>
+<button type="button" class="sim-btn" id="sim-embed-copy">Copy the code</button>
+</section>
+<p class="sim-embed-bar"><a href="https://redsealquiz.ca/refrigeration-cycle-simulator.html">Open the full page: how it works and free practice questions</a></p>
+
+<section class="faq-visible sim-sec" id="faq" aria-labelledby="faq-h">
+<!-- Same questions and answers as this page&#8217;s FAQPage JSON-LD - change both together. -->
+<h2 id="faq-h">Frequently asked questions</h2><details><summary data-sid="faq.superheat.q">What is superheat?</summary><p><span data-sid="faq.superheat.a1">Superheat is the suction line temperature at the evaporator outlet minus the evaporating temperature read from the suction gauge.</span> <span data-sid="faq.superheat.a2">Superheat and subcooling on a real system are judged against the equipment maker&#8217;s figure.</span></p></details><details><summary data-sid="faq.subcooling.q">What is subcooling?</summary><p><span data-sid="faq.subcooling.a1">Subcooling is the condensing temperature read from the head gauge minus the liquid line temperature at the condenser outlet.</span> <span data-sid="faq.subcooling.a2">Zero subcooling: the liquid line can carry flash gas.</span></p></details><details><summary data-sid="faq.txvcharge.q">Why does a charge fault show in subcooling on this TXV example?</summary><p><span data-sid="faq.txvcharge.a1">This example has no receiver; its valve opens or closes to hold superheat, so the charge shows mainly in subcooling. Makers&#8217; tables agree that subcooling falls with an undercharge and rises with an overcharge; they differ on superheat for an overcharge.</span></p></details><details><summary data-sid="faq.overcond.q">How is an overcharge told from low airflow across the condenser?</summary><p><span data-sid="faq.overcond.a1">Both raise head pressure. Subcooling rises with an overcharge; with low condenser airflow, makers&#8217; tables give it about the same or lower.</span></p></details><details><summary data-sid="faq.valve.q">Why does a valve that has lost its bulb charge lower both pressures in this example?</summary><p><span data-sid="faq.valve.a1">It lets too little refrigerant through, so suction pressure falls with the starved evaporator; in this example head pressure falls too. Makers&#8217; tables give both lower for a lost bulb charge but differ on head pressure for a restricted liquid line.</span></p></details><details><summary data-sid="faq.air.q">Can this simulator&#8217;s readings tell air in the condenser from an overcharge or low airflow across the condenser?</summary><p><span data-sid="faq.air.a1">Not in this simulator. Air in the condenser also raises head pressure. Nothing in this simulator separates them.</span></p></details><details><summary data-sid="faq.drier.q">Can this simulator&#8217;s readings tell a blocked filter drier from a valve that has lost its bulb charge?</summary><p><span data-sid="faq.drier.a1">Not in this simulator. An instrument maker&#8217;s table gives both the same readings; another maker&#8217;s table gives head pressure higher for a blocked drier. Nothing in this simulator separates the two.</span></p></details><details><summary data-sid="faq.trades.q">Which trade is this simulator for?</summary><p><span data-sid="faq.trades.a1">It is built for the 313A refrigeration and air conditioning mechanic exam; the other trades have their own practice pages on this site.</span></p></details></section>
+</main>
+
+<footer>
+<!-- foot-v2 --><div class="foot-v2"><div class="fv-brand"><a href="/"><svg class="rs-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="8" fill="#0f2540"/><circle cx="16" cy="16" r="10.5" fill="#d32f2f"/><path d="M11 16.4l3.4 3.4 6.6-7.2" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Red Seal Prep</span></a><p>Free practice questions, mock exams and study guides for Canadian Red Seal trade exams.</p></div><div class="fv-trades"><h4>Trades</h4><ul><li><a href="/306a.html">306A Plumber</a></li><li><a href="/308a.html">308A Sheet Metal Worker</a></li><li><a href="/309a.html">309A Construction Electrician</a></li><li><a href="/310s.html">310S Automotive Service Tech</a></li><li><a href="/310t.html">310T Truck &amp; Transport Mechanic</a></li><li><a href="/313a.html">313A Refrigeration &amp; A/C Mechanic</a></li><li><a href="/420b.html">420B Ironworker</a></li><li><a href="/421a.html">421A Heavy Duty Equipment Tech</a></li><li><a href="/442a.html">442A Industrial Electrician</a></li><li><a href="/456a.html">456A Welder</a></li><li><a href="/gasfitter-class-a.html">Gasfitter (Class A)</a></li></ul></div><div><h4>Study</h4><ul><li><a href="/practice-quizzes.html">Practice quizzes</a></li><li><a href="/study-guide.html">Study guide</a></li><li><a href="/study-planner.html">Study planner</a></li><li><a href="/red-seal-exam-format-guide.html">Exam format guide</a></li><li><a href="/red-seal-trade-simulators.html">Trade simulators</a></li><li><a href="/red-seal-trades.html">Career &amp; salary guides</a></li><li><a href="/question-bank-updates.html">Question bank updates</a></li></ul></div><div><h4>Site</h4><ul><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li><li><a href="/privacy.html">Privacy policy</a></li><li><a href="/terms.html">Terms of use</a></li><li><a href="/disclaimer.html">Disclaimer</a></li><li><a href="/llms.txt">For AI assistants</a></li></ul></div></div><!-- /foot-v2 -->
+
+  <p>Canada Red Seal Exam Prep — Free study resource for Canadian skilled trades apprentices</p>
+  <p style="font-size:.72rem;opacity:.75;margin-top:6px;">Independent, unofficial study resource &mdash; not affiliated with or endorsed by the CCDA, the Red Seal Program, or any provincial/territorial apprenticeship authority. No guarantee of exam results. Paid downloads come with a 7-day money-back guarantee &mdash; <a href="/terms.html#refunds">refund policy</a>. <a href="/disclaimer.html">Details</a></p>
+  <p style="margin-top:8px;"><a href="/">Home</a><a href="/study-guide.html">Study Guide</a><a href="/exam-guide.html">Exam Guide</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Use</a><a href="/disclaimer.html">Disclaimer</a></p>
+</footer>
+
+<script>
+(function(){
+  var nt=document.getElementById('navToggle'),nl=document.getElementById('navLinks');
+  var td=document.getElementById('tradesDrop'),tb=document.getElementById('tradesBtn');
+  if(nt&&nl)nt.addEventListener('click',function(){var o=nl.classList.toggle('open');nt.textContent=o?'✕':'☰';});
+  if(tb&&td){tb.addEventListener('click',function(e){e.stopPropagation();td.classList.toggle('open');});
+  document.addEventListener('click',function(){if(td)td.classList.remove('open');});}
+})();
+</script>
+<script>
+(function(){
+  var b=document.getElementById("sim-embed-copy"),t=document.getElementById("sim-embed-code");
+  if(t){
+    var c=document.querySelector("link[rel=canonical]"),u=c?c.href:location.href.split("?")[0],n=t.getAttribute("data-name");
+    t.value="<iframe src=\""+u+"?embed=1\" title=\""+n+"\" style=\"border:0;width:100%;max-width:960px;aspect-ratio:4/5\" loading=\"lazy\"></iframe>\n"+
+      "<p><a href=\""+u+"\">"+n+"</a> from redsealquiz.ca</p>";
+  }
+  if(b&&t)b.addEventListener("click",function(){
+    var done=function(){b.textContent="Copied";setTimeout(function(){b.textContent="Copy the code";},2000);};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t.value).then(done,function(){t.select();});}
+    else{t.select();try{document.execCommand("copy");done();}catch(e){}}
+  });
+  var a=document.querySelector(".sim-embed-bar a");
+  if(a&&document.documentElement.classList.contains("sim-embedded")){a.target="_blank";a.rel="noopener";}
+})();
+</script>
+</body>
+</html>
